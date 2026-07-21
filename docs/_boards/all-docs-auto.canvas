@@ -1,0 +1,212 @@
+{
+  "nodes": [
+    {
+      "id": "text-generated-overview",
+      "type": "text",
+      "text": "Auto-generated docs overview\n\nGenerated from Markdown files in this vault.\nDo not manually curate this board; changes may be overwritten.\nUse _boards/working-map.canvas for manual planning.\n",
+      "x": 0,
+      "y": 0,
+      "width": 1520,
+      "height": 180
+    },
+    {
+      "id": "file-4a2d5582b666",
+      "type": "file",
+      "file": "00-index.md",
+      "x": 0,
+      "y": 260,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-9775875333f8",
+      "type": "file",
+      "file": "00_project_hub.md",
+      "x": 780,
+      "y": 260,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-98bf04502128",
+      "type": "file",
+      "file": "01_vision_brief.md",
+      "x": 0,
+      "y": 1940,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-b2236b315e5d",
+      "type": "file",
+      "file": "02_sprint_01_plan.md",
+      "x": 780,
+      "y": 1940,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-f01e5e2e0833",
+      "type": "file",
+      "file": "03_backlog_seed.md",
+      "x": 0,
+      "y": 3620,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-c0441c30ff01",
+      "type": "file",
+      "file": "04_risk_and_scope_register.md",
+      "x": 780,
+      "y": 3620,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-80da41fb8fc6",
+      "type": "file",
+      "file": "05_decision_log.md",
+      "x": 0,
+      "y": 5300,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-d1cf290a5d4d",
+      "type": "file",
+      "file": "06_prototype_log.md",
+      "x": 780,
+      "y": 5300,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-10ce01af812a",
+      "type": "file",
+      "file": "07_playtest_qa_template.md",
+      "x": 0,
+      "y": 6980,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-59b7af3d6b08",
+      "type": "file",
+      "file": "08_clickup_paste_pack.md",
+      "x": 780,
+      "y": 6980,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-62cdeb9a4f04",
+      "type": "file",
+      "file": "09_first_playable_spec.md",
+      "x": 0,
+      "y": 8660,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-fd263baf4cd5",
+      "type": "file",
+      "file": "10_technical_architecture_outline.md",
+      "x": 780,
+      "y": 8660,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-3b430171b9ad",
+      "type": "file",
+      "file": "11_monday_planning_agenda.md",
+      "x": 0,
+      "y": 10340,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-a827b32ea28f",
+      "type": "file",
+      "file": "12_obsidian_canvas_workflow.md",
+      "x": 780,
+      "y": 10340,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-1df5ba8804ce",
+      "type": "file",
+      "file": "13_offline_game_design_workbook.md",
+      "x": 0,
+      "y": 12020,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-25fab6099d85",
+      "type": "file",
+      "file": "14_current_design_synthesis.md",
+      "x": 780,
+      "y": 12020,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-5d2e411afaf7",
+      "type": "file",
+      "file": "15_sprint_02_plan.md",
+      "x": 0,
+      "y": 13700,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-a526e01e9063",
+      "type": "file",
+      "file": "16_clickup_sprint_02_paste.md",
+      "x": 780,
+      "y": 13700,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-71bf0815b0a4",
+      "type": "file",
+      "file": "17_contract_scenario_framework.md",
+      "x": 0,
+      "y": 15380,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-5f1e6b15754b",
+      "type": "file",
+      "file": "18_agent_implementation_handoff.md",
+      "x": 780,
+      "y": 15380,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-d1d989014ebc",
+      "type": "file",
+      "file": "19_adaptive_entity_framework.md",
+      "x": 0,
+      "y": 17060,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-ddb19e50258a",
+      "type": "file",
+      "file": "templates/weekly_stakeholder_report.md",
+      "x": 780,
+      "y": 17060,
+      "width": 740,
+      "height": 1600
+    }
+  ],
+  "edges": []
+}

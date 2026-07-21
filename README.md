@@ -1,0 +1,69 @@
+# VR Extraction Horror Prototype
+
+Pixoul internship project for a polished minimum lovable product by 2026-08-28.
+
+## Current Working Summary
+
+The current desktop-first vertical slice is a 15-20 minute sci-fi extraction-horror run through a 10-space authored facility. Find and hold rods long enough to assay them, use the Geiger counter to search, deliver three confirmed-live rods while one adaptive Owl patrols the route network, survive the 20-second extraction cycle, then cross the open exit. The player, threat navigation, feedback devices, and run configuration remain behind narrow seams so XR and physical hardware implementations can replace their desktop simulators later.
+
+## Prototype Quick Start
+
+- Unity project: `UnityProject/InternshipGameSynced`
+- Main scene: `Assets/_Project/Scenes/P01_CoreLoop.unity`
+- Windows player: `UnityProject/InternshipGameSynced/Builds/PolishedPrototype/P01_PolishedPrototype.exe`
+
+Desktop controls:
+
+- `WASD` move, mouse look, `Shift` sprint, `Space` jump.
+- `E` grab/drop; left click uses the focused door, exit, or other interactable.
+- `R` restart the current seed; `Shift+R` generate a new seed.
+- `F1` toggle the operator overlay; `F2` toggle bounded Owl/Geiger interference.
+- `Esc` pause/resume and release/capture the cursor.
+
+The baseline experience starts with Geiger interference disabled so first-time device comprehension can be measured before adding uncertainty.
+
+## Core Workflow
+
+Weekly prototype-heavy agile loop:
+
+1. Monday: choose prototype goal, sprint tasks, risks, and success criteria.
+2. Tuesday-Thursday: build, integrate, test locally, and keep notes.
+3. Friday: playtest or demo, update docs, decide what changes next.
+
+Docs are living control panels, not a waterfall phase. Each update should help make a build decision, communicate status, or reduce risk.
+
+## Project Docs
+
+- [Project Hub](docs/00_project_hub.md)
+- [Current Design Synthesis](docs/14_current_design_synthesis.md)
+- [Contract Scenario Framework](docs/17_contract_scenario_framework.md)
+- [Agent Implementation Handoff](docs/18_agent_implementation_handoff.md)
+- [Adaptive Entity Framework](docs/19_adaptive_entity_framework.md)
+- [First Playable Spec](docs/09_first_playable_spec.md)
+- [Technical Architecture Outline](docs/10_technical_architecture_outline.md)
+- [Vision Brief](docs/01_vision_brief.md)
+- [Sprint 01 Plan](docs/02_sprint_01_plan.md)
+- [Sprint 02 Plan](docs/15_sprint_02_plan.md)
+- [Sprint 02 ClickUp Paste Pack](docs/16_clickup_sprint_02_paste.md)
+- [Backlog Seed](docs/03_backlog_seed.md)
+- [Risk and Scope Register](docs/04_risk_and_scope_register.md)
+- [Decision Log](docs/05_decision_log.md)
+- [Prototype Log](docs/06_prototype_log.md)
+- [Playtest and QA Template](docs/07_playtest_qa_template.md)
+- [ClickUp Paste Pack](docs/08_clickup_paste_pack.md)
+- [Weekly Stakeholder Report Template](docs/templates/weekly_stakeholder_report.md)
+
+## Obsidian Canvas Workflow
+
+Open `docs` as an Obsidian vault, enable the Canvas core plugin, then generate
+the visual docs overview from the project root:
+
+```powershell
+scripts\generate_canvas.bat
+```
+
+The generated board is `docs\_boards\all-docs-auto.canvas`. It is safe to
+rerun and may be overwritten. Use `docs\_boards\working-map.canvas` for manual
+planning because the generator will not overwrite it.
+
+See [Obsidian Canvas Workflow](docs/12_obsidian_canvas_workflow.md).
