@@ -60,6 +60,25 @@ namespace InternshipGame.Prototype.Tests
         }
 
         [Test]
+        public void AdaptedSearchMultiplierExtendsSearchWithoutChangingBaselineTiming()
+        {
+            var baseline = CreateMachine();
+            var adapted = CreateMachine();
+            baseline.Activate();
+            adapted.Activate();
+            baseline.Tick(1.1f, false, 3f);
+            adapted.Tick(1.1f, false, 3f);
+
+            baseline.Tick(3f, false, 3f);
+            adapted.Tick(3f, false, 3f, 1.35f);
+
+            Assert.That(baseline.State, Is.EqualTo(PursuitThreatState.Patrolling));
+            Assert.That(adapted.State, Is.EqualTo(PursuitThreatState.Searching));
+            adapted.Tick(1.1f, false, 3f, 1.35f);
+            Assert.That(adapted.State, Is.EqualTo(PursuitThreatState.Patrolling));
+        }
+
+        [Test]
         public void CaptureOnlyOccursAfterWarningPhase()
         {
             var machine = CreateMachine();

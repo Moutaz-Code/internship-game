@@ -1,5 +1,7 @@
 # ClickUp Sprint 02 Paste Pack
 
+Status: Superseded for new task creation by `26_clickup_prototype_02_paste.md`. Do not paste this older broad prompt for the current scope freeze.
+
 Paste the instruction below into the linked ClickUp GPT app. Review the proposed tasks before allowing it to alter existing Sprint 01 items.
 
 ```text
@@ -24,14 +26,14 @@ Acceptance criteria: Baseline notes exist for three seeds; blockers and design g
 List: 01 Design
 Due: 2026-07-20
 Depends on: S2-001
-Description: Specify the concrete actions for the 10-15 second first-capture equipment reboot and 20-30 second second-capture Owl-nest escape. Define five authored-zone selection rules, carried-item scatter range, exact second-stage adaptation parameters, anti-fast-travel behavior, approximately 60-second normal retreat, and approximately 20-30 second final-five-minute protection. Deposited rods remain safe and third capture is terminal for this test.
+Description: Specify the concrete actions for the 10-15 second first-capture equipment reboot and 20-30 second second-capture Owl-nest escape. Define five authored-zone selection rules, carried-item scatter range, a heavier recoverable second-stage penalty that does not strengthen adaptation, anti-fast-travel behavior, approximately 60-second normal retreat, and approximately 20-30 second final-five-minute protection. Deposited rods remain safe and third capture is terminal for this test.
 Acceptance criteria: Every capture transition and player-facing cue is explicit; no behavior-changing choice remains hidden in implementation; the rule cannot silently make the remaining run unwinnable.
 
 [Urgent] S2-003 Implement and test capture recovery v1
 List: 02 Technical
 Due: 2026-07-21
 Depends on: S2-002
-Description: Replace instant capture failure with the approved two-recovery escalation. The Owl knocks the player unconscious through a short fade/audio transition with no graphic feeding or forced-camera sequence. First recovery uses equipment reboot. Second recovery uses a short nest escape and stronger approved adaptation. Keep capture and recovery in explicit run state, preserve deposits, scatter carried items only into valid authored positions, select among roughly five recovery zones, apply approved protection timing, and restore cleanly on restart.
+Description: Replace instant capture failure with the approved two-recovery escalation. The Owl knocks the player unconscious through a short fade/audio transition with no graphic feeding or forced-camera sequence. First recovery uses equipment reboot. Second recovery uses a short nest escape and the approved non-adaptation penalty. Keep capture and recovery in explicit run state, preserve deposits, scatter carried items only into valid authored positions, select among roughly five recovery zones, apply approved protection timing, and restore cleanly on restart.
 Acceptance criteria: Equipment reboot and nest escape work; first and second captures are recoverable; the third ends the test run; no immediate recapture loop; automated or repeatable checks cover zone safety, item scatter, capture, recovery, escalation, protection timing, and reset.
 
 [High] S2-004 Implement invalid-rod consequence v1
@@ -48,12 +50,16 @@ Depends on: S2-001
 Description: Make the paid recovery job, three-live-rod requirement, assay truth cue, and extraction goal understandable through concise mission presentation and diegetic feedback.
 Acceptance criteria: A first-time tester can correctly state the objective within two minutes without developer explanation.
 
-[High] S2-006 Validate mixed Owl counterplay
+[High] S2-006 Validate mixed Owl counterplay and route adaptation v1
 List: 01 Design
 Due: 2026-07-22
 Depends on: S2-001
-Description: Verify hiding/sight breaks, distraction, and rerouting create at least two useful situational responses. Tune warning, search, and disengage rules. Add a limited stun only if the existing responses do not produce meaningful choice.
-Acceptance criteria: At least two counterplay families are readable and useful; no one tactic universally solves the Owl; unavoidable catches are treated as blockers.
+Description: Verify hiding/sight breaks, distraction, and rerouting leave at least two useful situational responses. Validate only the route-family learning experiment from docs/20_owl_adaptation_v1_spec.md: run-only memory, suspicion after one credible use, capped adaptation after two repeated uses, direct evidence above inference, diegetic behavioral expression, route variety weakening confidence, operator telemetry, and baseline disable mode. Do not add hiding-pattern learning, distraction/stun learning, persistent memory, or generalized roster infrastructure in this task.
+Acceptance criteria: At least two counterplay families remain useful; repeated route use creates a readable but fair Owl bias; changing routes weakens the prediction; no player-facing learning notification is used; unavoidable catches are blockers; telemetry reconstructs why adaptation occurred.
+
+Scope warning: The broader design includes future close-range stun, multi-item equipment, spatial hiding, door/environment manipulation, and possible heart-rate research. Do not implement those systems under S2-006 unless a separate approved task is created.
+
+Technology warning: Implement route adaptation v1 with the existing deterministic game-AI architecture. Do not add a trained model, ML inference runtime, or Unity AI Inference package.
 
 [High] S2-007 Add playtest telemetry and run summary
 List: 02 Technical

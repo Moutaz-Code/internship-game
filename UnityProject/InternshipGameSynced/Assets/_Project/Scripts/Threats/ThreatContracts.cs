@@ -46,6 +46,102 @@ namespace InternshipGame.Prototype
         East,
     }
 
+    public enum RouteEvidenceSource
+    {
+        None,
+        Direct,
+        Inferred,
+    }
+
+    public enum RouteEvidenceKind
+    {
+        None,
+        ObservedZoneEntry,
+        Sprint,
+        JumpLanding,
+        DroppedProp,
+        RodRejected,
+        ObjectiveProgress,
+    }
+
+    public enum RouteAdaptationState
+    {
+        Uncertain,
+        Suspicious,
+        Adapted,
+        CounterAdapted,
+    }
+
+    public enum RouteAdaptationResponse
+    {
+        BaselinePatrol,
+        SuspiciousRouteInspection,
+        AdaptedRouteBias,
+        ForcedPatrolVariety,
+        SuspiciousRouteSearch,
+        AdaptedRouteSearch,
+        CounterAdaptationOpening,
+    }
+
+    /// <summary>
+    /// A run-local, plausibly acquired clue about route-family use. Inferred clues
+    /// intentionally omit exact positions: the adaptation model learns a wing, not
+    /// the player's hidden location.
+    /// </summary>
+    public readonly struct RouteEvidence
+    {
+        public RouteEvidence(
+            RouteEvidenceSource source,
+            RouteEvidenceKind kind,
+            ThreatWing wing,
+            float occurredAtSeconds,
+            string zoneLabel,
+            bool hasObservedPosition = false,
+            Vector3 observedPosition = default)
+        {
+            if (source == RouteEvidenceSource.None)
+            {
+                throw new ArgumentOutOfRangeException(nameof(source));
+            }
+
+            if (kind == RouteEvidenceKind.None)
+            {
+                throw new ArgumentOutOfRangeException(nameof(kind));
+            }
+
+            if (wing == ThreatWing.None)
+            {
+                throw new ArgumentOutOfRangeException(nameof(wing));
+            }
+
+            if (float.IsNaN(occurredAtSeconds) || float.IsInfinity(occurredAtSeconds) || occurredAtSeconds < 0f)
+            {
+                throw new ArgumentOutOfRangeException(nameof(occurredAtSeconds));
+            }
+
+            if (source == RouteEvidenceSource.Inferred && hasObservedPosition)
+            {
+                throw new ArgumentException("Inferred route evidence cannot contain an exact observed position.");
+            }
+
+            Source = source;
+            Kind = kind;
+            Wing = wing;
+            OccurredAtSeconds = occurredAtSeconds;
+            ZoneLabel = string.IsNullOrWhiteSpace(zoneLabel) ? wing.ToString() : zoneLabel;
+            HasObservedPosition = hasObservedPosition;
+            ObservedPosition = hasObservedPosition ? observedPosition : default;
+        }
+
+        public RouteEvidenceSource Source { get; }
+        public RouteEvidenceKind Kind { get; }
+        public ThreatWing Wing { get; }
+        public float OccurredAtSeconds { get; }
+        public string ZoneLabel { get; }
+        public bool HasObservedPosition { get; }
+        public Vector3 ObservedPosition { get; }
+    }
+
     public readonly struct ThreatStimulus
     {
         public ThreatStimulus(

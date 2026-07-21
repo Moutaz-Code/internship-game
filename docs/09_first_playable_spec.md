@@ -2,7 +2,7 @@
 
 Status: Implemented feature skeleton; design validation and recovery-loop revision pending
 
-Last updated: 2026-07-20
+Last updated: 2026-07-22
 
 ## Prototype Question
 
@@ -75,6 +75,17 @@ No-single-counter rule:
 
 Prototype 1 does not need every counterplay at final fidelity. It does need at least two understandable options so a player can make a situational choice.
 
+Prototype 1 adaptation scope:
+
+- Memory lasts only for the current run and resets on restart.
+- Route-family use is the only adaptation signal required for this validation slice.
+- One use creates suspicion; two repeated uses may bias patrol or search behavior.
+- Direct Owl observation carries more importance than inferred route evidence.
+- Switching tactics or route families weakens confidence in the previous prediction.
+- Communicate adaptation through patrol/search behavior rather than player-facing UI.
+- The pacing director may create believable back-off windows.
+- Hiding-pattern, distraction/stun-reliance, and full bluffing systems remain outside this sprint unless separately approved.
+
 ## Capture And Recovery
 
 Confirmed Prototype 1 test rules:
@@ -88,7 +99,7 @@ Confirmed Prototype 1 test rules:
 - Outside the final five minutes, the Owl retreats for approximately 60 seconds.
 - During the final five minutes, post-recovery protection is shortened to approximately 20-30 seconds rather than removed.
 - First recovery uses a short equipment-reboot interaction, currently targeting 10-15 seconds.
-- Second recovery uses a short Owl-nest escape, currently targeting 20-30 seconds, and returns the Owl with stronger adaptation.
+- Second recovery uses a short Owl-nest escape, currently targeting 20-30 seconds, plus a heavier recoverable penalty that is still pending design.
 - Third capture ends the current test run.
 - The player immediately understands what was lost and how to resume the contract.
 - Recovery must not consume so much time that the run becomes secretly unwinnable.
@@ -96,7 +107,7 @@ Confirmed Prototype 1 test rules:
 Open implementation choices; do not silently decide these in code:
 
 - Exact equipment-reboot and nest-escape actions.
-- Exact adaptation parameters unlocked or strengthened after the second capture.
+- Exact non-adaptation penalty applied after the second capture.
 - Exact authored scatter range. Items should appear playfully displaced by the entity, but must remain recoverable and must not imply a second creature implementation.
 
 Reject this version if players deliberately exploit capture as fast travel, enter a recapture loop, or lose realistic hope of finishing.

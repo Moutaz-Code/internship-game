@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace InternshipGame.Prototype
 {
@@ -26,8 +28,29 @@ namespace InternshipGame.Prototype
         [SerializeField, Min(0.1f)] private float searchSpeed = 1.45f;
         [SerializeField, Min(1f)] private float proximityCueDistance = 8f;
 
+        [Header("PT2 Route Adaptation")]
+        [SerializeField] private bool routeAdaptationEnabled = true;
+        [SerializeField, Min(0.01f)] private float directEvidenceWeight = 1f;
+        [SerializeField, Min(0.01f)] private float inferredEvidenceWeight = 0.5f;
+        [SerializeField, Min(0.01f)] private float suspiciousThreshold = 1f;
+        [SerializeField, Min(0.02f)] private float adaptedThreshold = 2f;
+        [SerializeField, Min(0f)] private float inferredEvidenceCooldownSeconds = 4f;
+        [SerializeField, Range(0f, 1f)] private float inferredEvidenceMinimumStrength = 0.3f;
+        [SerializeField, Min(0f)] private float confidenceDecayDelaySeconds = 60f;
+        [SerializeField, Min(0f)] private float confidenceDecayPerSecond = 0.025f;
+        [SerializeField, Min(0f)] private float crossWingReductionMultiplier = 1f;
+        [SerializeField, Min(1f)] private float suspiciousPatrolWeight = 1.25f;
+        [SerializeField, Min(1f)] private float adaptedPatrolWeight = 1.75f;
+        [SerializeField, Min(1f)] private float patrolBiasDurationSeconds = 60f;
+        [SerializeField, Min(0f)] private float counterAdaptedDurationSeconds = 12f;
+        [SerializeField, Min(1)] private int maximumConsecutiveBiasedSelections = 2;
+        [SerializeField, Min(0f)] private float adaptiveSearchRedirectDelaySeconds = 2f;
+        [SerializeField, Min(1f)] private float suspiciousSearchDurationMultiplier = 1.15f;
+        [SerializeField, Min(1f)] private float adaptedSearchDurationMultiplier = 1.35f;
+        [SerializeField, Range(0.1f, 1f)] private float counterAdaptedSearchDurationMultiplier = 0.8f;
+
         private PursuitThreatStateMachine stateMachine;
-        private readonly ThreatPressureModel pressureModel = new();
+        private ThreatPressureModel pressureModel;
         private IPlayerContext playerContext;
         private IRunFailureSink failureSink;
         private IThreatNavigator navigator;
@@ -44,12 +67,13 @@ namespace InternshipGame.Prototype
         public bool HasLineOfSight { get; private set; }
         public float PlayerDistance { get; private set; } = float.PositiveInfinity;
         public bool IsThreatEnabled => threatEnabled;
-        public ThreatPressureSnapshot Pressure => pressureModel.Snapshot;
+        public bool IsRouteAdaptationEnabled => PressureModel.AdaptationEnabled;
+        public ThreatPressureSnapshot Pressure => PressureModel.Snapshot;
+        public RouteAdaptationSnapshot RouteAdaptation => PressureModel.Adaptation;
         public OwlBehaviorProfile BehaviorProfile => behaviorProfile;
-        public string StatusLabel => threatEnabled
-            ? $"Owl: {CurrentState}  LOS: {(HasLineOfSight ? "YES" : "no")}  {PlayerDistance:0.0}m  " +
-              $"pressure {Pressure.TotalPressure:0.00}  bias {Pressure.BiasedWing}"
-            : "Owl: disabled";
+        public string StatusLabel => BuildStatusLabel();
+
+        private ThreatPressureModel PressureModel => pressureModel ??= CreatePressureModel();
 
         public void Configure(
             MonoBehaviour contextBehaviour,
@@ -80,6 +104,8 @@ namespace InternshipGame.Prototype
         private void Awake()
         {
             ResolveDependencies();
+            pressureModel = CreatePressureModel();
+            pressureModel.SetAdaptationEnabled(routeAdaptationEnabled);
             stateMachine = new PursuitThreatStateMachine(
                 investigationSeconds,
                 loseSightGraceSeconds,
@@ -108,6 +134,11 @@ namespace InternshipGame.Prototype
 
         private void Update()
         {
+            if (Keyboard.current?.f3Key.wasPressedThisFrame == true)
+            {
+                SetRouteAdaptationEnabled(!PressureModel.AdaptationEnabled);
+            }
+
             if (!threatEnabled || stateMachine == null)
             {
                 return;
@@ -116,8 +147,8 @@ namespace InternshipGame.Prototype
             if (runActive)
             {
                 activeRunElapsed += Time.deltaTime;
-                pressureModel.SetThreatPosition(transform.position);
-                pressureModel.Tick(Time.deltaTime);
+                PressureModel.SetThreatPosition(transform.position);
+                PressureModel.Tick(Time.deltaTime);
                 if (stateMachine.State == PursuitThreatState.Dormant && activeRunElapsed >= automaticActivationSeconds)
                 {
                     ActivateThreat();
@@ -144,7 +175,11 @@ namespace InternshipGame.Prototype
             }
 
             var previous = stateMachine.State;
-            stateMachine.Tick(Time.deltaTime, HasLineOfSight, PlayerDistance);
+            stateMachine.Tick(
+                Time.deltaTime,
+                HasLineOfSight,
+                PlayerDistance,
+                GetSearchDurationMultiplier());
             if (previous != stateMachine.State)
             {
                 HandleStateChanged(previous, stateMachine.State);
@@ -176,11 +211,17 @@ namespace InternshipGame.Prototype
             }
         }
 
+        public void SetRouteAdaptationEnabled(bool enabled)
+        {
+            routeAdaptationEnabled = enabled;
+            PressureModel.SetAdaptationEnabled(enabled);
+        }
+
         public void OnRunReset()
         {
             runActive = true;
             activeRunElapsed = 0f;
-            pressureModel.Reset();
+            PressureModel.Reset();
             ResetThreat();
         }
 
@@ -272,13 +313,19 @@ namespace InternshipGame.Prototype
                 0.55f,
                 18f,
                 Mathf.Max(0f, Time.time)));
-            lastKnownPlayerPosition = position;
+            // First pickup activates the encounter, but an unheard pickup does not
+            // grant the Owl the player's exact hidden position.
+            if (PressureModel.LastStimulusStrength <= 0f)
+            {
+                lastKnownPlayerPosition = spawnPosition;
+            }
+
             ActivateThreat(preserveLastKnownPosition: true);
         }
 
         public void SetObjectiveProgress(float normalizedProgress)
         {
-            pressureModel.SetObjectiveProgress(normalizedProgress);
+            PressureModel.SetObjectiveProgress(normalizedProgress);
         }
 
         public void ApplyBehaviorProfile(OwlBehaviorProfile profile)
@@ -293,9 +340,24 @@ namespace InternshipGame.Prototype
 
         public void ReportStimulus(ThreatStimulus stimulus)
         {
-            pressureModel.SetThreatPosition(transform.position);
-            pressureModel.ReportStimulus(stimulus);
-            if (pressureModel.LastStimulusStrength <= 0f)
+            var model = PressureModel;
+            model.SetThreatPosition(transform.position);
+            model.ReportStimulus(stimulus);
+
+            var previousAdaptationState = model.Adaptation.State;
+            var routeEvidenceRecorded = ThreatRouteEvidencePolicy.TryRecordInferredStimulus(
+                model,
+                InferWing(stimulus.Position),
+                runActive,
+                stimulus,
+                model.LastStimulusStrength,
+                inferredEvidenceMinimumStrength);
+            if (routeEvidenceRecorded)
+            {
+                HandleRouteAdaptationChanged(previousAdaptationState, model.Adaptation.State);
+            }
+
+            if (model.LastStimulusStrength <= 0f)
             {
                 return;
             }
@@ -317,10 +379,16 @@ namespace InternshipGame.Prototype
             var patrolTarget = stateMachine.State == PursuitThreatState.Patrolling
                 ? GetPatrolTarget()
                 : spawnPosition;
+            var searchReference = lastKnownPlayerPosition;
+            if (stateMachine.State == PursuitThreatState.Searching)
+            {
+                searchReference = GetAdaptiveSearchReference(lastKnownPlayerPosition);
+            }
+
             var pursuitTarget = ThreatTargetPolicy.SelectMovementTarget(
                 stateMachine.State,
                 currentPlayerPosition,
-                lastKnownPlayerPosition,
+                searchReference,
                 patrolTarget);
             var targetPoint = route != null
                 ? route.GetNextPointToward(transform.position, pursuitTarget)
@@ -476,6 +544,104 @@ namespace InternshipGame.Prototype
             navigator = navigatorBehaviour as IThreatNavigator;
         }
 
+        private ThreatPressureModel CreatePressureModel()
+        {
+            var safeSuspiciousThreshold = Mathf.Max(0.01f, suspiciousThreshold);
+            var tuning = new RouteAdaptationTuning(
+                Mathf.Max(0.01f, directEvidenceWeight),
+                Mathf.Max(0.01f, inferredEvidenceWeight),
+                safeSuspiciousThreshold,
+                Mathf.Max(safeSuspiciousThreshold + 0.01f, adaptedThreshold),
+                Mathf.Max(0f, inferredEvidenceCooldownSeconds),
+                Mathf.Max(0f, confidenceDecayDelaySeconds),
+                Mathf.Max(0f, confidenceDecayPerSecond),
+                Mathf.Max(0f, crossWingReductionMultiplier),
+                Mathf.Max(1f, suspiciousPatrolWeight),
+                Mathf.Max(1f, adaptedPatrolWeight),
+                Mathf.Max(1f, patrolBiasDurationSeconds),
+                Mathf.Max(0f, counterAdaptedDurationSeconds),
+                Mathf.Max(1, maximumConsecutiveBiasedSelections));
+            return new ThreatPressureModel(tuning);
+        }
+
+        private float GetSearchDurationMultiplier()
+        {
+            if (!PressureModel.AdaptationEnabled)
+            {
+                return 1f;
+            }
+
+            return PressureModel.Adaptation.State switch
+            {
+                RouteAdaptationState.Suspicious => Mathf.Max(1f, suspiciousSearchDurationMultiplier),
+                RouteAdaptationState.Adapted => Mathf.Max(1f, adaptedSearchDurationMultiplier),
+                RouteAdaptationState.CounterAdapted => Mathf.Clamp(
+                    counterAdaptedSearchDurationMultiplier,
+                    0.1f,
+                    1f),
+                _ => 1f,
+            };
+        }
+
+        private void HandleRouteAdaptationChanged(
+            RouteAdaptationState previous,
+            RouteAdaptationState current)
+        {
+            if (previous == current || feedbackHub == null || !IsActiveState(CurrentState))
+            {
+                return;
+            }
+
+            var intensity = current switch
+            {
+                RouteAdaptationState.Suspicious => 0.28f,
+                RouteAdaptationState.Adapted => 0.42f,
+                RouteAdaptationState.CounterAdapted => 0.2f,
+                _ => 0f,
+            };
+            if (intensity <= 0f)
+            {
+                return;
+            }
+
+            feedbackHub.Send(new FeedbackSignal(
+                PrototypeFeedbackCues.OwlWarning,
+                FeedbackCommand.Pulse,
+                FeedbackChannel.Audio,
+                intensity,
+                0.65f));
+        }
+
+        private string BuildStatusLabel()
+        {
+            if (!threatEnabled)
+            {
+                return "Owl: disabled";
+            }
+
+            var adaptation = PressureModel.Adaptation;
+            var evidence = adaptation.LastEvidence;
+            var evidenceLine = evidence.HasValue
+                ? evidence.Value.HasObservedPosition
+                    ? $"Evidence: {evidence.Value.Source}/{evidence.Value.Kind} | {evidence.Value.ZoneLabel} " +
+                      $"({evidence.Value.ObservedPosition.x:0.0},{evidence.Value.ObservedPosition.z:0.0}) | t {evidence.Value.OccurredAtSeconds:0.0}s"
+                    : $"Evidence: {evidence.Value.Source}/{evidence.Value.Kind} | {evidence.Value.ZoneLabel} | t {evidence.Value.OccurredAtSeconds:0.0}s"
+                : "Evidence: none this run";
+            var counterTiming = adaptation.State == RouteAdaptationState.CounterAdapted
+                ? $" | opening {adaptation.CounterAdaptedSecondsRemaining:0.0}s"
+                : string.Empty;
+            var tuning = PressureModel.RouteTuning;
+
+            return
+                $"Owl: {CurrentState} | LOS {(HasLineOfSight ? "YES" : "no")} | {PlayerDistance:0.0}m | pressure {Pressure.TotalPressure:0.00}\n" +
+                $"Adapt: {(adaptation.Enabled ? "ON" : "OFF")} {adaptation.State} | W {adaptation.WestConfidence:0.00} C {adaptation.CentralConfidence:0.00} E {adaptation.EastConfidence:0.00} | dom {adaptation.DominantWing}\n" +
+                evidenceLine + "\n" +
+                $"Timing: bias {adaptation.BiasSecondsRemaining:0.0}s | decay in {adaptation.SecondsUntilDecay:0.0}s{counterTiming}\n" +
+                $"Response: {adaptation.SelectedResponse} | transition {adaptation.LastTransitionFrom}->{adaptation.LastTransitionTo} @ {adaptation.LastTransitionAtSeconds:0.0}s\n" +
+                $"Tune: D {tuning.DirectEvidenceWeight:0.##} I {tuning.InferredEvidenceWeight:0.##} | S {tuning.SuspiciousThreshold:0.##} A {tuning.AdaptedThreshold:0.##} | CD {tuning.InferredEvidenceCooldownSeconds:0.#}s decay {tuning.ConfidenceDecayPerSecond:0.###}/s\n" +
+                $"Reset: #{adaptation.ResetSequence} {adaptation.LastResetReason} | F3 adaptation A/B";
+        }
+
         private void OnZoneEntered(FacilityZoneId zone)
         {
             var wing = zone switch
@@ -485,7 +651,24 @@ namespace InternshipGame.Prototype
                 FacilityZoneId.EastLaboratory or FacilityZoneId.EastReactor => ThreatWing.East,
                 _ => ThreatWing.None,
             };
-            pressureModel.RecordWingVisit(wing);
+            var view = playerContext?.ViewTransform;
+            var threatIsActive = stateMachine != null && IsActiveState(stateMachine.State);
+            var hasLineOfSight = view != null && threatIsActive && CanSeePlayer(view);
+            var previousAdaptationState = PressureModel.Adaptation.State;
+            var routeEvidenceRecorded = ThreatRouteEvidencePolicy.TryRecordDirectObservation(
+                PressureModel,
+                wing,
+                threatIsActive,
+                hasLineOfSight,
+                zone.ToString(),
+                view != null ? view.position : default);
+            if (!routeEvidenceRecorded)
+            {
+                return;
+            }
+
+            lastKnownPlayerPosition = view.position;
+            HandleRouteAdaptationChanged(previousAdaptationState, PressureModel.Adaptation.State);
         }
 
         private static bool IsActiveState(PursuitThreatState state)
@@ -504,23 +687,98 @@ namespace InternshipGame.Prototype
             var current = points[Mathf.Clamp(patrolIndex, 0, points.Count - 1)];
             if (current == null || Vector3.Distance(transform.position, current.position) <= 0.5f)
             {
-                var desiredWing = pressureModel.Snapshot.BiasedWing;
-                for (var offset = 1; offset <= points.Count; offset++)
+                var patrolWings = new ThreatWing[points.Count];
+                for (var i = 0; i < points.Count; i++)
                 {
-                    var candidateIndex = (patrolIndex + offset) % points.Count;
-                    var candidate = points[candidateIndex];
-                    if (candidate == null || (desiredWing != ThreatWing.None && InferWing(candidate.position) != desiredWing))
-                    {
-                        continue;
-                    }
+                    patrolWings[i] = points[i] != null ? InferWing(points[i].position) : ThreatWing.None;
+                }
 
-                    patrolIndex = candidateIndex;
-                    current = candidate;
-                    break;
+                var model = PressureModel;
+                var preferredWing = model.PreferredPatrolWing;
+                if (model.GetPatrolWeight(preferredWing) <= 1f)
+                {
+                    preferredWing = ThreatWing.None;
+                }
+
+                var selection = ThreatPatrolSelectionPolicy.SelectNext(
+                    patrolWings,
+                    patrolIndex,
+                    preferredWing,
+                    model.RequiresPatrolVariety);
+                if (selection.Index >= 0)
+                {
+                    patrolIndex = selection.Index;
+                    current = points[patrolIndex];
+                    var response = selection.ForcedVariety
+                        ? RouteAdaptationResponse.ForcedPatrolVariety
+                        : selection.UsedPreference
+                            ? model.Adaptation.State == RouteAdaptationState.Adapted
+                                ? RouteAdaptationResponse.AdaptedRouteBias
+                                : RouteAdaptationResponse.SuspiciousRouteInspection
+                            : model.Adaptation.State == RouteAdaptationState.CounterAdapted
+                                ? RouteAdaptationResponse.CounterAdaptationOpening
+                                : RouteAdaptationResponse.BaselinePatrol;
+                    model.RecordPatrolSelection(selection.Wing, response);
                 }
             }
 
             return current != null ? current.position : spawnPosition;
+        }
+
+        private Vector3 GetAdaptiveSearchReference(Vector3 fallback)
+        {
+            var model = PressureModel;
+            var adaptation = model.Adaptation;
+            if (!adaptation.Enabled)
+            {
+                model.SetSelectedResponse(RouteAdaptationResponse.BaselinePatrol);
+                return fallback;
+            }
+
+            if (adaptation.State == RouteAdaptationState.CounterAdapted)
+            {
+                model.SetSelectedResponse(RouteAdaptationResponse.CounterAdaptationOpening);
+                return fallback;
+            }
+
+            var preferredWing = model.PreferredPatrolWing;
+            if (preferredWing == ThreatWing.None ||
+                stateMachine.StateElapsed < adaptiveSearchRedirectDelaySeconds)
+            {
+                return fallback;
+            }
+
+            var points = mapDefinition?.OwlPatrolPoints;
+            Transform bestPoint = null;
+            var bestDistance = float.PositiveInfinity;
+            if (points != null)
+            {
+                foreach (var point in points)
+                {
+                    if (point == null || InferWing(point.position) != preferredWing)
+                    {
+                        continue;
+                    }
+
+                    var distance = Vector3.SqrMagnitude(point.position - fallback);
+                    if (distance < bestDistance)
+                    {
+                        bestDistance = distance;
+                        bestPoint = point;
+                    }
+                }
+            }
+
+            if (bestPoint == null)
+            {
+                return fallback;
+            }
+
+            model.SetSelectedResponse(
+                adaptation.State == RouteAdaptationState.Adapted
+                    ? RouteAdaptationResponse.AdaptedRouteSearch
+                    : RouteAdaptationResponse.SuspiciousRouteSearch);
+            return bestPoint.position;
         }
 
         private static ThreatWing InferWing(Vector3 position)

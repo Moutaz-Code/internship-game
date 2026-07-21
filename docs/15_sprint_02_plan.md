@@ -1,5 +1,14 @@
 # Sprint 02 Plan
 
+Status: Timebox record; remaining 2026-07-22 to 2026-07-24 implementation is frozen by Prototype 2 documents 24-26.
+
+Scope-freeze note:
+
+- Preserve completed Sprint 02 work.
+- Pause unstarted capture, invalid-rod, onboarding, and broader counterplay implementation unless it is required by PT2 or the user explicitly redirects scope.
+- Current authoritative goal is PT2 Readable Route Adaptation in `24_prototype_02_scope.md`.
+- Tests, telemetry, baseline comparison, and human evidence are required PT2 work rather than optional polish.
+
 Sprint dates: 2026-07-20 to 2026-07-24
 
 Theme: Turn the Prototype 1 skeleton into credible human playtest evidence
@@ -67,7 +76,7 @@ Will not have this sprint:
 
 - Play the current build across three representative seeds.
 - Record actual run time, broken flows, unclear cues, and tuning pain points.
-- Specify the exact equipment-reboot and nest-escape actions, second-capture adaptation parameters, carried-item scatter rule, and invalid-rod test rule.
+- Specify the exact equipment-reboot and nest-escape actions, non-adaptation second-capture penalty, carried-item scatter rule, and invalid-rod test rule.
 - Create the Sprint 02 ClickUp tasks and mark dependencies.
 - Freeze additions that do not answer the sprint question.
 
@@ -79,7 +88,7 @@ Exit condition: the current baseline and two rule changes are documented well en
 - Preserve completed deposits, scatter carried items into valid authored positions, choose among roughly five recovery zones, and prevent recapture loops.
 - Apply an approximately 60-second Owl retreat outside the final five minutes.
 - Apply approximately 20-30 seconds of protection during the final five minutes.
-- Use equipment reboot for first recovery and a short nest escape plus stronger adaptation for second recovery.
+- Use equipment reboot for first recovery and a short nest escape plus the approved non-adaptation penalty for second recovery.
 - Implement immediate invalid-rod feedback and bounded Owl pressure.
 - Add debug controls for penalty values.
 
@@ -91,6 +100,8 @@ Exit condition: capture and invalid-rod behavior work deterministically and rese
 - Verify at least two useful Owl responses are readable.
 - Tune warning, search, disengage, and recovery windows.
 - Add only the smallest missing counterplay needed for meaningful choice.
+- Do not implement the broader stun, inventory, spatial-hiding, environmental-manipulation, or heart-rate concepts from the design framework during this sprint without a separate approved task.
+- Do not add a trained entity model, ML inference runtime, or inference package; route adaptation v1 uses deterministic game AI.
 
 Exit condition: a developer-free run is plausible from start through extraction.
 
@@ -117,11 +128,11 @@ Exit condition: results support a clear keep, change, simplify, or cut decision 
 | ID | Task | Priority | Depends On | Done When |
 |---|---|---|---|---|
 | S2-001 | Audit current three-seed baseline | Urgent | None | Timings, blockers, and known design gaps are recorded. |
-| S2-002 | Finalize capture recovery v1 details | Urgent | S2-001 | Reboot/nest actions, five-zone selection, scatter range, grace timing, second-stage adaptation parameters, and anti-exploit rules are explicit. |
+| S2-002 | Finalize capture recovery v1 details | Urgent | S2-001 | Reboot/nest actions, five-zone selection, scatter range, grace timing, non-adaptation second-stage penalty, and anti-exploit rules are explicit. |
 | S2-003 | Implement and test capture recovery v1 | Urgent | S2-002 | First reboot and second nest recovery work, third capture ends the run, carried items scatter safely, deposits persist, and no immediate recapture loop occurs. |
 | S2-004 | Specify and implement invalid-rod consequence v1 | High | S2-001 | Rejection is immediate, understood, bounded, and not score-only. |
 | S2-005 | Improve contract onboarding | High | S2-001 | A naive tester can state the job within two minutes. |
-| S2-006 | Validate mixed Owl counterplay | High | S2-001 | At least two responses are useful and no tactic universally solves encounters. |
+| S2-006 | Validate mixed Owl counterplay and route adaptation v1 | High | S2-001 | At least two responses remain useful, one use creates route suspicion, two repeated uses can create a readable capped bias, and route variation weakens that prediction. |
 | S2-007 | Add playtest telemetry and run summary | High | S2-002, S2-004 | Key timestamps, capture recovery, counterplay, and outcome can be reconstructed. |
 | S2-008 | Run regression and three-seed QA | Urgent | S2-003 through S2-007 | No blocker in start-to-end flow; same/new seed restart works. |
 | S2-009 | Conduct first-time desktop playtests | Urgent | S2-008 | At least two, target three, observed sessions are documented. |

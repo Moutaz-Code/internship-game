@@ -153,24 +153,33 @@ namespace InternshipGame.Prototype
                 return;
             }
 
-            var statusLines = Mathf.Max(1, statusProviders.Count);
+            var statusLines = 0;
+            foreach (var provider in statusProviders)
+            {
+                statusLines += SplitStatusLines(provider.StatusLabel).Length;
+            }
+
+            statusLines = Mathf.Max(1, statusLines);
             var height = 136f + statusLines * 21f;
-            GUI.Box(new Rect(16f, 98f, 470f, height), GUIContent.none);
-            GUI.Label(new Rect(32f, 108f, 430f, 30f), "PROTOTYPE — OPERATOR", titleStyle);
-            GUI.Label(new Rect(32f, 140f, 430f, 22f), $"State: {runController.CurrentState}", bodyStyle);
-            GUI.Label(new Rect(32f, 162f, 430f, 22f), $"Time remaining: {runController.TimeRemaining:0}s", bodyStyle);
+            GUI.Box(new Rect(16f, 98f, 650f, height), GUIContent.none);
+            GUI.Label(new Rect(32f, 108f, 610f, 30f), "PROTOTYPE — OPERATOR", titleStyle);
+            GUI.Label(new Rect(32f, 140f, 610f, 22f), $"State: {runController.CurrentState}", bodyStyle);
+            GUI.Label(new Rect(32f, 162f, 610f, 22f), $"Time remaining: {runController.TimeRemaining:0}s", bodyStyle);
 
             var y = 184f;
             foreach (var provider in statusProviders)
             {
-                GUI.Label(new Rect(32f, y, 430f, 22f), provider.StatusLabel, bodyStyle);
-                y += 21f;
+                foreach (var line in SplitStatusLines(provider.StatusLabel))
+                {
+                    GUI.Label(new Rect(32f, y, 610f, 22f), line, bodyStyle);
+                    y += 21f;
+                }
             }
 
             var controls = playerMode != null && playerMode.ActiveMode == PlayerControlMode.VR
-                ? "VR controller locomotion/grab | R restart | F1 overlay"
-                : "WASD move | Mouse look | Shift sprint | Space jump | E grab/drop | Esc pause";
-            GUI.Label(new Rect(32f, 98f + height - 25f, 430f, 22f), controls, bodyStyle);
+                ? "VR locomotion/grab | R restart | F1 overlay | F2 Geiger A/B | F3 adaptation A/B"
+                : "WASD/Mouse | Shift sprint | Space jump | E grab | Esc pause | F2 Geiger A/B | F3 adaptation A/B";
+            GUI.Label(new Rect(32f, 98f + height - 25f, 610f, 22f), controls, bodyStyle);
         }
 
         private void DrawPlayerMissionPanel()
@@ -214,6 +223,11 @@ namespace InternshipGame.Prototype
             }
 
             return null;
+        }
+
+        private static string[] SplitStatusLines(string status)
+        {
+            return (status ?? string.Empty).Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
         }
     }
 }

@@ -34,7 +34,7 @@ Notes:
 
 - First playable should validate the loop before final art, complex AI, or real haptics.
 
-### P1: First Playable Extraction Loop
+### Archived P1 Concept: First Playable Extraction Loop
 
 Target date: TBD, recommended Sprint 02
 
@@ -42,7 +42,7 @@ Question:
 
 > Is it tense and understandable to enter a small VR facility, locate a signal core, sense a threat, and extract?
 
-Build status: Superseded by P2. Its core extraction-loop question remains relevant, but the one-core and compact-facility implementation assumptions no longer represent the prototype.
+Build status: Superseded by the implemented Multi-Path Fuel-Rod Vertical Slice, now named Prototype 1. Its core extraction-loop question remains relevant, but the one-core and compact-facility implementation assumptions no longer represent the prototype.
 
 Must include:
 
@@ -69,7 +69,7 @@ What this prototype should not prove:
 - Multiplayer.
 - Persistent progression.
 
-### P2: Multi-Path Fuel-Rod Vertical Slice
+### Prototype 1: Multi-Path Fuel-Rod Vertical Slice (formerly P2)
 
 Date range: 2026-07-16 to first external playtest
 
@@ -78,6 +78,12 @@ Question:
 > Can a first-time desktop player plan routes through a larger authored facility, reliably identify and transport three live fuel rods under fair adaptive Owl pressure, and survive a clearly communicated extraction holdout?
 
 Build status: Feature skeleton approximately 90% implemented by developer estimate. Automated implementation and build checks pass; movement, threat behavior, and the fuel-rod loop are still rudimentary, and external pacing, fairness, comprehension, and replay-interest evidence are pending.
+
+Naming note:
+
+- This build was historically labeled `P2` in this log because P0 and an early P1 concept preceded it.
+- The project team refers to this implemented build as Prototype 1.
+- The historical `P2` label is retired. Prototype 2 is the Readable Route Adaptation experiment below.
 
 Maturity note:
 
@@ -180,3 +186,59 @@ Pass evidence:
 Supersession record:
 
 - The expanded facility and multi-rod loop intentionally supersede the older one-rod/3-6-room cut line. The slice still contains one objective type, one Owl, one industrial facility style, authored rather than procedural geometry, and no required jumping.
+
+### Prototype 2: Readable Route Adaptation
+
+Date range: 2026-07-22 to 2026-07-24 target gate
+
+Authoritative scope: `24_prototype_02_scope.md`
+
+Question:
+
+> Does the Owl appear to notice repeated route-family use, become suspicious after one credible observation, adapt after two, and encourage the player to vary routes without feeling omniscient or making any route unusable?
+
+Build status: PT2 implementation and automated verification are complete. The focused threat suite passes 28/28, the full Edit Mode suite passes 89/89, and integrated Play Mode passes 3/3. A strict clean Windows development build completed at 182.56 MB with zero build errors or warnings. The executable remained stable through representative desktop and headless startup windows; launch evidence is qualified by pre-existing OpenXR feature-serialization/runtime warnings and a standalone NavMesh-agent warning described below. Human route-readability validation remains pending.
+
+Must prove:
+
+- Run-only route memory resets completely.
+- Direct observation matters more than inferred evidence.
+- One credible direct observation creates suspicion; two repeated observations may create capped adaptation.
+- Silent unperceived route use does not become entity knowledge.
+- Route variety weakens the previous prediction and creates an opening.
+- Players perceive the behavioral change without an adaptation notification.
+- Operator telemetry explains every transition.
+- Adaptation can be disabled for baseline comparison.
+
+Explicitly does not prove:
+
+- Capture recovery.
+- Full stealth, hiding, inventory, stun, cart, or environmental systems.
+- Heart-rate gameplay.
+- Learned/neural AI.
+- VR comfort or physical hardware.
+- Final Owl art or animation.
+
+Evidence required:
+
+- Focused model and integration tests.
+- Relevant regression tests.
+- Same-seed deterministic evidence replay.
+- Adaptation-disabled comparison.
+- Fresh desktop build and smoke test where supported.
+- At least two observed human sessions, target three.
+
+Results:
+
+- PT2-001 baseline audit: complete. The audit confirmed unconditional `OnZoneEntered` knowledge, no direct/inferred distinction, no suspicion/counter state, a patrol selector that did not consume the model's 1.75 weight, single-line telemetry, and no A/B toggle. The pre-change focused threat/navigation/state baseline passed 18/18.
+- PT2-002 evidence model: complete. `ThreatPressureModel` now owns deterministic per-wing confidence, Direct/Inferred evidence, `Uncertain`, `Suspicious`, `Adapted`, and `CounterAdapted` states, inferred cooldown, delayed passive decay, cross-wing confidence reduction, run reset, and an adaptation-disabled baseline. Defaults remain Direct 1.0, Inferred 0.5, Suspicious 1.0, Adapted 2.0, adapted cap 1.75, and bias duration 60 seconds.
+- PT2-003 evidence wiring: complete. Zone entry records Direct evidence only while the active Owl has current line of sight. Strong route-local sprint, landing, dropped-prop, rejection, and objective stimuli may record rate-limited Inferred evidence. Inferred records contain route family and event kind but no exact hidden position.
+- PT2-004 behavior and counterplay: complete. Suspicious and Adapted states select authored route inspection/patrol/search responses; Adapted uses the capped weight, and the third consecutive biased patrol choice is forced to consider another wing. Search allocation extends toward an authored point in the suspected wing. Credible cross-wing evidence reduces the old prediction, temporarily returns patrol weights to baseline, and shortens search to create a counter-adaptation opening. Existing restrained Owl audio provides the only transition cue; no player-facing adaptation notice was added.
+- PT2-005 telemetry and comparison: complete. F1 now exposes enabled state, W/C/E confidence, dominant wing, last source/kind/zone or observed position, transition time, decay/bias/counter timing, selected response, tuning, and reset confirmation. F3 clears route memory and switches between adaptation and baseline without conflicting with F1 or F2. The normal mission panel is unchanged.
+- PT2-006 regression gate: complete for automation. Focused Edit Mode is 28/28; full Edit Mode is 89/89; integrated Play Mode is 3/3. Coverage includes no unperceived evidence, weighting, inferred rate limiting, thresholds, reset, decay, route variety, counter-adaptation, cap, maximum consecutive choices, deterministic replay, disabled baseline, search timing, existing perception/state transitions, all route profiles, objective completion, failure, and seed reset.
+- Build evidence: strict clean `StandaloneWindows64` development build of the exact final source succeeded in 92.44 seconds at 182.56 MB with zero build errors and warnings. The built player stayed alive for 25 seconds on the normal graphics path and was closed deliberately after the smoke window; no project-code exception appeared.
+- Qualified startup finding: the player log reports missing/changed serialized Meta OpenXR feature objects and `XR_ERROR_RUNTIME_UNAVAILABLE` because no headset runtime is present, plus `Failed to create agent because there is no valid NavMesh` in the standalone player. Editor Play Mode proves complete primary NavMesh paths under all three route profiles, and the authored collision-validated waypoint adapter remains available as the runtime fallback. XR cleanup and standalone primary-NavMesh diagnosis are preserved as separate follow-up work rather than being expanded under PT2.
+- Prototype tuning assumptions: inferred cooldown 4 seconds; confidence decay starts after 60 seconds at 0.025 per second; cross-wing reduction equals the incoming evidence weight; Counter-Adapted opening 12 seconds; Suspicious search multiplier 1.15; Adapted search multiplier 1.35; Counter-Adapted search multiplier 0.8. These are visible comparison values, not final design constants.
+- Human evidence: Not Tested. Two observed desktop sessions are still required, target three, to judge noticeability, attribution, route variety, temporary advantage, omniscience, camping, and route viability.
+- Decision: automated implementation gate Pass; prototype-question verdict Pending human evidence.
+- Scope confirmation: no capture/recovery, second-capture, stun, inventory, crouch/hiding, flashlight, doors, cart, ventilation/radiation, heart-rate, hardware/haptics, cross-run memory, learned AI, new mission, entity, environment, or final-art gameplay family was added.

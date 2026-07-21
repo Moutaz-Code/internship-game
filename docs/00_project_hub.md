@@ -1,6 +1,6 @@
 # Project Hub
 
-Last updated: 2026-07-20
+Last updated: 2026-07-22
 
 ## Project Identity
 
@@ -10,7 +10,7 @@ Client/company context: Pixoul
 
 Delivery target: 2026-08-28
 
-Current phase: End of Sprint 01; Prototype 1 feature skeleton is approximately 90% implemented and awaiting design validation
+Current phase: Prototype 2 implementation; PT2 Readable Route Adaptation scope frozen through 2026-07-24
 
 Current production style: prototype-heavy agile, weekly loops
 
@@ -68,8 +68,19 @@ Build a 15-20 minute single-player VR MLP that proves:
 - Contracts are assigned by an employer in fiction and selected randomly from eligible curated packages in gameplay.
 - Contract scenarios are isolated arcade episodes; no narrative continuity or persistent progression is required.
 - The intended tone is horror-adjacent for roughly age 12 and above, using implication and suspense rather than graphic harm.
+- Entities are unkillable in the internship scope; player tactics focus on stealth, misdirection, delay, environmental control, and temporary close-range defense.
+- The player carries only a small practical equipment set; mission-specific tools remain coherent with their site and objective.
+- Shared stealth is graded, physical crouching has a controller alternative, and flashlight use trades navigation for visibility.
+- Heart rate may later influence avatar breathing/noise, but never gives an entity raw direct detection.
+- Prototype 1 uses deterministic adaptive game AI; pre-trained/model-driven strategy is post-MLP R&D.
+- Player stealth feedback uses clear breathing, optional subtle indicators, and complete operator debug telemetry.
+- A simulated stress slider/adapter precedes real heart-rate integration.
+- Electrical probe is the current close-range stun-tool direction.
+- The no-cart rod loop remains authoritative; a small staging cart is a separate design experiment.
 
 ## Live Questions
+
+These questions are parked and do not block PT2:
 
 - Which VR headset and runtime will be used?
 - What Pixoul haptic/physical devices are available for development access?
@@ -77,10 +88,18 @@ Build a 15-20 minute single-player VR MLP that proves:
 - What is the minimum acceptable visual fidelity for the Aug 28 demo?
 - Who are the final stakeholders and demo audience?
 - Which immediate consequence should an inert or invalid rod create: time loss, noise/threat escalation, forced return, or a combination?
-- How long should an entity remember player behavior: encounter, current run, repeat runs, or a combination?
-- Which player behaviors should the first adaptive model observe and counter?
-- How should the game communicate adaptation without exposing debug-style numbers?
+- What confidence and decay values make suspicion after one use and adaptation after two readable within 15-20 minutes?
+- Which Owl animation, route change, and response best communicates route suspicion without UI?
+- Which critical player behavior or affordance must entities never counter once the core verbs are stable?
+- What physical equipment/holster model remains readable with two or three items and little UI?
+- How should darkness, flashlight use, movement, noise, and emergency hiding spots combine into stealth?
+- Which two or three environmental manipulation systems are worth teaching in Nuclear Recovery?
+- Which diegetic feedback lets players judge their own noise without a mandatory HUD meter?
+- What safe activation, stun duration, and failure feedback should the electrical probe use?
+- What non-adaptation setback should follow the Owl's second capture?
+- Should Nuclear Recovery test an optional noisy staging cart, or preserve the three separate transport trips?
+- What primary and secondary effects justify the ventilation/radiation system?
 
 ## Next Sprint Goal
 
-By Friday 2026-07-24, turn the rudimentary Unity feature skeleton into a coherent desktop playtest build and gather human evidence about objective clarity, threat fairness, capture recovery, pacing, and replay desire. Headset-specific comfort and real hardware integration remain deferred until access is available.
+By Friday 2026-07-24, complete PT2 Readable Route Adaptation: credible Direct/Inferred route evidence, Suspicious/Adapted/Counter-Adapted behavior, diegetic expression, F1 telemetry, F3 baseline comparison, focused regression, and at least two observed desktop sessions where access allows. All broader feature families remain deferred until this gate is reviewed.

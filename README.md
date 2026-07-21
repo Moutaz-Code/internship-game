@@ -6,6 +6,8 @@ Pixoul internship project for a polished minimum lovable product by 2026-08-28.
 
 The current desktop-first vertical slice is a 15-20 minute sci-fi extraction-horror run through a 10-space authored facility. Find and hold rods long enough to assay them, use the Geiger counter to search, deliver three confirmed-live rods while one adaptive Owl patrols the route network, survive the 20-second extraction cycle, then cross the open exit. The player, threat navigation, feedback devices, and run configuration remain behind narrow seams so XR and physical hardware implementations can replace their desktop simulators later.
 
+Active implementation scope through 2026-07-24: Prototype 2 / PT2 Readable Route Adaptation. PT2 makes the existing Owl route bias evidence-based, perceptible, counterable, toggleable, and testable. Broader capture, stealth, tools, biofeedback, cart, and environment ideas remain deferred.
+
 ## Prototype Quick Start
 
 - Unity project: `UnityProject/InternshipGameSynced`
@@ -39,6 +41,13 @@ Docs are living control panels, not a waterfall phase. Each update should help m
 - [Contract Scenario Framework](docs/17_contract_scenario_framework.md)
 - [Agent Implementation Handoff](docs/18_agent_implementation_handoff.md)
 - [Adaptive Entity Framework](docs/19_adaptive_entity_framework.md)
+- [Owl Adaptation V1 Spec](docs/20_owl_adaptation_v1_spec.md)
+- [Player Tactics And Stealth Framework](docs/21_player_tactics_and_stealth_framework.md)
+- [Entity AI Technology Strategy](docs/22_ai_technology_strategy.md)
+- [Nuclear Recovery Objective And Environment](docs/23_nuclear_recovery_objective_environment.md)
+- [Prototype 2 Scope](docs/24_prototype_02_scope.md)
+- [Prototype 2 Agent Handoff](docs/25_prototype_02_agent_handoff.md)
+- [Prototype 2 ClickUp Paste Pack](docs/26_clickup_prototype_02_paste.md)
 - [First Playable Spec](docs/09_first_playable_spec.md)
 - [Technical Architecture Outline](docs/10_technical_architecture_outline.md)
 - [Vision Brief](docs/01_vision_brief.md)

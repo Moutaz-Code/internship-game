@@ -1,6 +1,6 @@
 # Current Design Synthesis
 
-Last updated: 2026-07-20
+Last updated: 2026-07-22
 
 Sources: approved pitch/business case, Offline Game Design Workbook, Prototype 1 implementation, and follow-up design answers.
 
@@ -60,6 +60,35 @@ A paid 20-minute session should not end instantly because of one capture. Close 
 - Threat: one smart creature with mixed counterplay and no universal tactic.
 - Product structure: a roster of curated contract scenarios; the Owl/fuel-rod/nuclear-facility combination is only the first proof contract.
 - Every contract centers on an intelligent adaptive entity; disasters and hazards are secondary dangers.
+- Entity memory lasts for one run. One use creates suspicion and two repeated uses permit adaptation.
+- Direct observation matters more than inferred evidence.
+- The first three adaptation signals are route repetition, hiding repetition, and distraction/stun reliance; Prototype 1 validates route repetition first.
+- Tactical variety weakens entity confidence, while repetition strengthens it.
+- Adaptation is communicated diegetically through animation, routes, and changed responses; no player-facing notification is used.
+- Entities may bluff, and an invisible pacing director may create believable back-off windows.
+- Entities cannot be killed in the internship scope; the player escapes, hides, distracts, delays, locks out, or temporarily stuns them.
+- Hiding is primarily spatial, with a few explicit emergency hiding spots.
+- Environmental debris, machinery, remote noise, doors, and close-range stun provide counterplay; bespoke anti-entity noise gadgets are not part of the current direction.
+- Stun is approximately arm's-length with a starting cooldown near 20 seconds and no forceful real-world impact.
+- The player carries no more than roughly two or three equipment items with little or no persistent UI.
+- Sprinting and careless object handling create meaningful stealth noise.
+- Equipment is divided between a small universal contractor kit and contract-specific tools such as the Geiger counter.
+- Repeated counterplay primarily costs future effectiveness because the entity learns; additional costs are secondary and tactic-specific.
+- Shared stealth uses graded concealed, noticeable, and exposed states interpreted through entity-specific senses.
+- Physical crouching is primary with a controller-assisted accessibility option.
+- Flashlight use is a visibility tradeoff: the player sees the environment and visually oriented entities may see the player.
+- Repeated emergency hiding spots may be inspected only after plausible evidence and with fair warning/escape opportunity.
+- Nuclear Recovery environmental candidates are ventilation/radiation systems and movable cover.
+- The provisional loadout is flashlight, Geiger counter, and electrical probe.
+- Future heart-rate stealth acts through avatar breathing or other world-readable behavior, never raw direct detection.
+- The August MLP uses deterministic adaptive game AI; a pre-trained strategy model is future R&D behind deterministic validation and fallback.
+- Player stealth judgment uses clear character breathing, optional subtle indicators, and a complete debug view.
+- Biofeedback testing begins with a normalized slider and deterministic encounter-driven simulator.
+- Deliberate calming remains emergent; the game does not require breath-holding.
+- Electrical probe is the selected close-range stun-tool direction.
+- The no-cart rod loop remains current; an optional staging cart is a separate prototype candidate.
+- Shielding panels remain local/constrained rather than portable full-run protection.
+- Stronger adaptation is rejected as the automatic second-capture penalty; a different recoverable setback is pending.
 - Contracts are employer-assigned in fiction and randomly selected from eligible curated packages in gameplay.
 - Scenarios are isolated arcade episodes connected by contractor fantasy, visual identity, and the enter/work/adapt/extract rhythm.
 - Content combinations are curated and may use selective compatibility tags.
@@ -67,7 +96,7 @@ A paid 20-minute session should not end instantly because of one capture. Close 
 - Owl capture fiction: unconsciousness and implied predation without direct graphic depiction.
 - Owl capture escalation: two survivable captures, with the second more severe and the third currently terminal.
 - Owl recovery: banked rods stay safe, carried items scatter, recovery uses one of roughly five authored zones, and the Owl retreats for about 60 seconds outside the final five minutes.
-- Owl recovery escalation: first capture requires a short equipment reboot; second requires a short nest escape and increases adaptation; third capture is terminal for the current test.
+- Owl recovery escalation: first capture requires a short equipment reboot; second requires a short nest escape plus a heavier non-adaptation penalty still in design; third capture is terminal for the current test.
 - Final-five-minute recovery protection: approximately 20-30 seconds.
 - Encounter severity: near misses are sensory, physical contact disrupts an item or equipment, and capture triggers the full recovery loop.
 - Rod mistakes: immediate gameplay consequence; score is secondary.
@@ -101,19 +130,30 @@ Desktop tests can answer those questions provisionally. They cannot prove VR com
 
 ## Decisions Still Needed
 
+These decisions are parked until the PT2 gate unless the user explicitly redirects scope.
+
 1. Define the exact equipment-reboot and Owl-nest escape interactions.
-2. Define the exact adaptation parameters added after the second capture.
+2. Define the exact non-adaptation penalty added after the second capture.
 3. Choose the authored carried-item scatter rule.
 4. Define the exact immediate invalid-rod consequence.
 5. Confirm target headset, runtime, play-space, and venue operator flow.
 6. Inventory available haptic and sensor devices, SDKs, owners, and access dates.
 7. Decide which Owl counterplays must ship in the MLP after observing baseline play.
-8. Define the first bounded adaptive-memory experiment.
+8. Tune and validate the bounded route-family adaptation experiment in `20_owl_adaptation_v1_spec.md`.
+9. Later, define the critical player behavior or affordance entities must never counter.
+10. Define the physical two-to-three-item selection and holster model on target VR hardware.
+11. Define diegetic player-noise feedback and exact graded-visibility thresholds.
+12. Define the electrical probe's safe VR interaction, stun duration, and failure feedback.
+13. Prototype ventilation/radiation control and movable cover separately before committing either.
+14. Keep heart-rate stealth and trained-model AI as future R&D until their respective gates can be tested.
+15. Select a non-adaptation second-capture penalty.
+16. Decide whether optional staging-cart Variant B deserves a prototype.
+17. Choose one primary and one secondary ventilation/radiation effect while preserving unique Heat, Wind, and Geiger meanings.
 
 ## Next Validation Target
 
-The next sprint should answer:
+Prototype 2 should answer:
 
-> Can a new desktop tester understand the contract, assay and transport rods, respond to the Owl in more than one way, recover from a serious mistake, and finish or meaningfully fail within the target session length?
+> Does the Owl appear to notice repeated route-family use, become suspicious after one credible observation, adapt after two, and encourage the player to vary routes without feeling omniscient or making any route unusable?
 
-Do not add loadouts, another objective, another enemy, or heart-rate dependence until this question has evidence.
+Follow `24_prototype_02_scope.md`. Do not add capture recovery, new player tools, environmental systems, heart rate, hardware, or learned AI until this question has evidence.

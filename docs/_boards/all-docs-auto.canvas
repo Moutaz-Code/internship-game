@@ -199,11 +199,74 @@
       "height": 1600
     },
     {
+      "id": "file-167e46bfa80e",
+      "type": "file",
+      "file": "20_owl_adaptation_v1_spec.md",
+      "x": 780,
+      "y": 17060,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-a27feb4ad6bb",
+      "type": "file",
+      "file": "21_player_tactics_and_stealth_framework.md",
+      "x": 0,
+      "y": 18740,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-0bd3d7b931fa",
+      "type": "file",
+      "file": "22_ai_technology_strategy.md",
+      "x": 780,
+      "y": 18740,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-463ce8bd2c45",
+      "type": "file",
+      "file": "23_nuclear_recovery_objective_environment.md",
+      "x": 0,
+      "y": 20420,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-584594e3dac8",
+      "type": "file",
+      "file": "24_prototype_02_scope.md",
+      "x": 780,
+      "y": 20420,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-68047b65c56c",
+      "type": "file",
+      "file": "25_prototype_02_agent_handoff.md",
+      "x": 0,
+      "y": 22100,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-38ba16db8f7c",
+      "type": "file",
+      "file": "26_clickup_prototype_02_paste.md",
+      "x": 780,
+      "y": 22100,
+      "width": 740,
+      "height": 1600
+    },
+    {
       "id": "file-ddb19e50258a",
       "type": "file",
       "file": "templates/weekly_stakeholder_report.md",
-      "x": 780,
-      "y": 17060,
+      "x": 0,
+      "y": 23780,
       "width": 740,
       "height": 1600
     }

@@ -2,7 +2,7 @@
 
 Status: Living architecture outline; Unity implementation exists and requires continued alignment
 
-Last updated: 2026-07-18
+Last updated: 2026-07-22
 
 The engine is Unity 6000.5.4f1. The current stack includes URP, Input System, XR Interaction Toolkit, OpenXR, and Unity AI Navigation. The target venue headset and physical hardware are still unknown, so gameplay must remain runnable through desktop and simulated-device adapters.
 
@@ -190,6 +190,22 @@ IDeviceHealth
 - Reconnect()
 ```
 
+### Entity AI Technology Boundary
+
+Current MLP behavior remains deterministic and testable:
+
+- valid perception,
+- run-only behavioral memory,
+- suspicion and adaptation thresholds,
+- strategy bias and authored state selection,
+- pacing-director limits,
+- `IThreatNavigator` movement,
+- operator telemetry and deterministic fallback.
+
+A future learned model may be researched only behind a narrow strategy-policy interface. Its output must be validated and bounded by deterministic code. It cannot directly control movement, detection truth, capture, win/loss, camera, haptic safety, raw biofeedback, or session lifecycle.
+
+Do not reinstall Unity AI Inference or add another ML runtime without an approved R&D task satisfying `22_ai_technology_strategy.md`.
+
 ### Gameplay Event Bus
 
 Responsibilities:
@@ -218,6 +234,25 @@ Example events:
 - Device failure should degrade gracefully.
 - Haptic intensity needs caps, cooldowns, and calibration.
 
+Future heart-rate stealth uses an observable mediated path:
+
+```text
+IBioSignalInput (Disabled / Simulated / Live)
+    -> signal quality and personal baseline calibration
+    -> bounded normalized stress value
+    -> avatar breathing/noise presentation
+    -> ordinary gameplay stimulus
+    -> entity perception
+```
+
+Requirements:
+
+- Provide a designer-controlled normalized slider before real hardware integration.
+- Allow a deterministic simulator to spike after configured close encounters and decay during recovery.
+- Log raw-adapter quality, normalized value, breathing output, stimulus, and entity response separately.
+- Cap contribution and preserve pacing recovery so the loop cannot become self-reinforcing and unavoidable.
+- Keep a gameplay-equivalent non-sensor path.
+
 ## Debugging Tools To Build Early
 
 - Current run state.
@@ -228,6 +263,11 @@ Example events:
 - Hardware mode: Disabled, Simulated, Live.
 - Last haptic cue fired.
 - Comfort flags or forced locomotion warnings.
+- Player stealth state: Concealed, Noticeable, or Exposed.
+- Visibility and noise contributions.
+- Recent noise events.
+- Biofeedback mode, signal quality, calibrated baseline, normalized slider/simulator value, and avatar breathing output.
+- Entity perception evidence produced by breathing or other player stimuli.
 
 ## Current Platform Decisions
 

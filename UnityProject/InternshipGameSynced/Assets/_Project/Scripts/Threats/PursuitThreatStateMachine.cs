@@ -69,6 +69,15 @@ namespace InternshipGame.Prototype
 
         public void Tick(float deltaSeconds, bool hasLineOfSight, float playerDistance)
         {
+            Tick(deltaSeconds, hasLineOfSight, playerDistance, 1f);
+        }
+
+        public void Tick(
+            float deltaSeconds,
+            bool hasLineOfSight,
+            float playerDistance,
+            float searchDurationMultiplier)
+        {
             if (deltaSeconds < 0f)
             {
                 throw new ArgumentOutOfRangeException(nameof(deltaSeconds));
@@ -77,6 +86,13 @@ namespace InternshipGame.Prototype
             if (playerDistance < 0f)
             {
                 throw new ArgumentOutOfRangeException(nameof(playerDistance));
+            }
+
+            if (searchDurationMultiplier <= 0f ||
+                float.IsNaN(searchDurationMultiplier) ||
+                float.IsInfinity(searchDurationMultiplier))
+            {
+                throw new ArgumentOutOfRangeException(nameof(searchDurationMultiplier));
             }
 
             if (State is PursuitThreatState.Dormant or PursuitThreatState.Caught or PursuitThreatState.Complete)
@@ -124,7 +140,7 @@ namespace InternshipGame.Prototype
                     {
                         Enter(PursuitThreatState.Hunting);
                     }
-                    else if (StateElapsed >= searchSeconds)
+                    else if (StateElapsed >= searchSeconds * searchDurationMultiplier)
                     {
                         Enter(PursuitThreatState.Patrolling);
                     }

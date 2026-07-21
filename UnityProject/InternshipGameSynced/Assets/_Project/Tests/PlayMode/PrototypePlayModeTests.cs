@@ -171,6 +171,13 @@ namespace InternshipGame.Prototype.Tests
             Assert.That(owls, Has.Length.EqualTo(1));
             Assert.That(navigators, Has.Length.EqualTo(1));
             Assert.That(navigators[0].gameObject, Is.SameAs(owls[0].gameObject));
+            Assert.That(owls[0].IsRouteAdaptationEnabled, Is.True);
+            Assert.That(owls[0].StatusLabel, Does.Contain("Adapt: ON"));
+            owls[0].SetRouteAdaptationEnabled(false);
+            Assert.That(owls[0].IsRouteAdaptationEnabled, Is.False);
+            Assert.That(owls[0].StatusLabel, Does.Contain("Adapt: OFF"));
+            owls[0].SetRouteAdaptationEnabled(true);
+            Assert.That(owls[0].RouteAdaptation.State, Is.EqualTo(RouteAdaptationState.Uncertain));
 
             var xrJump = System.Array.Find(
                 Object.FindObjectsByType<Transform>(FindObjectsInactive.Include),

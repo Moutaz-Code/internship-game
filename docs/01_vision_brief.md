@@ -61,9 +61,10 @@ Current proof contract:
 3. Player plans a route through authored rooms with variable states.
 4. Player performs physical objective work such as identifying, transporting, repairing, stabilizing, or activating.
 5. An intelligent entity studies and pressures the player while environmental hazards add secondary suspense and complications.
-6. Capture creates a serious setback that is initially recoverable rather than an automatic run loss.
-7. Immediate mistakes consume time or increase danger; score is secondary to completing the contract and surviving.
-8. Player completes the extraction holdout and leaves before the 20-minute deadline.
+6. Player varies spatial hiding, sight breaks, environmental misdirection, route control, and temporary defense as the entity adapts.
+7. Capture creates a serious setback that is initially recoverable rather than an automatic run loss.
+8. Immediate mistakes consume time or increase danger; score is secondary to completing the contract and surviving.
+9. Player completes the extraction holdout and leaves before the 20-minute deadline.
 
 For the current slice, the physical work is assaying and transporting fuel rods, and the primary entity is the Owl Thing.
 
