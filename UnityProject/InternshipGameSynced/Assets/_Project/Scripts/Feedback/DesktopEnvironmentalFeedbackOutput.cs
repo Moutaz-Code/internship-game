@@ -53,19 +53,19 @@ namespace InternshipGame.Prototype
             switch (signal.CueId)
             {
                 case PrototypeFeedbackCues.RodLiveConfirmed:
-                    ShowPulse(new Color(1f, 0.46f, 0.08f, 0.8f), "WARMTH — LIVE ROD CONFIRMED", signal);
+                    ShowPulse(new Color(1f, 0.46f, 0.08f, 0.8f), "LIVE ROD — WARM AMBER CONFIRMATION", signal);
                     break;
                 case PrototypeFeedbackCues.RodInertConfirmed:
-                    ShowPulse(new Color(0.18f, 0.65f, 1f, 0.78f), "COOL RESPONSE — INERT ROD", signal);
+                    ShowPulse(new Color(0.18f, 0.65f, 1f, 0.78f), "INERT ROD — BLUE RESPONSE", signal);
                     break;
                 case PrototypeFeedbackCues.RodAssayRequired:
-                    ShowPulse(new Color(0.82f, 0.86f, 0.9f, 0.65f), "ASSAY REQUIRED — HOLD FOR 3 SECONDS", signal);
+                    ShowPulse(new Color(0.82f, 0.86f, 0.9f, 0.65f), "SCAN REQUIRED — KEEP HOLDING FOR 3 SECONDS", signal);
                     break;
                 case PrototypeFeedbackCues.RodRejected:
-                    ShowPulse(new Color(1f, 0.08f, 0.04f, 0.82f), "RACK REJECTED ROD — OWL PRESSURE RISING", signal);
+                    ShowPulse(new Color(1f, 0.08f, 0.04f, 0.82f), "INERT ROD REJECTED — NOISE ATTRACTS THE OWL", signal);
                     break;
                 case PrototypeFeedbackCues.RodDeposited:
-                    ShowPulse(new Color(0.2f, 1f, 0.48f, 0.72f), "LIVE ROD LOCKED", signal);
+                    ShowPulse(new Color(0.2f, 1f, 0.48f, 0.72f), "LIVE ROD SECURED", signal);
                     break;
                 case PrototypeFeedbackCues.ExtractionReady:
                     ShowPulse(new Color(0.08f, 0.92f, 1f, 0.85f), "EXIT OPEN — CROSS THE CYAN GATE", signal);
@@ -123,9 +123,9 @@ namespace InternshipGame.Prototype
                 normal = { textColor = Color.white },
             };
 
-            var label = pulseActive ? pulseLabel : "EXTRACTION CYCLING — SIMULATED WIND";
-            GUI.Box(new Rect(Screen.width * 0.5f - 260f, 22f, 520f, 38f), GUIContent.none);
-            GUI.Label(new Rect(Screen.width * 0.5f - 250f, 24f, 500f, 34f), label, labelStyle);
+            var label = pulseActive ? pulseLabel : "EXIT CYCLING — SIMULATED WIND";
+            GUI.Box(new Rect(Screen.width * 0.5f - 285f, 100f, 570f, 38f), GUIContent.none);
+            GUI.Label(new Rect(Screen.width * 0.5f - 275f, 102f, 550f, 34f), label, labelStyle);
         }
     }
 }

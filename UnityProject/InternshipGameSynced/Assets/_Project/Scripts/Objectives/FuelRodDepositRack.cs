@@ -17,7 +17,12 @@ namespace InternshipGame.Prototype
         private IThreatStimulusSink threatStimulusSink;
         private BoxCollider acceptanceTrigger;
         private FuelRodItem lastAttemptedItem;
+        private FuelRodItem lastAnnouncedItem;
+        private DepositResult lastAnnouncedResult = DepositResult.Unregistered;
         private float nextAttemptTime;
+        private float nextAnnouncementTime;
+
+        public event Action<FuelRodItem, DepositResult> DepositResolved;
 
         public DepositResult LastResult { get; private set; } = DepositResult.Unregistered;
         public string StatusLabel => $"Rack: {CountOccupied()}/{slots.Length} | last {LastResult}";
@@ -79,6 +84,7 @@ namespace InternshipGame.Prototype
             if (item == null || runController == null)
             {
                 LastResult = DepositResult.Unregistered;
+                AnnounceResult(item, LastResult);
                 return LastResult;
             }
 
@@ -86,11 +92,13 @@ namespace InternshipGame.Prototype
             if (slotIndex < 0 || slotIndex >= slots.Length)
             {
                 LastResult = DepositResult.RackFull;
+                AnnounceResult(item, LastResult);
                 return LastResult;
             }
 
             var slot = slots[slotIndex];
             LastResult = runController.TryDepositFuelRod(item, slot);
+            var shouldAnnounce = ShouldAnnounce(item, LastResult);
             switch (LastResult)
             {
                 case DepositResult.Accepted:
@@ -99,12 +107,16 @@ namespace InternshipGame.Prototype
                         occupants[slotIndex] = item;
                     }
 
-                    feedbackHub?.Send(new FeedbackSignal(
-                        PrototypeFeedbackCues.RodDeposited,
-                        FeedbackCommand.Pulse,
-                        FeedbackChannel.Visual | FeedbackChannel.Audio,
-                        0.72f,
-                        0.7f));
+                    if (shouldAnnounce)
+                    {
+                        feedbackHub?.Send(new FeedbackSignal(
+                            PrototypeFeedbackCues.RodDeposited,
+                            FeedbackCommand.Pulse,
+                            FeedbackChannel.Visual | FeedbackChannel.Audio,
+                            0.72f,
+                            0.7f));
+                    }
+
                     threatStimulusSink?.ReportStimulus(new ThreatStimulus(
                         ThreatStimulusKind.ObjectiveProgress,
                         transform.position,
@@ -114,29 +126,42 @@ namespace InternshipGame.Prototype
                     break;
 
                 case DepositResult.Unassayed:
-                    feedbackHub?.Send(new FeedbackSignal(
-                        PrototypeFeedbackCues.RodAssayRequired,
-                        FeedbackCommand.Pulse,
-                        FeedbackChannel.Visual | FeedbackChannel.Audio,
-                        0.55f,
-                        0.85f));
+                    if (shouldAnnounce)
+                    {
+                        feedbackHub?.Send(new FeedbackSignal(
+                            PrototypeFeedbackCues.RodAssayRequired,
+                            FeedbackCommand.Pulse,
+                            FeedbackChannel.Visual | FeedbackChannel.Audio,
+                            0.55f,
+                            0.85f));
+                    }
+
                     break;
 
                 case DepositResult.Inert:
-                    feedbackHub?.Send(new FeedbackSignal(
-                        PrototypeFeedbackCues.RodRejected,
-                        FeedbackCommand.Pulse,
-                        FeedbackChannel.Visual | FeedbackChannel.Audio,
-                        1f,
-                        1.15f));
-                    threatStimulusSink?.ReportStimulus(new ThreatStimulus(
-                        ThreatStimulusKind.RodRejected,
-                        transform.position,
-                        1f,
-                        24f,
-                        Mathf.Max(0f, Time.time)));
+                    if (shouldAnnounce)
+                    {
+                        feedbackHub?.Send(new FeedbackSignal(
+                            PrototypeFeedbackCues.RodRejected,
+                            FeedbackCommand.Pulse,
+                            FeedbackChannel.Visual | FeedbackChannel.Audio,
+                            1f,
+                            1.15f));
+                        threatStimulusSink?.ReportStimulus(new ThreatStimulus(
+                            ThreatStimulusKind.RodRejected,
+                            transform.position,
+                            1f,
+                            24f,
+                            Mathf.Max(0f, Time.time)));
+                    }
+
                     Eject(item);
                     break;
+            }
+
+            if (shouldAnnounce)
+            {
+                AnnounceResult(item, LastResult);
             }
 
             return LastResult;
@@ -146,7 +171,10 @@ namespace InternshipGame.Prototype
         {
             occupants = new FuelRodItem[slots.Length];
             lastAttemptedItem = null;
+            lastAnnouncedItem = null;
+            lastAnnouncedResult = DepositResult.Unregistered;
             nextAttemptTime = 0f;
+            nextAnnouncementTime = 0f;
             LastResult = DepositResult.Unregistered;
         }
 
@@ -169,7 +197,7 @@ namespace InternshipGame.Prototype
 
             foreach (var item in objectiveSet.Items)
             {
-                if (item == null || !item.IsHeld || !ContainsWorldPoint(acceptanceTrigger, item.transform.position))
+                if (item == null || !item.IsHeld || !OverlapsAcceptanceVolume(acceptanceTrigger, item))
                 {
                     continue;
                 }
@@ -191,6 +219,45 @@ namespace InternshipGame.Prototype
             return Mathf.Abs(localPoint.x) <= halfSize.x &&
                    Mathf.Abs(localPoint.y) <= halfSize.y &&
                    Mathf.Abs(localPoint.z) <= halfSize.z;
+        }
+
+        internal static bool OverlapsAcceptanceVolume(BoxCollider volume, FuelRodItem item)
+        {
+            if (volume == null || item == null || !volume.enabled || !volume.gameObject.activeInHierarchy)
+            {
+                return false;
+            }
+
+            var hasUsableCollider = false;
+            foreach (var candidate in item.GetComponentsInChildren<Collider>(true))
+            {
+                if (candidate == null || candidate == volume || !candidate.enabled ||
+                    !candidate.gameObject.activeInHierarchy || candidate.isTrigger)
+                {
+                    continue;
+                }
+
+                hasUsableCollider = true;
+                if (!volume.bounds.Intersects(candidate.bounds))
+                {
+                    continue;
+                }
+
+                if (Physics.ComputePenetration(
+                    volume,
+                    volume.transform.position,
+                    volume.transform.rotation,
+                    candidate,
+                    candidate.transform.position,
+                    candidate.transform.rotation,
+                    out _,
+                    out _))
+                {
+                    return true;
+                }
+            }
+
+            return !hasUsableCollider && ContainsWorldPoint(volume, item.transform.position);
         }
 
         private void TryHandleItem(FuelRodItem item)
@@ -222,7 +289,23 @@ namespace InternshipGame.Prototype
             }
 
             body.linearVelocity = direction.normalized * 3.2f + Vector3.up * 1.6f;
-            body.angularVelocity = UnityEngine.Random.onUnitSphere * 4f;
+            body.angularVelocity = Vector3.Cross(direction.normalized, Vector3.up) * 4f +
+                Vector3.up * 0.8f;
+        }
+
+        private bool ShouldAnnounce(FuelRodItem item, DepositResult result)
+        {
+            return !ReferenceEquals(item, lastAnnouncedItem) ||
+                   result != lastAnnouncedResult ||
+                   Time.time >= nextAnnouncementTime;
+        }
+
+        private void AnnounceResult(FuelRodItem item, DepositResult result)
+        {
+            lastAnnouncedItem = item;
+            lastAnnouncedResult = result;
+            nextAnnouncementTime = Time.time + 2.5f;
+            DepositResolved?.Invoke(item, result);
         }
 
         private int FindFirstEmptySlot()

@@ -3,6 +3,7 @@
     "rootNamespace": "InternshipGame.Prototype.Tests",
     "references": [
         "InternshipGame.Prototype.Runtime",
+        "Unity.TextMeshPro",
         "Unity.XR.Interaction.Toolkit"
     ],
     "includePlatforms": [],

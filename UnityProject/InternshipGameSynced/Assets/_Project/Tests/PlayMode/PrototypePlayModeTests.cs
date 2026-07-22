@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -118,6 +119,20 @@ namespace InternshipGame.Prototype.Tests
                 Assert.That(xrInteractable.enabled, Is.True);
                 Assert.That(Physics.GetIgnoreCollision(playerCollider, itemCollider), Is.False);
                 Assert.That(Physics.GetIgnoreCollision(preIgnoredPlayerCollider, itemCollider), Is.True);
+
+                Assert.That(interactor.TryGrab(grabbable), Is.True);
+                yield return null;
+                var throwOrigin = item.transform.position;
+                Assert.That(interactor.ThrowHeldObject(), Is.True);
+                Assert.That(Vector3.Dot(body.linearVelocity, camera.transform.forward), Is.GreaterThan(6f));
+                Assert.That(Vector3.Dot(body.angularVelocity, camera.transform.right), Is.GreaterThan(5f));
+
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
+                Assert.That(
+                    Vector3.Dot(item.transform.position - throwOrigin, camera.transform.forward),
+                    Is.GreaterThan(0.02f),
+                    "A thrown prop must visibly leave the hand under real Rigidbody simulation.");
             }
             finally
             {
@@ -130,6 +145,117 @@ namespace InternshipGame.Prototype.Tests
                 Object.Destroy(originalParent);
                 Object.Destroy(player);
             }
+        }
+
+        [UnityTest]
+        public IEnumerator IntegratedPrototype_HasReadableScrappableGreyboxPresentation()
+        {
+            var loadOperation = SceneManager.LoadSceneAsync(PrototypeScenePath, LoadSceneMode.Single);
+            Assert.That(loadOperation, Is.Not.Null, $"Could not load {PrototypeScenePath}.");
+            while (!loadOperation.isDone)
+            {
+                yield return null;
+            }
+
+            yield return null;
+
+            var transforms = Object.FindObjectsByType<Transform>(FindObjectsInactive.Include);
+            Transform facility = null;
+            Transform missionAssembly = null;
+            Transform rack = null;
+            var legacyFloorIdentityCount = 0;
+            foreach (var candidate in transforms)
+            {
+                switch (candidate.name)
+                {
+                    case "Generated Facility":
+                        facility = candidate;
+                        break;
+                    case "Mission Display Assembly":
+                        missionAssembly = candidate;
+                        break;
+                    case "Three-Slot Deposit Rack":
+                        rack = candidate;
+                        break;
+                }
+
+                if (candidate.name.EndsWith("Floor Identity", System.StringComparison.Ordinal))
+                {
+                    legacyFloorIdentityCount++;
+                }
+            }
+
+            Assert.That(facility, Is.Not.Null);
+            Assert.That(legacyFloorIdentityCount, Is.Zero, "Full-room stacked identity plates must not return.");
+
+            var spaces = facility.Find("Authored Spaces");
+            Assert.That(spaces, Is.Not.Null);
+            Assert.That(spaces.childCount, Is.EqualTo(10));
+            for (var i = 0; i < spaces.childCount; i++)
+            {
+                var space = spaces.GetChild(i);
+                var inlay = space.Find($"{space.name} Route Inlay");
+                var profile = space.Find("Scrappable Architectural Profile");
+                var sign = space.Find($"{space.name} Identity Sign/Fitted Text");
+                Assert.That(inlay, Is.Not.Null, $"{space.name} is missing its inset route cue.");
+                Assert.That(profile, Is.Not.Null, $"{space.name} is missing its authored silhouette profile.");
+                Assert.That(profile.childCount, Is.GreaterThan(0), $"{space.name} has an empty profile.");
+                Assert.That(sign, Is.Not.Null, $"{space.name} is missing fitted identity signage.");
+                Assert.That(inlay.position.y, Is.EqualTo(0.009f).Within(0.001f));
+                Assert.That(inlay.localScale.y, Is.EqualTo(0.018f).Within(0.001f));
+                Assert.That(sign.lossyScale, Is.EqualTo(Vector3.one).Using(Vector3ComparerWithEqualsOperator.Instance));
+                var signText = sign.GetComponent<TMP_Text>();
+                Assert.That(signText, Is.Not.Null);
+                Assert.That(signText.fontSizeMax, Is.GreaterThanOrEqualTo(0.8f));
+                Assert.That(signText.text, Does.Contain(space.name.ToUpperInvariant()));
+            }
+
+            var routeFamilies = facility.Find("Route Families");
+            Assert.That(routeFamilies, Is.Not.Null);
+            var portalCount = 0;
+            for (var i = 0; i < routeFamilies.childCount; i++)
+            {
+                var portal = routeFamilies.GetChild(i);
+                var left = portal.Find("Left Fitted Jamb");
+                if (left == null)
+                {
+                    continue;
+                }
+
+                portalCount++;
+                var right = portal.Find("Right Fitted Jamb");
+                var header = portal.Find("Fitted Header");
+                Assert.That(right, Is.Not.Null, $"{portal.name} has no right jamb.");
+                Assert.That(header, Is.Not.Null, $"{portal.name} has no fitted header.");
+                var clearWidth = right.localPosition.x - right.localScale.x * 0.5f -
+                                 (left.localPosition.x + left.localScale.x * 0.5f);
+                Assert.That(clearWidth, Is.EqualTo(2.76f).Within(0.01f), $"{portal.name} clear width changed.");
+                Assert.That(header.localScale.x, Is.EqualTo(3.2f).Within(0.01f));
+                Assert.That(portal.GetComponentsInChildren<TMP_Text>(true), Has.Length.EqualTo(2));
+            }
+
+            Assert.That(portalCount, Is.EqualTo(13));
+            var entryCorridor = routeFamilies.Find("Entry-Decon");
+            var entryInlay = spaces.Find("Entry and Extraction Bay/Entry and Extraction Bay Route Inlay");
+            Assert.That(entryCorridor, Is.Not.Null);
+            Assert.That(entryInlay, Is.Not.Null);
+            var corridorSurface = entryCorridor.position.y + entryCorridor.localScale.y * 0.5f;
+            var roomSurface = entryInlay.position.y + entryInlay.localScale.y * 0.5f;
+            Assert.That(corridorSurface - roomSurface, Is.GreaterThanOrEqualTo(0.005f), "Overlapping route surfaces need explicit vertical separation.");
+
+            Assert.That(missionAssembly, Is.Not.Null);
+            var missionTextTransform = missionAssembly.Find("Diegetic Mission Display");
+            Assert.That(missionTextTransform, Is.Not.Null);
+            Assert.That(missionTextTransform.lossyScale, Is.EqualTo(Vector3.one).Using(Vector3ComparerWithEqualsOperator.Instance));
+            var missionText = missionTextTransform.GetComponent<TMP_Text>();
+            Assert.That(missionText.fontSizeMax, Is.GreaterThanOrEqualTo(1f));
+            Assert.That(((RectTransform)missionTextTransform).sizeDelta.x, Is.GreaterThanOrEqualTo(4f));
+
+            Assert.That(rack, Is.Not.Null);
+            var rackInstructions = rack.Find("Rack Instructions");
+            Assert.That(rackInstructions, Is.Not.Null);
+            Assert.That(rackInstructions.lossyScale, Is.EqualTo(Vector3.one).Using(Vector3ComparerWithEqualsOperator.Instance));
+            Assert.That(rackInstructions.GetComponent<TMP_Text>().text, Does.Contain("SCAN-CONFIRMED"));
         }
 
         [UnityTest]
@@ -313,8 +439,8 @@ namespace InternshipGame.Prototype.Tests
             yield return null;
             yield return null;
 
-            var run = Object.FindFirstObjectByType<PrototypeRunController>(FindObjectsInactive.Include);
-            var rack = Object.FindFirstObjectByType<FuelRodDepositRack>(FindObjectsInactive.Include);
+            var run = Object.FindAnyObjectByType<PrototypeRunController>(FindObjectsInactive.Include);
+            var rack = Object.FindAnyObjectByType<FuelRodDepositRack>(FindObjectsInactive.Include);
             var rods = Object.FindObjectsByType<FuelRodItem>(FindObjectsInactive.Include);
             Assert.That(run, Is.Not.Null);
             Assert.That(rack, Is.Not.Null);

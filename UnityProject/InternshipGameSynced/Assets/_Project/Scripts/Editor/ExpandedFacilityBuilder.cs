@@ -12,6 +12,8 @@ namespace InternshipGame.Prototype.Editor
         public Material BaseFloor;
         public Material Wall;
         public Material Metal;
+        public Material DarkTrim;
+        public Material Panel;
         public Material Cyan;
         public Material Amber;
         public Material RadiationGreen;
@@ -65,9 +67,9 @@ namespace InternshipGame.Prototype.Editor
         {
             new("Extraction Portal", new Vector3(0f, 0f, -21.3f), 0f, SurfaceTheme.Extraction),
             new("Decon North Portal", new Vector3(0f, 0f, -15.1f), 0f, SurfaceTheme.Extraction),
-            new("West Route Portal", new Vector3(-5.6f, 0f, -6.5f), 90f, SurfaceTheme.Maintenance),
-            new("Central Route Portal", new Vector3(0f, 0f, -5.1f), 0f, SurfaceTheme.Neutral),
-            new("East Route Portal", new Vector3(5.6f, 0f, -6.5f), 90f, SurfaceTheme.Radiation),
+            new("West Route Portal", new Vector3(-5.5f, 0f, -6.5f), 90f, SurfaceTheme.Maintenance),
+            new("Central Route Portal", new Vector3(0f, 0f, -5.7f), 0f, SurfaceTheme.Neutral),
+            new("East Route Portal", new Vector3(5.5f, 0f, -6.5f), 90f, SurfaceTheme.Radiation),
             new("West Cross-Link", new Vector3(-5.5f, 0f, 3.9f), 90f, SurfaceTheme.Maintenance),
             new("East Cross-Link", new Vector3(5.5f, 0f, 3.9f), 90f, SurfaceTheme.Radiation),
             new("West Cross Hall", new Vector3(-11f, 0f, 9f), 0f, SurfaceTheme.Maintenance),
@@ -107,11 +109,11 @@ namespace InternshipGame.Prototype.Editor
 
         private static readonly LandmarkSpec[] Landmarks =
         {
-            new("Operations Orientation Beacon", new Vector3(0f, 1.4f, -10f), new Vector3(0.9f, 2.8f, 0.9f), SurfaceTheme.Extraction),
-            new("Maintenance Hoist", new Vector3(-13.3f, 1.2f, -2.5f), new Vector3(1.3f, 2.4f, 1.3f), SurfaceTheme.Maintenance),
+            new("Operations Orientation Beacon", new Vector3(-3.5f, 1.2f, -9.6f), new Vector3(0.65f, 2.4f, 0.65f), SurfaceTheme.Extraction),
+            new("Maintenance Hoist", new Vector3(-13.6f, 1.2f, -3.1f), new Vector3(1.1f, 2.4f, 1.5f), SurfaceTheme.Maintenance),
             new("Transfer Column", new Vector3(0f, 1.2f, 4.8f), new Vector3(1f, 2.4f, 1f), SurfaceTheme.Neutral),
-            new("Laboratory Containment", new Vector3(13.3f, 1.2f, -2.5f), new Vector3(1.3f, 2.4f, 1.3f), SurfaceTheme.Radiation),
-            new("North Hall Junction", new Vector3(0f, 1f, 11.5f), new Vector3(1.2f, 2f, 1.2f), SurfaceTheme.Extraction),
+            new("Laboratory Containment", new Vector3(8.3f, 1.05f, 2.2f), new Vector3(1.5f, 2.1f, 1.1f), SurfaceTheme.Radiation),
+            new("North Hall Junction", new Vector3(-2.6f, 1f, 11.5f), new Vector3(1.2f, 2f, 1.2f), SurfaceTheme.Extraction),
         };
 
         private static readonly AnchorSpec[] RodSocketSpecs =
@@ -216,8 +218,10 @@ namespace InternshipGame.Prototype.Editor
             var rackAnchor = CreateAnchor("Extraction Rack Anchor", anchorsRoot.transform, new Vector3(0f, 0f, -22.25f));
             var exitAnchor = CreateAnchor("Extraction Exit Anchor", anchorsRoot.transform, new Vector3(0f, 0f, -28.65f));
             var owlSpawn = CreateAnchor("Owl Spawn Anchor", anchorsRoot.transform, new Vector3(1.4f, 0.01f, 9.7f));
-            var missionDisplayAnchor = CreateAnchor("Mission Display Anchor", anchorsRoot.transform, new Vector3(-5.72f, 1.75f, -25f));
-            missionDisplayAnchor.rotation = Quaternion.Euler(0f, -90f, 0f);
+            // Suspend the primary mission board directly over the intake rack. The old
+            // west-wall placement sat behind mandatory sight-breaking cover from spawn.
+            var missionDisplayAnchor = CreateAnchor("Mission Display Anchor", anchorsRoot.transform, new Vector3(0f, 2.7f, -22.15f));
+            missionDisplayAnchor.rotation = Quaternion.identity;
 
             var sockets = BuildRodSockets(anchorsRoot.transform, materials);
             var patrolPoints = BuildPatrolPoints(anchorsRoot.transform);
@@ -265,14 +269,21 @@ namespace InternshipGame.Prototype.Editor
             var root = new GameObject(spec.Name);
             root.transform.SetParent(parent, false);
             var material = ResolveTheme(spec.Theme, materials);
+
+            // Route colour is an orientation cue, not a replacement floor. Keeping the
+            // inlay narrow exposes the common facility floor and avoids the old stack of
+            // full-room coplanar plates that made the map read as ten coloured cubes.
+            var inlaySize = ResolveRoomInlaySize(spec.Size);
             CreateBox(
-                $"{spec.Name} Floor Identity",
+                $"{spec.Name} Route Inlay",
                 root.transform,
-                new Vector3(spec.Center.x, 0.015f, spec.Center.y),
-                new Vector3(spec.Size.x, 0.03f, spec.Size.y),
+                new Vector3(spec.Center.x, 0.009f, spec.Center.y),
+                new Vector3(inlaySize.x, 0.018f, inlaySize.y),
                 material,
                 false);
-            CreateWorldLabel(spec.Name, root.transform, new Vector3(spec.Center.x, 0.035f, spec.Center.y), Quaternion.Euler(90f, 0f, 0f), material.color);
+
+            BuildRoomIdentitySign(spec, root.transform, material, materials);
+            BuildRoomProfile(spec, root.transform, material, materials);
         }
 
         private static void BuildCorridor(CorridorSpec spec, Transform parent, ExpandedFacilityMaterials materials)
@@ -281,8 +292,11 @@ namespace InternshipGame.Prototype.Editor
             CreateBox(
                 spec.Name,
                 parent,
-                new Vector3(spec.Center.x, 0.035f, spec.Center.y),
-                new Vector3(spec.Size.x, 0.04f, spec.Size.y),
+                new Vector3(spec.Center.x, 0.018f, spec.Center.y),
+                new Vector3(
+                    Mathf.Max(0.2f, spec.Size.x - 0.14f),
+                    0.012f,
+                    Mathf.Max(0.2f, spec.Size.y - 0.14f)),
                 material,
                 false);
         }
@@ -293,9 +307,46 @@ namespace InternshipGame.Prototype.Editor
             root.transform.SetParent(parent, false);
             root.transform.SetPositionAndRotation(spec.Position, Quaternion.Euler(0f, spec.Yaw, 0f));
             var material = ResolveTheme(spec.Theme, materials);
-            CreateBoxLocal("Left Guide", root.transform, new Vector3(-1.75f, 1.25f, 0f), new Vector3(0.14f, 2.5f, 0.14f), material, true);
-            CreateBoxLocal("Right Guide", root.transform, new Vector3(1.75f, 1.25f, 0f), new Vector3(0.14f, 2.5f, 0.14f), material, true);
-            CreateBoxLocal("Header", root.transform, new Vector3(0f, 2.55f, 0f), new Vector3(3.64f, 0.14f, 0.14f), material, true);
+            const float clearWidth = 2.76f;
+            const float postWidth = 0.22f;
+            const float frameDepth = 0.32f;
+            const float clearHeight = 2.52f;
+            var postX = clearWidth * 0.5f + postWidth * 0.5f;
+            var frameWidth = clearWidth + postWidth * 2f;
+
+            CreateBoxLocal("Left Fitted Jamb", root.transform, new Vector3(-postX, clearHeight * 0.5f, 0f), new Vector3(postWidth, clearHeight, frameDepth), materials.DarkTrim, true);
+            CreateBoxLocal("Right Fitted Jamb", root.transform, new Vector3(postX, clearHeight * 0.5f, 0f), new Vector3(postWidth, clearHeight, frameDepth), materials.DarkTrim, true);
+            CreateBoxLocal("Fitted Header", root.transform, new Vector3(0f, clearHeight + 0.12f, 0f), new Vector3(frameWidth, 0.24f, frameDepth), materials.DarkTrim, true);
+
+            CreateBoxLocal("Left Route Edge", root.transform, new Vector3(-clearWidth * 0.5f + 0.035f, 1.24f, -0.175f), new Vector3(0.07f, 2.35f, 0.035f), material, false);
+            CreateBoxLocal("Right Route Edge", root.transform, new Vector3(clearWidth * 0.5f - 0.035f, 1.24f, -0.175f), new Vector3(0.07f, 2.35f, 0.035f), material, false);
+            CreateBoxLocal("Route Header Edge", root.transform, new Vector3(0f, clearHeight - 0.035f, -0.175f), new Vector3(clearWidth, 0.07f, 0.035f), material, false);
+            CreateBoxLocal("Fitted Threshold", root.transform, new Vector3(0f, 0.012f, 0f), new Vector3(clearWidth, 0.024f, 0.52f), material, false);
+
+            var portalLabel = spec.Name
+                .Replace(" Portal", string.Empty)
+                .Replace(" Route", string.Empty)
+                .ToUpperInvariant();
+            CreatePanelTextLocal(
+                $"{spec.Name} Front Label",
+                root.transform,
+                new Vector3(0f, clearHeight + 0.12f, -0.175f),
+                Quaternion.identity,
+                portalLabel,
+                Color.white,
+                new Vector2(2.55f, 0.28f),
+                0.5f,
+                false);
+            CreatePanelTextLocal(
+                $"{spec.Name} Rear Label",
+                root.transform,
+                new Vector3(0f, clearHeight + 0.12f, 0.175f),
+                Quaternion.Euler(0f, 180f, 0f),
+                portalLabel,
+                Color.white,
+                new Vector2(2.55f, 0.28f),
+                0.5f,
+                false);
         }
 
         private static void BuildCover(Transform parent, ExpandedFacilityMaterials materials)
@@ -303,8 +354,255 @@ namespace InternshipGame.Prototype.Editor
             for (var i = 0; i < CoverPositions.Length; i++)
             {
                 var scale = i % 3 == 0 ? new Vector3(1.2f, 2.25f, 0.8f) : new Vector3(0.8f, 2.25f, 1.2f);
-                CreateBox($"Sight Break {i + 1:00}", parent, CoverPositions[i] + Vector3.up * (scale.y * 0.5f), scale, materials.Metal, true);
+                var root = new GameObject($"Sight Break {i + 1:00}");
+                root.transform.SetParent(parent, false);
+                root.transform.position = CoverPositions[i];
+
+                // The core keeps the proven footprint used by navigation and threat
+                // tests. Caps, rails and alternating faces make the repeated cover read
+                // as a modular equipment family instead of cloned cubes.
+                CreateBoxLocal("Collision Core", root.transform, Vector3.up * (scale.y * 0.5f), scale, materials.Metal, true);
+                CreateBoxLocal("Dark Base", root.transform, new Vector3(0f, 0.08f, 0f), new Vector3(scale.x + 0.12f, 0.16f, scale.z + 0.12f), materials.DarkTrim, false);
+                CreateBoxLocal("Top Cap", root.transform, new Vector3(0f, scale.y + 0.055f, 0f), new Vector3(scale.x + 0.1f, 0.11f, scale.z + 0.1f), materials.DarkTrim, false);
+                var accent = i % 4 is 0 or 3 ? materials.Amber : i % 4 == 1 ? materials.Cyan : materials.NeutralLight;
+                var railX = i % 2 == 0 ? scale.x * 0.5f + 0.012f : 0f;
+                var railZ = i % 2 == 0 ? 0f : scale.z * 0.5f + 0.012f;
+                var railScale = i % 2 == 0
+                    ? new Vector3(0.025f, scale.y * 0.68f, scale.z * 0.54f)
+                    : new Vector3(scale.x * 0.54f, scale.y * 0.68f, 0.025f);
+                CreateBoxLocal("Equipment Identity Rail", root.transform, new Vector3(railX, scale.y * 0.55f, railZ), railScale, accent, false);
             }
+        }
+
+        private static Vector2 ResolveRoomInlaySize(Vector2 roomSize)
+        {
+            if (roomSize.x > roomSize.y * 1.7f)
+            {
+                return new Vector2(Mathf.Max(2f, roomSize.x - 0.5f), 0.72f);
+            }
+
+            if (roomSize.y > roomSize.x * 1.35f)
+            {
+                return new Vector2(Mathf.Min(2.15f, roomSize.x - 0.5f), Mathf.Max(2f, roomSize.y - 0.5f));
+            }
+
+            return new Vector2(Mathf.Min(3.4f, roomSize.x - 0.5f), Mathf.Min(3.4f, roomSize.y - 0.5f));
+        }
+
+        private static void BuildRoomIdentitySign(
+            SpaceSpec spec,
+            Transform parent,
+            Material accent,
+            ExpandedFacilityMaterials materials)
+        {
+            Vector3 position;
+            Quaternion rotation;
+            switch (spec.Zone)
+            {
+                case FacilityZoneId.EntryExtraction:
+                    position = new Vector3(-5.72f, 2.7f, -27.4f);
+                    rotation = Quaternion.Euler(0f, -90f, 0f);
+                    break;
+                case FacilityZoneId.WestMaintenance:
+                    position = new Vector3(-15.78f, 2.35f, 0.5f);
+                    rotation = Quaternion.Euler(0f, -90f, 0f);
+                    break;
+                case FacilityZoneId.CentralTransfer:
+                    position = new Vector3(2.78f, 2.35f, 1f);
+                    rotation = Quaternion.Euler(0f, 90f, 0f);
+                    break;
+                case FacilityZoneId.EastLaboratory:
+                    position = new Vector3(15.78f, 2.35f, -0.4f);
+                    rotation = Quaternion.Euler(0f, 90f, 0f);
+                    break;
+                default:
+                    position = new Vector3(spec.Center.x, 2.72f, spec.Center.y + spec.Size.y * 0.5f - 0.18f);
+                    rotation = Quaternion.identity;
+                    break;
+            }
+
+            CreatePanelSign(
+                $"{spec.Name} Identity Sign",
+                parent,
+                position,
+                rotation,
+                $"{spec.Name.ToUpperInvariant()}\n{ResolveZoneCode(spec.Zone)}",
+                accent,
+                materials,
+                3.5f,
+                0.72f);
+        }
+
+        private static string ResolveZoneCode(FacilityZoneId zone)
+        {
+            return zone switch
+            {
+                FacilityZoneId.EntryExtraction => "E-01  /  EXTRACTION",
+                FacilityZoneId.Decontamination => "D-02  /  TRANSIT",
+                FacilityZoneId.OperationsHub => "H-03  /  THREE ROUTES",
+                FacilityZoneId.WestMaintenance => "W-04  /  AMBER ROUTE",
+                FacilityZoneId.CentralTransfer => "C-05  /  TRANSFER ROUTE",
+                FacilityZoneId.EastLaboratory => "L-06  /  GREEN ROUTE",
+                FacilityZoneId.NorthCrossHall => "N-07  /  CROSS-CONNECTION",
+                FacilityZoneId.WestRodStorage => "W-08  /  ROD STORAGE",
+                FacilityZoneId.CoreVault => "C-09  /  CORE ACCESS",
+                FacilityZoneId.EastReactor => "E-10  /  REACTOR ACCESS",
+                _ => "FACILITY ZONE",
+            };
+        }
+
+        private static void BuildRoomProfile(
+            SpaceSpec spec,
+            Transform parent,
+            Material accent,
+            ExpandedFacilityMaterials materials)
+        {
+            var root = new GameObject("Scrappable Architectural Profile");
+            root.transform.SetParent(parent, false);
+
+            switch (spec.Zone)
+            {
+                case FacilityZoneId.EntryExtraction:
+                    BuildEntryProfile(root.transform, accent, materials);
+                    break;
+                case FacilityZoneId.Decontamination:
+                    BuildDecontaminationProfile(root.transform, accent, materials);
+                    break;
+                case FacilityZoneId.OperationsHub:
+                    BuildOperationsProfile(root.transform, accent, materials);
+                    break;
+                case FacilityZoneId.WestMaintenance:
+                    BuildMaintenanceProfile(root.transform, accent, materials);
+                    break;
+                case FacilityZoneId.CentralTransfer:
+                    BuildTransferProfile(root.transform, accent, materials);
+                    break;
+                case FacilityZoneId.EastLaboratory:
+                    BuildLaboratoryProfile(root.transform, accent, materials);
+                    break;
+                case FacilityZoneId.NorthCrossHall:
+                    BuildCrossHallProfile(root.transform, accent, materials);
+                    break;
+                case FacilityZoneId.WestRodStorage:
+                    BuildStorageProfile(root.transform, accent, materials);
+                    break;
+                case FacilityZoneId.CoreVault:
+                    BuildCoreProfile(root.transform, accent, materials);
+                    break;
+                case FacilityZoneId.EastReactor:
+                    BuildReactorProfile(root.transform, accent, materials);
+                    break;
+            }
+        }
+
+        private static void BuildEntryProfile(Transform parent, Material accent, ExpandedFacilityMaterials materials)
+        {
+            CreateBox("Offset Security Booth", parent, new Vector3(-4.92f, 1f, -27.25f), new Vector3(1.55f, 2f, 2.25f), materials.Metal, true);
+            CreateBox("Security Booth Face", parent, new Vector3(-4.1f, 1.22f, -27.25f), new Vector3(0.08f, 0.72f, 1.65f), materials.Panel, false);
+            CreateBox("Security Booth Accent", parent, new Vector3(-4.04f, 1.62f, -27.25f), new Vector3(0.04f, 0.08f, 1.55f), accent, false);
+            CreateBox("Extraction Canopy", parent, new Vector3(2.45f, 3.03f, -23.9f), new Vector3(5.7f, 0.28f, 0.65f), materials.DarkTrim, false);
+            CreateBox("Extraction Canopy Edge", parent, new Vector3(2.45f, 2.86f, -23.58f), new Vector3(5.35f, 0.06f, 0.05f), accent, false);
+        }
+
+        private static void BuildDecontaminationProfile(Transform parent, Material accent, ExpandedFacilityMaterials materials)
+        {
+            foreach (var x in new[] { -2.67f, 2.67f })
+            {
+                CreateBox("Decon Side Filter", parent, new Vector3(x, 1.15f, -18.35f), new Vector3(0.52f, 2.3f, 1.35f), materials.Metal, true);
+                CreateBox("Decon Filter Face", parent, new Vector3(x - Mathf.Sign(x) * 0.275f, 1.2f, -18.35f), new Vector3(0.04f, 1.55f, 0.95f), materials.Panel, false);
+            }
+
+            foreach (var z in new[] { -19.65f, -17.1f })
+            {
+                CreateBox("Decon Ceiling Rib", parent, new Vector3(0f, 3.16f, z), new Vector3(5.5f, 0.34f, 0.28f), materials.DarkTrim, false);
+                CreateBox("Decon Status Strip", parent, new Vector3(0f, 2.96f, z - 0.15f), new Vector3(4.8f, 0.05f, 0.04f), accent, false);
+            }
+        }
+
+        private static void BuildOperationsProfile(Transform parent, Material accent, ExpandedFacilityMaterials materials)
+        {
+            CreateBox("Offset Command Dais", parent, new Vector3(5.25f, 0.54f, -12.25f), new Vector3(2.65f, 1.08f, 1.25f), materials.Metal, true);
+            CreateBox("Command Dais Face", parent, new Vector3(5.25f, 0.88f, -11.59f), new Vector3(2.25f, 0.28f, 0.06f), materials.Panel, false);
+            CreateBox("Command Dais Readout", parent, new Vector3(5.25f, 0.88f, -11.55f), new Vector3(1.7f, 0.08f, 0.025f), accent, false);
+            CreateBox("Asymmetric Hub Gantry", parent, new Vector3(-1.65f, 3.08f, -8f), new Vector3(9.5f, 0.28f, 0.42f), materials.DarkTrim, false);
+            CreateBox("Hub Gantry Cyan Edge", parent, new Vector3(-1.65f, 2.9f, -7.78f), new Vector3(8.8f, 0.06f, 0.04f), accent, false);
+        }
+
+        private static void BuildMaintenanceProfile(Transform parent, Material accent, ExpandedFacilityMaterials materials)
+        {
+            var upperPipe = CreatePrimitiveLocal("West Overhead Main", PrimitiveType.Cylinder, parent, new Vector3(-15.3f, 3.02f, 0.7f), new Vector3(0.18f, 4.6f, 0.18f), materials.DarkTrim, false);
+            upperPipe.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+            var servicePipe = CreatePrimitiveLocal("West Overhead Service", PrimitiveType.Cylinder, parent, new Vector3(-14.75f, 2.72f, -1.2f), new Vector3(0.1f, 3.2f, 0.1f), accent, false);
+            servicePipe.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+            foreach (var z in new[] { -5.4f, 1.2f, 6.5f })
+            {
+                CreateBox("Maintenance Pipe Hanger", parent, new Vector3(-15.3f, 2.83f, z), new Vector3(0.75f, 0.58f, 0.14f), materials.Metal, false);
+            }
+        }
+
+        private static void BuildTransferProfile(Transform parent, Material accent, ExpandedFacilityMaterials materials)
+        {
+            var positions = new[]
+            {
+                new Vector3(-2.72f, 1.3f, -3.2f),
+                new Vector3(2.72f, 1.3f, 1.5f),
+                new Vector3(-2.72f, 1.3f, 7f),
+            };
+            for (var i = 0; i < positions.Length; i++)
+            {
+                CreateBox($"Transfer Offset Buttress {i + 1}", parent, positions[i], new Vector3(0.48f, 2.6f, 1.05f), materials.Metal, true);
+                CreateBox($"Transfer Buttress Edge {i + 1}", parent, positions[i] + new Vector3(i % 2 == 0 ? 0.26f : -0.26f, 0f, 0f), new Vector3(0.04f, 1.9f, 0.76f), accent, false);
+            }
+        }
+
+        private static void BuildLaboratoryProfile(Transform parent, Material accent, ExpandedFacilityMaterials materials)
+        {
+            CreateBox("Laboratory Offset Bench", parent, new Vector3(14.75f, 0.58f, -0.8f), new Vector3(1.45f, 1.16f, 2.7f), materials.Metal, true);
+            CreateBox("Laboratory Bench Readout", parent, new Vector3(13.99f, 0.9f, -0.8f), new Vector3(0.05f, 0.38f, 1.85f), accent, false);
+            foreach (var z in new[] { 2.25f, 5.25f })
+            {
+                var pod = CreatePrimitiveLocal("Laboratory Wall Vessel", PrimitiveType.Cylinder, parent, new Vector3(15.05f, 1.25f, z), new Vector3(0.44f, 1.15f, 0.44f), materials.DarkTrim, false);
+                CreateBox("Laboratory Vessel Band", parent, pod.transform.position + new Vector3(-0.48f, 0f, 0f), new Vector3(0.05f, 0.14f, 0.62f), accent, false);
+            }
+        }
+
+        private static void BuildCrossHallProfile(Transform parent, Material accent, ExpandedFacilityMaterials materials)
+        {
+            foreach (var x in new[] { -11.5f, -5f, 3.5f, 10.5f })
+            {
+                CreateBox("North Hall Offset Truss", parent, new Vector3(x, 3.1f, 11.5f), new Vector3(0.26f, 0.38f, 4.35f), materials.DarkTrim, false);
+            }
+            CreateBox("North Hall Route Spine", parent, new Vector3(2f, 2.87f, 13.72f), new Vector3(18f, 0.06f, 0.05f), accent, false);
+        }
+
+        private static void BuildStorageProfile(Transform parent, Material accent, ExpandedFacilityMaterials materials)
+        {
+            CreateBox("West Storage Shelving", parent, new Vector3(-15.05f, 1.25f, 21f), new Vector3(0.9f, 2.5f, 5.4f), materials.Metal, true);
+            foreach (var z in new[] { 19f, 21f, 23f })
+            {
+                CreateBox("Storage Shelf Edge", parent, new Vector3(-14.56f, 1.25f, z), new Vector3(0.06f, 1.85f, 0.12f), accent, false);
+            }
+            CreateBox("Storage Overhead Crane", parent, new Vector3(-9.2f, 3.04f, 17.2f), new Vector3(5.8f, 0.3f, 0.45f), materials.DarkTrim, false);
+        }
+
+        private static void BuildCoreProfile(Transform parent, Material accent, ExpandedFacilityMaterials materials)
+        {
+            var southBrace = CreateBox("Core South-West Diagonal", parent, new Vector3(-3.25f, 1.45f, 16.25f), new Vector3(0.55f, 2.9f, 1.9f), materials.DarkTrim, false);
+            southBrace.transform.rotation = Quaternion.Euler(0f, 34f, 0f);
+            var northBrace = CreateBox("Core North-East Diagonal", parent, new Vector3(3.25f, 1.45f, 23.75f), new Vector3(0.55f, 2.9f, 1.9f), materials.DarkTrim, false);
+            northBrace.transform.rotation = Quaternion.Euler(0f, 34f, 0f);
+            CreateBox("Core Overhead Bridge", parent, new Vector3(0.7f, 3.05f, 20f), new Vector3(6.2f, 0.3f, 0.55f), materials.Metal, false);
+            CreateBox("Core Overhead Status", parent, new Vector3(0.7f, 2.86f, 19.7f), new Vector3(5.4f, 0.06f, 0.04f), accent, false);
+        }
+
+        private static void BuildReactorProfile(Transform parent, Material accent, ExpandedFacilityMaterials materials)
+        {
+            foreach (var position in new[] { new Vector3(15f, 1.35f, 17.35f), new Vector3(7.15f, 1.35f, 23.45f) })
+            {
+                var stack = CreatePrimitiveLocal("Reactor Service Stack", PrimitiveType.Cylinder, parent, position, new Vector3(0.56f, 1.35f, 0.56f), materials.Metal, true);
+                CreateBox("Reactor Stack Band", parent, stack.transform.position + new Vector3(0f, 0.25f, -0.59f), new Vector3(0.72f, 0.13f, 0.05f), accent, false);
+            }
+            CreateBox("Reactor Offset Bus", parent, new Vector3(12.1f, 3.05f, 24.2f), new Vector3(6.4f, 0.32f, 0.48f), materials.DarkTrim, false);
         }
 
         private static void BuildJumpShortcut(Transform parent, ExpandedFacilityMaterials materials)
@@ -343,13 +641,16 @@ namespace InternshipGame.Prototype.Editor
                 true);
             northRamp.transform.rotation = Quaternion.Euler(16.5f, 0f, 0f);
 
-            CreateWorldLabel(
-                "JUMP PIPE  |  RAMP ALTERNATIVE",
+            CreatePanelSign(
+                "Maintenance Shortcut Sign",
                 root.transform,
-                new Vector3(-11.5f, 0.68f, 0.05f),
-                Quaternion.Euler(90f, 0f, 0f),
-                materials.Amber.color,
-                0.28f);
+                new Vector3(-11.5f, 1.55f, -0.02f),
+                Quaternion.identity,
+                "OPTIONAL JUMP SHORTCUT\nRAMP BYPASS REMAINS OPEN",
+                materials.Amber,
+                materials,
+                3.5f,
+                0.64f);
         }
 
         private static void BuildLandmarks(Transform parent, ExpandedFacilityMaterials materials)
@@ -393,7 +694,12 @@ namespace InternshipGame.Prototype.Editor
                 socket.Configure(spec.Id, spec.Zone, point);
                 sockets[i] = socket;
 
-                CreateWorldLabel(spec.Label, root.transform, spec.Position + new Vector3(0f, 0.04f, -0.75f), Quaternion.Euler(90f, 0f, 0f), materials.RadiationGreen.color, 0.34f);
+                CreateFloorStencil(
+                    $"Socket {spec.Label} Stencil",
+                    root.transform,
+                    spec.Position + new Vector3(0f, 0.046f, -0.72f),
+                    spec.Label,
+                    materials.RadiationGreen.color);
             }
 
             return sockets;
@@ -441,7 +747,20 @@ namespace InternshipGame.Prototype.Editor
                 obstacle.size = Vector3.one;
                 obstacle.carving = true;
                 obstacle.carveOnlyStationary = true;
-                CreateWorldLabel(spec.Label, variationRoot.transform, spec.Position + Vector3.up * 1.35f, Quaternion.identity, materials.DangerRed.color, 0.25f);
+                var labelRotation = spec.Scale.x < spec.Scale.z
+                    ? Quaternion.Euler(0f, 90f, 0f)
+                    : Quaternion.identity;
+                CreatePanelSign(
+                    $"{spec.Id} Warning Sign",
+                    variationRoot.transform,
+                    spec.Position + Vector3.up * 1.45f,
+                    labelRotation,
+                    $"ROUTE CLOSED\n{spec.Label}",
+                    materials.DangerRed,
+                    materials,
+                    2.85f,
+                    0.62f,
+                    false);
                 var anchor = variationRoot.AddComponent<RouteVariationAnchor>();
                 anchor.Configure(spec.Id, variationRoot);
                 anchors[i] = anchor;
@@ -577,25 +896,142 @@ namespace InternshipGame.Prototype.Editor
             return gameObject;
         }
 
-        private static TMP_Text CreateWorldLabel(
-            string text,
+        private static GameObject CreatePrimitiveLocal(
+            string name,
+            PrimitiveType primitiveType,
+            Transform parent,
+            Vector3 localPosition,
+            Vector3 localScale,
+            Material material,
+            bool collider)
+        {
+            var gameObject = GameObject.CreatePrimitive(primitiveType);
+            gameObject.name = name;
+            gameObject.transform.SetParent(parent, false);
+            gameObject.transform.localPosition = localPosition;
+            gameObject.transform.localRotation = Quaternion.identity;
+            gameObject.transform.localScale = localScale;
+            gameObject.GetComponent<Renderer>().sharedMaterial = material;
+            gameObject.isStatic = collider;
+            if (!collider)
+            {
+                UnityEngine.Object.DestroyImmediate(gameObject.GetComponent<Collider>());
+            }
+
+            return gameObject;
+        }
+
+        private static void CreatePanelSign(
+            string name,
             Transform parent,
             Vector3 position,
             Quaternion rotation,
-            Color color,
-            float fontSize = 0.42f)
+            string text,
+            Material accentMaterial,
+            ExpandedFacilityMaterials materials,
+            float width,
+            float height,
+            bool mountToCeiling = true)
         {
-            var labelObject = new GameObject($"{text} Label", typeof(RectTransform), typeof(TextMeshPro));
-            labelObject.transform.SetParent(parent);
-            labelObject.transform.SetPositionAndRotation(position, rotation);
+            var root = new GameObject(name);
+            root.transform.SetParent(parent, false);
+            root.transform.SetPositionAndRotation(position, rotation);
+
+            CreateBoxLocal("Recessed Backing", root.transform, Vector3.zero, new Vector3(width, height, 0.08f), materials.Panel, false);
+            CreateBoxLocal("Top Frame", root.transform, new Vector3(0f, height * 0.5f, -0.006f), new Vector3(width + 0.08f, 0.055f, 0.1f), materials.DarkTrim, false);
+            CreateBoxLocal("Bottom Frame", root.transform, new Vector3(0f, -height * 0.5f, -0.006f), new Vector3(width + 0.08f, 0.055f, 0.1f), materials.DarkTrim, false);
+            CreateBoxLocal("Left Frame", root.transform, new Vector3(-width * 0.5f, 0f, -0.006f), new Vector3(0.055f, height, 0.1f), materials.DarkTrim, false);
+            CreateBoxLocal("Right Frame", root.transform, new Vector3(width * 0.5f, 0f, -0.006f), new Vector3(0.055f, height, 0.1f), materials.DarkTrim, false);
+
+            CreateBoxLocal("Meaningful Accent", root.transform, new Vector3(0f, -height * 0.5f + 0.065f, -0.058f), new Vector3(width - 0.2f, 0.055f, 0.025f), accentMaterial, false);
+            CreatePanelTextLocal(
+                "Fitted Text",
+                root.transform,
+                new Vector3(0f, 0.025f, -0.057f),
+                Quaternion.identity,
+                text,
+                Color.white,
+                new Vector2(width - 0.26f, height - 0.17f),
+                Mathf.Min(0.95f, height * 1.35f),
+                true);
+
+            if (!mountToCeiling)
+            {
+                return;
+            }
+
+            var supportLength = WallHeight - position.y - height * 0.5f;
+            if (supportLength <= 0.08f)
+            {
+                return;
+            }
+
+            foreach (var x in new[] { -width * 0.34f, width * 0.34f })
+            {
+                CreateBoxLocal(
+                    "Ceiling Mount",
+                    root.transform,
+                    new Vector3(x, height * 0.5f + supportLength * 0.5f, 0.04f),
+                    new Vector3(0.055f, supportLength, 0.055f),
+                    materials.DarkTrim,
+                    false);
+            }
+        }
+
+        private static TMP_Text CreatePanelTextLocal(
+            string name,
+            Transform parent,
+            Vector3 localPosition,
+            Quaternion localRotation,
+            string text,
+            Color color,
+            Vector2 size,
+            float fontSize,
+            bool allowWrapping)
+        {
+            var labelObject = new GameObject(name, typeof(RectTransform), typeof(TextMeshPro));
+            labelObject.transform.SetParent(parent, false);
+            labelObject.transform.localPosition = localPosition;
+            labelObject.transform.localRotation = localRotation;
+            labelObject.transform.localScale = Vector3.one;
             var rect = (RectTransform)labelObject.transform;
-            rect.sizeDelta = new Vector2(5.5f, 1.1f);
+            rect.sizeDelta = size;
             var label = labelObject.GetComponent<TextMeshPro>();
-            label.text = text.ToUpperInvariant();
+            label.text = text;
             label.fontSize = fontSize;
+            label.enableAutoSizing = true;
+            label.fontSizeMin = Mathf.Max(0.3f, fontSize * 0.62f);
+            label.fontSizeMax = fontSize;
             label.fontStyle = FontStyles.Bold;
             label.alignment = TextAlignmentOptions.Center;
             label.color = color;
+            label.textWrappingMode = allowWrapping ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
+            label.overflowMode = allowWrapping ? TextOverflowModes.Overflow : TextOverflowModes.Truncate;
+            label.margin = new Vector4(0.05f, 0.02f, 0.05f, 0.02f);
+            return label;
+        }
+
+        private static TMP_Text CreateFloorStencil(
+            string name,
+            Transform parent,
+            Vector3 position,
+            string text,
+            Color color)
+        {
+            var labelObject = new GameObject(name, typeof(RectTransform), typeof(TextMeshPro));
+            labelObject.transform.SetParent(parent, false);
+            labelObject.transform.SetPositionAndRotation(position, Quaternion.Euler(90f, 0f, 0f));
+            labelObject.transform.localScale = Vector3.one;
+            var rect = (RectTransform)labelObject.transform;
+            rect.sizeDelta = new Vector2(1.25f, 0.38f);
+            var label = labelObject.GetComponent<TextMeshPro>();
+            label.text = text.ToUpperInvariant();
+            label.fontSize = 0.72f;
+            label.fontStyle = FontStyles.Bold;
+            label.alignment = TextAlignmentOptions.Center;
+            label.color = color;
+            label.textWrappingMode = TextWrappingModes.NoWrap;
+            label.overflowMode = TextOverflowModes.Truncate;
             return label;
         }
 

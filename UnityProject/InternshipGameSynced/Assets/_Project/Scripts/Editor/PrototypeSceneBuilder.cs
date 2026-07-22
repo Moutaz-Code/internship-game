@@ -59,6 +59,8 @@ namespace InternshipGame.Prototype.Editor
                     BaseFloor = materials.floor,
                     Wall = materials.wall,
                     Metal = materials.metal,
+                    DarkTrim = materials.darkTrim,
+                    Panel = materials.panel,
                     Cyan = materials.cyan,
                     Amber = materials.amber,
                     RadiationGreen = materials.radiation,
@@ -66,7 +68,7 @@ namespace InternshipGame.Prototype.Editor
                     NeutralLight = materials.neutralLight,
                 });
             BuildNavigationSurface(facility.Root);
-            var missionDisplay = BuildMissionDisplay(facility.MissionDisplayAnchor, materials.metal);
+            var missionDisplay = BuildMissionDisplay(facility.MissionDisplayAnchor, materials);
 
             var xrRig = PrefabUtility.InstantiatePrefab(xrRigPrefab, scene) as GameObject;
             if (xrRig == null)
@@ -224,7 +226,7 @@ namespace InternshipGame.Prototype.Editor
             RenderSettings.fogMode = FogMode.Exponential;
             RenderSettings.fogColor = new Color(0.018f, 0.026f, 0.042f);
             RenderSettings.fogDensity = 0.0095f;
-            RenderSettings.ambientIntensity = 0.58f;
+            RenderSettings.ambientIntensity = 0.68f;
 
             MarkGeneratedContentDirty(generatedRoot);
             EditorSceneManager.MarkSceneDirty(scene);
@@ -244,6 +246,36 @@ namespace InternshipGame.Prototype.Editor
             Build();
         }
 
+        [MenuItem("Prototype/Build Prototype 2.2 Windows (Strict)")]
+        public static void BuildPrototype2_2WindowsStrict()
+        {
+            const string outputDirectory = "Builds/Prototype2.2";
+            var outputPath = System.IO.Path.GetFullPath(
+                System.IO.Path.Combine(outputDirectory, "InternshipGamePrototype2_2.exe"));
+            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(outputPath));
+
+            try
+            {
+                var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
+                {
+                    scenes = new[] { PrototypeScenePath },
+                    locationPathName = outputPath,
+                    target = BuildTarget.StandaloneWindows64,
+                    options = BuildOptions.Development | BuildOptions.StrictMode | BuildOptions.CleanBuildCache,
+                });
+                var summary = report.summary;
+                Debug.Log(
+                    $"P22_BUILD_SUMMARY|result={summary.result}|errors={summary.totalErrors}|" +
+                    $"warnings={summary.totalWarnings}|bytes={summary.totalSize}|" +
+                    $"seconds={summary.totalTime.TotalSeconds:0.00}|path={outputPath}");
+            }
+            catch (Exception exception)
+            {
+                Debug.LogError($"P22_BUILD_SUMMARY|exception={exception}");
+                throw;
+            }
+        }
+
         private static FacilityMaterials CreateMaterials()
         {
             return new FacilityMaterials
@@ -251,6 +283,8 @@ namespace InternshipGame.Prototype.Editor
                 floor = CreateMaterial("M_Floor", new Color(0.055f, 0.07f, 0.095f)),
                 wall = CreateMaterial("M_Wall", new Color(0.105f, 0.115f, 0.14f)),
                 metal = CreateMaterial("M_Metal", new Color(0.22f, 0.25f, 0.29f)),
+                darkTrim = CreateMaterial("M_DarkTrim", new Color(0.026f, 0.032f, 0.045f)),
+                panel = CreateMaterial("M_DisplayPanel", new Color(0.055f, 0.075f, 0.095f)),
                 rodCasing = CreateMaterial("M_RodCasing", new Color(0.31f, 0.34f, 0.38f), true),
                 cyan = CreateMaterial("M_Route_Cyan", new Color(0.05f, 0.78f, 1f), true),
                 amber = CreateMaterial("M_Route_Amber", new Color(1f, 0.46f, 0.05f), true),
@@ -271,37 +305,88 @@ namespace InternshipGame.Prototype.Editor
             lightObject.transform.rotation = Quaternion.Euler(58f, -32f, 0f);
             var light = lightObject.AddComponent<Light>();
             light.type = LightType.Directional;
-            light.color = new Color(0.3f, 0.38f, 0.5f);
-            light.intensity = 0.3f;
+            light.color = new Color(0.36f, 0.43f, 0.55f);
+            light.intensity = 0.42f;
             light.shadows = LightShadows.Soft;
         }
 
-        private static TMP_Text BuildMissionDisplay(Transform anchor, Material backingMaterial)
+        private static TMP_Text BuildMissionDisplay(Transform anchor, FacilityMaterials materials)
         {
-            var backing = CreatePrimitive(
-                "Mission Display Backing",
+            // Keep all children under a scale-one assembly. Parenting the TMP object to
+            // the old scaled backing was the source of the tiny, stretched wall text.
+            var root = new GameObject("Mission Display Assembly");
+            root.transform.SetParent(anchor.parent, false);
+            root.transform.SetPositionAndRotation(anchor.position, anchor.rotation);
+
+            CreatePrimitiveLocal(
+                "Recessed Mission Display Backing",
                 PrimitiveType.Cube,
-                anchor.parent,
-                anchor.position,
-                new Vector3(3.8f, 1.25f, 0.12f),
-                backingMaterial,
-                true);
-            backing.transform.rotation = anchor.rotation;
+                root.transform,
+                Vector3.zero,
+                new Vector3(4.45f, 1.45f, 0.12f),
+                materials.panel,
+                false);
+            CreatePrimitiveLocal("Mission Display Top Frame", PrimitiveType.Cube, root.transform, new Vector3(0f, 0.755f, 0f), new Vector3(4.6f, 0.08f, 0.16f), materials.darkTrim, false);
+            CreatePrimitiveLocal("Mission Display Bottom Frame", PrimitiveType.Cube, root.transform, new Vector3(0f, -0.755f, 0f), new Vector3(4.6f, 0.08f, 0.16f), materials.darkTrim, false);
+            CreatePrimitiveLocal("Mission Display Left Frame", PrimitiveType.Cube, root.transform, new Vector3(-2.26f, 0f, 0f), new Vector3(0.08f, 1.45f, 0.16f), materials.darkTrim, false);
+            CreatePrimitiveLocal("Mission Display Right Frame", PrimitiveType.Cube, root.transform, new Vector3(2.26f, 0f, 0f), new Vector3(0.08f, 1.45f, 0.16f), materials.darkTrim, false);
+            CreatePrimitiveLocal("Mission Display Cyan Status Rail", PrimitiveType.Cube, root.transform, new Vector3(0f, -0.62f, -0.075f), new Vector3(4.12f, 0.075f, 0.035f), materials.cyan, false);
+            CreatePrimitiveLocal("Mission Display Left Ceiling Mount", PrimitiveType.Cube, root.transform, new Vector3(-1.55f, 0.86f, 0.04f), new Vector3(0.07f, 0.28f, 0.07f), materials.darkTrim, false);
+            CreatePrimitiveLocal("Mission Display Right Ceiling Mount", PrimitiveType.Cube, root.transform, new Vector3(1.55f, 0.86f, 0.04f), new Vector3(0.07f, 0.28f, 0.07f), materials.darkTrim, false);
 
             var displayObject = new GameObject("Diegetic Mission Display", typeof(RectTransform), typeof(TextMeshPro));
-            displayObject.transform.SetParent(backing.transform);
-            displayObject.transform.SetPositionAndRotation(
-                anchor.position + anchor.rotation * new Vector3(0f, 0f, -0.07f),
-                anchor.rotation);
+            displayObject.transform.SetParent(root.transform, false);
+            displayObject.transform.localPosition = new Vector3(0f, 0.05f, -0.075f);
+            displayObject.transform.localRotation = Quaternion.identity;
+            displayObject.transform.localScale = Vector3.one;
             var rect = (RectTransform)displayObject.transform;
-            rect.sizeDelta = new Vector2(3.55f, 1.05f);
+            rect.sizeDelta = new Vector2(4.05f, 1.14f);
             var display = displayObject.GetComponent<TextMeshPro>();
-            display.text = "LIVE RODS 0/3\nSEARCH • ASSAY • DEPOSIT";
-            display.fontSize = 0.42f;
+            display.text = "LIVE RODS SECURED  0 / 3\nFIND  |  HOLD 3s TO SCAN  |  RETURN LIVE";
+            display.fontSize = 1.05f;
+            display.enableAutoSizing = true;
+            display.fontSizeMin = 0.58f;
+            display.fontSizeMax = 1.05f;
             display.fontStyle = FontStyles.Bold;
             display.alignment = TextAlignmentOptions.Center;
             display.color = new Color(0.4f, 0.95f, 1f);
+            display.textWrappingMode = TextWrappingModes.Normal;
+            display.overflowMode = TextOverflowModes.Overflow;
+            display.margin = new Vector4(0.08f, 0.04f, 0.08f, 0.04f);
             return display;
+        }
+
+        private static TMP_Text CreateFittedTextLocal(
+            string name,
+            Transform parent,
+            Vector3 localPosition,
+            Quaternion localRotation,
+            Vector2 size,
+            string text,
+            float fontSize,
+            Color color,
+            bool allowWrapping)
+        {
+            var textObject = new GameObject(name, typeof(RectTransform), typeof(TextMeshPro));
+            textObject.transform.SetParent(parent, false);
+            textObject.transform.localPosition = localPosition;
+            textObject.transform.localRotation = localRotation;
+            textObject.transform.localScale = Vector3.one;
+            var rect = (RectTransform)textObject.transform;
+            rect.sizeDelta = size;
+            var label = textObject.GetComponent<TextMeshPro>();
+            label.text = text;
+            label.fontSize = fontSize;
+            label.enableAutoSizing = true;
+            label.fontSizeMin = Mathf.Max(0.28f, fontSize * 0.62f);
+            label.fontSizeMax = fontSize;
+            label.fontStyle = FontStyles.Bold;
+            label.alignment = TextAlignmentOptions.Center;
+            label.color = color;
+            label.textWrappingMode = allowWrapping ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
+            label.overflowMode = allowWrapping ? TextOverflowModes.Overflow : TextOverflowModes.Truncate;
+            label.margin = new Vector4(0.04f, 0.02f, 0.04f, 0.02f);
+            return label;
         }
 
         private static FuelRodItem[] BuildFuelRods(
@@ -338,6 +423,8 @@ namespace InternshipGame.Prototype.Editor
 
                 var body = root.AddComponent<Rigidbody>();
                 body.mass = 2.2f;
+                body.linearDamping = 0.08f;
+                body.angularDamping = 0.18f;
                 body.interpolation = RigidbodyInterpolation.Interpolate;
                 body.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
                 root.AddComponent<XRGrabInteractable>();
@@ -375,11 +462,36 @@ namespace InternshipGame.Prototype.Editor
             root.transform.position = anchor.position;
 
             CreatePrimitiveLocal("Rack Base", PrimitiveType.Cube, root.transform, new Vector3(0f, 0.28f, 0f), new Vector3(3.25f, 0.55f, 1f), materials.metal, true);
+            CreatePrimitiveLocal("Rack Front Plinth", PrimitiveType.Cube, root.transform, new Vector3(0f, 0.3f, -0.53f), new Vector3(3.38f, 0.62f, 0.08f), materials.darkTrim, false);
+            CreatePrimitiveLocal("Rack Instruction Backing", PrimitiveType.Cube, root.transform, new Vector3(0f, 1.55f, 0.62f), new Vector3(3.35f, 0.7f, 0.1f), materials.panel, false);
+            CreatePrimitiveLocal("Rack Sign Left Mount", PrimitiveType.Cube, root.transform, new Vector3(-1.48f, 1.05f, 0.62f), new Vector3(0.08f, 0.95f, 0.08f), materials.darkTrim, false);
+            CreatePrimitiveLocal("Rack Sign Right Mount", PrimitiveType.Cube, root.transform, new Vector3(1.48f, 1.05f, 0.62f), new Vector3(0.08f, 0.95f, 0.08f), materials.darkTrim, false);
+            CreatePrimitiveLocal("Rack Cyan Status Rail", PrimitiveType.Cube, root.transform, new Vector3(0f, 1.25f, 0.555f), new Vector3(3.02f, 0.055f, 0.025f), materials.cyan, false);
+            CreateFittedTextLocal(
+                "Rack Instructions",
+                root.transform,
+                new Vector3(0f, 1.59f, 0.555f),
+                Quaternion.identity,
+                new Vector2(3.02f, 0.49f),
+                "LIVE ROD INTAKE\nSCAN-CONFIRMED RODS ONLY",
+                0.78f,
+                Color.white,
+                true);
             var slots = new Transform[3];
             for (var i = 0; i < slots.Length; i++)
             {
                 var x = (i - 1) * 0.9f;
                 CreatePrimitiveLocal($"Slot {i + 1} Ring", PrimitiveType.Cylinder, root.transform, new Vector3(x, 0.62f, 0f), new Vector3(0.38f, 0.1f, 0.38f), materials.cyan, true);
+                CreateFittedTextLocal(
+                    $"Slot {i + 1} Number",
+                    root.transform,
+                    new Vector3(x, 0.3f, -0.575f),
+                    Quaternion.identity,
+                    new Vector2(0.58f, 0.32f),
+                    $"{i + 1:00}",
+                    0.65f,
+                    materials.cyan.color,
+                    false);
                 slots[i] = new GameObject($"Deposit Slot {i + 1}").transform;
                 slots[i].SetParent(root.transform, false);
                 slots[i].localPosition = new Vector3(x, 1.2f, 0f);
@@ -468,6 +580,10 @@ namespace InternshipGame.Prototype.Editor
 
             var navigator = threatObject.AddComponent<NavMeshThreatNavigator>();
             navigator.Configure(agent, graphNavigator);
+            // NavMeshSurface registers its baked data during scene startup. The adapter
+            // enables the agent lazily after it samples a valid point, avoiding a false
+            // "no valid NavMesh" warning in standalone desktop builds.
+            agent.enabled = false;
 
             var detectionLight = visualRoot.AddComponent<Light>();
             detectionLight.type = LightType.Point;
@@ -596,6 +712,8 @@ namespace InternshipGame.Prototype.Editor
                 prop.isStatic = false;
                 var body = prop.AddComponent<Rigidbody>();
                 body.mass = 1.4f;
+                body.linearDamping = 0.1f;
+                body.angularDamping = 0.22f;
                 body.interpolation = RigidbodyInterpolation.Interpolate;
                 body.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
                 prop.AddComponent<XRGrabInteractable>();
@@ -704,6 +822,7 @@ namespace InternshipGame.Prototype.Editor
             var camera = cameraObject.GetComponent<Camera>();
             camera.nearClipPlane = 0.05f;
             camera.farClipPlane = 120f;
+            camera.fieldOfView = 72f;
 
             var holdPoint = new GameObject("Desktop Hold Point").transform;
             holdPoint.SetParent(cameraObject.transform, false);
@@ -864,6 +983,8 @@ namespace InternshipGame.Prototype.Editor
             public Material floor;
             public Material wall;
             public Material metal;
+            public Material darkTrim;
+            public Material panel;
             public Material rodCasing;
             public Material cyan;
             public Material amber;

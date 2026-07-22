@@ -242,3 +242,59 @@ Results:
 - Human evidence: Not Tested. Two observed desktop sessions are still required, target three, to judge noticeability, attribution, route variety, temporary advantage, omniscience, camping, and route viability.
 - Decision: automated implementation gate Pass; prototype-question verdict Pending human evidence.
 - Scope confirmation: no capture/recovery, second-capture, stun, inventory, crouch/hiding, flashlight, doors, cart, ventilation/radiation, heart-rate, hardware/haptics, cross-run memory, learned AI, new mission, entity, environment, or final-art gameplay family was added.
+
+### Prototype 2.1: Deep Desktop Polish
+
+Date: 2026-07-22
+
+Question:
+
+> Is the Prototype 2 route-adaptation experiment supported by sufficiently reliable physics, objective feedback, readable language, and expressive desktop movement to collect valid human evidence?
+
+Applicable design pillars:
+
+- Physical interaction: carried objects remain exact, released objects recover their authored physics state, and deliberate throws are readable and testable.
+- Mission clarity: the player always sees the secured-live-rod count and the next useful action in plain language.
+- Meaningful feedback: scan truth, rack rejection, Geiger strength, and environmental feedback retain distinct meanings.
+- Route planning and fair counterplay: acceleration-based movement adds commitment without reducing route access, while the Owl continues to use the existing swappable navigation seam.
+
+Results:
+
+- Physics and interaction: desktop carry/drop still restores the complete cached Rigidbody, collision, parent, interpolation, and XR-interactable state. Left mouse now performs an intentional forward throw after that restoration, including inherited player velocity and bounded spin; `E` remains the safe drop action. Rods and loose props receive light damping. The deposit rack now accepts actual collider overlap rather than relying only on the rod center, deterministically ejects inert rods, publishes typed deposit results, and throttles repeated overlap chatter without delaying a changed result.
+- Objective communication: player-facing copy now uses `scan` rather than the implementation term `assay`. The HUD prioritizes `LIVE RODS SECURED X/3`, held-rod scan state, the next action, short rack correction messages, extraction state, and a timed controls strip. The Geiger presents qualitative strength without exposing its F2 developer comparison control. F1 threat telemetry remains operator-only and no player-facing adaptation notification was added.
+- Desktop locomotion: planar acceleration/deceleration replaces instantaneous full-speed changes, with separate grounded and airborne tuning and collision-measured velocity feedback. Subtle head bob, strafe roll, landing dip, and sprint FOV make motion less linear while leaving jump timing, `IPlayerMotionSource`, `IPlayerContext`, and the XR controller path intact.
+- Presentation: desktop camera FOV is 72 degrees, base/ambient lighting is more legible, environmental messages no longer overlap the mission panel, and the controls strip was visually checked at runtime. A live rack exercise confirmed that an unscanned rod returns `Unassayed`, does not deposit, and immediately produces the correction message.
+- Runtime hygiene: the NavMesh navigator now samples a valid point before enabling its agent, eliminating the standalone startup warning while preserving the authored waypoint fallback. Standalone OpenXR auto-initialization is disabled for the current no-headset Windows target. A build-only sanitizer excludes OpenXR feature objects from non-XR Windows players and restores all 49 feature objects, including seven enabled choices, after the build. Android/headset settings and the controller abstractions remain present for the hardware pass.
+- Automated validation: full Edit Mode passed 95/95. Full integrated Play Mode passed 3/3 after the final navigation/XR configuration, including complete route profiles, objective completion, carry/throw physics, and primary NavMesh behavior. Focused new coverage verifies acceleration, braking, air momentum, direction reversal, throw-state restoration and impulse, true rack collider overlap, separation rejection, and deposit-result transitions.
+- Delivery validation: the final strict clean `StandaloneWindows64` development build succeeded in 89.09 seconds at 178.76 MB with zero build errors and zero build warnings. The exact executable remained alive for the 25-second smoke window, reached managed-domain, PhysX, and input initialization, and was then closed deliberately. Stderr was empty; the log contained no OpenXR runtime error, Meta serialization warning, missing script, project-code exception, or invalid-NavMesh-agent warning. The only matched low-level diagnostic was the graphics driver's benign D3D12 info-queue query.
+- Supersession note: this resolves the qualified OpenXR and standalone NavMesh startup findings recorded for Prototype 2.0. It does not change the route-adaptation model or expand the PT2 prototype question.
+- Human evidence still required: tune acceleration/braking, view motion, throw weight, lighting, message timing, and UI comprehension by feel; then run the two observed route-adaptation sessions required by PT2, target three. VR comfort and hardware behavior remain untested without the headset and devices.
+- Scope confirmation: no capture/recovery, stun, inventory, crouch/hiding, flashlight, doors, carts, ventilation/radiation, heart-rate, haptics/hardware, learned AI, new mission, entity, environment, or final-art gameplay family was added.
+
+### Prototype 2.2: Environment Change and Polish
+
+Date: 2026-07-22
+
+Question:
+
+> Can the facility feel intentionally authored and presentation-ready while remaining a disposable greybox and preserving Prototype 2's route experiment?
+
+Applicable design pillars:
+
+- Spatial readability and route planning: West, Central, East, terminal rooms, and extraction need distinct silhouettes without changing their route families.
+- Mission clarity: the objective board, intake rack, room identities, route portals, and closure warnings must read at player distance.
+- Fair Owl counterplay: presentation geometry must preserve all required paths, sight-breaking cover footprints, typed anchors, and NavMesh behavior.
+- Rapid iteration: the pass remains data-driven under the generated facility root so later manual dressing or wholesale replacement is not trapped inside bespoke scene edits.
+
+Results:
+
+- Authored greybox identity: all ten spaces now receive different scrappable profiles. Entry has an offset security booth and extraction canopy; Decontamination uses filters and ceiling ribs; Operations has an offset command side and gantry; Maintenance uses suspended service pipes; Central alternates structural buttresses; Laboratory uses an offset bench and vessels; North Hall uses irregular trusses; Storage adds shelving and a crane; Core uses diagonal braces and an overhead bridge; Reactor uses separated service stacks and a bus. West and East no longer present as mirrored layouts.
+- Preserved gameplay geometry: the existing 21 cover footprints remain unchanged for collision and navigation, but now read as a modular equipment family with caps, bases, and alternating identity rails. Most added silhouette pieces are overhead or peripheral; structural pieces stay outside the required travel lanes.
+- Construction cleanup: all thirteen portals now use a consistent 2.76 m clear opening, fitted 3.2 m headers, deeper jambs, two-sided labels, and corrected wall-plane positions for the West, Central, and East Hub exits. The route-profile blockers retain their authored positions and carving behavior.
+- Surface cleanup: full-room identity plates were replaced by narrow room inlays. Room and corridor surfaces have explicit vertical separation, eliminating the overlapping coplanar layers that caused visible seams and Z-fighting risk while preserving cyan, amber, neutral, green, and red wayfinding meanings.
+- UI and language: the mission display is a scale-one framed assembly suspended directly above the intake rack and visible from spawn. The rack has a mounted `LIVE ROD INTAKE / SCAN-CONFIRMED RODS ONLY` panel and numbered slots. Room panels, portal labels, socket stencils, shortcut guidance, and route-closure warnings use bounded rectangles, auto-sizing where appropriate, and no unsupported ellipsis glyph. Player-facing separators are ASCII-safe and the implementation term `assay` remains absent from guidance.
+- Visual evidence: positioned Unity captures verified the spawn/intake composition, Hub, West Maintenance, East Laboratory, North Cross Hall, a fitted Decontamination portal, and mission/rack readability at player distance. The generated presentation remained visibly greyboxed rather than becoming a premature art pass.
+- Automated validation: full Edit Mode passed 95/95. Integrated Play Mode passed 4/4, including carry/drop/throw physics, all seeded route profiles, every socket path, primary NavMesh behavior, objective/extraction/reset flow, plus a new P2.2 scene check for ten non-empty room profiles, thirteen fitted 2.76 m portals, separated route surfaces, scale-one mission/rack text, and removal of legacy full-room identity plates.
+- Delivery validation: the strict clean `StandaloneWindows64` development build succeeded in 59.73 seconds at 187,642,038 bytes with zero errors. Its two reported warnings were the MCP WebSocket closing while Unity synchronously blocked to build; the previous 37 content warnings from unsupported TMP ellipsis mode were removed before this final build. The exact executable remained alive for the 25-second normal-graphics smoke window and was then closed deliberately. It reached managed-domain, PhysX, D3D12, and input initialization with no project exception, missing script, OpenXR runtime failure, Meta serialization warning, or invalid NavMesh-agent warning. The only matched low-level diagnostic was the graphics driver's benign D3D12 info-queue query.
+- P2.3 backlog and human validation: walk every route at native play resolution, inspect all terminal-room socket approaches, judge room distinction without the operator overlay, tune lighting/material intensity, check signage while moving, inspect seams from crouched and jump viewpoints, and validate collision feel around the new peripheral structures. Use those sessions for tuning rather than expanding P2.2 now.
+- Scope confirmation: no route topology, objective behavior, Owl adaptation, capture/recovery, stealth, inventory, hardware/haptics, VR comfort behavior, mission, entity, final-art family, or procedural geometry was added or redesigned.

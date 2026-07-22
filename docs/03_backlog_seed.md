@@ -185,3 +185,20 @@ Acceptance criteria:
 - Weekly update can be written in under 20 minutes.
 - Stakeholders can understand progress without opening the build.
 
+## Epic: Prototype 2.3 Validation and Tuning
+
+### Feature: Hands-On Route and Environment Readability Pass
+
+- Walk West, Central, and East runs at native desktop resolution with the operator overlay off.
+- Repeat at least one seed and compare route adaptation on/off with F3.
+- Inspect every terminal socket approach, portal fit, cover clearance, floor seam, and route-closure presentation while walking, sprinting, and jumping.
+- Check room identity, mission-board, intake-rack, scan, rejection, extraction, and Owl cues while moving rather than from static screenshots.
+- Tune lighting, material intensity, movement feel, message timing, and minor greybox placement only from observed problems.
+- Preserve P2.2 as a scrappable environment pass; do not convert tuning into final art or a new gameplay family.
+
+Acceptance criteria:
+
+- A first-time player can distinguish the three route families and describe the objective without the operator overlay.
+- Every required route and socket remains usable without jumping under all route profiles.
+- At least two observed route-adaptation sessions are recorded, target three.
+- Each tuning change cites a witnessed comprehension, navigation, comfort, or fairness problem.

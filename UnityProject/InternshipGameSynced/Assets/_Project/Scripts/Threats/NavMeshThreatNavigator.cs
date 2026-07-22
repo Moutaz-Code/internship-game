@@ -125,9 +125,7 @@ namespace InternshipGame.Prototype
             destinationRequested = false;
             ActiveMode = ThreatNavigationMode.Idle;
 
-            if (agent != null && agent.enabled &&
-                NavMesh.SamplePosition(position, out var hit, sampleRadius, NavMesh.AllAreas) &&
-                agent.Warp(hit.position))
+            if (TryPlaceAgentOnNavMesh(position))
             {
                 agent.updatePosition = true;
                 agent.updateRotation = true;
@@ -243,7 +241,12 @@ namespace InternshipGame.Prototype
 
         private bool PrepareAgentAtCurrentPosition()
         {
-            if (agent == null || !agent.enabled)
+            if (agent == null)
+            {
+                return false;
+            }
+
+            if (!agent.enabled && !TryPlaceAgentOnNavMesh(transform.position))
             {
                 return false;
             }
@@ -260,6 +263,25 @@ namespace InternshipGame.Prototype
             agent.updatePosition = true;
             agent.updateRotation = true;
             return agent.isOnNavMesh;
+        }
+
+        private bool TryPlaceAgentOnNavMesh(Vector3 position)
+        {
+            if (agent == null ||
+                !NavMesh.SamplePosition(position, out var hit, sampleRadius, agent.areaMask))
+            {
+                return false;
+            }
+
+            if (!agent.enabled)
+            {
+                // Register only after a valid position is known. This prevents desktop
+                // startup from logging a failed agent before NavMeshSurface adds its data.
+                transform.position = hit.position;
+                agent.enabled = true;
+            }
+
+            return agent.isOnNavMesh || agent.Warp(hit.position);
         }
 
         private bool IsPrimaryPathHealthy()

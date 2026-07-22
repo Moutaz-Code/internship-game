@@ -149,6 +149,65 @@ namespace InternshipGame.Prototype.Tests
         }
 
         [Test]
+        public void RackOverlapRecognizesRodEndWhenCenterIsOutsideAcceptanceVolume()
+        {
+            var rod = CreateRod("edge-live", FuelRodClassification.Live);
+            var rodCollider = rod.gameObject.AddComponent<CapsuleCollider>();
+            rodCollider.direction = 2;
+            rodCollider.radius = 0.2f;
+            rodCollider.height = 2f;
+
+            var rackObject = new GameObject("Edge Rack");
+            rackObject.transform.SetParent(root.transform);
+            var volume = rackObject.AddComponent<BoxCollider>();
+            volume.isTrigger = true;
+            volume.size = Vector3.one * 2f;
+
+            rod.transform.position = new Vector3(0f, 0f, 1.45f);
+            Physics.SyncTransforms();
+
+            Assert.That(FuelRodDepositRack.ContainsWorldPoint(volume, rod.transform.position), Is.False);
+            Assert.That(FuelRodDepositRack.OverlapsAcceptanceVolume(volume, rod), Is.True);
+
+            rod.transform.position = new Vector3(0f, 0f, 2.25f);
+            Physics.SyncTransforms();
+            Assert.That(FuelRodDepositRack.OverlapsAcceptanceVolume(volume, rod), Is.False);
+        }
+
+        [Test]
+        public void RackPublishesClearResultTransitionsForPlayerFeedback()
+        {
+            var rod = CreateRod("feedback-live", FuelRodClassification.Live);
+            var set = CreateSet(rod);
+            var controllerObject = new GameObject("Feedback Run Controller");
+            controllerObject.transform.SetParent(root.transform);
+            var controller = controllerObject.AddComponent<PrototypeRunController>();
+            controller.Configure(set);
+            controller.ResetRun();
+
+            var rackObject = new GameObject("Feedback Rack");
+            rackObject.transform.SetParent(root.transform);
+            var rack = rackObject.AddComponent<FuelRodDepositRack>();
+            var slot = new GameObject("Feedback Slot").transform;
+            slot.SetParent(rackObject.transform);
+            rack.Configure(controller, set, new[] { slot }, null, null);
+
+            var results = new System.Collections.Generic.List<DepositResult>();
+            rack.DepositResolved += (_, result) => results.Add(result);
+
+            Assert.That(rack.TryDeposit(rod), Is.EqualTo(DepositResult.Unassayed));
+            Assert.That(rod.Grabbable.TryBeginGrab(new object()), Is.True);
+            rod.AdvanceAssay(3f, true);
+            Assert.That(rack.TryDeposit(rod), Is.EqualTo(DepositResult.Accepted));
+
+            Assert.That(results, Is.EqualTo(new[]
+            {
+                DepositResult.Unassayed,
+                DepositResult.Accepted,
+            }));
+        }
+
+        [Test]
         public void FailedRunRejectsLaterDepositWithoutMutatingProgress()
         {
             var rod = CreateRod("live", FuelRodClassification.Live);

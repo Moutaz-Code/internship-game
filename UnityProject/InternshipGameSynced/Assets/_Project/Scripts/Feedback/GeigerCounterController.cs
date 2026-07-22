@@ -195,10 +195,10 @@ namespace InternshipGame.Prototype
                 normal = { textColor = Color.white },
             };
 
-            var rect = new Rect(Screen.width - 246f, Screen.height - 104f, 224f, 80f);
+            var rect = new Rect(Screen.width - 246f, Screen.height - 110f, 224f, 86f);
             GUI.Box(rect, GUIContent.none);
-            GUI.Label(new Rect(rect.x + 12f, rect.y + 8f, 122f, 22f), "FIELD GEIGER", titleStyle);
-            GUI.Label(new Rect(rect.x + 124f, rect.y + 6f, 86f, 25f), $"{reading.ReportedClicksPerSecond:0.0}", valueStyle);
+            GUI.Label(new Rect(rect.x + 12f, rect.y + 8f, 134f, 22f), "ROD GEIGER", titleStyle);
+            GUI.Label(new Rect(rect.x + 142f, rect.y + 6f, 68f, 25f), $"{reading.ReportedClicksPerSecond:0.0}", valueStyle);
             var normalized = Mathf.InverseLerp(
                 GeigerSignalModel.MinimumTruthClicksPerSecond,
                 GeigerSignalModel.MaximumTruthClicksPerSecond,
@@ -208,7 +208,14 @@ namespace InternshipGame.Prototype
             GUI.color = Color.Lerp(new Color(0.12f, 0.5f, 0.22f), new Color(0.85f, 1f, 0.2f), normalized);
             GUI.DrawTexture(new Rect(rect.x + 15f, rect.y + 43f, 194f * normalized, 12f), Texture2D.whiteTexture);
             GUI.color = oldColor;
-            GUI.Label(new Rect(rect.x + 12f, rect.y + 59f, 200f, 18f), interferenceEnabled ? "F2: interference on" : "F2: baseline mode", titleStyle);
+            var strength = normalized switch
+            {
+                < 0.2f => "WEAK",
+                < 0.5f => "RISING",
+                < 0.78f => "STRONG",
+                _ => "VERY STRONG",
+            };
+            GUI.Label(new Rect(rect.x + 12f, rect.y + 62f, 200f, 18f), $"SIGNAL: {strength}", titleStyle);
         }
     }
 }

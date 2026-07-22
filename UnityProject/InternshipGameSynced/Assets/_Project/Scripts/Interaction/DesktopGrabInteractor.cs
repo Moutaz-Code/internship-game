@@ -12,6 +12,9 @@ namespace InternshipGame.Prototype
         [SerializeField, Min(0.25f)] private float interactionDistance = 3f;
         [SerializeField] private LayerMask interactionLayers = ~0;
         [SerializeField, Min(0f)] private float dropForwardSpeed = 0.5f;
+        [SerializeField, Min(0f)] private float throwForwardSpeed = 6.25f;
+        [SerializeField, Min(0f)] private float throwUpwardSpeed = 0.45f;
+        [SerializeField, Min(0f)] private float throwSpinSpeed = 5.5f;
 
         private readonly List<CollisionPairState> ignoredCollisionPairs = new();
         private GrabbableObject heldObject;
@@ -42,19 +45,28 @@ namespace InternshipGame.Prototype
         private void Update()
         {
             UpdatePrompt();
-            if (Keyboard.current?.eKey.wasPressedThisFrame == true)
+            var dropPressed = Keyboard.current?.eKey.wasPressedThisFrame == true;
+            var primaryPressed = Mouse.current?.leftButton.wasPressedThisFrame == true &&
+                Cursor.lockState == CursorLockMode.Locked;
+            if (heldObject != null)
             {
-                if (heldObject != null)
+                if (primaryPressed)
+                {
+                    ThrowHeldObject();
+                }
+                else if (dropPressed)
                 {
                     ReleaseHeldObject(true);
                 }
-                else
-                {
-                    TryGrabTarget();
-                }
+
+                return;
             }
 
-            if (Mouse.current?.leftButton.wasPressedThisFrame == true && Cursor.lockState == CursorLockMode.Locked)
+            if (dropPressed)
+            {
+                TryGrabTarget();
+            }
+            else if (primaryPressed)
             {
                 TryInteract();
             }
@@ -77,6 +89,17 @@ namespace InternshipGame.Prototype
             {
                 ReleaseHeldObject(false);
             }
+        }
+
+        internal bool ThrowHeldObject()
+        {
+            if (heldObject == null)
+            {
+                return false;
+            }
+
+            ReleaseHeldObject(GrabReleaseKind.Throw);
+            return true;
         }
 
         private void TryGrabTarget()
@@ -129,6 +152,11 @@ namespace InternshipGame.Prototype
 
         public void ReleaseHeldObject(bool addDropVelocity)
         {
+            ReleaseHeldObject(addDropVelocity ? GrabReleaseKind.Drop : GrabReleaseKind.Restore);
+        }
+
+        private void ReleaseHeldObject(GrabReleaseKind releaseKind)
+        {
             if (heldObject == null)
             {
                 return;
@@ -146,10 +174,21 @@ namespace InternshipGame.Prototype
             target.SetXrInteractionEnabled(heldState.XrInteractionEnabled);
             var body = target.Body;
             heldState.RestoreBody(body);
-            if (!body.isKinematic && addDropVelocity && viewCamera != null)
+            if (!body.isKinematic && releaseKind is GrabReleaseKind.Drop or GrabReleaseKind.Throw && viewCamera != null)
             {
                 var inheritedVelocity = playerMotion?.Velocity ?? Vector3.zero;
-                body.linearVelocity = inheritedVelocity + viewCamera.transform.forward * dropForwardSpeed;
+                if (releaseKind == GrabReleaseKind.Throw)
+                {
+                    body.linearVelocity = inheritedVelocity +
+                        viewCamera.transform.forward * throwForwardSpeed +
+                        Vector3.up * throwUpwardSpeed;
+                    body.angularVelocity = viewCamera.transform.right * throwSpinSpeed;
+                }
+                else
+                {
+                    body.linearVelocity = inheritedVelocity + viewCamera.transform.forward * dropForwardSpeed;
+                }
+
                 body.WakeUp();
             }
             else if (heldState.WasSleeping)
@@ -245,7 +284,7 @@ namespace InternshipGame.Prototype
         {
             if (heldObject != null)
             {
-                CurrentPrompt = "E  Drop";
+                CurrentPrompt = "[E] DROP    [LMB] THROW";
                 return;
             }
 
@@ -257,7 +296,7 @@ namespace InternshipGame.Prototype
 
             if (hit.collider.GetComponentInParent<GrabbableObject>() != null)
             {
-                CurrentPrompt = "E  Grab";
+                CurrentPrompt = "[E] PICK UP";
                 return;
             }
 
@@ -266,7 +305,7 @@ namespace InternshipGame.Prototype
             {
                 if (behaviour is IPlayerInteractable interactable && interactable.CanInteract(context))
                 {
-                    CurrentPrompt = $"Left click  {interactable.InteractionPrompt}";
+                    CurrentPrompt = $"[LMB] {interactable.InteractionPrompt}";
                     return;
                 }
             }
@@ -300,9 +339,16 @@ namespace InternshipGame.Prototype
             GUI.Label(new Rect(centerX - 12f, centerY - 14f, 24f, 24f), "+", promptStyle);
             if (!string.IsNullOrEmpty(CurrentPrompt))
             {
-                GUI.Box(new Rect(centerX - 90f, centerY + 28f, 180f, 30f), GUIContent.none);
-                GUI.Label(new Rect(centerX - 90f, centerY + 28f, 180f, 30f), CurrentPrompt, promptStyle);
+                GUI.Box(new Rect(centerX - 135f, centerY + 28f, 270f, 30f), GUIContent.none);
+                GUI.Label(new Rect(centerX - 135f, centerY + 28f, 270f, 30f), CurrentPrompt, promptStyle);
             }
+        }
+
+        private enum GrabReleaseKind
+        {
+            Restore,
+            Drop,
+            Throw,
         }
 
         private readonly struct CollisionPairState

@@ -69,6 +69,65 @@ namespace InternshipGame.Prototype.Tests
         }
 
         [Test]
+        public void PlanarMotion_AcceleratesWithoutJumpingToFullSpeed()
+        {
+            var velocity = PlayerPlanarMotion.Step(
+                Vector3.zero,
+                Vector3.forward * 4f,
+                true,
+                10f,
+                20f,
+                4f,
+                1f,
+                0.1f);
+
+            Assert.That(velocity.z, Is.EqualTo(1f).Within(0.0001f));
+            Assert.That(velocity.x, Is.Zero);
+        }
+
+        [Test]
+        public void PlanarMotion_GroundStopIsResponsiveWhileAirborneMomentumPersists()
+        {
+            var grounded = PlayerPlanarMotion.Step(
+                Vector3.forward * 4f,
+                Vector3.zero,
+                true,
+                10f,
+                20f,
+                4f,
+                1f,
+                0.1f);
+            var airborne = PlayerPlanarMotion.Step(
+                Vector3.forward * 4f,
+                Vector3.zero,
+                false,
+                10f,
+                20f,
+                4f,
+                1f,
+                0.1f);
+
+            Assert.That(grounded.z, Is.EqualTo(2f).Within(0.0001f));
+            Assert.That(airborne.z, Is.EqualTo(3.9f).Within(0.0001f));
+        }
+
+        [Test]
+        public void PlanarMotion_ReversalUsesDecelerationAndCannotOvershoot()
+        {
+            var velocity = PlayerPlanarMotion.Step(
+                Vector3.forward * 3f,
+                Vector3.back * 3f,
+                true,
+                8f,
+                24f,
+                4f,
+                1f,
+                0.25f);
+
+            Assert.That(velocity, Is.EqualTo(Vector3.back * 3f));
+        }
+
+        [Test]
         public void BufferedJump_AllowsCoyoteJumpWithinWindow()
         {
             var state = new BufferedJumpState(0.12f, 0.12f);
@@ -208,6 +267,52 @@ namespace InternshipGame.Prototype.Tests
                 Assert.That(body.constraints, Is.EqualTo(RigidbodyConstraints.FreezeRotationX));
                 Assert.That(grabbable.IsXrInteractionEnabled, Is.True);
                 Assert.That(Physics.GetIgnoreCollision(playerCollider, itemCollider), Is.False);
+            }
+            finally
+            {
+                Object.DestroyImmediate(item);
+                Object.DestroyImmediate(originalParent);
+                Object.DestroyImmediate(player);
+            }
+        }
+
+        [Test]
+        public void DesktopGrab_ThrowRestoresPhysicsAndAppliesReadableImpulse()
+        {
+            var player = new GameObject("Throw Player");
+            var originalParent = new GameObject("Throw Parent");
+            var item = new GameObject("Throw Item");
+            try
+            {
+                var cameraObject = new GameObject("Throw Camera");
+                cameraObject.transform.SetParent(player.transform, false);
+                var camera = cameraObject.AddComponent<Camera>();
+                var holdPoint = new GameObject("Throw Hold Point").transform;
+                holdPoint.SetParent(cameraObject.transform, false);
+
+                var interactor = player.AddComponent<DesktopGrabInteractor>();
+                interactor.Configure(camera, holdPoint, null);
+
+                item.transform.SetParent(originalParent.transform, true);
+                item.AddComponent<BoxCollider>();
+                var body = item.AddComponent<Rigidbody>();
+                body.useGravity = true;
+                body.interpolation = RigidbodyInterpolation.Interpolate;
+                body.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+                var grabbable = item.AddComponent<GrabbableObject>();
+
+                Assert.That(interactor.TryGrab(grabbable), Is.True);
+                Assert.That(interactor.ThrowHeldObject(), Is.True);
+
+                Assert.That(interactor.HeldObject, Is.Null);
+                Assert.That(item.transform.parent, Is.SameAs(originalParent.transform));
+                Assert.That(body.isKinematic, Is.False);
+                Assert.That(body.useGravity, Is.True);
+                Assert.That(body.interpolation, Is.EqualTo(RigidbodyInterpolation.Interpolate));
+                Assert.That(body.collisionDetectionMode, Is.EqualTo(CollisionDetectionMode.ContinuousDynamic));
+                Assert.That(Vector3.Dot(body.linearVelocity, camera.transform.forward), Is.GreaterThan(6f));
+                Assert.That(body.linearVelocity.y, Is.GreaterThan(0.4f));
+                Assert.That(Vector3.Dot(body.angularVelocity, camera.transform.right), Is.GreaterThan(5f));
             }
             finally
             {

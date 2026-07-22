@@ -6,6 +6,9 @@
         "Unity.AI.Navigation",
         "Unity.InputSystem",
         "Unity.TextMeshPro",
+        "Unity.XR.Management",
+        "Unity.XR.Management.Editor",
+        "Unity.XR.OpenXR",
         "Unity.XR.Interaction.Toolkit",
         "Unity.XR.Interaction.Toolkit.Editor"
     ],
