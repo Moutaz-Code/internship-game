@@ -197,7 +197,7 @@ namespace InternshipGame.Prototype
             statusLines = Mathf.Max(1, statusLines);
             var height = 136f + statusLines * 21f;
             GUI.Box(new Rect(16f, 98f, 650f, height), GUIContent.none);
-            GUI.Label(new Rect(32f, 108f, 610f, 30f), "PROTOTYPE | OPERATOR", titleStyle);
+            GUI.Label(new Rect(32f, 108f, 610f, 30f), $"PROTOTYPE | OPERATOR | v{Application.version}", titleStyle);
             GUI.Label(new Rect(32f, 140f, 610f, 22f), $"State: {runController.CurrentState}", bodyStyle);
             GUI.Label(new Rect(32f, 162f, 610f, 22f), $"Time remaining: {runController.TimeRemaining:0}s", bodyStyle);
 
@@ -213,7 +213,7 @@ namespace InternshipGame.Prototype
 
             var controls = playerMode != null && playerMode.ActiveMode == PlayerControlMode.VR
                 ? "VR locomotion/grab | R restart | F1 overlay | F2 Geiger A/B | F3 adaptation A/B"
-                : "WASD/Mouse | Shift sprint | Space jump | E grab | Esc pause | F2 Geiger A/B | F3 adaptation A/B";
+                : "WASD/Mouse | Shift sprint | Space jump | E grab | Esc pause | F11 fullscreen | F2/F3 A/B";
             GUI.Label(new Rect(32f, 98f + height - 25f, 610f, 22f), controls, bodyStyle);
         }
 
@@ -271,12 +271,12 @@ namespace InternshipGame.Prototype
                 return;
             }
 
-            const float width = 780f;
+            const float width = 900f;
             var rect = new Rect(18f, Screen.height - 54f, Mathf.Min(width, Screen.width - 36f), 34f);
             GUI.Box(rect, GUIContent.none);
             GUI.Label(
                 new Rect(rect.x + 10f, rect.y + 5f, rect.width - 20f, 24f),
-                "WASD MOVE  |  SHIFT RUN  |  SPACE JUMP  |  E CARRY / DROP  |  LMB THROW  |  ESC PAUSE",
+                "WASD MOVE  |  SHIFT RUN  |  SPACE JUMP  |  E CARRY / DROP  |  LMB THROW  |  ESC PAUSE  |  F11 FULLSCREEN",
                 controlsStyle);
         }
 

@@ -281,7 +281,9 @@ namespace InternshipGame.Prototype.Tests
             var racks = Object.FindObjectsByType<FuelRodDepositRack>(FindObjectsInactive.Include);
             var owls = Object.FindObjectsByType<PursuitThreatController>(FindObjectsInactive.Include);
             var navigators = Object.FindObjectsByType<NavMeshThreatNavigator>(FindObjectsInactive.Include);
+            var displays = Object.FindObjectsByType<DesktopDisplayController>(FindObjectsInactive.Include);
 
+            Assert.That(Application.version, Is.EqualTo("0.2.2.1"));
             Assert.That(maps, Has.Length.EqualTo(1));
             Assert.That(sockets, Has.Length.EqualTo(8));
             Assert.That(maps[0].RodSockets.Count, Is.EqualTo(8));
@@ -297,6 +299,8 @@ namespace InternshipGame.Prototype.Tests
             Assert.That(owls, Has.Length.EqualTo(1));
             Assert.That(navigators, Has.Length.EqualTo(1));
             Assert.That(navigators[0].gameObject, Is.SameAs(owls[0].gameObject));
+            Assert.That(displays, Has.Length.EqualTo(1));
+            Assert.That(displays[0].StatusLabel, Does.Contain("F11 toggle"));
             Assert.That(owls[0].IsRouteAdaptationEnabled, Is.True);
             Assert.That(owls[0].StatusLabel, Does.Contain("Adapt: ON"));
             owls[0].SetRouteAdaptationEnabled(false);

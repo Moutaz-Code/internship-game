@@ -4,22 +4,23 @@ Pixoul internship project for a polished minimum lovable product by 2026-08-28.
 
 ## Current Working Summary
 
-The current desktop-first vertical slice is a 15-20 minute sci-fi extraction-horror run through a 10-space authored facility. Find and hold rods long enough to assay them, use the Geiger counter to search, deliver three confirmed-live rods while one adaptive Owl patrols the route network, survive the 20-second extraction cycle, then cross the open exit. The player, threat navigation, feedback devices, and run configuration remain behind narrow seams so XR and physical hardware implementations can replace their desktop simulators later.
+The current desktop-first vertical slice is a 15-20 minute sci-fi extraction-horror run through a 10-space authored facility. Find and hold rods long enough to scan them, use the Geiger counter to search, deliver three confirmed-live rods while one adaptive Owl patrols the route network, survive the 20-second extraction cycle, then cross the open exit. The player, threat navigation, feedback devices, and run configuration remain behind narrow seams so XR and physical hardware implementations can replace their desktop simulators later.
 
-Active implementation scope through 2026-07-24: Prototype 2 / PT2 Readable Route Adaptation. PT2 makes the existing Owl route bias evidence-based, perceptible, counterable, toggleable, and testable. Broader capture, stealth, tools, biofeedback, cart, and environment ideas remain deferred.
+Current build: `v0.2.2.1`. Active implementation scope through 2026-07-24: Prototype 2 / PT2 Readable Route Adaptation. PT2 makes the existing Owl route bias evidence-based, perceptible, counterable, toggleable, and testable. Broader capture, stealth, tools, biofeedback, cart, and environment ideas remain deferred.
 
 ## Prototype Quick Start
 
 - Unity project: `UnityProject/InternshipGameSynced`
 - Main scene: `Assets/_Project/Scenes/P01_CoreLoop.unity`
-- Windows player: `UnityProject/InternshipGameSynced/Builds/PolishedPrototype/P01_PolishedPrototype.exe`
+- Windows player: `UnityProject/InternshipGameSynced/Builds/v0.2.2.1/InternshipGame_v0.2.2.1.exe`
 
 Desktop controls:
 
 - `WASD` move, mouse look, `Shift` sprint, `Space` jump.
 - `E` grab/drop; left click uses the focused door, exit, or other interactable.
 - `R` restart the current seed; `Shift+R` generate a new seed.
-- `F1` toggle the operator overlay; `F2` toggle bounded Owl/Geiger interference.
+- `F1` toggle the operator overlay; `F2` toggle bounded Owl/Geiger interference; `F3` toggle route adaptation for comparison.
+- `F11` toggle borderless fullscreen/windowed mode. The Windows build starts in borderless fullscreen and preserves a resizable 1280x720 windowed fallback.
 - `Esc` pause/resume and release/capture the cursor.
 
 The baseline experience starts with Geiger interference disabled so first-time device comprehension can be measured before adding uncertainty.
@@ -48,6 +49,7 @@ Docs are living control panels, not a waterfall phase. Each update should help m
 - [Prototype 2 Scope](docs/24_prototype_02_scope.md)
 - [Prototype 2 Agent Handoff](docs/25_prototype_02_agent_handoff.md)
 - [Prototype 2 ClickUp Paste Pack](docs/26_clickup_prototype_02_paste.md)
+- [Development Versioning](docs/27_development_versioning.md)
 - [First Playable Spec](docs/09_first_playable_spec.md)
 - [Technical Architecture Outline](docs/10_technical_architecture_outline.md)
 - [Vision Brief](docs/01_vision_brief.md)

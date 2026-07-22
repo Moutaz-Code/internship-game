@@ -298,3 +298,36 @@ Results:
 - Delivery validation: the strict clean `StandaloneWindows64` development build succeeded in 59.73 seconds at 187,642,038 bytes with zero errors. Its two reported warnings were the MCP WebSocket closing while Unity synchronously blocked to build; the previous 37 content warnings from unsupported TMP ellipsis mode were removed before this final build. The exact executable remained alive for the 25-second normal-graphics smoke window and was then closed deliberately. It reached managed-domain, PhysX, D3D12, and input initialization with no project exception, missing script, OpenXR runtime failure, Meta serialization warning, or invalid NavMesh-agent warning. The only matched low-level diagnostic was the graphics driver's benign D3D12 info-queue query.
 - P2.3 backlog and human validation: walk every route at native play resolution, inspect all terminal-room socket approaches, judge room distinction without the operator overlay, tune lighting/material intensity, check signage while moving, inspect seams from crouched and jump viewpoints, and validate collision feel around the new peripheral structures. Use those sessions for tuning rather than expanding P2.2 now.
 - Scope confirmation: no route topology, objective behavior, Owl adaptation, capture/recovery, stealth, inventory, hardware/haptics, VR comfort behavior, mission, entity, final-art family, or procedural geometry was added or redesigned.
+
+### v0.2.2.1: Fullscreen and Versioning Maintenance
+
+Date: 2026-07-22
+
+Question:
+
+> Can the supervisor-facing desktop build move cleanly between fullscreen and windowed presentation while carrying an unambiguous development version?
+
+Applicable design pillars:
+
+- Demo reliability: the operator can present borderless fullscreen or recover to a normal resizable window without rebuilding.
+- Mission communication: the new display control is included in the existing controls and pause language without obscuring mission feedback.
+- Rapid iteration: build identity and output paths derive from Unity's four-part application version instead of a hard-coded prototype label.
+
+Implementation:
+
+- `F11` toggles between borderless fullscreen and windowed mode through a desktop-only display controller. Windowed mode preserves the latest usable size and falls back to 1280x720; Unity's Windows player remains configured to start in native-resolution borderless fullscreen and permits platform fullscreen switching.
+- The pause panel, first-run controls strip, and F1 operator overlay communicate the control; pause and operator information show `v0.2.2.1` from `Application.version`.
+- Unity's application version is `0.2.2.1`, the window is resizable, and strict Windows builds now validate a four-part numeric version before writing `Builds/v0.2.2.1/InternshipGame_v0.2.2.1.exe`.
+- The durable `v{x}.{y}.{z}.{w}` convention is recorded in `27_development_versioning.md` and decision D-082. The immediately preceding environment baseline is `v0.2.2.0` (legacy P2.2).
+
+Validation:
+
+- Script compilation and Unity structural validation completed with zero errors. The three existing obsolete-state warnings in legacy state-machine tests remain unchanged.
+- Full Edit Mode passed 103/103, including eight focused cases for fullscreen classification and deterministic borderless/windowed toggling.
+- Integrated Play Mode passed 4/4. The scene-level gate confirms exactly one display controller, its F11 status language, and `Application.version == 0.2.2.1` while retaining the established physics, route, objective, Owl, extraction, reset, and presentation checks.
+- The strict clean `StandaloneWindows64` development build succeeded with zero errors and zero warnings at 187,643,890 bytes in 313.01 seconds. Its version-derived output is `Builds/v0.2.2.1/InternshipGame_v0.2.2.1.exe`.
+- The exact executable remained alive until deliberately closed and reached managed-domain reset, PhysX, and runtime input initialization. Its smoke log contained no project exception, missing script, OpenXR startup failure, serialization failure, or invalid NavMesh-agent error. The only matched low-level diagnostic was the graphics driver's previously observed benign D3D12 info-queue query.
+
+Human validation remaining: press F11 in the visible Windows player on the intended presentation monitor and confirm the borderless/windowed transition, preserved window size, UI scaling, and preferred supervisor-demo mode.
+
+Scope confirmation: this maintenance increment adds no gameplay system, route, objective, threat behavior, mission, entity, environment, or hardware integration.

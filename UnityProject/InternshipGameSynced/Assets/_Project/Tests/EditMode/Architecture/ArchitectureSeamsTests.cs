@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using UnityEngine;
 
 namespace InternshipGame.Prototype.Tests
 {
@@ -55,6 +56,26 @@ namespace InternshipGame.Prototype.Tests
         {
             Assert.That(typeof(IRunObjective).GetProperty(nameof(IRunObjective.Progress)), Is.Not.Null);
             Assert.That(typeof(IRunObjective).GetProperty(nameof(IRunObjective.IsComplete)), Is.Not.Null);
+        }
+
+        [TestCase(FullScreenMode.Windowed, false)]
+        [TestCase(FullScreenMode.FullScreenWindow, true)]
+        [TestCase(FullScreenMode.ExclusiveFullScreen, true)]
+        [TestCase(FullScreenMode.MaximizedWindow, true)]
+        public void DesktopDisplayPolicy_ClassifiesFullscreenModes(FullScreenMode mode, bool expected)
+        {
+            Assert.That(DesktopDisplayController.IsFullscreenMode(mode), Is.EqualTo(expected));
+        }
+
+        [TestCase(FullScreenMode.Windowed, FullScreenMode.FullScreenWindow)]
+        [TestCase(FullScreenMode.FullScreenWindow, FullScreenMode.Windowed)]
+        [TestCase(FullScreenMode.ExclusiveFullScreen, FullScreenMode.Windowed)]
+        [TestCase(FullScreenMode.MaximizedWindow, FullScreenMode.Windowed)]
+        public void DesktopDisplayPolicy_TogglesBetweenBorderlessAndWindowed(
+            FullScreenMode current,
+            FullScreenMode expected)
+        {
+            Assert.That(DesktopDisplayController.GetToggledMode(current), Is.EqualTo(expected));
         }
     }
 }

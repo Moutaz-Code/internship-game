@@ -9,3 +9,5 @@
 
 Use `all-docs-auto.canvas` for the generated full overview.
 Use `working-map.canvas` for manual visual planning.
+
+- [[27_development_versioning]]

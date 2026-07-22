@@ -184,6 +184,7 @@ namespace InternshipGame.Prototype.Editor
 
             var pause = systems.AddComponent<DesktopPauseController>();
             pause.Configure(playerMode);
+            var display = systems.AddComponent<DesktopDisplayController>();
 
             var heartRateStub = systems.AddComponent<BluetoothHeartRateSensorStub>();
             heartRateStub.Configure(false);
@@ -219,6 +220,7 @@ namespace InternshipGame.Prototype.Editor
                 feedbackHub,
                 biometricHub,
                 pause,
+                display,
                 ambience);
             hud.ConfigureObjectiveItems(rods);
 
@@ -246,12 +248,24 @@ namespace InternshipGame.Prototype.Editor
             Build();
         }
 
-        [MenuItem("Prototype/Build Prototype 2.2 Windows (Strict)")]
-        public static void BuildPrototype2_2WindowsStrict()
+        [MenuItem("Prototype/Build Current Version Windows (Strict)")]
+        public static void BuildCurrentVersionWindowsStrict()
         {
-            const string outputDirectory = "Builds/Prototype2.2";
+            var version = PlayerSettings.bundleVersion;
+            if (!System.Version.TryParse(version, out var parsedVersion) ||
+                parsedVersion.Major < 0 ||
+                parsedVersion.Minor < 0 ||
+                parsedVersion.Build < 0 ||
+                parsedVersion.Revision < 0)
+            {
+                throw new InvalidOperationException(
+                    $"PlayerSettings.bundleVersion must use four numeric parts (x.y.z.w); current value is '{version}'.");
+            }
+
+            var versionLabel = $"v{version}";
+            var outputDirectory = System.IO.Path.Combine("Builds", versionLabel);
             var outputPath = System.IO.Path.GetFullPath(
-                System.IO.Path.Combine(outputDirectory, "InternshipGamePrototype2_2.exe"));
+                System.IO.Path.Combine(outputDirectory, $"InternshipGame_{versionLabel}.exe"));
             System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(outputPath));
 
             try
@@ -265,13 +279,13 @@ namespace InternshipGame.Prototype.Editor
                 });
                 var summary = report.summary;
                 Debug.Log(
-                    $"P22_BUILD_SUMMARY|result={summary.result}|errors={summary.totalErrors}|" +
+                    $"PROTOTYPE_BUILD_SUMMARY|version={versionLabel}|result={summary.result}|errors={summary.totalErrors}|" +
                     $"warnings={summary.totalWarnings}|bytes={summary.totalSize}|" +
                     $"seconds={summary.totalTime.TotalSeconds:0.00}|path={outputPath}");
             }
             catch (Exception exception)
             {
-                Debug.LogError($"P22_BUILD_SUMMARY|exception={exception}");
+                Debug.LogError($"PROTOTYPE_BUILD_SUMMARY|version=v{version}|exception={exception}");
                 throw;
             }
         }

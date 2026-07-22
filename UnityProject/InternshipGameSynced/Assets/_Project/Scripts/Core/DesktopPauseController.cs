@@ -85,11 +85,14 @@ namespace InternshipGame.Prototype
             };
 
             var width = 460f;
-            var height = 180f;
+            var height = 218f;
             var rect = new Rect((Screen.width - width) * 0.5f, (Screen.height - height) * 0.5f, width, height);
             GUI.Box(rect, GUIContent.none);
-            GUI.Label(new Rect(rect.x, rect.y + 22f, width, 50f), "PAUSED", titleStyle);
-            GUI.Label(new Rect(rect.x + 20f, rect.y + 84f, width - 40f, 58f), "Escape: resume\nR: restart current run  •  Shift+R: new seed", bodyStyle);
+            GUI.Label(new Rect(rect.x, rect.y + 20f, width, 50f), $"PAUSED  |  v{Application.version}", titleStyle);
+            GUI.Label(
+                new Rect(rect.x + 20f, rect.y + 82f, width - 40f, 100f),
+                "Escape: resume\nR: restart current run  |  Shift+R: new seed\nF11: toggle fullscreen / windowed",
+                bodyStyle);
         }
     }
 }
