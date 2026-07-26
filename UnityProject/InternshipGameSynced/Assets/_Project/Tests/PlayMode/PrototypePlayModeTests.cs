@@ -16,6 +16,54 @@ namespace InternshipGame.Prototype.Tests
         private const string PrototypeScenePath = "Assets/_Project/Scenes/P01_CoreLoop.unity";
 
         [UnityTest]
+        public IEnumerator DesktopController_HighRefreshStartupStepIsNotDiscarded()
+        {
+            var player = new GameObject("High Refresh Locomotion Test Player");
+            try
+            {
+                var characterController = player.AddComponent<CharacterController>();
+                characterController.minMoveDistance = 0.001f;
+                player.AddComponent<DesktopFirstPersonController>();
+
+                Assert.That(
+                    characterController.minMoveDistance,
+                    Is.Zero,
+                    "Desktop locomotion must accept acceleration steps below one millimetre.");
+
+                const float framesPerSecond = 240f;
+                var deltaTime = 1f / framesPerSecond;
+                var velocity = PlayerPlanarMotion.Step(
+                    Vector3.zero,
+                    Vector3.forward * 3.2f,
+                    true,
+                    18f,
+                    24f,
+                    5.5f,
+                    1.5f,
+                    deltaTime);
+                var requestedMotion = velocity * deltaTime;
+                Assert.That(
+                    requestedMotion.magnitude,
+                    Is.LessThan(0.001f),
+                    "The regression test must exercise a sub-millimetre startup step.");
+
+                var positionBeforeMove = player.transform.position;
+                characterController.Move(requestedMotion);
+
+                Assert.That(
+                    Vector3.Distance(positionBeforeMove, player.transform.position),
+                    Is.EqualTo(requestedMotion.magnitude).Within(0.00001f),
+                    "A 240 Hz startup step was discarded, which would deadlock acceleration.");
+            }
+            finally
+            {
+                Object.Destroy(player);
+            }
+
+            yield return null;
+        }
+
+        [UnityTest]
         public IEnumerator DesktopGrab_FollowsRealLateUpdateAndRestoresState()
         {
             var player = new GameObject("PlayMode Test Player");
@@ -148,6 +196,70 @@ namespace InternshipGame.Prototype.Tests
         }
 
         [UnityTest]
+        public IEnumerator OwlPerception_UsesMultipleBodySamplesAndStillRespectsFullCover()
+        {
+            var loadOperation = SceneManager.LoadSceneAsync(PrototypeScenePath, LoadSceneMode.Single);
+            Assert.That(loadOperation, Is.Not.Null);
+            while (!loadOperation.isDone)
+            {
+                yield return null;
+            }
+
+            yield return null;
+            var owl = Object.FindAnyObjectByType<PursuitThreatController>(FindObjectsInactive.Include);
+            var playerMode = Object.FindAnyObjectByType<PlayerModeController>(FindObjectsInactive.Include);
+            var desktopController = Object.FindAnyObjectByType<DesktopFirstPersonController>(FindObjectsInactive.Include);
+            Assert.That(owl, Is.Not.Null);
+            Assert.That(playerMode, Is.Not.Null);
+            Assert.That(desktopController, Is.Not.Null);
+
+            desktopController.enabled = false;
+            playerMode.PlayerRoot.SetPositionAndRotation(new Vector3(4f, 10f, -24f), Quaternion.identity);
+            var agent = owl.GetComponent<NavMeshAgent>();
+            if (agent != null)
+            {
+                agent.enabled = false;
+            }
+
+            owl.transform.SetPositionAndRotation(
+                new Vector3(-4f, 10f, -24f),
+                Quaternion.LookRotation(Vector3.right, Vector3.up));
+
+            var headBlocker = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            var fullBlocker = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            try
+            {
+                headBlocker.name = "Head-Only Sight Blocker";
+                headBlocker.transform.SetPositionAndRotation(new Vector3(0f, 11.4f, -24f), Quaternion.identity);
+                headBlocker.transform.localScale = new Vector3(0.2f, 0.24f, 0.6f);
+                fullBlocker.SetActive(false);
+                Physics.SyncTransforms();
+
+                Assert.That(
+                    owl.CanSeePlayer(playerMode.ViewTransform),
+                    Is.True,
+                    "A head-height sliver must not blind all torso samples.");
+
+                headBlocker.SetActive(false);
+                fullBlocker.name = "Full Sight Blocker";
+                fullBlocker.transform.SetPositionAndRotation(new Vector3(0f, 11.1f, -24f), Quaternion.identity);
+                fullBlocker.transform.localScale = new Vector3(0.2f, 2.6f, 1.2f);
+                fullBlocker.SetActive(true);
+                Physics.SyncTransforms();
+
+                Assert.That(
+                    owl.CanSeePlayer(playerMode.ViewTransform),
+                    Is.False,
+                    "Full cover must still break Owl knowledge.");
+            }
+            finally
+            {
+                Object.Destroy(headBlocker);
+                Object.Destroy(fullBlocker);
+            }
+        }
+
+        [UnityTest]
         public IEnumerator IntegratedPrototype_HasReadableScrappableGreyboxPresentation()
         {
             var loadOperation = SceneManager.LoadSceneAsync(PrototypeScenePath, LoadSceneMode.Single);
@@ -225,13 +337,30 @@ namespace InternshipGame.Prototype.Tests
                 portalCount++;
                 var right = portal.Find("Right Fitted Jamb");
                 var header = portal.Find("Fitted Header");
+                var wallCap = portal.Find("Fitted Wall Cap");
                 Assert.That(right, Is.Not.Null, $"{portal.name} has no right jamb.");
                 Assert.That(header, Is.Not.Null, $"{portal.name} has no fitted header.");
+                Assert.That(wallCap, Is.Not.Null, $"{portal.name} has no wall infill above its frame.");
                 var clearWidth = right.localPosition.x - right.localScale.x * 0.5f -
                                  (left.localPosition.x + left.localScale.x * 0.5f);
                 Assert.That(clearWidth, Is.EqualTo(2.76f).Within(0.01f), $"{portal.name} clear width changed.");
                 Assert.That(header.localScale.x, Is.EqualTo(3.2f).Within(0.01f));
                 Assert.That(portal.GetComponentsInChildren<TMP_Text>(true), Has.Length.EqualTo(2));
+
+                var doorwayHits = Physics.OverlapBox(
+                    portal.TransformPoint(new Vector3(0f, 1.25f, 0f)),
+                    new Vector3(1.34f, 1.18f, 0.1f),
+                    portal.rotation,
+                    ~0,
+                    QueryTriggerInteraction.Ignore);
+                foreach (var doorwayHit in doorwayHits)
+                {
+                    Assert.That(
+                        doorwayHit.transform.IsChildOf(portal) ||
+                        doorwayHit.transform.IsChildOf(facility.Find("Interior Architecture")),
+                        Is.False,
+                        $"{portal.name} clear opening is obstructed by {doorwayHit.name}.");
+                }
             }
 
             Assert.That(portalCount, Is.EqualTo(13));
@@ -282,8 +411,10 @@ namespace InternshipGame.Prototype.Tests
             var owls = Object.FindObjectsByType<PursuitThreatController>(FindObjectsInactive.Include);
             var navigators = Object.FindObjectsByType<NavMeshThreatNavigator>(FindObjectsInactive.Include);
             var displays = Object.FindObjectsByType<DesktopDisplayController>(FindObjectsInactive.Include);
+            var desktopControllers = Object.FindObjectsByType<DesktopFirstPersonController>(FindObjectsInactive.Include);
+            var desktopInteractors = Object.FindObjectsByType<DesktopGrabInteractor>(FindObjectsInactive.Include);
 
-            Assert.That(Application.version, Is.EqualTo("0.2.2.1"));
+            Assert.That(Application.version, Is.EqualTo("0.2.3.0"));
             Assert.That(maps, Has.Length.EqualTo(1));
             Assert.That(sockets, Has.Length.EqualTo(8));
             Assert.That(maps[0].RodSockets.Count, Is.EqualTo(8));
@@ -300,7 +431,17 @@ namespace InternshipGame.Prototype.Tests
             Assert.That(navigators, Has.Length.EqualTo(1));
             Assert.That(navigators[0].gameObject, Is.SameAs(owls[0].gameObject));
             Assert.That(displays, Has.Length.EqualTo(1));
+            Assert.That(desktopControllers, Has.Length.EqualTo(1));
+            Assert.That(desktopInteractors, Has.Length.EqualTo(1));
+            Assert.That(desktopControllers[0].GetComponent<CharacterController>().height, Is.EqualTo(1.75f).Within(0.01f));
+            Assert.That(desktopInteractors[0].InteractionDistance, Is.GreaterThanOrEqualTo(3.5f));
+            Assert.That(desktopInteractors[0].TargetAssistRadius, Is.GreaterThanOrEqualTo(0.24f));
             Assert.That(displays[0].StatusLabel, Does.Contain("F11 toggle"));
+            Assert.That(owls[0].ViewDistance, Is.GreaterThanOrEqualTo(22f));
+            Assert.That(owls[0].FieldOfView, Is.GreaterThanOrEqualTo(120f));
+            Assert.That(owls[0].HuntSpeed, Is.GreaterThan(3.2f));
+            Assert.That(owls[0].HuntSpeed, Is.LessThan(3.2f * 1.65f));
+            Assert.That(owls[0].PerceptionIntervalSeconds, Is.LessThanOrEqualTo(0.1f));
             Assert.That(owls[0].IsRouteAdaptationEnabled, Is.True);
             Assert.That(owls[0].StatusLabel, Does.Contain("Adapt: ON"));
             owls[0].SetRouteAdaptationEnabled(false);

@@ -828,6 +828,7 @@ namespace InternshipGame.Prototype.Editor
             characterController.center = new Vector3(0f, 0.875f, 0f);
             characterController.stepOffset = 0.3f;
             characterController.slopeLimit = 50f;
+            characterController.minMoveDistance = 0f;
 
             var cameraObject = new GameObject("Desktop Camera", typeof(Camera), typeof(AudioListener));
             cameraObject.tag = "MainCamera";

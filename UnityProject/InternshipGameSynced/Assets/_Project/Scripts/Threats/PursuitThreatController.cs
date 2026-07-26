@@ -14,18 +14,25 @@ namespace InternshipGame.Prototype
         [SerializeField] private PrototypeMapDefinition mapDefinition;
         [SerializeField] private FeedbackHub feedbackHub;
         [SerializeField] private GameObject visualRoot;
-        [SerializeField, Min(0f)] private float investigationSeconds = 1.75f;
-        [SerializeField, Min(0f)] private float loseSightGraceSeconds = 1.5f;
-        [SerializeField, Min(0.1f)] private float searchSeconds = 8f;
+        [SerializeField, Min(0f)] private float investigationSeconds = 1.25f;
+        [SerializeField, Min(0f)] private float loseSightGraceSeconds = 2f;
+        [SerializeField, Min(0.1f)] private float searchSeconds = 10f;
         [SerializeField, Min(1f)] private float automaticActivationSeconds = 240f;
         [SerializeField, Min(0.1f)] private float captureDistance = 0.85f;
         [SerializeField, Min(0f)] private float eyeHeight = 1.15f;
-        [SerializeField, Min(1f)] private float viewDistance = 15f;
-        [SerializeField, Range(10f, 180f)] private float fieldOfView = 105f;
+        [SerializeField, Min(1f)] private float viewDistance = 22f;
+        [SerializeField, Range(10f, 180f)] private float fieldOfView = 120f;
+        [SerializeField, Min(0f)] private float nearAwarenessDistance = 2.5f;
+        [SerializeField, Range(10f, 180f)] private float nearFieldOfView = 170f;
+        [SerializeField, Min(0.02f)] private float perceptionIntervalSeconds = 0.08f;
         [SerializeField] private LayerMask sightBlockingLayers = ~0;
-        [SerializeField, Min(0.1f)] private float investigateSpeed = 1.25f;
-        [SerializeField, Min(0.1f)] private float huntSpeed = 2.35f;
-        [SerializeField, Min(0.1f)] private float searchSpeed = 1.45f;
+        [SerializeField, Min(0.1f)] private float investigateSpeed = 1.65f;
+        [SerializeField, Min(0.1f)] private float huntSpeed = 3.85f;
+        [SerializeField, Min(0.1f)] private float searchSpeed = 1.8f;
+        [SerializeField, Min(0f)] private float observedLeadSeconds = 0.35f;
+        [SerializeField, Min(0f)] private float maximumObservedLeadDistance = 1.4f;
+        [SerializeField, Min(0.1f)] private float localSearchProbeInterval = 1.35f;
+        [SerializeField, Min(0f)] private float localSearchProbeRadius = 3.25f;
         [SerializeField, Min(1f)] private float proximityCueDistance = 8f;
 
         [Header("PT2 Route Adaptation")]
@@ -52,6 +59,7 @@ namespace InternshipGame.Prototype
         private PursuitThreatStateMachine stateMachine;
         private ThreatPressureModel pressureModel;
         private IPlayerContext playerContext;
+        private IPlayerMotionSource playerMotion;
         private IRunFailureSink failureSink;
         private IThreatNavigator navigator;
         private Vector3 spawnPosition;
@@ -62,6 +70,12 @@ namespace InternshipGame.Prototype
         private bool runActive;
         private OwlBehaviorProfile behaviorProfile = OwlBehaviorProfile.PatrolPressure;
         private int patrolIndex;
+        private float nextPerceptionTime;
+        private float nextSearchProbeTime;
+        private int searchProbeIndex;
+        private Vector3 currentSearchTarget;
+        private int visibleSampleCount;
+        private readonly RaycastHit[] sightHits = new RaycastHit[24];
 
         public PursuitThreatState CurrentState => stateMachine?.State ?? PursuitThreatState.Dormant;
         public bool HasLineOfSight { get; private set; }
@@ -71,6 +85,10 @@ namespace InternshipGame.Prototype
         public ThreatPressureSnapshot Pressure => PressureModel.Snapshot;
         public RouteAdaptationSnapshot RouteAdaptation => PressureModel.Adaptation;
         public OwlBehaviorProfile BehaviorProfile => behaviorProfile;
+        public float ViewDistance => viewDistance;
+        public float FieldOfView => fieldOfView;
+        public float HuntSpeed => huntSpeed;
+        public float PerceptionIntervalSeconds => perceptionIntervalSeconds;
         public string StatusLabel => BuildStatusLabel();
 
         private ThreatPressureModel PressureModel => pressureModel ??= CreatePressureModel();
@@ -168,10 +186,18 @@ namespace InternshipGame.Prototype
 
             var eyePosition = transform.position + Vector3.up * eyeHeight;
             PlayerDistance = Vector3.Distance(eyePosition, view.position);
-            HasLineOfSight = CanSeePlayer(view);
-            if (HasLineOfSight)
+            if (Time.time >= nextPerceptionTime)
             {
-                lastKnownPlayerPosition = view.position;
+                HasLineOfSight = CanSeePlayer(view);
+                nextPerceptionTime = Time.time + Mathf.Max(0.02f, perceptionIntervalSeconds);
+                if (HasLineOfSight)
+                {
+                    lastKnownPlayerPosition = ThreatPerceptionMath.PredictObservedPosition(
+                        view.position,
+                        playerMotion?.Velocity ?? Vector3.zero,
+                        observedLeadSeconds,
+                        maximumObservedLeadDistance);
+                }
             }
 
             var previous = stateMachine.State;
@@ -198,7 +224,7 @@ namespace InternshipGame.Prototype
                 return;
             }
 
-            MoveThreat(view.position);
+            MoveThreat(lastKnownPlayerPosition);
             EmitProximityCue();
         }
 
@@ -300,6 +326,11 @@ namespace InternshipGame.Prototype
             HasLineOfSight = false;
             PlayerDistance = float.PositiveInfinity;
             nextProximityCueTime = 0f;
+            nextPerceptionTime = 0f;
+            nextSearchProbeTime = 0f;
+            searchProbeIndex = 0;
+            currentSearchTarget = spawnPosition;
+            visibleSampleCount = 0;
             patrolIndex = 0;
             StopFeedback();
             SetVisible(false);
@@ -383,6 +414,7 @@ namespace InternshipGame.Prototype
             if (stateMachine.State == PursuitThreatState.Searching)
             {
                 searchReference = GetAdaptiveSearchReference(lastKnownPlayerPosition);
+                searchReference = GetLocalSearchTarget(searchReference);
             }
 
             var pursuitTarget = ThreatTargetPolicy.SelectMovementTarget(
@@ -429,42 +461,84 @@ namespace InternshipGame.Prototype
             }
         }
 
-        private bool CanSeePlayer(Transform view)
+        internal bool CanSeePlayer(Transform view)
+        {
+            if (view == null)
+            {
+                return false;
+            }
+
+            visibleSampleCount = 0;
+            var root = playerContext?.PlayerRoot;
+            var visible = CanSeePoint(view.position);
+            visibleSampleCount += visible ? 1 : 0;
+            if (root == null)
+            {
+                return visible;
+            }
+
+            var upperBodyVisible = CanSeePoint(root.position + Vector3.up * 1.1f);
+            var lowerBodyVisible = CanSeePoint(root.position + Vector3.up * 0.62f);
+            visibleSampleCount += upperBodyVisible ? 1 : 0;
+            visibleSampleCount += lowerBodyVisible ? 1 : 0;
+            return visible || upperBodyVisible || lowerBodyVisible;
+        }
+
+        private bool CanSeePoint(Vector3 targetPosition)
         {
             var eyePosition = transform.position + Vector3.up * eyeHeight;
-            var toPlayer = view.position - eyePosition;
-            var distance = toPlayer.magnitude;
-            if (distance <= 0.001f || distance > viewDistance)
-            {
-                return false;
-            }
-
-            var direction = toPlayer / distance;
-            var flatDirection = Vector3.ProjectOnPlane(direction, Vector3.up);
-            var flatForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
-            if (flatDirection.sqrMagnitude > 0.001f && flatForward.sqrMagnitude > 0.001f &&
-                Vector3.Angle(flatForward, flatDirection) > fieldOfView * 0.5f)
-            {
-                return false;
-            }
-
-            if (!Physics.Raycast(
+            if (!ThreatPerceptionMath.IsWithinViewCone(
                     eyePosition,
-                    direction,
-                    out var hit,
-                    distance,
-                    sightBlockingLayers,
-                    QueryTriggerInteraction.Ignore))
+                    transform.forward,
+                    targetPosition,
+                    viewDistance,
+                    fieldOfView,
+                    nearAwarenessDistance,
+                    nearFieldOfView))
             {
-                return true;
+                return false;
             }
 
+            var toTarget = targetPosition - eyePosition;
+            var distance = toTarget.magnitude;
+            var hitCount = Physics.RaycastNonAlloc(
+                eyePosition,
+                toTarget / distance,
+                sightHits,
+                distance + 0.05f,
+                sightBlockingLayers,
+                QueryTriggerInteraction.Ignore);
             var playerRoot = playerContext?.PlayerRoot;
-            return playerRoot != null && (hit.transform == playerRoot || hit.transform.IsChildOf(playerRoot));
+            var nearestDistance = float.PositiveInfinity;
+            Transform nearestTransform = null;
+            for (var i = 0; i < hitCount; i++)
+            {
+                var hit = sightHits[i];
+                if (hit.collider == null ||
+                    (hit.transform == transform || hit.transform.IsChildOf(transform)) ||
+                    hit.distance >= nearestDistance)
+                {
+                    continue;
+                }
+
+                nearestDistance = hit.distance;
+                nearestTransform = hit.transform;
+            }
+
+            return nearestTransform == null ||
+                   playerRoot != null &&
+                   (nearestTransform == playerRoot || nearestTransform.IsChildOf(playerRoot));
         }
 
         private void HandleStateChanged(PursuitThreatState previous, PursuitThreatState current)
         {
+            if (current == PursuitThreatState.Searching)
+            {
+                currentSearchTarget = lastKnownPlayerPosition;
+                nextSearchProbeTime = Time.time + 0.75f;
+                searchProbeIndex = 0;
+            }
+
             if (current == PursuitThreatState.Hunting)
             {
                 feedbackHub?.Send(new FeedbackSignal(
@@ -540,6 +614,9 @@ namespace InternshipGame.Prototype
         private void ResolveDependencies()
         {
             playerContext = playerContextBehaviour as IPlayerContext;
+            playerMotion = playerContext?.PlayerRoot != null
+                ? playerContext.PlayerRoot.GetComponent<IPlayerMotionSource>()
+                : null;
             failureSink = failureSinkBehaviour as IRunFailureSink;
             navigator = navigatorBehaviour as IThreatNavigator;
         }
@@ -634,6 +711,7 @@ namespace InternshipGame.Prototype
 
             return
                 $"Owl: {CurrentState} | LOS {(HasLineOfSight ? "YES" : "no")} | {PlayerDistance:0.0}m | pressure {Pressure.TotalPressure:0.00}\n" +
+                $"Vision: {viewDistance:0}m/{fieldOfView:0}deg | visible samples {visibleSampleCount}/3 | sample {perceptionIntervalSeconds * 1000f:0}ms | speeds {investigateSpeed:0.0}/{huntSpeed:0.0}/{searchSpeed:0.0}\n" +
                 $"Adapt: {(adaptation.Enabled ? "ON" : "OFF")} {adaptation.State} | W {adaptation.WestConfidence:0.00} C {adaptation.CentralConfidence:0.00} E {adaptation.EastConfidence:0.00} | dom {adaptation.DominantWing}\n" +
                 evidenceLine + "\n" +
                 $"Timing: bias {adaptation.BiasSecondsRemaining:0.0}s | decay in {adaptation.SecondsUntilDecay:0.0}s{counterTiming}\n" +
@@ -779,6 +857,21 @@ namespace InternshipGame.Prototype
                     ? RouteAdaptationResponse.AdaptedRouteSearch
                     : RouteAdaptationResponse.SuspiciousRouteSearch);
             return bestPoint.position;
+        }
+
+        private Vector3 GetLocalSearchTarget(Vector3 reference)
+        {
+            if (Time.time < nextSearchProbeTime)
+            {
+                return currentSearchTarget;
+            }
+
+            currentSearchTarget = reference + ThreatPerceptionMath.SearchOffset(
+                searchProbeIndex++,
+                localSearchProbeRadius);
+            currentSearchTarget.y = reference.y;
+            nextSearchProbeTime = Time.time + Mathf.Max(0.1f, localSearchProbeInterval);
+            return currentSearchTarget;
         }
 
         private static ThreatWing InferWing(Vector3 position)

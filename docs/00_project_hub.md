@@ -10,7 +10,7 @@ Client/company context: Pixoul
 
 Delivery target: 2026-08-28
 
-Current phase: Prototype 2 implementation at `v0.2.2.1`; PT2 Readable Route Adaptation scope frozen through 2026-07-24
+Current phase: Prototype 2 implementation at `v0.2.3.0`; desktop embodiment, portal accuracy, pickup usability, and fair Owl difficulty pass implemented
 
 Current production style: prototype-heavy agile, weekly loops
 

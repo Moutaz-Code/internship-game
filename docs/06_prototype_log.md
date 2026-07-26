@@ -331,3 +331,39 @@ Validation:
 Human validation remaining: press F11 in the visible Windows player on the intended presentation monitor and confirm the borderless/windowed transition, preserved window size, UI scaling, and preferred supervisor-demo mode.
 
 Scope confirmation: this maintenance increment adds no gameplay system, route, objective, threat behavior, mission, entity, environment, or hardware integration.
+
+### v0.2.3.0: Desktop Embodiment, Portal Accuracy, and Owl Capability
+
+Date: 2026-07-22
+
+Question:
+
+> Can desktop players use cover and objects naturally while the Owl applies credible pressure, without doorway collision defects, omniscient tracking, or loss of route viability?
+
+Applicable design pillars:
+
+- Physical interaction: pickup should tolerate normal first-person aim error but never select an object through a wall.
+- Fair Owl counterplay: partial exposure can be perceived, full cover breaks sight, and hidden movement updates no exact knowledge.
+- Route planning and spatial readability: fitted frames must correspond to genuinely clear passages under every route profile.
+- Controller replaceability: crouch and lean remain desktop-controller behavior; shared player/threat/navigation seams and the XR rig remain unchanged.
+
+Implementation:
+
+- Portal construction now uses data-driven wall strips cut from the same 3.2 m outer frame dimensions and portal centers as all thirteen fitted doorways. Extraction, containment, Hub, side dividers, Cross Hall, and terminal partitions align exactly; each frame also has fitted wall infill above its header.
+- Desktop crouch is hold-based on `Ctrl` or `C`, transitions the CharacterController and eye height while keeping the feet fixed, reduces movement speed, disables sprint, and refuses to stand into overhead geometry.
+- `Z`/`X` apply smooth positional head lean plus restrained roll. A non-allocating sphere cast clamps the camera before walls, providing a desktop approximation of headset corner-peeking without changing XR behavior.
+- Pickup range is 3.6 m with a 0.26 m assisted query around the reticle. Direct hits retain priority; assisted candidates are angle/distance ranked, ignore the player, and require their own unobstructed line of sight, so the usability increase cannot reach through cover.
+- Owl sight increased from one head ray at 15 m/105 degrees to non-allocating head/upper/lower-body samples at 22 m/120 degrees, sampled every 80 ms. Near awareness widens to 170 degrees only inside 2.5 m and never becomes omnidirectional. Observed motion receives a bounded planar lead; losing sight pursues only the last credible observation rather than the current hidden position.
+- The warning remains readable at 1.25 seconds. Hunt speed is 3.85 m/s, above the 3.2 m/s walk but below the 5.28 m/s sprint; search lasts 10 seconds and now sweeps deterministic local probes around the last credible/adapted reference. PT2's run-local evidence, 1.75 adaptation cap, maximum two consecutive biased selections, F1 telemetry, and F3 comparison behavior are preserved.
+- HUD and pause language now communicate crouch and lean alongside existing movement, interaction, pause, fullscreen, and operator controls. Unity application/build identity is `v0.2.3.0`.
+
+Validation:
+
+- Full Edit Mode passed 111/111. New coverage verifies crouch transition/blocked standing, capsule foot anchoring, collision-limited lean math, assisted pickup with wall occlusion, Owl view cones, bounded observed lead, and deterministic search probes while retaining all objective, route-adaptation, navigation, feedback, and run-state regressions.
+- Integrated Play Mode passed 6/6. The scene gate verifies all thirteen fitted openings are free of portal/interior-wall colliders, every seeded profile retains complete player/Owl NavMesh routes, scene tuning matches the new pickup and Owl limits, the objective/extraction/reset loop remains deterministic, and multi-sample Owl sight sees around head-only obstruction while full cover blocks every sample.
+- The strict clean `StandaloneWindows64` development build succeeded in 136.20 seconds at 187,683,002 bytes with zero reported build errors or warnings. Output: `UnityProject/InternshipGameSynced/Builds/v0.2.3.0/InternshipGame_v0.2.3.0.exe`.
+- The exact player remained alive for the 20-second smoke window and was closed deliberately. Its log reached managed-domain, PhysX, D3D12, and input initialization with no project exception, missing script, OpenXR runtime failure, serialization failure, or invalid NavMesh-agent error. The only matched low-level diagnostic was the previously observed benign D3D12 info-queue query.
+
+Human validation remaining: walk all thirteen portal approaches at native resolution; tune crouch height/speed, lean distance/roll, pickup forgiveness, warning duration, sight range, and chase/search speed by feel; confirm the Owl creates pressure without invalidating any route; and test the bindings on the intended keyboard. XR posture, comfort, and hardware behavior remain untested without a headset.
+
+Scope confirmation: this pass adds no new mission, objective, route family, enemy, capture/recovery system, inventory, flashlight, door locking, cart, environmental system, heart-rate behavior, hardware/haptics integration, cross-run memory, or learned AI.

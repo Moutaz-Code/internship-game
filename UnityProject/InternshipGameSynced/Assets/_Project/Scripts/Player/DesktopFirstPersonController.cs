@@ -8,6 +8,7 @@ namespace InternshipGame.Prototype
     public sealed class DesktopFirstPersonController : MonoBehaviour, IPlayerMotionSource
     {
         private const float GroundedVerticalVelocity = -2f;
+        private const float CharacterControllerMinimumMoveDistance = 0f;
 
         [SerializeField] private Camera viewCamera;
         [SerializeField, Min(0.1f)] private float walkSpeed = 3.2f;
@@ -33,6 +34,18 @@ namespace InternshipGame.Prototype
         [SerializeField, Min(0.1f)] private float viewMotionSharpness = 12f;
         [SerializeField, Min(0f)] private float sprintFieldOfViewBoost = 3f;
 
+        [Header("Desktop Posture")]
+        [SerializeField, Min(1f)] private float standingHeight = 1.75f;
+        [SerializeField, Min(0.6f)] private float crouchingHeight = 1.15f;
+        [SerializeField, Min(0.4f)] private float crouchingEyeHeight = 1.02f;
+        [SerializeField, Range(0.2f, 1f)] private float crouchSpeedMultiplier = 0.64f;
+        [SerializeField, Min(0.1f)] private float crouchTransitionSpeed = 4.5f;
+        [SerializeField, Range(0f, 0.6f)] private float headLeanDistance = 0.34f;
+        [SerializeField, Range(0f, 20f)] private float headLeanRoll = 10f;
+        [SerializeField, Min(0.1f)] private float headLeanSharpness = 12f;
+        [SerializeField, Range(0.02f, 0.2f)] private float headLeanCollisionRadius = 0.09f;
+        [SerializeField, Range(0f, 0.1f)] private float headLeanWallClearance = 0.025f;
+
         private CharacterController characterController;
         private BufferedJumpState jumpState;
         private Vector3 planarVelocity;
@@ -46,8 +59,12 @@ namespace InternshipGame.Prototype
         private bool viewBaseCaptured;
         private float pitch;
         private float verticalVelocity;
+        private float crouchAmount;
+        private float leanAmount;
         private bool motionTelemetryInitialized;
         private bool wasGrounded;
+        private readonly Collider[] postureOverlaps = new Collider[16];
+        private readonly RaycastHit[] leanHits = new RaycastHit[16];
 
         public bool IsGrounded { get; private set; }
         public Vector3 Velocity { get; private set; }
@@ -55,6 +72,8 @@ namespace InternshipGame.Prototype
         public bool JumpedThisFrame { get; private set; }
         public bool LandedThisFrame { get; private set; }
         public float LandingImpactSpeed { get; private set; }
+        public bool IsCrouching => crouchAmount >= 0.5f;
+        public float LeanAmount => leanAmount;
 
         public void Configure(Camera camera)
         {
@@ -65,6 +84,13 @@ namespace InternshipGame.Prototype
         private void Awake()
         {
             characterController = GetComponent<CharacterController>();
+            // Acceleration starts with sub-millimetre steps at high refresh rates.
+            // Unity's legacy 1 mm threshold would discard those steps, after which
+            // measured velocity returned to zero and locomotion could never ramp up.
+            characterController.minMoveDistance = CharacterControllerMinimumMoveDistance;
+            standingHeight = Mathf.Max(standingHeight, crouchingHeight + 0.1f);
+            characterController.height = standingHeight;
+            characterController.center = PlayerPostureMath.CapsuleCenter(standingHeight);
             jumpState = new BufferedJumpState(coyoteTime, jumpBufferTime);
             CaptureViewBase();
             IsGrounded = characterController.isGrounded;
@@ -117,6 +143,13 @@ namespace InternshipGame.Prototype
             JumpedThisFrame = false;
             LandedThisFrame = false;
             LandingImpactSpeed = 0f;
+            crouchAmount = 0f;
+            leanAmount = 0f;
+            if (characterController != null)
+            {
+                characterController.height = standingHeight;
+                characterController.center = PlayerPostureMath.CapsuleCenter(standingHeight);
+            }
             motionTelemetryInitialized = false;
             ResetViewMotion();
 
@@ -167,16 +200,19 @@ namespace InternshipGame.Prototype
             LandingImpactSpeed = 0f;
 
             var keyboard = Keyboard.current;
+            var deltaTime = Mathf.Max(0f, Time.deltaTime);
+            UpdatePosture(keyboard, deltaTime);
             var horizontal = keyboard == null ? 0f : ReadAxis(keyboard.aKey, keyboard.dKey);
             var vertical = keyboard == null ? 0f : ReadAxis(keyboard.sKey, keyboard.wKey);
             var input = Vector2.ClampMagnitude(new Vector2(horizontal, vertical), 1f);
             movementInput = input;
-            IsSprinting = keyboard?.leftShiftKey.isPressed == true && input.sqrMagnitude > 0f;
-            var speed = walkSpeed * (IsSprinting ? sprintMultiplier : 1f);
+            IsSprinting = keyboard?.leftShiftKey.isPressed == true && input.sqrMagnitude > 0f && crouchAmount <= 0.01f;
+            var speed = walkSpeed *
+                        (IsSprinting ? sprintMultiplier : 1f) *
+                        Mathf.Lerp(1f, crouchSpeedMultiplier, crouchAmount);
             var desiredPlanarVelocity = (transform.right * input.x + transform.forward * input.y) * speed;
             var groundedBeforeMove = characterController.isGrounded;
             var jumpPressed = keyboard?.spaceKey.wasPressedThisFrame == true;
-            var deltaTime = Mathf.Max(0f, Time.deltaTime);
             planarVelocity = PlayerPlanarMotion.Step(
                 planarVelocity,
                 desiredPlanarVelocity,
@@ -244,10 +280,16 @@ namespace InternshipGame.Prototype
             }
 
             CaptureViewBase();
+            UpdateLeanInput(deltaTime);
+            var postureOffset = Vector3.up * Mathf.Lerp(
+                0f,
+                crouchingEyeHeight - viewBaseLocalPosition.y,
+                crouchAmount);
+            var baseViewPosition = viewBaseLocalPosition + postureOffset;
             if (!enableViewMotion)
             {
-                viewCamera.transform.localPosition = viewBaseLocalPosition;
-                viewCamera.transform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+                viewCamera.transform.localPosition = baseViewPosition + ResolveLeanOffset(baseViewPosition);
+                viewCamera.transform.localRotation = Quaternion.Euler(pitch, 0f, -leanAmount * headLeanRoll);
                 viewCamera.fieldOfView = viewBaseFieldOfView;
                 return;
             }
@@ -279,9 +321,9 @@ namespace InternshipGame.Prototype
             var targetRoll = -movementInput.x * maximumStrafeRoll * speedRatio;
             currentViewRoll = Mathf.Lerp(currentViewRoll, targetRoll, blend);
 
-            viewCamera.transform.localPosition =
-                viewBaseLocalPosition + currentViewOffset + Vector3.up * landingDip;
-            viewCamera.transform.localRotation = Quaternion.Euler(pitch, 0f, currentViewRoll);
+            baseViewPosition += currentViewOffset + Vector3.up * landingDip;
+            viewCamera.transform.localPosition = baseViewPosition + ResolveLeanOffset(baseViewPosition);
+            viewCamera.transform.localRotation = Quaternion.Euler(pitch, 0f, currentViewRoll - leanAmount * headLeanRoll);
             var targetFieldOfView = viewBaseFieldOfView + (IsSprinting ? sprintFieldOfViewBoost : 0f);
             viewCamera.fieldOfView = Mathf.Lerp(viewCamera.fieldOfView, targetFieldOfView, blend);
         }
@@ -312,6 +354,103 @@ namespace InternshipGame.Prototype
             viewCamera.transform.localPosition = viewBaseLocalPosition;
             viewCamera.transform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
             viewCamera.fieldOfView = viewBaseFieldOfView;
+        }
+
+        private void UpdatePosture(Keyboard keyboard, float deltaTime)
+        {
+            var crouchRequested = keyboard?.leftCtrlKey.isPressed == true || keyboard?.cKey.isPressed == true;
+            var canStand = crouchRequested || crouchAmount <= 0f || HasStandingClearance();
+            crouchAmount = PlayerPostureMath.StepCrouchAmount(
+                crouchAmount,
+                crouchRequested,
+                canStand,
+                crouchTransitionSpeed,
+                deltaTime);
+
+            var height = Mathf.Lerp(standingHeight, crouchingHeight, crouchAmount);
+            characterController.height = height;
+            characterController.center = PlayerPostureMath.CapsuleCenter(height);
+        }
+
+        private bool HasStandingClearance()
+        {
+            var radius = Mathf.Max(0.02f, characterController.radius - characterController.skinWidth);
+            var center = transform.position + Vector3.up * standingHeight * 0.5f;
+            var halfCylinder = Mathf.Max(0f, standingHeight * 0.5f - radius);
+            var bottom = center - Vector3.up * halfCylinder;
+            var top = center + Vector3.up * halfCylinder;
+            var hitCount = Physics.OverlapCapsuleNonAlloc(
+                bottom,
+                top,
+                radius,
+                postureOverlaps,
+                ~0,
+                QueryTriggerInteraction.Ignore);
+            for (var i = 0; i < hitCount; i++)
+            {
+                var hit = postureOverlaps[i];
+                if (hit != null && hit.transform.root != transform.root)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void UpdateLeanInput(float deltaTime)
+        {
+            var keyboard = Keyboard.current;
+            var target = 0f;
+            if (keyboard?.zKey.isPressed == true)
+            {
+                target -= 1f;
+            }
+
+            if (keyboard?.xKey.isPressed == true)
+            {
+                target += 1f;
+            }
+
+            var blend = 1f - Mathf.Exp(-headLeanSharpness * deltaTime);
+            leanAmount = Mathf.Lerp(leanAmount, Mathf.Clamp(target, -1f, 1f), blend);
+        }
+
+        private Vector3 ResolveLeanOffset(Vector3 baseLocalPosition)
+        {
+            var requestedDistance = Mathf.Abs(leanAmount) * headLeanDistance;
+            if (requestedDistance <= 0.0001f)
+            {
+                return Vector3.zero;
+            }
+
+            var direction = transform.right * Mathf.Sign(leanAmount);
+            var origin = transform.TransformPoint(baseLocalPosition);
+            var hitCount = Physics.SphereCastNonAlloc(
+                origin,
+                headLeanCollisionRadius,
+                direction,
+                leanHits,
+                requestedDistance,
+                ~0,
+                QueryTriggerInteraction.Ignore);
+            var blockingDistance = float.PositiveInfinity;
+            for (var i = 0; i < hitCount; i++)
+            {
+                var hit = leanHits[i];
+                if (hit.collider == null || hit.collider.transform.root == transform.root)
+                {
+                    continue;
+                }
+
+                blockingDistance = Mathf.Min(blockingDistance, hit.distance);
+            }
+
+            var allowedDistance = PlayerPostureMath.AllowedLeanDistance(
+                requestedDistance,
+                blockingDistance,
+                headLeanWallClearance);
+            return Vector3.right * Mathf.Sign(leanAmount) * allowedDistance;
         }
 
         private void EnsureJumpState()

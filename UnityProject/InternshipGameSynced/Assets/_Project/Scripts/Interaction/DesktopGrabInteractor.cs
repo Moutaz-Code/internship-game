@@ -9,7 +9,8 @@ namespace InternshipGame.Prototype
         [SerializeField] private Camera viewCamera;
         [SerializeField] private Transform holdPoint;
         [SerializeField] private MonoBehaviour playerContextBehaviour;
-        [SerializeField, Min(0.25f)] private float interactionDistance = 3f;
+        [SerializeField, Min(0.25f)] private float interactionDistance = 3.6f;
+        [SerializeField, Range(0f, 0.6f)] private float targetAssistRadius = 0.26f;
         [SerializeField] private LayerMask interactionLayers = ~0;
         [SerializeField, Min(0f)] private float dropForwardSpeed = 0.5f;
         [SerializeField, Min(0f)] private float throwForwardSpeed = 6.25f;
@@ -23,9 +24,14 @@ namespace InternshipGame.Prototype
         private GUIStyle promptStyle;
         private IPlayerContext playerContext;
         private IPlayerMotionSource playerMotion;
+        private readonly RaycastHit[] directHits = new RaycastHit[16];
+        private readonly RaycastHit[] assistedHits = new RaycastHit[32];
+        private readonly RaycastHit[] visibilityHits = new RaycastHit[16];
 
         public string CurrentPrompt { get; private set; } = string.Empty;
         public GrabbableObject HeldObject => heldObject;
+        public float InteractionDistance => interactionDistance;
+        public float TargetAssistRadius => targetAssistRadius;
 
         public void Configure(Camera camera, Transform objectHoldPoint, MonoBehaviour contextBehaviour)
         {
@@ -104,7 +110,7 @@ namespace InternshipGame.Prototype
 
         private void TryGrabTarget()
         {
-            if (!TryRaycast(out var hit))
+            if (!TryFindTarget(out var hit))
             {
                 return;
             }
@@ -263,7 +269,7 @@ namespace InternshipGame.Prototype
 
         private void TryInteract()
         {
-            if (!TryRaycast(out var hit))
+            if (!TryFindTarget(out var hit))
             {
                 return;
             }
@@ -288,7 +294,7 @@ namespace InternshipGame.Prototype
                 return;
             }
 
-            if (!TryRaycast(out var hit))
+            if (!TryFindTarget(out var hit))
             {
                 CurrentPrompt = string.Empty;
                 return;
@@ -313,16 +319,162 @@ namespace InternshipGame.Prototype
             CurrentPrompt = string.Empty;
         }
 
-        private bool TryRaycast(out RaycastHit hit)
+        internal bool TryFindTarget(out RaycastHit hit)
         {
             hit = default;
-            return viewCamera != null && Physics.Raycast(
-                viewCamera.transform.position,
-                viewCamera.transform.forward,
-                out hit,
+            if (viewCamera == null)
+            {
+                return false;
+            }
+
+            var origin = viewCamera.transform.position;
+            var direction = viewCamera.transform.forward;
+            var directCount = Physics.RaycastNonAlloc(
+                origin,
+                direction,
+                directHits,
                 interactionDistance,
                 interactionLayers,
                 QueryTriggerInteraction.Ignore);
+            var nearestDirectIndex = FindNearestNonPlayerHit(directHits, directCount);
+            if (nearestDirectIndex >= 0 && IsActionable(directHits[nearestDirectIndex].collider))
+            {
+                hit = directHits[nearestDirectIndex];
+                return true;
+            }
+
+            if (targetAssistRadius <= 0f)
+            {
+                return false;
+            }
+
+            var assistedCount = Physics.SphereCastNonAlloc(
+                origin,
+                targetAssistRadius,
+                direction,
+                assistedHits,
+                interactionDistance,
+                interactionLayers,
+                QueryTriggerInteraction.Ignore);
+            var bestScore = float.PositiveInfinity;
+            for (var i = 0; i < assistedCount; i++)
+            {
+                var candidate = assistedHits[i];
+                if (candidate.collider == null ||
+                    IsPlayerCollider(candidate.collider) ||
+                    !IsActionable(candidate.collider) ||
+                    !HasClearLineTo(candidate.collider, origin))
+                {
+                    continue;
+                }
+
+                var targetPoint = candidate.collider.bounds.ClosestPoint(origin);
+                var toTarget = targetPoint - origin;
+                var angle = toTarget.sqrMagnitude <= 0.0001f
+                    ? 0f
+                    : Vector3.Angle(direction, toTarget);
+                var score = candidate.distance + angle * 0.025f;
+                if (score >= bestScore)
+                {
+                    continue;
+                }
+
+                bestScore = score;
+                hit = candidate;
+            }
+
+            return hit.collider != null;
+        }
+
+        private int FindNearestNonPlayerHit(RaycastHit[] hits, int count)
+        {
+            var nearestIndex = -1;
+            var nearestDistance = float.PositiveInfinity;
+            for (var i = 0; i < count; i++)
+            {
+                if (hits[i].collider == null || IsPlayerCollider(hits[i].collider) || hits[i].distance >= nearestDistance)
+                {
+                    continue;
+                }
+
+                nearestIndex = i;
+                nearestDistance = hits[i].distance;
+            }
+
+            return nearestIndex;
+        }
+
+        private bool HasClearLineTo(Collider candidate, Vector3 origin)
+        {
+            var targetPoint = candidate.bounds.ClosestPoint(origin);
+            var toTarget = targetPoint - origin;
+            var distance = toTarget.magnitude;
+            if (distance <= 0.001f)
+            {
+                return true;
+            }
+
+            var count = Physics.RaycastNonAlloc(
+                origin,
+                toTarget / distance,
+                visibilityHits,
+                distance + 0.02f,
+                interactionLayers,
+                QueryTriggerInteraction.Ignore);
+            var candidateRoot = FindActionRoot(candidate);
+            var nearestDistance = float.PositiveInfinity;
+            Collider nearest = null;
+            for (var i = 0; i < count; i++)
+            {
+                var collider = visibilityHits[i].collider;
+                if (collider == null || IsPlayerCollider(collider) || visibilityHits[i].distance >= nearestDistance)
+                {
+                    continue;
+                }
+
+                nearestDistance = visibilityHits[i].distance;
+                nearest = collider;
+            }
+
+            return nearest == null || nearest == candidate ||
+                   candidateRoot != null && FindActionRoot(nearest) == candidateRoot;
+        }
+
+        private bool IsPlayerCollider(Collider collider)
+        {
+            var playerRoot = playerContext?.PlayerRoot;
+            return playerRoot != null
+                ? collider.transform == playerRoot || collider.transform.IsChildOf(playerRoot)
+                : collider.transform.root == transform.root;
+        }
+
+        private static bool IsActionable(Collider collider)
+        {
+            return FindActionRoot(collider) != null;
+        }
+
+        private static Transform FindActionRoot(Collider collider)
+        {
+            if (collider == null)
+            {
+                return null;
+            }
+
+            var grabbable = collider.GetComponentInParent<GrabbableObject>();
+            if (grabbable != null)
+            {
+                return grabbable.transform;
+            }
+
+            foreach (var behaviour in collider.GetComponentsInParent<MonoBehaviour>(true))
+            {
+                if (behaviour is IPlayerInteractable)
+                {
+                    return behaviour.transform;
+                }
+            }
+
+            return null;
         }
 
         private void OnGUI()

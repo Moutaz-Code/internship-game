@@ -6,17 +6,18 @@ Pixoul internship project for a polished minimum lovable product by 2026-08-28.
 
 The current desktop-first vertical slice is a 15-20 minute sci-fi extraction-horror run through a 10-space authored facility. Find and hold rods long enough to scan them, use the Geiger counter to search, deliver three confirmed-live rods while one adaptive Owl patrols the route network, survive the 20-second extraction cycle, then cross the open exit. The player, threat navigation, feedback devices, and run configuration remain behind narrow seams so XR and physical hardware implementations can replace their desktop simulators later.
 
-Current build: `v0.2.2.1`. Active implementation scope through 2026-07-24: Prototype 2 / PT2 Readable Route Adaptation. PT2 makes the existing Owl route bias evidence-based, perceptible, counterable, toggleable, and testable. Broader capture, stealth, tools, biofeedback, cart, and environment ideas remain deferred.
+Current build: `v0.2.3.0`. Prototype 2 now includes readable route adaptation plus the desktop embodiment/threat pass: fitted portal geometry, crouch, corner lean, forgiving occlusion-safe pickup targeting, and a more capable but still cover-respecting Owl. Broader capture, tools, biofeedback, cart, and hardware ideas remain deferred.
 
 ## Prototype Quick Start
 
 - Unity project: `UnityProject/InternshipGameSynced`
 - Main scene: `Assets/_Project/Scenes/P01_CoreLoop.unity`
-- Windows player: `UnityProject/InternshipGameSynced/Builds/v0.2.2.1/InternshipGame_v0.2.2.1.exe`
+- Windows player: `UnityProject/InternshipGameSynced/Builds/v0.2.3.0/InternshipGame_v0.2.3.0.exe`
 
 Desktop controls:
 
 - `WASD` move, mouse look, `Shift` sprint, `Space` jump.
+- Hold `Ctrl` or `C` to crouch; hold `Z`/`X` to lean left/right around cover.
 - `E` grab/drop; left click uses the focused door, exit, or other interactable.
 - `R` restart the current seed; `Shift+R` generate a new seed.
 - `F1` toggle the operator overlay; `F2` toggle bounded Owl/Geiger interference; `F3` toggle route adaptation for comparison.

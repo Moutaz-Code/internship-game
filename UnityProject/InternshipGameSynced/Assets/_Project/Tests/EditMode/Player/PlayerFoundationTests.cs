@@ -128,6 +128,43 @@ namespace InternshipGame.Prototype.Tests
         }
 
         [Test]
+        public void Posture_CrouchesAndOnlyStandsWithClearance()
+        {
+            var crouched = PlayerPostureMath.StepCrouchAmount(0f, true, true, 4f, 0.25f);
+            var blocked = PlayerPostureMath.StepCrouchAmount(crouched, false, false, 4f, 0.25f);
+            var standing = PlayerPostureMath.StepCrouchAmount(blocked, false, true, 4f, 0.25f);
+
+            Assert.That(crouched, Is.EqualTo(1f));
+            Assert.That(blocked, Is.EqualTo(1f), "A low ceiling must keep the capsule crouched.");
+            Assert.That(standing, Is.Zero);
+        }
+
+        [Test]
+        public void Posture_CapsuleCenterKeepsFeetAtPlayerOrigin()
+        {
+            const float standingHeight = 1.75f;
+            const float crouchingHeight = 1.15f;
+
+            Assert.That(
+                PlayerPostureMath.CapsuleCenter(standingHeight).y - standingHeight * 0.5f,
+                Is.Zero.Within(0.0001f));
+            Assert.That(
+                PlayerPostureMath.CapsuleCenter(crouchingHeight).y - crouchingHeight * 0.5f,
+                Is.Zero.Within(0.0001f));
+        }
+
+        [Test]
+        public void Posture_LeanStopsBeforeBlockingSurface()
+        {
+            Assert.That(
+                PlayerPostureMath.AllowedLeanDistance(0.34f, 0.19f, 0.025f),
+                Is.EqualTo(0.165f).Within(0.0001f));
+            Assert.That(
+                PlayerPostureMath.AllowedLeanDistance(0.34f, float.PositiveInfinity, 0.025f),
+                Is.EqualTo(0.34f).Within(0.0001f));
+        }
+
+        [Test]
         public void BufferedJump_AllowsCoyoteJumpWithinWindow()
         {
             var state = new BufferedJumpState(0.12f, 0.12f);
@@ -318,6 +355,43 @@ namespace InternshipGame.Prototype.Tests
             {
                 Object.DestroyImmediate(item);
                 Object.DestroyImmediate(originalParent);
+                Object.DestroyImmediate(player);
+            }
+        }
+
+        [Test]
+        public void DesktopTargeting_AssistsSlightlyOffAxisObjectsButRespectsWalls()
+        {
+            var player = new GameObject("Targeting Player");
+            var item = new GameObject("Assisted Target");
+            var wall = new GameObject("Targeting Occluder");
+            try
+            {
+                var cameraObject = new GameObject("Targeting Camera");
+                cameraObject.transform.SetParent(player.transform, false);
+                var camera = cameraObject.AddComponent<Camera>();
+                var interactor = player.AddComponent<DesktopGrabInteractor>();
+                interactor.Configure(camera, cameraObject.transform, null);
+
+                item.transform.position = new Vector3(0.28f, 0f, 3.2f);
+                item.AddComponent<BoxCollider>().size = Vector3.one * 0.2f;
+                item.AddComponent<Rigidbody>().isKinematic = true;
+                item.AddComponent<GrabbableObject>();
+                Physics.SyncTransforms();
+
+                Assert.That(interactor.TryFindTarget(out var assistedHit), Is.True);
+                Assert.That(assistedHit.collider.GetComponentInParent<GrabbableObject>(), Is.Not.Null);
+
+                wall.transform.position = new Vector3(0.14f, 0f, 1.6f);
+                wall.AddComponent<BoxCollider>().size = new Vector3(1f, 2f, 0.1f);
+                Physics.SyncTransforms();
+
+                Assert.That(interactor.TryFindTarget(out _), Is.False, "Pickup assist must not reach through cover.");
+            }
+            finally
+            {
+                Object.DestroyImmediate(wall);
+                Object.DestroyImmediate(item);
                 Object.DestroyImmediate(player);
             }
         }

@@ -31,6 +31,12 @@ namespace InternshipGame.Prototype.Editor
     internal static class ExpandedFacilityBuilder
     {
         private const float WallHeight = 3.6f;
+        private const float WallThickness = 0.22f;
+        private const float PortalClearWidth = 2.76f;
+        private const float PortalPostWidth = 0.22f;
+        private const float PortalFrameDepth = 0.32f;
+        private const float PortalClearHeight = 2.52f;
+        private const float PortalWallOpeningWidth = PortalClearWidth + PortalPostWidth * 2f + 0.04f;
 
         private static readonly SpaceSpec[] Spaces =
         {
@@ -78,33 +84,6 @@ namespace InternshipGame.Prototype.Editor
             new("West Storage Portal", new Vector3(-11f, 0f, 14.2f), 0f, SurfaceTheme.Radiation),
             new("Core Vault Portal", new Vector3(0f, 0f, 14.2f), 0f, SurfaceTheme.Radiation),
             new("East Reactor Portal", new Vector3(11f, 0f, 14.2f), 0f, SurfaceTheme.Radiation),
-        };
-
-        private static readonly WallSpec[] InteriorWalls =
-        {
-            // South partitions make the three Hub exits actual portals. Their gaps are
-            // exactly where the seeded blockers live, preventing a one-metre bypass
-            // across the otherwise continuous greybox floor.
-            new("West Divider Far South", new Vector3(-5.5f, WallHeight * 0.5f, -11.45f), new Vector3(0.22f, WallHeight, 6.7f)),
-            new("West Divider South", new Vector3(-5.5f, WallHeight * 0.5f, -1.2f), new Vector3(0.22f, WallHeight, 7.8f)),
-            new("West Divider North", new Vector3(-5.5f, WallHeight * 0.5f, 6.3f), new Vector3(0.22f, WallHeight, 2.4f)),
-            new("East Divider Far South", new Vector3(5.5f, WallHeight * 0.5f, -11.45f), new Vector3(0.22f, WallHeight, 6.7f)),
-            new("East Divider South", new Vector3(5.5f, WallHeight * 0.5f, -1.2f), new Vector3(0.22f, WallHeight, 7.8f)),
-            new("East Divider North", new Vector3(5.5f, WallHeight * 0.5f, 6.3f), new Vector3(0.22f, WallHeight, 2.4f)),
-            new("Hub North Barrier West", new Vector3(-4.3f, WallHeight * 0.5f, -5.7f), new Vector3(5.6f, WallHeight, 0.22f)),
-            new("Hub North Barrier East", new Vector3(4.3f, WallHeight * 0.5f, -5.7f), new Vector3(5.6f, WallHeight, 0.22f)),
-            // The continuous greybox floor remains one bakeable surface, but these walls
-            // force entry through Decontamination and the Operations Hub instead of
-            // allowing a lateral walk around every seeded route state from the south.
-            new("South Containment West", new Vector3(-9.75f, WallHeight * 0.5f, -14.8f), new Vector3(16.5f, WallHeight, 0.22f)),
-            new("South Containment East", new Vector3(9.75f, WallHeight * 0.5f, -14.8f), new Vector3(16.5f, WallHeight, 0.22f)),
-            new("Terminal Divider West A", new Vector3(-15.5f, WallHeight * 0.5f, 14.2f), new Vector3(5f, WallHeight, 0.22f)),
-            new("Terminal Divider West B", new Vector3(-6.6f, WallHeight * 0.5f, 14.2f), new Vector3(5.8f, WallHeight, 0.22f)),
-            new("Terminal Divider Core A", new Vector3(-2.8f, WallHeight * 0.5f, 14.2f), new Vector3(2.6f, WallHeight, 0.22f)),
-            new("Terminal Divider Core B", new Vector3(2.8f, WallHeight * 0.5f, 14.2f), new Vector3(2.6f, WallHeight, 0.22f)),
-            new("Terminal Divider East A", new Vector3(6.6f, WallHeight * 0.5f, 14.2f), new Vector3(5.8f, WallHeight, 0.22f)),
-            new("Terminal Divider East B", new Vector3(15.5f, WallHeight * 0.5f, 14.2f), new Vector3(5f, WallHeight, 0.22f)),
-            new("Extraction Lane Divider", new Vector3(0f, 0.7f, -26.3f), new Vector3(0.3f, 1.4f, 3.1f)),
         };
 
         private static readonly LandmarkSpec[] Landmarks =
@@ -198,10 +177,7 @@ namespace InternshipGame.Prototype.Editor
 
             var wallsRoot = new GameObject("Interior Architecture");
             wallsRoot.transform.SetParent(root.transform, false);
-            foreach (var wall in InteriorWalls)
-            {
-                CreateBox(wall.Name, wallsRoot.transform, wall.Position, wall.Scale, materials.Wall, true);
-            }
+            BuildInteriorArchitecture(wallsRoot.transform, materials);
 
             BuildCover(wallsRoot.transform, materials);
             BuildJumpShortcut(wallsRoot.transform, materials);
@@ -307,21 +283,25 @@ namespace InternshipGame.Prototype.Editor
             root.transform.SetParent(parent, false);
             root.transform.SetPositionAndRotation(spec.Position, Quaternion.Euler(0f, spec.Yaw, 0f));
             var material = ResolveTheme(spec.Theme, materials);
-            const float clearWidth = 2.76f;
-            const float postWidth = 0.22f;
-            const float frameDepth = 0.32f;
-            const float clearHeight = 2.52f;
-            var postX = clearWidth * 0.5f + postWidth * 0.5f;
-            var frameWidth = clearWidth + postWidth * 2f;
+            var postX = PortalClearWidth * 0.5f + PortalPostWidth * 0.5f;
+            var frameWidth = PortalClearWidth + PortalPostWidth * 2f;
 
-            CreateBoxLocal("Left Fitted Jamb", root.transform, new Vector3(-postX, clearHeight * 0.5f, 0f), new Vector3(postWidth, clearHeight, frameDepth), materials.DarkTrim, true);
-            CreateBoxLocal("Right Fitted Jamb", root.transform, new Vector3(postX, clearHeight * 0.5f, 0f), new Vector3(postWidth, clearHeight, frameDepth), materials.DarkTrim, true);
-            CreateBoxLocal("Fitted Header", root.transform, new Vector3(0f, clearHeight + 0.12f, 0f), new Vector3(frameWidth, 0.24f, frameDepth), materials.DarkTrim, true);
+            CreateBoxLocal("Left Fitted Jamb", root.transform, new Vector3(-postX, PortalClearHeight * 0.5f, 0f), new Vector3(PortalPostWidth, PortalClearHeight, PortalFrameDepth), materials.DarkTrim, true);
+            CreateBoxLocal("Right Fitted Jamb", root.transform, new Vector3(postX, PortalClearHeight * 0.5f, 0f), new Vector3(PortalPostWidth, PortalClearHeight, PortalFrameDepth), materials.DarkTrim, true);
+            CreateBoxLocal("Fitted Header", root.transform, new Vector3(0f, PortalClearHeight + 0.12f, 0f), new Vector3(frameWidth, 0.24f, PortalFrameDepth), materials.DarkTrim, true);
+            var wallCapHeight = WallHeight - (PortalClearHeight + 0.24f);
+            CreateBoxLocal(
+                "Fitted Wall Cap",
+                root.transform,
+                new Vector3(0f, WallHeight - wallCapHeight * 0.5f, 0f),
+                new Vector3(frameWidth, wallCapHeight, WallThickness),
+                materials.Wall,
+                true);
 
-            CreateBoxLocal("Left Route Edge", root.transform, new Vector3(-clearWidth * 0.5f + 0.035f, 1.24f, -0.175f), new Vector3(0.07f, 2.35f, 0.035f), material, false);
-            CreateBoxLocal("Right Route Edge", root.transform, new Vector3(clearWidth * 0.5f - 0.035f, 1.24f, -0.175f), new Vector3(0.07f, 2.35f, 0.035f), material, false);
-            CreateBoxLocal("Route Header Edge", root.transform, new Vector3(0f, clearHeight - 0.035f, -0.175f), new Vector3(clearWidth, 0.07f, 0.035f), material, false);
-            CreateBoxLocal("Fitted Threshold", root.transform, new Vector3(0f, 0.012f, 0f), new Vector3(clearWidth, 0.024f, 0.52f), material, false);
+            CreateBoxLocal("Left Route Edge", root.transform, new Vector3(-PortalClearWidth * 0.5f + 0.035f, 1.24f, -0.175f), new Vector3(0.07f, 2.35f, 0.035f), material, false);
+            CreateBoxLocal("Right Route Edge", root.transform, new Vector3(PortalClearWidth * 0.5f - 0.035f, 1.24f, -0.175f), new Vector3(0.07f, 2.35f, 0.035f), material, false);
+            CreateBoxLocal("Route Header Edge", root.transform, new Vector3(0f, PortalClearHeight - 0.035f, -0.175f), new Vector3(PortalClearWidth, 0.07f, 0.035f), material, false);
+            CreateBoxLocal("Fitted Threshold", root.transform, new Vector3(0f, 0.012f, 0f), new Vector3(PortalClearWidth, 0.024f, 0.52f), material, false);
 
             var portalLabel = spec.Name
                 .Replace(" Portal", string.Empty)
@@ -330,7 +310,7 @@ namespace InternshipGame.Prototype.Editor
             CreatePanelTextLocal(
                 $"{spec.Name} Front Label",
                 root.transform,
-                new Vector3(0f, clearHeight + 0.12f, -0.175f),
+                new Vector3(0f, PortalClearHeight + 0.12f, -0.175f),
                 Quaternion.identity,
                 portalLabel,
                 Color.white,
@@ -340,13 +320,95 @@ namespace InternshipGame.Prototype.Editor
             CreatePanelTextLocal(
                 $"{spec.Name} Rear Label",
                 root.transform,
-                new Vector3(0f, clearHeight + 0.12f, 0.175f),
+                new Vector3(0f, PortalClearHeight + 0.12f, 0.175f),
                 Quaternion.Euler(0f, 180f, 0f),
                 portalLabel,
                 Color.white,
                 new Vector2(2.55f, 0.28f),
                 0.5f,
                 false);
+        }
+
+        private static void BuildInteriorArchitecture(Transform parent, ExpandedFacilityMaterials materials)
+        {
+            // Every full-height partition is cut from the same portal dimensions as its
+            // fitted frame. This removes the hand-measured overlaps that previously
+            // placed wall colliders inside multiple doorways.
+            BuildWallStripWithOpenings(parent, "Extraction Separation", true, -21.3f, -6f, 6f, new[] { 0f }, materials.Wall);
+            BuildWallStripWithOpenings(parent, "South Containment", true, -15.1f, -18f, 18f, new[] { 0f }, materials.Wall);
+            BuildWallStripWithOpenings(parent, "Hub North Barrier", true, -5.7f, -7f, 7f, new[] { -5.5f, 0f, 5.5f }, materials.Wall);
+            BuildWallStripWithOpenings(parent, "West Divider", false, -5.5f, -15.1f, 9f, new[] { -6.5f, 3.9f }, materials.Wall);
+            BuildWallStripWithOpenings(parent, "East Divider", false, 5.5f, -15.1f, 9f, new[] { -6.5f, 3.9f }, materials.Wall);
+            BuildWallStripWithOpenings(parent, "Cross Hall South Divider", true, 9f, -18f, 18f, new[] { -11f, 0f, 11f }, materials.Wall);
+            BuildWallStripWithOpenings(parent, "Terminal Divider", true, 14.2f, -18f, 18f, new[] { -11f, 0f, 11f }, materials.Wall);
+
+            CreateBox(
+                "Extraction Lane Divider",
+                parent,
+                new Vector3(0f, 0.7f, -26.3f),
+                new Vector3(0.3f, 1.4f, 3.1f),
+                materials.Wall,
+                true);
+        }
+
+        private static void BuildWallStripWithOpenings(
+            Transform parent,
+            string name,
+            bool runsAlongX,
+            float fixedCoordinate,
+            float start,
+            float end,
+            float[] openingCenters,
+            Material material)
+        {
+            var sortedCenters = (float[])openingCenters.Clone();
+            Array.Sort(sortedCenters);
+            var openingHalfWidth = PortalWallOpeningWidth * 0.5f;
+            var cursor = start;
+            var segmentIndex = 1;
+
+            foreach (var center in sortedCenters)
+            {
+                var openingStart = Mathf.Clamp(center - openingHalfWidth, start, end);
+                var openingEnd = Mathf.Clamp(center + openingHalfWidth, start, end);
+                if (openingStart > cursor)
+                {
+                    CreateWallStripSegment(parent, name, segmentIndex++, runsAlongX, fixedCoordinate, cursor, openingStart, material);
+                }
+
+                cursor = Mathf.Max(cursor, openingEnd);
+            }
+
+            if (cursor < end)
+            {
+                CreateWallStripSegment(parent, name, segmentIndex, runsAlongX, fixedCoordinate, cursor, end, material);
+            }
+        }
+
+        private static void CreateWallStripSegment(
+            Transform parent,
+            string name,
+            int segmentIndex,
+            bool runsAlongX,
+            float fixedCoordinate,
+            float start,
+            float end,
+            Material material)
+        {
+            var length = end - start;
+            if (length <= 0.001f)
+            {
+                return;
+            }
+
+            var center = (start + end) * 0.5f;
+            var position = runsAlongX
+                ? new Vector3(center, WallHeight * 0.5f, fixedCoordinate)
+                : new Vector3(fixedCoordinate, WallHeight * 0.5f, center);
+            var scale = runsAlongX
+                ? new Vector3(length, WallHeight, WallThickness)
+                : new Vector3(WallThickness, WallHeight, length);
+            CreateBox($"{name} Segment {segmentIndex:00}", parent, position, scale, material, true);
         }
 
         private static void BuildCover(Transform parent, ExpandedFacilityMaterials materials)
@@ -1104,20 +1166,6 @@ namespace InternshipGame.Prototype.Editor
             public Vector3 Position { get; }
             public float Yaw { get; }
             public SurfaceTheme Theme { get; }
-        }
-
-        private readonly struct WallSpec
-        {
-            public WallSpec(string name, Vector3 position, Vector3 scale)
-            {
-                Name = name;
-                Position = position;
-                Scale = scale;
-            }
-
-            public string Name { get; }
-            public Vector3 Position { get; }
-            public Vector3 Scale { get; }
         }
 
         private readonly struct LandmarkSpec

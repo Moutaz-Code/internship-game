@@ -213,7 +213,7 @@ namespace InternshipGame.Prototype
 
             var controls = playerMode != null && playerMode.ActiveMode == PlayerControlMode.VR
                 ? "VR locomotion/grab | R restart | F1 overlay | F2 Geiger A/B | F3 adaptation A/B"
-                : "WASD/Mouse | Shift sprint | Space jump | E grab | Esc pause | F11 fullscreen | F2/F3 A/B";
+                : "WASD/Mouse | Shift sprint | Ctrl/C crouch | Z/X lean | Space jump | E grab | Esc pause | F2/F3 A/B";
             GUI.Label(new Rect(32f, 98f + height - 25f, 610f, 22f), controls, bodyStyle);
         }
 
@@ -271,12 +271,12 @@ namespace InternshipGame.Prototype
                 return;
             }
 
-            const float width = 900f;
+            const float width = 1180f;
             var rect = new Rect(18f, Screen.height - 54f, Mathf.Min(width, Screen.width - 36f), 34f);
             GUI.Box(rect, GUIContent.none);
             GUI.Label(
                 new Rect(rect.x + 10f, rect.y + 5f, rect.width - 20f, 24f),
-                "WASD MOVE  |  SHIFT RUN  |  SPACE JUMP  |  E CARRY / DROP  |  LMB THROW  |  ESC PAUSE  |  F11 FULLSCREEN",
+                "WASD MOVE  |  SHIFT RUN  |  CTRL/C CROUCH  |  Z/X LEAN  |  SPACE JUMP  |  E CARRY / DROP  |  LMB THROW  |  ESC PAUSE  |  F11 FULLSCREEN",
                 controlsStyle);
         }
 

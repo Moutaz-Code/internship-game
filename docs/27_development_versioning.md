@@ -19,6 +19,8 @@ During early active development (`x = 0`):
 - `v0.1.0.0` = legacy Prototype 1.0 baseline.
 - `v0.2.2.0` = legacy Prototype 2.2 environment and presentation baseline.
 - `v0.2.2.1` = fullscreen and versioning maintenance change on top of that baseline.
+- `v0.2.2.2` = high-refresh desktop locomotion regression fix.
+- `v0.2.3.0` = major Prototype 2 desktop embodiment, portal-accuracy, pickup, and Owl-difficulty pass.
 
 ## Repository and Build Rules
 
