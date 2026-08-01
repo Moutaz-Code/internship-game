@@ -11,6 +11,7 @@ namespace InternshipGame.Prototype
         bool IsGrounded { get; }
         Vector3 Velocity { get; }
         bool IsSprinting { get; }
+        bool IsCrouching { get; }
         bool JumpedThisFrame { get; }
         bool LandedThisFrame { get; }
         float LandingImpactSpeed { get; }

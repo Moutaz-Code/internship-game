@@ -413,8 +413,11 @@ namespace InternshipGame.Prototype.Tests
             var displays = Object.FindObjectsByType<DesktopDisplayController>(FindObjectsInactive.Include);
             var desktopControllers = Object.FindObjectsByType<DesktopFirstPersonController>(FindObjectsInactive.Include);
             var desktopInteractors = Object.FindObjectsByType<DesktopGrabInteractor>(FindObjectsInactive.Include);
+            var throwableStimuli = Object.FindObjectsByType<ThrowableThreatStimulus>(FindObjectsInactive.Include);
+            var machineryPanels = Object.FindObjectsByType<MachineryDistractionPanel>(FindObjectsInactive.Include);
+            var motionStimuli = Object.FindObjectsByType<PlayerThreatStimulusEmitter>(FindObjectsInactive.Include);
 
-            Assert.That(Application.version, Is.EqualTo("0.2.3.0"));
+            Assert.That(Application.version, Is.EqualTo("0.3.0.0"));
             Assert.That(maps, Has.Length.EqualTo(1));
             Assert.That(sockets, Has.Length.EqualTo(8));
             Assert.That(maps[0].RodSockets.Count, Is.EqualTo(8));
@@ -433,6 +436,34 @@ namespace InternshipGame.Prototype.Tests
             Assert.That(displays, Has.Length.EqualTo(1));
             Assert.That(desktopControllers, Has.Length.EqualTo(1));
             Assert.That(desktopInteractors, Has.Length.EqualTo(1));
+            Assert.That(throwableStimuli, Has.Length.EqualTo(9));
+            Assert.That(machineryPanels, Has.Length.EqualTo(3));
+            Assert.That(motionStimuli, Has.Length.EqualTo(1));
+            foreach (var throwable in throwableStimuli)
+            {
+                Assert.That(throwable.GetComponent<ProceduralSpatialAudio>(), Is.Not.Null);
+                Assert.That(throwable.GetComponent<AudioSource>().spatialBlend, Is.EqualTo(1f));
+            }
+
+            var resetProp = throwableStimuli[0];
+            var resetSpawn = resetProp.transform.position;
+            resetProp.GetComponent<Rigidbody>().position = resetSpawn + Vector3.up * 3f;
+            resetProp.OnRunReset();
+            Assert.That(
+                resetProp.transform.position,
+                Is.EqualTo(resetSpawn).Using(Vector3ComparerWithEqualsOperator.Instance));
+
+            foreach (var panel in machineryPanels)
+            {
+                Assert.That(panel.InteractionPrompt, Is.EqualTo(MachineryDistractionPanel.Prompt));
+                Assert.That(panel.Intensity, Is.EqualTo(0.75f).Within(0.001f));
+                Assert.That(panel.Radius, Is.EqualTo(18f).Within(0.001f));
+                Assert.That(panel.ActiveSeconds, Is.EqualTo(2.5f).Within(0.001f));
+                Assert.That(panel.CooldownSeconds, Is.EqualTo(25f).Within(0.001f));
+                Assert.That(panel.GetComponent<AudioSource>().spatialBlend, Is.EqualTo(1f));
+                panel.OnRunReset();
+                Assert.That(panel.IsReady, Is.True);
+            }
             Assert.That(desktopControllers[0].GetComponent<CharacterController>().height, Is.EqualTo(1.75f).Within(0.01f));
             Assert.That(desktopInteractors[0].InteractionDistance, Is.GreaterThanOrEqualTo(3.5f));
             Assert.That(desktopInteractors[0].TargetAssistRadius, Is.GreaterThanOrEqualTo(0.24f));
@@ -442,6 +473,8 @@ namespace InternshipGame.Prototype.Tests
             Assert.That(owls[0].HuntSpeed, Is.GreaterThan(3.2f));
             Assert.That(owls[0].HuntSpeed, Is.LessThan(3.2f * 1.65f));
             Assert.That(owls[0].PerceptionIntervalSeconds, Is.LessThanOrEqualTo(0.1f));
+            Assert.That(owls[0].HearingThreshold, Is.EqualTo(0.15f).Within(0.0001f));
+            Assert.That(owls[0].ConfirmationThreshold, Is.EqualTo(1f).Within(0.0001f));
             Assert.That(owls[0].IsRouteAdaptationEnabled, Is.True);
             Assert.That(owls[0].StatusLabel, Does.Contain("Adapt: ON"));
             owls[0].SetRouteAdaptationEnabled(false);

@@ -52,6 +52,7 @@ namespace InternshipGame.Prototype
         public const string ThreatPulse = "threat.pulse";
         public const string WatcherReveal = "watcher.reveal";
         public const string OwlWarning = "owl.warning";
+        public const string OwlInvestigation = "owl.investigation";
         public const string OwlDetected = "owl.detected";
         public const string OwlProximity = "owl.proximity";
         public const string OwlCaught = "owl.caught";

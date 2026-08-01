@@ -35,6 +35,16 @@ namespace InternshipGame.Prototype
         [SerializeField, Min(0f)] private float localSearchProbeRadius = 3.25f;
         [SerializeField, Min(1f)] private float proximityCueDistance = 8f;
 
+        [Header("V030 Readable Stealth")]
+        [SerializeField, Min(0f)] private float concealedDecayPerSecond = 1f;
+        [SerializeField, Min(0f)] private float noticeableQuietGainPerSecond = 0.45f;
+        [SerializeField, Min(0f)] private float noticeableMovingGainPerSecond = 0.65f;
+        [SerializeField, Min(0f)] private float exposedGainPerSecond = 1.35f;
+        [SerializeField, Min(1f)] private float sprintGainMultiplier = 1.35f;
+        [SerializeField, Range(0.01f, 1f)] private float visualConfirmationThreshold = 1f;
+        [SerializeField, Min(0f)] private float nearlyStillSpeed = 0.12f;
+        [SerializeField, Range(0f, 1f)] private float hearingThreshold = ThreatHearingPolicy.DefaultThreshold;
+
         [Header("PT2 Route Adaptation")]
         [SerializeField] private bool routeAdaptationEnabled = true;
         [SerializeField, Min(0.01f)] private float directEvidenceWeight = 1f;
@@ -57,6 +67,7 @@ namespace InternshipGame.Prototype
         [SerializeField, Range(0.1f, 1f)] private float counterAdaptedSearchDurationMultiplier = 0.8f;
 
         private PursuitThreatStateMachine stateMachine;
+        private VisualConfirmationModel visualConfirmationModel;
         private ThreatPressureModel pressureModel;
         private IPlayerContext playerContext;
         private IPlayerMotionSource playerMotion;
@@ -66,6 +77,7 @@ namespace InternshipGame.Prototype
         private Quaternion spawnRotation;
         private Vector3 lastKnownPlayerPosition;
         private float nextProximityCueTime;
+        private float nextInvestigationCueTime;
         private float activeRunElapsed;
         private bool runActive;
         private OwlBehaviorProfile behaviorProfile = OwlBehaviorProfile.PatrolPressure;
@@ -75,6 +87,20 @@ namespace InternshipGame.Prototype
         private int searchProbeIndex;
         private Vector3 currentSearchTarget;
         private int visibleSampleCount;
+        private float lastPerceptionSampleTime;
+        private Vector3 currentVisualPosition;
+        private Vector3 lastConfirmedVisualPosition;
+        private float lastConfirmedVisualTime = float.NegativeInfinity;
+        private bool hasLastConfirmedVisual;
+        private Vector3 acceptedSoundPosition;
+        private float acceptedSoundTime = float.NegativeInfinity;
+        private bool hasAcceptedSound;
+        private ThreatStimulusKind lastStimulusKind;
+        private float lastStimulusEvaluatedStrength;
+        private bool lastStimulusAccepted;
+        private string lastStimulusDecision = "none this run";
+        private ThreatKnowledgeSource knowledgeSource = ThreatKnowledgeSource.PatrolTarget;
+        private Vector3 currentKnowledgeTarget;
         private readonly RaycastHit[] sightHits = new RaycastHit[24];
 
         public PursuitThreatState CurrentState => stateMachine?.State ?? PursuitThreatState.Dormant;
@@ -89,9 +115,18 @@ namespace InternshipGame.Prototype
         public float FieldOfView => fieldOfView;
         public float HuntSpeed => huntSpeed;
         public float PerceptionIntervalSeconds => perceptionIntervalSeconds;
+        public float HearingThreshold => hearingThreshold;
+        public float ConfirmationThreshold => visualConfirmationThreshold;
+        public int VisibleSampleCount => visibleSampleCount;
+        public VisualConfirmationSnapshot VisualConfirmation => visualConfirmationModel?.Snapshot ?? default;
+        public ThreatKnowledgeSource KnowledgeSource => knowledgeSource;
+        public Vector3 CurrentKnowledgeTarget => currentKnowledgeTarget;
+        public bool LastStimulusAccepted => lastStimulusAccepted;
+        public float LastStimulusEvaluatedStrength => lastStimulusEvaluatedStrength;
         public string StatusLabel => BuildStatusLabel();
 
         private ThreatPressureModel PressureModel => pressureModel ??= CreatePressureModel();
+        private VisualConfirmationModel VisualModel => visualConfirmationModel ??= CreateVisualConfirmationModel();
 
         public void Configure(
             MonoBehaviour contextBehaviour,
@@ -124,6 +159,7 @@ namespace InternshipGame.Prototype
             ResolveDependencies();
             pressureModel = CreatePressureModel();
             pressureModel.SetAdaptationEnabled(routeAdaptationEnabled);
+            visualConfirmationModel = CreateVisualConfirmationModel();
             stateMachine = new PursuitThreatStateMachine(
                 investigationSeconds,
                 loseSightGraceSeconds,
@@ -188,15 +224,33 @@ namespace InternshipGame.Prototype
             PlayerDistance = Vector3.Distance(eyePosition, view.position);
             if (Time.time >= nextPerceptionTime)
             {
-                HasLineOfSight = CanSeePlayer(view);
+                var rawVisible = CanSeePlayer(view);
+                var sampleDelta = lastPerceptionSampleTime > 0f
+                    ? Mathf.Max(0f, Time.time - lastPerceptionSampleTime)
+                    : Mathf.Max(0.02f, perceptionIntervalSeconds);
+                lastPerceptionSampleTime = Time.time;
                 nextPerceptionTime = Time.time + Mathf.Max(0.02f, perceptionIntervalSeconds);
+                var planarSpeed = Vector3.ProjectOnPlane(playerMotion?.Velocity ?? Vector3.zero, Vector3.up).magnitude;
+                var confirmation = VisualModel.Tick(
+                    visibleSampleCount,
+                    playerMotion?.IsCrouching ?? false,
+                    planarSpeed,
+                    playerMotion?.IsSprinting ?? false,
+                    sampleDelta);
+                var pursuitContact = stateMachine.State is PursuitThreatState.Hunting or PursuitThreatState.Searching;
+                HasLineOfSight = rawVisible && (confirmation.Confirmed || pursuitContact);
                 if (HasLineOfSight)
                 {
-                    lastKnownPlayerPosition = ThreatPerceptionMath.PredictObservedPosition(
+                    currentVisualPosition = ThreatPerceptionMath.PredictObservedPosition(
                         view.position,
                         playerMotion?.Velocity ?? Vector3.zero,
                         observedLeadSeconds,
                         maximumObservedLeadDistance);
+                    lastConfirmedVisualPosition = currentVisualPosition;
+                    lastConfirmedVisualTime = Time.time;
+                    hasLastConfirmedVisual = true;
+                    hasAcceptedSound = false;
+                    lastKnownPlayerPosition = currentVisualPosition;
                 }
             }
 
@@ -224,7 +278,7 @@ namespace InternshipGame.Prototype
                 return;
             }
 
-            MoveThreat(lastKnownPlayerPosition);
+            MoveThreat(currentVisualPosition);
             EmitProximityCue();
         }
 
@@ -292,11 +346,11 @@ namespace InternshipGame.Prototype
 
             if (!preserveLastKnownPosition)
             {
-                var view = playerContext?.ViewTransform;
-                lastKnownPlayerPosition = view != null ? view.position : transform.position;
+                lastKnownPlayerPosition = spawnPosition;
             }
 
             nextProximityCueTime = 0f;
+            nextInvestigationCueTime = 0f;
             SetVisible(true);
             feedbackHub?.Send(new FeedbackSignal(
                 PrototypeFeedbackCues.OwlWarning,
@@ -326,11 +380,27 @@ namespace InternshipGame.Prototype
             HasLineOfSight = false;
             PlayerDistance = float.PositiveInfinity;
             nextProximityCueTime = 0f;
+            nextInvestigationCueTime = 0f;
             nextPerceptionTime = 0f;
             nextSearchProbeTime = 0f;
             searchProbeIndex = 0;
             currentSearchTarget = spawnPosition;
             visibleSampleCount = 0;
+            lastPerceptionSampleTime = 0f;
+            currentVisualPosition = spawnPosition;
+            lastConfirmedVisualPosition = spawnPosition;
+            lastConfirmedVisualTime = float.NegativeInfinity;
+            hasLastConfirmedVisual = false;
+            acceptedSoundPosition = spawnPosition;
+            acceptedSoundTime = float.NegativeInfinity;
+            hasAcceptedSound = false;
+            lastStimulusKind = default;
+            lastStimulusEvaluatedStrength = 0f;
+            lastStimulusAccepted = false;
+            lastStimulusDecision = "none this run";
+            knowledgeSource = ThreatKnowledgeSource.PatrolTarget;
+            currentKnowledgeTarget = spawnPosition;
+            VisualModel.Reset();
             patrolIndex = 0;
             StopFeedback();
             SetVisible(false);
@@ -346,7 +416,7 @@ namespace InternshipGame.Prototype
                 Mathf.Max(0f, Time.time)));
             // First pickup activates the encounter, but an unheard pickup does not
             // grant the Owl the player's exact hidden position.
-            if (PressureModel.LastStimulusStrength <= 0f)
+            if (!lastStimulusAccepted)
             {
                 lastKnownPlayerPosition = spawnPosition;
             }
@@ -374,6 +444,16 @@ namespace InternshipGame.Prototype
             var model = PressureModel;
             model.SetThreatPosition(transform.position);
             model.ReportStimulus(stimulus);
+            var hearing = ThreatHearingPolicy.Evaluate(
+                stimulus,
+                transform.position,
+                hearingThreshold);
+            lastStimulusKind = stimulus.Kind;
+            lastStimulusEvaluatedStrength = hearing.EvaluatedStrength;
+            lastStimulusAccepted = hearing.Accepted;
+            lastStimulusDecision = hearing.Accepted
+                ? $"accepted at {hearing.EvaluatedStrength:0.00} (threshold {hearing.Threshold:0.00})"
+                : $"rejected: {hearing.RejectionReason} ({hearing.EvaluatedStrength:0.00} < {hearing.Threshold:0.00})";
 
             var previousAdaptationState = model.Adaptation.State;
             var routeEvidenceRecorded = ThreatRouteEvidencePolicy.TryRecordInferredStimulus(
@@ -388,17 +468,26 @@ namespace InternshipGame.Prototype
                 HandleRouteAdaptationChanged(previousAdaptationState, model.Adaptation.State);
             }
 
-            if (model.LastStimulusStrength <= 0f)
+            if (!hearing.Accepted)
             {
                 return;
             }
 
-            lastKnownPlayerPosition = stimulus.Position;
-            if (stateMachine?.State == PursuitThreatState.Patrolling)
+            acceptedSoundPosition = stimulus.Position;
+            acceptedSoundTime = Time.time;
+            hasAcceptedSound = true;
+            if (!HasLineOfSight)
             {
-                stateMachine.Investigate();
+                lastKnownPlayerPosition = acceptedSoundPosition;
+                EmitInvestigationCue();
             }
 
+            var previousState = stateMachine?.State ?? PursuitThreatState.Dormant;
+            stateMachine?.Investigate();
+            if (stateMachine != null && previousState != stateMachine.State)
+            {
+                HandleStateChanged(previousState, stateMachine.State);
+            }
             if (runActive && stateMachine?.State == PursuitThreatState.Dormant)
             {
                 ActivateThreat(preserveLastKnownPosition: true);
@@ -407,21 +496,52 @@ namespace InternshipGame.Prototype
 
         private void MoveThreat(Vector3 currentPlayerPosition)
         {
+            if (stateMachine.State is PursuitThreatState.Investigating or PursuitThreatState.Searching)
+            {
+                if (hasAcceptedSound && HasReachedKnowledgePosition(acceptedSoundPosition))
+                {
+                    hasAcceptedSound = false;
+                }
+                else if (!hasAcceptedSound && hasLastConfirmedVisual &&
+                         HasReachedKnowledgePosition(lastConfirmedVisualPosition))
+                {
+                    hasLastConfirmedVisual = false;
+                }
+            }
+
             var patrolTarget = stateMachine.State == PursuitThreatState.Patrolling
                 ? GetPatrolTarget()
                 : spawnPosition;
-            var searchReference = lastKnownPlayerPosition;
+            var searchReference = hasAcceptedSound
+                ? acceptedSoundPosition
+                : hasLastConfirmedVisual
+                    ? lastConfirmedVisualPosition
+                    : lastKnownPlayerPosition;
+            var hasLocalSearchProbe = false;
+            var localSearchTarget = searchReference;
             if (stateMachine.State == PursuitThreatState.Searching)
             {
-                searchReference = GetAdaptiveSearchReference(lastKnownPlayerPosition);
-                searchReference = GetLocalSearchTarget(searchReference);
+                searchReference = GetAdaptiveSearchReference(searchReference);
+                localSearchTarget = GetLocalSearchTarget(searchReference);
+                hasLocalSearchProbe = true;
             }
 
-            var pursuitTarget = ThreatTargetPolicy.SelectMovementTarget(
-                stateMachine.State,
+            var decision = ThreatKnowledgePolicy.Select(
+                HasLineOfSight,
                 currentPlayerPosition,
-                searchReference,
+                hasAcceptedSound,
+                acceptedSoundPosition,
+                hasLastConfirmedVisual,
+                lastConfirmedVisualPosition,
+                hasLocalSearchProbe,
+                localSearchTarget,
                 patrolTarget);
+            knowledgeSource = decision.Source;
+            currentKnowledgeTarget = decision.Position;
+            lastKnownPlayerPosition = decision.Position;
+            var pursuitTarget = stateMachine.State == PursuitThreatState.Patrolling
+                ? patrolTarget
+                : decision.Position;
             var targetPoint = route != null
                 ? route.GetNextPointToward(transform.position, pursuitTarget)
                 : pursuitTarget;
@@ -459,6 +579,12 @@ namespace InternshipGame.Prototype
             {
                 transform.Rotate(0f, 35f * Time.deltaTime, 0f, Space.World);
             }
+        }
+
+        private bool HasReachedKnowledgePosition(Vector3 position)
+        {
+            var offset = Vector3.ProjectOnPlane(position - transform.position, Vector3.up);
+            return offset.sqrMagnitude <= 0.49f;
         }
 
         internal bool CanSeePlayer(Transform view)
@@ -538,6 +664,12 @@ namespace InternshipGame.Prototype
                 nextSearchProbeTime = Time.time + 0.75f;
                 searchProbeIndex = 0;
             }
+            else if (current == PursuitThreatState.Patrolling)
+            {
+                hasAcceptedSound = false;
+                hasLastConfirmedVisual = false;
+                knowledgeSource = ThreatKnowledgeSource.PatrolTarget;
+            }
 
             if (current == PursuitThreatState.Hunting)
             {
@@ -587,6 +719,22 @@ namespace InternshipGame.Prototype
             nextProximityCueTime = Time.time + Mathf.Lerp(1.25f, 0.35f, intensity);
         }
 
+        private void EmitInvestigationCue()
+        {
+            if (feedbackHub == null || Time.time < nextInvestigationCueTime)
+            {
+                return;
+            }
+
+            feedbackHub.Send(new FeedbackSignal(
+                PrototypeFeedbackCues.OwlInvestigation,
+                FeedbackCommand.Pulse,
+                FeedbackChannel.Audio,
+                0.42f,
+                0.42f));
+            nextInvestigationCueTime = Time.time + 1.25f;
+        }
+
         private void StopFeedback()
         {
             feedbackHub?.Send(new FeedbackSignal(
@@ -595,6 +743,10 @@ namespace InternshipGame.Prototype
                 FeedbackChannel.Visual));
             feedbackHub?.Send(new FeedbackSignal(
                 PrototypeFeedbackCues.OwlWarning,
+                FeedbackCommand.Stop,
+                FeedbackChannel.Audio));
+            feedbackHub?.Send(new FeedbackSignal(
+                PrototypeFeedbackCues.OwlInvestigation,
                 FeedbackCommand.Stop,
                 FeedbackChannel.Audio));
             feedbackHub?.Send(new FeedbackSignal(
@@ -639,6 +791,18 @@ namespace InternshipGame.Prototype
                 Mathf.Max(0f, counterAdaptedDurationSeconds),
                 Mathf.Max(1, maximumConsecutiveBiasedSelections));
             return new ThreatPressureModel(tuning);
+        }
+
+        private VisualConfirmationModel CreateVisualConfirmationModel()
+        {
+            return new VisualConfirmationModel(new VisualConfirmationTuning(
+                Mathf.Max(0f, concealedDecayPerSecond),
+                Mathf.Max(0f, noticeableQuietGainPerSecond),
+                Mathf.Max(0f, noticeableMovingGainPerSecond),
+                Mathf.Max(0f, exposedGainPerSecond),
+                Mathf.Max(1f, sprintGainMultiplier),
+                Mathf.Clamp(visualConfirmationThreshold, 0.01f, 1f),
+                Mathf.Max(0f, nearlyStillSpeed)));
         }
 
         private float GetSearchDurationMultiplier()
@@ -708,10 +872,25 @@ namespace InternshipGame.Prototype
                 ? $" | opening {adaptation.CounterAdaptedSecondsRemaining:0.0}s"
                 : string.Empty;
             var tuning = PressureModel.RouteTuning;
+            var visual = VisualModel.Snapshot;
+            var visualAge = float.IsNegativeInfinity(lastConfirmedVisualTime)
+                ? "never"
+                : $"{Mathf.Max(0f, Time.time - lastConfirmedVisualTime):0.0}s";
+            var soundAge = float.IsNegativeInfinity(acceptedSoundTime)
+                ? "never"
+                : $"{Mathf.Max(0f, Time.time - acceptedSoundTime):0.0}s";
+            var stimulusLine = lastStimulusDecision == "none this run"
+                ? "Stimulus: none this run"
+                : $"Stimulus: {lastStimulusKind} {lastStimulusDecision}";
 
             return
                 $"Owl: {CurrentState} | LOS {(HasLineOfSight ? "YES" : "no")} | {PlayerDistance:0.0}m | pressure {Pressure.TotalPressure:0.00}\n" +
-                $"Vision: {viewDistance:0}m/{fieldOfView:0}deg | visible samples {visibleSampleCount}/3 | sample {perceptionIntervalSeconds * 1000f:0}ms | speeds {investigateSpeed:0.0}/{huntSpeed:0.0}/{searchSpeed:0.0}\n" +
+                $"Vision: {visual.Exposure} {visibleSampleCount}/3 | confirm {visual.Confirmation:0.00}/{visualConfirmationThreshold:0.00} @ {visual.RatePerSecond:+0.00;-0.00;0.00}/s | contact {(HasLineOfSight ? "actionable" : "unconfirmed/none")}\n" +
+                $"Perception: {viewDistance:0}m/{fieldOfView:0}deg | sample {perceptionIntervalSeconds * 1000f:0}ms | threshold hear {hearingThreshold:0.00} route {inferredEvidenceMinimumStrength:0.00}\n" +
+                stimulusLine + "\n" +
+                $"Knowledge: {knowledgeSource} -> ({currentKnowledgeTarget.x:0.0},{currentKnowledgeTarget.z:0.0}) | sight outranks sound\n" +
+                $"Memory: visual {visualAge} ({lastConfirmedVisualPosition.x:0.0},{lastConfirmedVisualPosition.z:0.0}) | sound {soundAge} ({acceptedSoundPosition.x:0.0},{acceptedSoundPosition.z:0.0})\n" +
+                $"Speeds: investigate {investigateSpeed:0.0} hunt {huntSpeed:0.0} search {searchSpeed:0.0}\n" +
                 $"Adapt: {(adaptation.Enabled ? "ON" : "OFF")} {adaptation.State} | W {adaptation.WestConfidence:0.00} C {adaptation.CentralConfidence:0.00} E {adaptation.EastConfidence:0.00} | dom {adaptation.DominantWing}\n" +
                 evidenceLine + "\n" +
                 $"Timing: bias {adaptation.BiasSecondsRemaining:0.0}s | decay in {adaptation.SecondsUntilDecay:0.0}s{counterTiming}\n" +
@@ -731,7 +910,7 @@ namespace InternshipGame.Prototype
             };
             var view = playerContext?.ViewTransform;
             var threatIsActive = stateMachine != null && IsActiveState(stateMachine.State);
-            var hasLineOfSight = view != null && threatIsActive && CanSeePlayer(view);
+            var hasLineOfSight = view != null && threatIsActive && HasLineOfSight;
             var previousAdaptationState = PressureModel.Adaptation.State;
             var routeEvidenceRecorded = ThreatRouteEvidencePolicy.TryRecordDirectObservation(
                 PressureModel,

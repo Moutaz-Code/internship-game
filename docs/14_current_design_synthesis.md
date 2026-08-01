@@ -1,8 +1,8 @@
 # Current Design Synthesis
 
-Last updated: 2026-07-22
+Last updated: 2026-08-01
 
-Sources: approved pitch/business case, Offline Game Design Workbook, Prototype 1 implementation, and follow-up design answers.
+Sources: approved pitch/business case, Offline Game Design Workbook, Prototype 1 and Prototype 2 implementation evidence, and follow-up design answers.
 
 ## Current Design Direction
 
@@ -62,7 +62,7 @@ A paid 20-minute session should not end instantly because of one capture. Close 
 - Every contract centers on an intelligent adaptive entity; disasters and hazards are secondary dangers.
 - Entity memory lasts for one run. One use creates suspicion and two repeated uses permit adaptation.
 - Direct observation matters more than inferred evidence.
-- The first three adaptation signals are route repetition, hiding repetition, and distraction/stun reliance; Prototype 1 validates route repetition first.
+- The first three adaptation signals are route repetition, hiding repetition, and distraction/stun reliance; Prototype 2 implemented route repetition first.
 - Tactical variety weakens entity confidence, while repetition strengthens it.
 - Adaptation is communicated diegetically through animation, routes, and changed responses; no player-facing notification is used.
 - Entities may bluff, and an invisible pacing director may create believable back-off windows.
@@ -104,18 +104,16 @@ A paid 20-minute session should not end instantly because of one capture. Close 
 - Loadout/preparation choices: deferred as a later replayability layer.
 - Persistent progression: not part of the current MLP.
 
-## Prototype 1 Reality
+## Current Implementation Reality
 
-Prototype 1 has approximately 90% of its intended feature skeleton implemented. It includes rudimentary movement, a threat, and the fuel-rod objective, plus broader authored-facility, variation, feedback, and delivery infrastructure documented in the prototype log.
+The current local build is `v0.2.3.0`. It includes the complete multi-rod extraction loop, deterministic authored variation, readable route adaptation, desktop carrying and throwing, crouch and lean, pickup assistance, fitted portal geometry, room-specific greybox treatment, and a more capable cover-respecting Owl.
 
-This is a strong technical starting point, but it is not design validation. The current build still needs human evidence for:
+Automated evidence is strong: the latest reported local gate passed 111 Edit Mode tests, 6 Play Mode tests, a strict Windows build, and a 20-second smoke test. This is not complete design validation. The current build still needs human evidence for:
 
 - objective comprehension,
 - 15-20 minute pacing,
 - route planning,
 - threat fairness and intelligence,
-- capture recovery,
-- immediate mistake feedback,
 - replay desire.
 
 Desktop tests can answer those questions provisionally. They cannot prove VR comfort, XR interaction quality, or physical hardware value.
@@ -130,30 +128,32 @@ Desktop tests can answer those questions provisionally. They cannot prove VR com
 
 ## Decisions Still Needed
 
-These decisions are parked until the PT2 gate unless the user explicitly redirects scope.
+These decisions remain active design backlog. PT2 feature expansion is closed; only evidence-driven tuning or release-blocking defects should reopen it. `v0.3.0.0` is separately authorized by `33_v0_3_0_0_readable_stealth_scope.md` and must not absorb the other backlog families.
 
 1. Define the exact equipment-reboot and Owl-nest escape interactions.
 2. Define the exact non-adaptation penalty added after the second capture.
 3. Choose the authored carried-item scatter rule.
-4. Define the exact immediate invalid-rod consequence.
-5. Confirm target headset, runtime, play-space, and venue operator flow.
-6. Inventory available haptic and sensor devices, SDKs, owners, and access dates.
-7. Decide which Owl counterplays must ship in the MLP after observing baseline play.
-8. Tune and validate the bounded route-family adaptation experiment in `20_owl_adaptation_v1_spec.md`.
-9. Later, define the critical player behavior or affordance entities must never counter.
-10. Define the physical two-to-three-item selection and holster model on target VR hardware.
-11. Define diegetic player-noise feedback and exact graded-visibility thresholds.
-12. Define the electrical probe's safe VR interaction, stun duration, and failure feedback.
-13. Prototype ventilation/radiation control and movable cover separately before committing either.
-14. Keep heart-rate stealth and trained-model AI as future R&D until their respective gates can be tested.
-15. Select a non-adaptation second-capture penalty.
-16. Decide whether optional staging-cart Variant B deserves a prototype.
-17. Choose one primary and one secondary ventilation/radiation effect while preserving unique Heat, Wind, and Geiger meanings.
+4. Confirm target headset, runtime, play-space, and venue operator flow.
+5. Inventory available haptic and sensor devices, SDKs, owners, and access dates.
+6. Close PT2 route-adaptation validation with uninformed human evidence.
+7. Validate and tune the approved v0.3 visibility, movement-noise, hiding, and distraction inputs.
+8. Validate full cover plus quiet relocation as the protected player affordance.
+9. Define the physical two-to-three-item selection and holster model on target VR hardware.
+10. Validate the approved diegetic noise feedback and graded-visibility thresholds before adding another information channel.
+11. Define the electrical probe's safe VR interaction, stun duration, and failure feedback.
+12. Prototype ventilation/radiation control and movable cover separately before committing either.
+13. Keep heart-rate stealth and trained-model AI as future R&D until their respective gates can be tested.
+14. Decide whether optional staging-cart Variant B deserves a prototype.
+15. Choose one primary and one secondary ventilation/radiation effect while preserving unique Heat, Wind, and Geiger meanings.
 
 ## Next Validation Target
 
-Prototype 2 should answer:
+Prototype 2 still needs to answer through human observation in parallel:
 
 > Does the Owl appear to notice repeated route-family use, become suspicious after one credible observation, adapt after two, and encourage the player to vary routes without feeling omniscient or making any route unusable?
 
-Follow `24_prototype_02_scope.md`. Do not add capture recovery, new player tools, environmental systems, heart rate, hardware, or learned AI until this question has evidence.
+PT2 implementation remains feature-frozen. The active implementation target is `v0.3.0.0` Readable Stealth and Contractor Counterplay:
+
+> Can uninformed players deliberately manage graded visibility, movement noise, spatial hiding, and improvised distractions, and correctly explain whether the Owl acted on current sight, an accepted sound, or last credible evidence without a stealth meter?
+
+The authoritative scope is `33_v0_3_0_0_readable_stealth_scope.md`; the implementation handoff is `34_v0_3_0_0_implementation_handoff.md`; human evidence belongs in `35_v0_3_0_0_human_validation_sheet.md`.

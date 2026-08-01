@@ -34,8 +34,33 @@ namespace InternshipGame.Prototype
         Sprint,
         JumpLanding,
         DroppedProp,
+        Machinery,
         RodRejected,
         ObjectiveProgress,
+    }
+
+    public enum VisualExposureState
+    {
+        Concealed,
+        Noticeable,
+        Exposed,
+    }
+
+    public enum MovementNoiseBand
+    {
+        Still,
+        Crouch,
+        Walk,
+        Sprint,
+    }
+
+    public enum ThreatKnowledgeSource
+    {
+        PatrolTarget,
+        LocalSearchProbe,
+        LastConfirmedVisual,
+        AcceptedSound,
+        ConfirmedCurrentVisual,
     }
 
     public enum ThreatWing
@@ -60,6 +85,7 @@ namespace InternshipGame.Prototype
         Sprint,
         JumpLanding,
         DroppedProp,
+        Machinery,
         RodRejected,
         ObjectiveProgress,
     }

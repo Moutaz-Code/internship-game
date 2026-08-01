@@ -13,6 +13,7 @@ Builds/
 .cache/
 
 docs/.obsidian/
+/Game Videos/
 
 # Unity-generated state (project source and Packages remain tracked).
 UnityProject/InternshipGameSynced/[Ll]ibrary/

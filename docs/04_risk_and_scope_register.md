@@ -1,6 +1,6 @@
 # Risk and Scope Register
 
-Last updated: 2026-07-22
+Last updated: 2026-08-01
 
 Risk ratings:
 
@@ -37,6 +37,10 @@ Risk ratings:
 | R-023 | A visual stealth indicator causes tunneling, vection, eye strain, or horror readability problems. | High | Medium | Testers report discomfort, mistake the effect for damage, or cannot read the environment. | Reduce | Keep indicators optional and subtle, prefer world/tool/controller cues, avoid moving screen-space distortion, and comfort-test every visual treatment. |
 | R-024 | An objective cart collapses the repeated transport loop or creates physics and navigation problems. | High | Medium | Players move all rods in one trip, block corridors, trap the Owl, lose the cart, or spend the run wrestling physics. | Defer | Keep the no-cart loop authoritative; test an optional low-capacity noisy cart separately with constrained routes and clean reset. |
 | R-025 | Late-week scope leakage prevents Prototype 2 from producing a testable result. | High | High | Work begins on capture recovery, new tools, carts, biofeedback, learned AI, or environment systems before route adaptation passes its gate. | Avoid | Treat `24_prototype_02_scope.md` as the authority through 2026-07-24; preserve outside work but mark it Deferred and do not integrate it into PT2. |
+| R-026 | Stale agent handoffs or repository assumptions cause work against the wrong build or scope. | High | High | A new agent cites expired sprint dates, assumes local work is published, treats exploratory PT3 notes as implementation authority, or reopens PT2 feature work. | Reduce | Begin transfers with `git status`, `28_game_design_agent_continuity.md`, current prototype evidence, and the active versioned brief; for v0.3 use documents 33-35 rather than older exploratory wording. |
+| R-027 | A substantial `v0.3.0.0` exceeds its two-day implementation window and arrives as many unverified parts. | High | High | Content multiplication begins before perception priority, reset, focused tests, and one complete interaction are green. | Reduce | Follow `33_v0_3_0_0_readable_stealth_scope.md` task order and cut extra panel polish, extra props, and visual variants before any fairness law, test, reset, or build gate. |
+| R-028 | Sound makes the Owl feel remotely controlled or omniscient because every nonzero stimulus replaces more credible knowledge. | High | High | Below-threshold sounds trigger investigation, throws redirect active visual pursuit, or telemetry cannot state why the target changed. | Reduce | Apply one evaluated hearing threshold, make confirmed sight outrank sound, store distinct last-seen/last-heard evidence, and test every target-source transition. |
+| R-029 | Desktop stealth evidence is overclaimed as proof of VR crouch, throwing, spatial audio, comfort, or safety. | High | High | Stakeholder reports omit platform limits or copy desktop posture/view behavior directly into XR. | Avoid | Keep controller-independent motion/perception seams, label desktop evidence, and retain explicit headset and hardware validation gates. |
 
 ## Scope Guardrails
 

@@ -2,7 +2,7 @@
 
 Status: Active project protocol
 
-Last updated: 2026-07-22
+Last updated: 2026-08-01
 
 ## Purpose
 
@@ -13,14 +13,14 @@ Another AI agent actively reads project documents and implements the game. This 
 When documents disagree, use this order:
 
 1. The newest explicit user instruction.
-2. `24_prototype_02_scope.md` for current PT2 implementation.
-3. `25_prototype_02_agent_handoff.md` for PT2 task order.
-4. Active entries in `05_decision_log.md`.
-5. The current contract spec in `09_first_playable_spec.md`.
-6. Current architecture constraints in `10_technical_architecture_outline.md`.
-7. Prototype evidence in `06_prototype_log.md`.
+2. The newest explicitly approved version-oriented implementation brief.
+3. Active entries in `05_decision_log.md`.
+4. The current contract spec in `09_first_playable_spec.md`.
+5. Current architecture constraints in `10_technical_architecture_outline.md`.
+6. Prototype evidence in `06_prototype_log.md`.
+7. Historical prototype scopes, including `24_prototype_02_scope.md` and `25_prototype_02_agent_handoff.md`.
 8. Broader sprint plans, design synthesis, and framework documents.
-9. Workbooks, examples, parking-lot ideas, and historical documents.
+9. Workbooks, examples, parking-lot ideas, and internal game-design workspaces.
 
 Escalate a conflict instead of choosing the most expansive interpretation.
 
@@ -37,28 +37,34 @@ Escalate a conflict instead of choosing the most expansive interpretation.
 
 ## Current Authorized Implementation Scope
 
-Prototype 2 / PT2 Readable Route Adaptation is the active implementation scope through the 2026-07-24 gate.
+`v0.3.0.0` Readable Stealth and Contractor Counterplay is authorized by `33_v0_3_0_0_readable_stealth_scope.md`. Use `34_v0_3_0_0_implementation_handoff.md` for task order and `35_v0_3_0_0_human_validation_sheet.md` for person-led evidence.
 
-Authorized:
+Current implementation baseline:
 
-- run-only West/Central/East route evidence,
-- Direct and Inferred evidence hierarchy,
-- Uncertain, Suspicious, Adapted, and Counter-Adapted state,
-- capped patrol/search expression,
-- route-variety confidence reduction,
-- F1 operator telemetry,
-- F3 adaptation comparison toggle,
-- focused tests, regression, build smoke test, and human evidence.
+- `v0.2.3.0` contains the implemented Prototype 2 route-adaptation experiment plus later user-directed desktop embodiment, portal, pickup, presentation, and Owl-perception increments.
+- The 2026-07-28 repository audit found that implementation published on `master` at commit `0636f5d`, with separate documentation/OpenXR-related working-tree changes still present.
+- Preserve both the published baseline and unrelated local work. Do not revert, re-version, commit, or publish new changes without explicit user instruction.
+- PT2 may receive evidence-driven tuning or release-blocking defect fixes only when the user explicitly requests them.
 
-Authoritative files:
+Dedicated replacement-agent onboarding and operating details are in `implementation_agent/README.md`.
+
+Historical PT2 authority:
 
 - `24_prototype_02_scope.md`,
 - `25_prototype_02_agent_handoff.md`,
-- `26_clickup_prototype_02_paste.md` for task creation.
+- `26_clickup_prototype_02_paste.md`.
+
+These files explain the original experiment but no longer authorize new PT2 feature work.
+
+Current implementation:
+
+- Implement only the explicitly approved `v0.3.0.0` brief and newer direct user instructions.
+- `31_pt3_design_workspace.md` remains an internal design record; it is not the implementation feature list.
+- Use only the `v{x}.{y}.{z}.{w}` scheme in `27_development_versioning.md` for code, builds, commits, and implementation reports.
 
 The proof-contract content remains:
 
-The current implementation target is one proof contract:
+The current implemented proof contract is:
 
 - post-apocalyptic nuclear facility,
 - identify and transport three live fuel rods,
@@ -66,7 +72,7 @@ The current implementation target is one proof contract:
 - seeded authored variation,
 - extraction holdout and exit.
 
-Do not implement a second mission, second entity, unrestricted mission generator, persistent progression, loadout economy, or generalized content framework beyond the smallest interfaces needed by PT2.
+Do not implement a second mission, second entity, unrestricted mission generator, persistent progression, loadout economy, or generalized content framework without a future approved version brief.
 
 ## Before Implementing A Design Change
 
@@ -95,9 +101,9 @@ If an open question changes player-facing behavior, stop and request a decision.
 
 ## Deferred Capture Handoff
 
-The capture direction below remains valid design context but is not PT2 implementation authority. Do not implement or expand capture recovery before the PT2 gate unless the user explicitly redirects scope.
+The capture direction below remains valid design context but is not implementation authority for `v0.3.0.0`. Wait for a later explicitly approved version brief before implementing capture recovery.
 
-Approved for Prototype 1 testing:
+Approved design direction for future prototype testing:
 
 - Owl attack causes unconsciousness through a VR-safe fade/audio transition.
 - No direct or graphic feeding depiction.
@@ -139,11 +145,11 @@ Approved game-wide behavior:
 - Bluffing is allowed, but may not use hidden exact player location.
 - A pacing director may create believable back-off windows.
 
-Authorized in PT2:
+Implemented PT2 baseline:
 
-- Implement and validate route-family adaptation only, as frozen in `24_prototype_02_scope.md`.
+- Route-family adaptation was implemented and automatically validated. Human design validation remains.
 
-Not authorized in PT2 without explicit scope redirection:
+Not automatically authorized for the next version:
 
 - hiding-pattern learning,
 - distraction/stun-reliance learning,
@@ -161,9 +167,9 @@ Not authorized in PT2 without explicit scope redirection:
 
 Still unresolved:
 
-- exact confidence and evidence weights,
-- exact decay values,
 - the player behavior or critical affordance entities must never counter.
+
+The current implemented route-confidence and decay values are recorded in `06_prototype_log.md` and the PT2 historical scope. Any future adaptation family requires its own tuning and evidence gate.
 
 ## Player-Tactics Direction
 

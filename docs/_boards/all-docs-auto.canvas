@@ -262,11 +262,173 @@
       "height": 1600
     },
     {
+      "id": "file-cb3e6958d661",
+      "type": "file",
+      "file": "27_development_versioning.md",
+      "x": 0,
+      "y": 23780,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-f985cc24f271",
+      "type": "file",
+      "file": "28_game_design_agent_continuity.md",
+      "x": 780,
+      "y": 23780,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-05a0082c851e",
+      "type": "file",
+      "file": "29_game_design_agent_onboarding_prompt.md",
+      "x": 0,
+      "y": 25460,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-1b442b3489a4",
+      "type": "file",
+      "file": "30_game_design_agent_transfer_checklist.md",
+      "x": 780,
+      "y": 25460,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-6e0eb10158d0",
+      "type": "file",
+      "file": "31_pt3_design_workspace.md",
+      "x": 0,
+      "y": 27140,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-b745e358ccf7",
+      "type": "file",
+      "file": "32_pt2_human_validation_sheet.md",
+      "x": 780,
+      "y": 27140,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-222ac840319f",
+      "type": "file",
+      "file": "33_v0_3_0_0_readable_stealth_scope.md",
+      "x": 0,
+      "y": 28820,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-089cc0dca0c0",
+      "type": "file",
+      "file": "34_v0_3_0_0_implementation_handoff.md",
+      "x": 780,
+      "y": 28820,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-6374ac06a4f5",
+      "type": "file",
+      "file": "35_v0_3_0_0_human_validation_sheet.md",
+      "x": 0,
+      "y": 30500,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-74b996bb91e3",
+      "type": "file",
+      "file": "36_v0_3_0_0_implementation_prompt.md",
+      "x": 780,
+      "y": 30500,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-2da8e2d32288",
+      "type": "file",
+      "file": "implementation_agent/00_onboarding_prompt.md",
+      "x": 0,
+      "y": 32180,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-0d97d2fe4d88",
+      "type": "file",
+      "file": "implementation_agent/01_authority_and_scope.md",
+      "x": 780,
+      "y": 32180,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-69cf587aca60",
+      "type": "file",
+      "file": "implementation_agent/02_current_implementation_state.md",
+      "x": 0,
+      "y": 33860,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-eb7100dea3fd",
+      "type": "file",
+      "file": "implementation_agent/03_system_ownership_map.md",
+      "x": 780,
+      "y": 33860,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-1b5dfbdcfa21",
+      "type": "file",
+      "file": "implementation_agent/04_operating_and_validation_procedure.md",
+      "x": 0,
+      "y": 35540,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-ffd351080ff4",
+      "type": "file",
+      "file": "implementation_agent/05_predecessor_work_and_history.md",
+      "x": 780,
+      "y": 35540,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-4aabfc4f4984",
+      "type": "file",
+      "file": "implementation_agent/06_human_validation_and_known_risks.md",
+      "x": 0,
+      "y": 37220,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-046ecfd9e552",
+      "type": "file",
+      "file": "implementation_agent/README.md",
+      "x": 780,
+      "y": 37220,
+      "width": 740,
+      "height": 1600
+    },
+    {
       "id": "file-ddb19e50258a",
       "type": "file",
       "file": "templates/weekly_stakeholder_report.md",
       "x": 0,
-      "y": 23780,
+      "y": 38900,
       "width": 740,
       "height": 1600
     }

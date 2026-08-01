@@ -7,6 +7,7 @@ namespace InternshipGame.Prototype
         ThreatPulse,
         WatcherStinger,
         OwlWarning,
+        OwlInvestigation,
         RodLive,
         RodInert,
         AssayRequired,
@@ -98,6 +99,7 @@ namespace InternshipGame.Prototype
             {
                 GeneratedAudioProfile.WatcherStinger => CreateWatcherStinger(),
                 GeneratedAudioProfile.OwlWarning => CreateOwlWarning(),
+                GeneratedAudioProfile.OwlInvestigation => CreateOwlInvestigation(),
                 GeneratedAudioProfile.RodLive => CreateToneSequence("Live Rod Confirmed", 0.72f, 310f, 620f, false),
                 GeneratedAudioProfile.RodInert => CreateToneSequence("Inert Rod Confirmed", 0.62f, 440f, 190f, false),
                 GeneratedAudioProfile.AssayRequired => CreateToneSequence("Assay Required", 0.38f, 245f, 245f, false),
@@ -216,6 +218,25 @@ namespace InternshipGame.Prototype
             }
 
             var clip = AudioClip.Create("Owl Hunt Warning", samples.Length, 1, sampleRate, false);
+            clip.SetData(samples, 0);
+            return clip;
+        }
+
+        private static AudioClip CreateOwlInvestigation()
+        {
+            const int sampleRate = 44100;
+            const float durationSeconds = 0.42f;
+            var samples = new float[Mathf.CeilToInt(sampleRate * durationSeconds)];
+            for (var i = 0; i < samples.Length; i++)
+            {
+                var normalized = i / (float)samples.Length;
+                var time = i / (float)sampleRate;
+                var envelope = Mathf.Sin(normalized * Mathf.PI) * (1f - normalized * 0.45f);
+                var tone = Mathf.Sin(2f * Mathf.PI * Mathf.Lerp(260f, 185f, normalized) * time);
+                samples[i] = tone * envelope * 0.105f;
+            }
+
+            var clip = AudioClip.Create("Owl Investigation Cue", samples.Length, 1, sampleRate, false);
             clip.SetData(samples, 0);
             return clip;
         }

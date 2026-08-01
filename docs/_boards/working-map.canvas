@@ -1,4 +1,142 @@
 {
-	"nodes":[],
-	"edges":[]
+  "nodes": [
+    {
+      "id": "v030-status",
+      "type": "text",
+      "text": "v0.3.0.0 — Readable Stealth + Contractor Counterplay\n\nApproved 2026-08-01\nDelivery gate: 2026-08-02\nv0.4.0.0 begins: 2026-08-03",
+      "x": 0,
+      "y": 0,
+      "width": 430,
+      "height": 210,
+      "color": "4"
+    },
+    {
+      "id": "v030-scope",
+      "type": "file",
+      "file": "33_v0_3_0_0_readable_stealth_scope.md",
+      "x": 500,
+      "y": -40,
+      "width": 430,
+      "height": 280,
+      "color": "4"
+    },
+    {
+      "id": "v030-handoff",
+      "type": "file",
+      "file": "34_v0_3_0_0_implementation_handoff.md",
+      "x": 1000,
+      "y": -40,
+      "width": 430,
+      "height": 280,
+      "color": "5"
+    },
+    {
+      "id": "v030-validation",
+      "type": "file",
+      "file": "35_v0_3_0_0_human_validation_sheet.md",
+      "x": 1000,
+      "y": 330,
+      "width": 430,
+      "height": 280,
+      "color": "6"
+    },
+    {
+      "id": "v030-prompt",
+      "type": "file",
+      "file": "36_v0_3_0_0_implementation_prompt.md",
+      "x": 1500,
+      "y": -40,
+      "width": 430,
+      "height": 280,
+      "color": "5"
+    },
+    {
+      "id": "pt2-validation",
+      "type": "file",
+      "file": "32_pt2_human_validation_sheet.md",
+      "x": 0,
+      "y": 330,
+      "width": 430,
+      "height": 280,
+      "color": "1"
+    },
+    {
+      "id": "v030-question",
+      "type": "text",
+      "text": "ONE QUESTION\n\nCan uninformed players manage and explain graded sight, movement sound, full-cover relocation, and portable/fixed distractions without a stealth meter?\n\nPrimary: F3 OFF\nIntegration: F3 ON",
+      "x": 500,
+      "y": 330,
+      "width": 430,
+      "height": 280,
+      "color": "3"
+    },
+    {
+      "id": "v030-cuts",
+      "type": "text",
+      "text": "TWO-DAY CUT ORDER\n\n1. Panel-ready polish\n2. Extra 3 portable props\n3. Panel visual variants\n4. Nonessential log wording\n\nNever cut priority fairness, hearing threshold, reset, tests, or build gate.",
+      "x": 500,
+      "y": 700,
+      "width": 430,
+      "height": 250,
+      "color": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-status-scope",
+      "fromNode": "v030-status",
+      "fromSide": "right",
+      "toNode": "v030-scope",
+      "toSide": "left",
+      "label": "authorizes"
+    },
+    {
+      "id": "edge-scope-handoff",
+      "fromNode": "v030-scope",
+      "fromSide": "right",
+      "toNode": "v030-handoff",
+      "toSide": "left",
+      "label": "delegates"
+    },
+    {
+      "id": "edge-handoff-validation",
+      "fromNode": "v030-handoff",
+      "fromSide": "bottom",
+      "toNode": "v030-validation",
+      "toSide": "top",
+      "label": "produces testable build"
+    },
+    {
+      "id": "edge-handoff-prompt",
+      "fromNode": "v030-handoff",
+      "fromSide": "right",
+      "toNode": "v030-prompt",
+      "toSide": "left",
+      "label": "copy-ready delegation"
+    },
+    {
+      "id": "edge-question-scope",
+      "fromNode": "v030-question",
+      "fromSide": "top",
+      "toNode": "v030-scope",
+      "toSide": "bottom",
+      "label": "bounds"
+    },
+    {
+      "id": "edge-cuts-handoff",
+      "fromNode": "v030-cuts",
+      "fromSide": "right",
+      "toNode": "v030-handoff",
+      "toSide": "bottom",
+      "label": "protects delivery"
+    },
+    {
+      "id": "edge-pt2-parallel",
+      "fromNode": "pt2-validation",
+      "fromSide": "right",
+      "toNode": "v030-question",
+      "toSide": "left",
+      "label": "separate evidence gate"
+    }
+  ]
 }

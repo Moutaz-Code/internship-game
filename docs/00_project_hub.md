@@ -1,6 +1,6 @@
 # Project Hub
 
-Last updated: 2026-07-22
+Last updated: 2026-08-01
 
 ## Project Identity
 
@@ -10,7 +10,7 @@ Client/company context: Pixoul
 
 Delivery target: 2026-08-28
 
-Current phase: Prototype 2 implementation at `v0.2.3.0`; desktop embodiment, portal accuracy, pickup usability, and fair Owl difficulty pass implemented
+Current phase: published `v0.2.3.0` remains the verified implementation baseline; Prototype 2 is feature-frozen, and the substantial two-day `v0.3.0.0` Readable Stealth and Contractor Counterplay scope is approved for implementation
 
 Current production style: prototype-heavy agile, weekly loops
 
@@ -73,26 +73,26 @@ Build a 15-20 minute single-player VR MLP that proves:
 - Shared stealth is graded, physical crouching has a controller alternative, and flashlight use trades navigation for visibility.
 - Heart rate may later influence avatar breathing/noise, but never gives an entity raw direct detection.
 - Prototype 1 uses deterministic adaptive game AI; pre-trained/model-driven strategy is post-MLP R&D.
-- Player stealth feedback uses clear breathing, optional subtle indicators, and complete operator debug telemetry.
+- For `v0.3.0.0`, player stealth feedback uses graded footsteps, accepted impact/machinery audio, restrained Owl investigation cues, and complete operator telemetry; breathing and visual stealth indicators are deferred.
 - A simulated stress slider/adapter precedes real heart-rate integration.
 - Electrical probe is the current close-range stun-tool direction.
 - The no-cart rod loop remains authoritative; a small staging cart is a separate design experiment.
 
 ## Live Questions
 
-These questions are parked and do not block PT2:
+PT2 implementation is feature-frozen. These questions guide validation, PT3 design, and later work:
 
 - Which VR headset and runtime will be used?
 - What Pixoul haptic/physical devices are available for development access?
 - Will the project be demoed in a controlled booth, arcade bay, or open VR space?
 - What is the minimum acceptable visual fidelity for the Aug 28 demo?
 - Who are the final stakeholders and demo audience?
-- Which immediate consequence should an inert or invalid rod create: time loss, noise/threat escalation, forced return, or a combination?
-- What confidence and decay values make suspicion after one use and adaptation after two readable within 15-20 minutes?
-- Which Owl animation, route change, and response best communicates route suspicion without UI?
+- Do uninformed players notice route adaptation, vary their routes, and still consider the Owl fair?
+- Which Owl behavior and presentation best communicates route suspicion without UI?
 - Which critical player behavior or affordance must entities never counter once the core verbs are stable?
 - What physical equipment/holster model remains readable with two or three items and little UI?
-- How should darkness, flashlight use, movement, noise, and emergency hiding spots combine into stealth?
+- Which `v0.3.z.w` tuning changes, if any, are supported by uninformed stealth-playtest evidence?
+- Do fixed machinery panels and portable metal remain situational alternatives rather than universal Owl control?
 - Which two or three environmental manipulation systems are worth teaching in Nuclear Recovery?
 - Which diegetic feedback lets players judge their own noise without a mandatory HUD meter?
 - What safe activation, stun duration, and failure feedback should the electrical probe use?
@@ -102,4 +102,4 @@ These questions are parked and do not block PT2:
 
 ## Next Sprint Goal
 
-By Friday 2026-07-24, complete PT2 Readable Route Adaptation: credible Direct/Inferred route evidence, Suspicious/Adapted/Counter-Adapted behavior, diegetic expression, F1 telemetry, F3 baseline comparison, focused regression, and at least two observed desktop sessions where access allows. All broader feature families remain deferred until this gate is reviewed.
+By Sunday 2026-08-02: implement, test, build, and honestly classify `v0.3.0.0` against `33_v0_3_0_0_readable_stealth_scope.md`, using route adaptation OFF for the primary stealth comparison and ON for one integration run. Preserve PT2 as feature-frozen and continue its uninformed human-validation gate in parallel. Begin the `v0.4.0.0` weekly line on 2026-08-03 rather than allowing unfinished v0.3 ideas to expand indefinitely.

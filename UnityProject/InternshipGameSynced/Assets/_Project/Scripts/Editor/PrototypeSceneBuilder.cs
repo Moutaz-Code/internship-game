@@ -179,8 +179,17 @@ namespace InternshipGame.Prototype.Editor
             geiger.Configure(runController, playerMode, rods, owl, feedbackHub, false);
 
             var motionStimuli = systems.AddComponent<PlayerThreatStimulusEmitter>();
-            motionStimuli.Configure(playerMode, desktopRig.controller, owl);
-            BuildThrowableProps(generatedRoot.transform, materials.metal, owl);
+            var footstepSource = desktopRig.root.AddComponent<AudioSource>();
+            ConfigureSpatialSource(footstepSource, 0.8f, 15f);
+            var footstepAudio = desktopRig.root.AddComponent<ProceduralSpatialAudio>();
+            footstepAudio.Configure(footstepSource);
+            motionStimuli.Configure(playerMode, desktopRig.controller, owl, footstepAudio);
+            var throwableProps = BuildThrowableProps(generatedRoot.transform, materials.metal, owl);
+            var machineryPanels = BuildMachineryPanels(
+                generatedRoot.transform,
+                materials.panel,
+                materials.amber,
+                owl);
 
             var pause = systems.AddComponent<DesktopPauseController>();
             pause.Configure(playerMode);
@@ -191,24 +200,26 @@ namespace InternshipGame.Prototype.Editor
             var biometricHub = systems.AddComponent<BiometricHub>();
             biometricHub.Configure(heartRateStub);
 
-            runController.Configure(
-                objectiveSet,
+            var runStateListeners = new List<MonoBehaviour>
+            {
                 coordinator,
                 rack,
                 exit,
                 owl,
                 geiger,
                 motionStimuli,
-                feedbackHub);
+                feedbackHub,
+            };
+            runStateListeners.AddRange(throwableProps);
+            runStateListeners.AddRange(machineryPanels);
+            runController.Configure(objectiveSet, runStateListeners.ToArray());
 
             var runInput = systems.AddComponent<PrototypeRunInput>();
             runInput.Configure(runController);
 
             var hud = systems.AddComponent<PrototypeHudPresenter>();
-            hud.Configure(
-                runController,
-                missionDisplay,
-                playerMode,
+            var statusProviders = new List<MonoBehaviour>
+            {
                 playerMode,
                 facility.MapDefinition,
                 coordinator,
@@ -221,7 +232,11 @@ namespace InternshipGame.Prototype.Editor
                 biometricHub,
                 pause,
                 display,
-                ambience);
+                ambience,
+                motionStimuli,
+            };
+            statusProviders.AddRange(machineryPanels);
+            hud.Configure(runController, missionDisplay, playerMode, statusProviders.ToArray());
             hud.ConfigureObjectiveItems(rods);
 
             RenderSettings.fog = true;
@@ -239,7 +254,8 @@ namespace InternshipGame.Prototype.Editor
             Selection.activeGameObject = systems;
             Debug.Log(
                 "Polished multi-path prototype built: 10 spaces, 8 sockets, 5 active rods, " +
-                "3 route profiles, NavMesh/graph-fallback Owl navigation, and extraction holdout.");
+                "3 route profiles, 9 metal distractions, 3 machinery panels, " +
+                "NavMesh/graph-fallback Owl navigation, and extraction holdout.");
         }
 
         [MenuItem("Prototype/Rebuild First Prototype (Destructive)")]
@@ -619,6 +635,16 @@ namespace InternshipGame.Prototype.Editor
             audioOutput.Configure(audioSource, PrototypeFeedbackCues.OwlWarning, GeneratedAudioProfile.OwlWarning);
             feedbackOutputs.Add(audioOutput);
 
+            var investigationSource = visualRoot.AddComponent<AudioSource>();
+            ConfigureSpatialSource(investigationSource, 1f, 22f);
+            investigationSource.volume = 0.5f;
+            var investigationOutput = visualRoot.AddComponent<AudioFeedbackOutput>();
+            investigationOutput.Configure(
+                investigationSource,
+                PrototypeFeedbackCues.OwlInvestigation,
+                GeneratedAudioProfile.OwlInvestigation);
+            feedbackOutputs.Add(investigationOutput);
+
             var threat = threatObject.AddComponent<PursuitThreatController>();
             threat.Configure(playerMode, runController, null, feedbackHub, visualRoot);
             threat.ConfigureNavigation(navigator, map);
@@ -699,19 +725,26 @@ namespace InternshipGame.Prototype.Editor
             return result;
         }
 
-        private static void BuildThrowableProps(Transform parent, Material material, PursuitThreatController owl)
+        private static ThrowableThreatStimulus[] BuildThrowableProps(
+            Transform parent,
+            Material material,
+            PursuitThreatController owl)
         {
             var root = new GameObject("Throwable Metal Distractions");
             root.transform.SetParent(parent, false);
             var positions = new[]
             {
-                new Vector3(-2.8f, 0.45f, -8f),
                 new Vector3(-12.8f, 0.45f, -3.8f),
+                new Vector3(-9.2f, 0.45f, 2.2f),
+                new Vector3(-12.2f, 0.45f, 6.6f),
                 new Vector3(-1.6f, 0.45f, 5.5f),
+                new Vector3(1.6f, 0.45f, -1.5f),
+                new Vector3(1.4f, 0.45f, 7.2f),
                 new Vector3(12.8f, 0.45f, -3.8f),
-                new Vector3(-7.5f, 0.45f, 11.5f),
-                new Vector3(7.5f, 0.45f, 11.5f),
+                new Vector3(9.2f, 0.45f, 2.2f),
+                new Vector3(12.2f, 0.45f, 6.6f),
             };
+            var result = new ThrowableThreatStimulus[positions.Length];
 
             for (var i = 0; i < positions.Length; i++)
             {
@@ -733,9 +766,86 @@ namespace InternshipGame.Prototype.Editor
                 prop.AddComponent<XRGrabInteractable>();
                 var grabbable = prop.AddComponent<GrabbableObject>();
                 grabbable.ConfigureDesktopGripPose(new Vector3(0.25f, -0.08f, 0f), Vector3.zero);
+                var source = prop.AddComponent<AudioSource>();
+                ConfigureSpatialSource(source, 0.6f, 22f);
+                var impactAudio = prop.AddComponent<ProceduralSpatialAudio>();
+                impactAudio.Configure(source);
                 var stimulus = prop.AddComponent<ThrowableThreatStimulus>();
-                stimulus.Configure(owl);
+                stimulus.Configure(owl, impactAudio);
+                result[i] = stimulus;
             }
+
+            return result;
+        }
+
+        private static MachineryDistractionPanel[] BuildMachineryPanels(
+            Transform parent,
+            Material readyMaterial,
+            Material activeMaterial,
+            PursuitThreatController owl)
+        {
+            var root = new GameObject("Maintenance Test Panels");
+            root.transform.SetParent(parent, false);
+            var placements = new[]
+            {
+                ("West", new Vector3(-14.8f, 1.15f, -1.5f), Quaternion.Euler(0f, 90f, 0f)),
+                ("Central", new Vector3(-2.4f, 1.15f, 2f), Quaternion.Euler(0f, 90f, 0f)),
+                ("East", new Vector3(14.8f, 1.15f, -1.5f), Quaternion.Euler(0f, -90f, 0f)),
+            };
+            var result = new MachineryDistractionPanel[placements.Length];
+            for (var i = 0; i < placements.Length; i++)
+            {
+                var placement = placements[i];
+                var panelRoot = new GameObject($"{placement.Item1} Maintenance Test Panel");
+                panelRoot.transform.SetParent(root.transform, false);
+                panelRoot.transform.SetPositionAndRotation(placement.Item2, placement.Item3);
+                CreatePrimitiveLocal(
+                    "Panel Housing",
+                    PrimitiveType.Cube,
+                    panelRoot.transform,
+                    Vector3.zero,
+                    new Vector3(0.95f, 1.25f, 0.18f),
+                    readyMaterial,
+                    false);
+                var indicator = CreatePrimitiveLocal(
+                    "Local Amber Active Indicator",
+                    PrimitiveType.Cube,
+                    panelRoot.transform,
+                    new Vector3(0f, 0.38f, -0.11f),
+                    new Vector3(0.58f, 0.14f, 0.035f),
+                    readyMaterial,
+                    false).GetComponent<Renderer>();
+                CreateFittedTextLocal(
+                    "Maintenance Test Label",
+                    panelRoot.transform,
+                    new Vector3(0f, -0.08f, -0.115f),
+                    Quaternion.identity,
+                    new Vector2(0.78f, 0.48f),
+                    "MAINTENANCE\nTEST",
+                    0.32f,
+                    Color.white,
+                    true);
+                var source = panelRoot.AddComponent<AudioSource>();
+                ConfigureSpatialSource(source, 0.8f, MachineryDistractionPanel.DefaultRadius);
+                var panelAudio = panelRoot.AddComponent<ProceduralSpatialAudio>();
+                panelAudio.Configure(source);
+                var panel = panelRoot.AddComponent<MachineryDistractionPanel>();
+                panel.Configure(owl, indicator, readyMaterial, activeMaterial, panelAudio);
+                result[i] = panel;
+            }
+
+            return result;
+        }
+
+        private static void ConfigureSpatialSource(AudioSource source, float minimumDistance, float maximumDistance)
+        {
+            source.playOnAwake = false;
+            source.spatialBlend = 1f;
+            source.rolloffMode = AudioRolloffMode.Linear;
+            source.minDistance = minimumDistance;
+            source.maxDistance = maximumDistance;
+            source.dopplerLevel = 0f;
+            source.volume = 1f;
         }
 
         private static void AddMissionAudioOutputs(Transform parent, List<MonoBehaviour> outputs)

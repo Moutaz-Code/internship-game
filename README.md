@@ -6,7 +6,9 @@ Pixoul internship project for a polished minimum lovable product by 2026-08-28.
 
 The current desktop-first vertical slice is a 15-20 minute sci-fi extraction-horror run through a 10-space authored facility. Find and hold rods long enough to scan them, use the Geiger counter to search, deliver three confirmed-live rods while one adaptive Owl patrols the route network, survive the 20-second extraction cycle, then cross the open exit. The player, threat navigation, feedback devices, and run configuration remain behind narrow seams so XR and physical hardware implementations can replace their desktop simulators later.
 
-Current build: `v0.2.3.0`. Prototype 2 now includes readable route adaptation plus the desktop embodiment/threat pass: fitted portal geometry, crouch, corner lean, forgiving occlusion-safe pickup targeting, and a more capable but still cover-respecting Owl. Broader capture, tools, biofeedback, cart, and hardware ideas remain deferred.
+Current local build identity: `v0.2.3.0`. Prototype 2 now includes readable route adaptation plus the desktop embodiment/threat pass: fitted portal geometry, crouch, corner lean, forgiving occlusion-safe pickup targeting, and a more capable but still cover-respecting Owl. PT2 feature expansion is closed; human validation remains. The next proposed game-design experiment is readable stealth and contractor counterplay, but no `v0.3.0.0` implementation scope is authorized yet.
+
+Repository note: the 2026-07-28 audit found published `master` at `v0.2.3.0` (`0636f5d`) with separate documentation/OpenXR-related working-tree changes still present. Verify branch, `HEAD`, and exact dirty paths before release or transfer work.
 
 ## Prototype Quick Start
 
@@ -51,6 +53,13 @@ Docs are living control panels, not a waterfall phase. Each update should help m
 - [Prototype 2 Agent Handoff](docs/25_prototype_02_agent_handoff.md)
 - [Prototype 2 ClickUp Paste Pack](docs/26_clickup_prototype_02_paste.md)
 - [Development Versioning](docs/27_development_versioning.md)
+- [Game Design Agent Continuity](docs/28_game_design_agent_continuity.md)
+- [New Game Design Agent Onboarding Prompt](docs/29_game_design_agent_onboarding_prompt.md)
+- [Game Design Agent Transfer Checklist](docs/30_game_design_agent_transfer_checklist.md)
+- [PT3 Design Workspace](docs/31_pt3_design_workspace.md)
+- [PT2 Human Validation Sheet](docs/32_pt2_human_validation_sheet.md)
+- [Implementation Agent Handoff](docs/implementation_agent/README.md)
+- [Implementation Agent Onboarding Prompt](docs/implementation_agent/00_onboarding_prompt.md)
 - [First Playable Spec](docs/09_first_playable_spec.md)
 - [Technical Architecture Outline](docs/10_technical_architecture_outline.md)
 - [Vision Brief](docs/01_vision_brief.md)

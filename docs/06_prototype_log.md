@@ -367,3 +367,63 @@ Validation:
 Human validation remaining: walk all thirteen portal approaches at native resolution; tune crouch height/speed, lean distance/roll, pickup forgiveness, warning duration, sight range, and chase/search speed by feel; confirm the Owl creates pressure without invalidating any route; and test the bindings on the intended keyboard. XR posture, comfort, and hardware behavior remain untested without a headset.
 
 Scope confirmation: this pass adds no new mission, objective, route family, enemy, capture/recovery system, inventory, flashlight, door locking, cart, environmental system, heart-rate behavior, hardware/haptics integration, cross-run memory, or learned AI.
+
+### v0.3.0.0: Readable Stealth And Contractor Counterplay
+
+Date authorized: 2026-08-01
+
+Status: Implemented and automated delivery-validated on 2026-08-01; human comprehension evidence remains Not Tested
+
+Question:
+
+> Can uninformed players deliberately manage graded visibility, movement noise, spatial hiding, and improvised distractions, and correctly explain whether the Owl acted on current sight, an accepted sound, or last credible evidence without a stealth meter?
+
+Approved scope:
+
+- three-sample Concealed/Noticeable/Exposed visual evidence and configurable confirmation;
+- crouch, walk, sprint, landing, and accepted-impact sound through one normalized stimulus path;
+- confirmed sight over sound, a post-falloff hearing threshold, and distinct last-seen/last-heard knowledge;
+- full visual cover plus quiet relocation as the protected baseline affordance;
+- nine portable metal distractions when the cut line permits;
+- three cooldown-limited maintenance-test panels when the cut line permits;
+- graded footsteps, accepted metal/machinery audio, a restrained Owl investigation cue, and complete F1 operator telemetry;
+- primary stealth comparison with F3 OFF and one integration run with F3 ON.
+
+Authority:
+
+- `33_v0_3_0_0_readable_stealth_scope.md`
+- `34_v0_3_0_0_implementation_handoff.md`
+- decisions D-086 through D-089
+
+Evidence at authorization:
+
+- Published and local implementation baseline: `v0.2.3.0` at commit `0636f5d`.
+- Live Unity read-only audit: main scene open and clean in Edit Mode, no project-code console error, 117 discoverable tests, three-sample Owl sight, sprint/landing stimuli, six throwable metal props, F1/F2/F3 operator controls, and an existing generic player-interaction contract.
+- Confirmed implementation gaps: any nonzero sound can currently change last-known target, sound can override current sight, ordinary locomotion has no noise band, and the requested v0.3 feedback/content does not yet exist.
+
+Implementation:
+
+- Owl sight now feeds the existing three head/torso samples into Concealed (0), Noticeable (1), and Exposed (2-3) evidence. Confirmation uses the locked `-1.00`, `+0.45/+0.65`, and `+1.35` per-second rates, a `1.35x` sprint multiplier, and a configurable `1.00` threshold. Hunting and Searching preserve the locked one-sample maintenance/reacquisition rule.
+- Hearing now evaluates distance falloff before an inclusive `0.15` acceptance gate. Route inference remains separately gated at `0.30`. Target knowledge is explicitly ordered as confirmed current sight, accepted sound origin, last confirmed visual, local search probe, then patrol; accepted sounds store their event position and never sample a later hidden player transform.
+- Still, crouch, walk, and sprint classify through the existing normalized stimulus sink. Locked pulses are `0.80 s / 0.16 / 6 m`, `0.68 s / 0.32 / 10 m`, and `0.45 s / 0.62 / 15 m`; still emits none. Graded procedural footsteps are spatial and reset cleanly.
+- The generated facility now contains nine portable metal distractions across the three route families. Each release can accept exactly one qualifying impact, produces one matching spatial metal sound and one `DroppedProp` event, rejects bounce/cooldown retriggers, and restores pose, velocity, gate state, and audio on run reset.
+- The generated facility contains three `MAINTENANCE TEST` panels with the exact `TEST MACHINERY` prompt. Each produces one `0.75 / 18 m` machinery stimulus and matching spatial audio, displays a local amber state for `2.5 s`, applies a `25 s` cooldown, and fully resets.
+- F1 reports visual samples/band/rate/confirmation, actionable contact, hearing and route thresholds, accepted/rejected stimulus reasoning, exact knowledge source/target, last-seen and last-heard ages/positions, movement band/latest pulse, every panel state, and F3 route-adaptation state. Normal HUD adds no stealth meter, visibility icon, vignette, breathing, heartbeat, or debug perception information.
+- Owl response adds one restrained spatial investigation cue through the existing feedback hub. Existing player, run, interaction, navigation, feedback, and route-adaptation contracts remain in place.
+
+Automated and runtime evidence:
+
+- Focused V030 Edit Mode: `22/22` passed (16 readable-stealth policy cases plus 6 contractor-counterplay cases).
+- Full Edit Mode regression: `133/133` passed.
+- Integrated Play Mode regression: `6/6` passed, including full-cover blocking, scene counts/tuning, spatial audio wiring, portable reset, seeded route/NavMesh coverage, objective/extraction/reset, and existing desktop/XR compile-ready structure.
+- Unity console after final validation: `0` errors. Remaining warnings were package/tooling or build-time rendering notices, not project-code faults.
+- F3 OFF runtime comparison: a Central machinery event evaluated at `0.65`, passed the `0.15` hearing gate, and selected the immutable panel origin `(-2.4, 1.2, 2.0)` as `AcceptedSound`. F1 showed adaptation OFF and the accepted/rejected reasoning.
+- F3 ON integration: a West machinery event was accepted and selected its immutable origin `(-14.8, 1.2, -1.5)` while the delivered scene remained adaptation ON by default. Its strength was sufficient for hearing but below the separate `0.30` route-evidence threshold, leaving adaptation `Uncertain` as designed.
+- Unity captures: `UnityProject/InternshipGameSynced/Evidence/v0.3.0.0/V030_Machinery_Operator_OFF_Active.png`, `V030_AcceptedSoundOrigin_OFF.png`, and `V030_Machinery_Operator_ON_Active.png` show the panel presentation, local active state, operator telemetry, and both comparison modes.
+- Final strict clean Windows development build: `Succeeded`, `0` errors, `2` build warnings, `187,729,465` bytes, `64.73 s`. Warnings were the URP asset inclusion report and stripped runtime-debug shader variants. Output: `UnityProject/InternshipGameSynced/Builds/v0.3.0.0/InternshipGame_v0.3.0.0.exe`.
+- Standalone smoke: the exact executable remained alive for the deliberate 12-second window, initialized Unity `6000.5.4f1`, and logged no exception, crash, abort, initialization failure, or `NullReferenceException`; it was then closed deliberately. Log: `Builds/v0.3.0.0/v0.3.0.0_smoke.log`.
+- Cut order: no approved content copy or feedback family was cut. No excluded gameplay or final-art family was added.
+
+Human evidence: Not Tested. Use `35_v0_3_0_0_human_validation_sheet.md`; desktop evidence will not close XR or physical-hardware gates.
+
+Schedule and cut line: deliver the coherent `v0.3.0.0` gate by 2026-08-02 and begin `v0.4.0.0` on 2026-08-03. Cut extra presentation and content copies before perception fairness, reset, tests, build validation, or honest evidence reporting.
