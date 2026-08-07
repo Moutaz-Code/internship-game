@@ -151,9 +151,9 @@ namespace InternshipGame.Prototype
 
             var routeProfileId = configuration.RouteProfile switch
             {
-                RouteStateProfile.MaintenanceObstruction => PrototypeVariationIds.MaintenanceObstruction,
-                RouteStateProfile.LaboratoryQuarantine => PrototypeVariationIds.LaboratoryQuarantine,
-                _ => PrototypeVariationIds.CentralPowerOutage,
+                RouteStateProfile.CoolantService => PrototypeVariationIds.CoolantService,
+                RouteStateProfile.FuelInspection => PrototypeVariationIds.FuelInspection,
+                _ => PrototypeVariationIds.OpenCircuit,
             };
             var lightingProfileId = configuration.LightingProfile switch
             {

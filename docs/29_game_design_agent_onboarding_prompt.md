@@ -2,7 +2,7 @@
 
 Status: Copy-ready onboarding prompt
 
-Last updated: 2026-08-01
+Last updated: 2026-08-02
 
 Paste the following into a fresh game-design assistant conversation.
 
@@ -66,9 +66,13 @@ READ THESE FILES FIRST
 9. docs/33_v0_3_0_0_readable_stealth_scope.md
 10. docs/34_v0_3_0_0_implementation_handoff.md
 11. docs/35_v0_3_0_0_human_validation_sheet.md
-12. docs/04_risk_and_scope_register.md
-13. docs/07_playtest_qa_template.md
-14. docs/10_technical_architecture_outline.md
+12. docs/37_v0_4_0_0_spatial_readability_scope.md
+13. docs/38_v0_4_0_0_7c_level_plan.md
+14. docs/39_v0_4_0_0_implementation_handoff.md
+15. docs/40_v0_4_0_0_human_validation_sheet.md
+16. docs/04_risk_and_scope_register.md
+17. docs/07_playtest_qa_template.md
+18. docs/10_technical_architecture_outline.md
 
 Use docs/24_prototype_02_scope.md and docs/25_prototype_02_agent_handoff.md as historical authority for the original route-adaptation experiment, not as the current implementation scope.
 
@@ -88,10 +92,11 @@ Label facts, evidence, assumptions, proposals, and unresolved questions distinct
 CURRENT STATE TO VERIFY
 
 - Unity project: UnityProject/InternshipGameSynced
-- Current local build identity: v0.2.3.0
-- Published master is v0.2.3.0 at commit 0636f5d as of the 1 August read-only audit.
-- The working tree contains separate modified and untracked documentation plus an unrelated OpenXR settings change. Preserve and re-audit them.
-- v0.3.0.0 Readable Stealth and Contractor Counterplay is approved for a substantial two-day implementation ending 2 August 2026; the Unity project has not yet implemented or adopted that build identity.
+- Current local build identity: v0.3.0.0
+- Published master is v0.2.3.0 at commit 0636f5d as of the 2 August read-only audit.
+- The working tree contains the user-owned local v0.3 implementation and documentation plus other modified and untracked files. Preserve and re-audit all of them.
+- v0.3.0.0 Readable Stealth and Contractor Counterplay is implemented and automated delivery-validated locally: focused 22/22, full Edit Mode 133/133, Play Mode 6/6, Windows build and smoke passed. Its uninformed human evidence remains Not Tested.
+- v0.4.0.0 Spatial Readability and Pursuit Topology is design-locked around the 7C three-lobed facility and begins 3 August 2026. It is not yet implemented.
 - Prototype 2 implementation and automated validation are strong, but its core route-adaptation question still needs uninformed human playtests.
 - No headset, XR comfort, venue haptics, physical effects, or heart-rate hardware has been physically validated.
 
@@ -101,9 +106,9 @@ NAMING BOUNDARY
 
 In our game-design conversation, we may use PT3 and PT3.x as informal design-iteration labels.
 
-The implementation agent uses only the four-part development versions documented in docs/27_development_versioning.md. The active weekly implementation starts at v0.3.0.0, and v0.4.0.0 begins 3 August 2026.
+The implementation agent uses only the four-part development versions documented in docs/27_development_versioning.md. The active weekly implementation starts at v0.4.0.0 on 3 August 2026.
 
-When creating an implementation prompt, translate the approved design into v0.3.z.w terms and omit our internal PT design-iteration nomenclature.
+When creating an implementation prompt, translate the approved design into the active four-part version line and omit internal PT design-iteration nomenclature.
 
 PROJECT PRINCIPLES
 
@@ -154,12 +159,12 @@ IMMEDIATE ASSIGNMENT
 2. Briefly summarize the current product, build, evidence, and the three highest risks or contradictions.
 3. Preserve Prototype 2 as feature-frozen except for evidence-driven tuning and release-blocking defects.
 4. Help close its human-validation gate.
-5. Treat PT3 Readable Stealth and Contractor Counterplay as locked and translated into docs/33_v0_3_0_0_readable_stealth_scope.md.
-6. Support implementation through docs/34_v0_3_0_0_implementation_handoff.md without expanding its exclusions.
-7. Protect the two-day cut order, build/test gate, and v0.3 human-validation time.
-8. Begin v0.4.0.0 planning on 3 August using actual v0.3 evidence rather than unfinished v0.3 ideas.
+5. Preserve local v0.3 as the systems regression baseline and help close its separate human-validation gate.
+6. Treat v0.4.0.0 Spatial Readability and Pursuit Topology as locked by documents 37–39.
+7. Support implementation without changing the three-lobed topology, adding mechanics, or expanding into final art/generalized infrastructure.
+8. Protect graph/navigation, v0.3 regression, build, and v0.4 human-validation time.
 
-The active question is whether uninformed players can manage and explain graded sight, sound, spatial hiding, and portable/fixed distractions without a stealth meter. Primary v0.3 tests use route adaptation OFF, followed by one integration run ON.
+The active question is whether uninformed players can form a usable mental map of the three-lobed facility, choose among its distinct connectors and cover grammars, and complete the existing contract while Owl pressure remains explainable.
 
 In your first response, confirm what you verified, identify stale or conflicting authority, and recommend the next three actions. Keep momentum; do not start with another exhaustive retelling of every document.
 ```

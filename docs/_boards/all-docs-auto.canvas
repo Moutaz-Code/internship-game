@@ -352,11 +352,56 @@
       "height": 1600
     },
     {
+      "id": "file-21dd1b58252a",
+      "type": "file",
+      "file": "37_v0_4_0_0_spatial_readability_scope.md",
+      "x": 0,
+      "y": 32180,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-c65f8a5cdfcc",
+      "type": "file",
+      "file": "38_v0_4_0_0_7c_level_plan.md",
+      "x": 780,
+      "y": 32180,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-cfd8cf9d806e",
+      "type": "file",
+      "file": "39_v0_4_0_0_implementation_handoff.md",
+      "x": 0,
+      "y": 33860,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-27d45c2a9cd7",
+      "type": "file",
+      "file": "40_v0_4_0_0_human_validation_sheet.md",
+      "x": 780,
+      "y": 33860,
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "id": "file-be42fcd67aed",
+      "type": "file",
+      "file": "41_v0_4_0_0_implementation_prompt.md",
+      "x": 0,
+      "y": 35540,
+      "width": 740,
+      "height": 1600
+    },
+    {
       "id": "file-2da8e2d32288",
       "type": "file",
       "file": "implementation_agent/00_onboarding_prompt.md",
-      "x": 0,
-      "y": 32180,
+      "x": 780,
+      "y": 35540,
       "width": 740,
       "height": 1600
     },
@@ -364,8 +409,8 @@
       "id": "file-0d97d2fe4d88",
       "type": "file",
       "file": "implementation_agent/01_authority_and_scope.md",
-      "x": 780,
-      "y": 32180,
+      "x": 0,
+      "y": 37220,
       "width": 740,
       "height": 1600
     },
@@ -373,8 +418,8 @@
       "id": "file-69cf587aca60",
       "type": "file",
       "file": "implementation_agent/02_current_implementation_state.md",
-      "x": 0,
-      "y": 33860,
+      "x": 780,
+      "y": 37220,
       "width": 740,
       "height": 1600
     },
@@ -382,8 +427,8 @@
       "id": "file-eb7100dea3fd",
       "type": "file",
       "file": "implementation_agent/03_system_ownership_map.md",
-      "x": 780,
-      "y": 33860,
+      "x": 0,
+      "y": 38900,
       "width": 740,
       "height": 1600
     },
@@ -391,8 +436,8 @@
       "id": "file-1b5dfbdcfa21",
       "type": "file",
       "file": "implementation_agent/04_operating_and_validation_procedure.md",
-      "x": 0,
-      "y": 35540,
+      "x": 780,
+      "y": 38900,
       "width": 740,
       "height": 1600
     },
@@ -400,8 +445,8 @@
       "id": "file-ffd351080ff4",
       "type": "file",
       "file": "implementation_agent/05_predecessor_work_and_history.md",
-      "x": 780,
-      "y": 35540,
+      "x": 0,
+      "y": 40580,
       "width": 740,
       "height": 1600
     },
@@ -409,8 +454,8 @@
       "id": "file-4aabfc4f4984",
       "type": "file",
       "file": "implementation_agent/06_human_validation_and_known_risks.md",
-      "x": 0,
-      "y": 37220,
+      "x": 780,
+      "y": 40580,
       "width": 740,
       "height": 1600
     },
@@ -418,8 +463,8 @@
       "id": "file-046ecfd9e552",
       "type": "file",
       "file": "implementation_agent/README.md",
-      "x": 780,
-      "y": 37220,
+      "x": 0,
+      "y": 42260,
       "width": 740,
       "height": 1600
     },
@@ -427,8 +472,8 @@
       "id": "file-ddb19e50258a",
       "type": "file",
       "file": "templates/weekly_stakeholder_report.md",
-      "x": 0,
-      "y": 38900,
+      "x": 780,
+      "y": 42260,
       "width": 740,
       "height": 1600
     }

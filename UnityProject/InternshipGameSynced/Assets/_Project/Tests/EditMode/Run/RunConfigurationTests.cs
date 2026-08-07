@@ -19,7 +19,7 @@ namespace InternshipGame.Prototype.Tests
         }
 
         [Test]
-        public void ConfigurationSelectsOneLiveRodPerTerminalAndTwoUniqueDecoys()
+        public void ConfigurationSelectsOneLiveRodPerLobeAndTwoUniqueUnusedDecoys()
         {
             for (var seed = -20; seed <= 20; seed++)
             {
@@ -31,13 +31,13 @@ namespace InternshipGame.Prototype.Tests
                 Assert.That(configuration.InertSocketIds.Distinct().Count(), Is.EqualTo(2));
                 Assert.That(configuration.LiveSocketIds.Intersect(configuration.InertSocketIds), Is.Empty);
                 Assert.That(
-                    configuration.LiveSocketIds.Count(id => id.StartsWith("west-storage-")),
+                    configuration.LiveSocketIds.Count(id => id.StartsWith("C")),
                     Is.EqualTo(1));
                 Assert.That(
-                    configuration.LiveSocketIds.Count(id => id.StartsWith("core-vault-")),
+                    configuration.LiveSocketIds.Count(id => id.StartsWith("K")),
                     Is.EqualTo(1));
                 Assert.That(
-                    configuration.LiveSocketIds.Count(id => id.StartsWith("east-reactor-")),
+                    configuration.LiveSocketIds.Count(id => id.StartsWith("F")),
                     Is.EqualTo(1));
             }
         }

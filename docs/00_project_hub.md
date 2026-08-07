@@ -1,6 +1,6 @@
 # Project Hub
 
-Last updated: 2026-08-01
+Last updated: 2026-08-02
 
 ## Project Identity
 
@@ -10,7 +10,7 @@ Client/company context: Pixoul
 
 Delivery target: 2026-08-28
 
-Current phase: published `v0.2.3.0` remains the verified implementation baseline; Prototype 2 is feature-frozen, and the substantial two-day `v0.3.0.0` Readable Stealth and Contractor Counterplay scope is approved for implementation
+Current phase: published master is `v0.2.3.0`; local user-owned `v0.3.0.0` is implemented and automated delivery-validated but still needs uninformed human evidence; locked `v0.4.0.0` Spatial Readability and Pursuit Topology begins 2026-08-03
 
 Current production style: prototype-heavy agile, weekly loops
 
@@ -74,13 +74,14 @@ Build a 15-20 minute single-player VR MLP that proves:
 - Heart rate may later influence avatar breathing/noise, but never gives an entity raw direct detection.
 - Prototype 1 uses deterministic adaptive game AI; pre-trained/model-driven strategy is post-MLP R&D.
 - For `v0.3.0.0`, player stealth feedback uses graded footsteps, accepted impact/machinery audio, restrained Owl investigation cues, and complete operator telemetry; breathing and visual stealth indicators are deferred.
+- `v0.4.0.0` replaces the current divided-cube facility with the locked 7C three-lobed circuit while preserving the v0.3 systems baseline.
 - A simulated stress slider/adapter precedes real heart-rate integration.
 - Electrical probe is the current close-range stun-tool direction.
 - The no-cart rod loop remains authoritative; a small staging cart is a separate design experiment.
 
 ## Live Questions
 
-PT2 implementation is feature-frozen. These questions guide validation, PT3 design, and later work:
+PT2 and v0.3 feature expansion are closed except for evidence-driven tuning or release-blocking defects. These questions guide validation and later work:
 
 - Which VR headset and runtime will be used?
 - What Pixoul haptic/physical devices are available for development access?
@@ -93,6 +94,8 @@ PT2 implementation is feature-frozen. These questions guide validation, PT3 desi
 - What physical equipment/holster model remains readable with two or three items and little UI?
 - Which `v0.3.z.w` tuning changes, if any, are supported by uninformed stealth-playtest evidence?
 - Do fixed machinery panels and portable metal remain situational alternatives rather than universal Owl control?
+- Can uninformed players recognize the three v0.4 lobes, return to the annex, and deliberately choose among North Pipe Gallery, Utility Spine, and South Maintenance Channel?
+- Does any v0.4 Owl position or connector become a mandatory choke or universal safe answer?
 - Which two or three environmental manipulation systems are worth teaching in Nuclear Recovery?
 - Which diegetic feedback lets players judge their own noise without a mandatory HUD meter?
 - What safe activation, stun duration, and failure feedback should the electrical probe use?
@@ -102,4 +105,4 @@ PT2 implementation is feature-frozen. These questions guide validation, PT3 desi
 
 ## Next Sprint Goal
 
-By Sunday 2026-08-02: implement, test, build, and honestly classify `v0.3.0.0` against `33_v0_3_0_0_readable_stealth_scope.md`, using route adaptation OFF for the primary stealth comparison and ON for one integration run. Preserve PT2 as feature-frozen and continue its uninformed human-validation gate in parallel. Begin the `v0.4.0.0` weekly line on 2026-08-03 rather than allowing unfinished v0.3 ideas to expand indefinitely.
+From 2026-08-03 through 2026-08-09, implement, test, build, and honestly classify `v0.4.0.0` against `37_v0_4_0_0_spatial_readability_scope.md` and `38_v0_4_0_0_7c_level_plan.md`. Preserve the completed local v0.3 stealth/counterplay behavior, continue PT2 and v0.3 human gates separately, and prioritize a complete navigable greybox plus human map/route evidence over final-art polish.

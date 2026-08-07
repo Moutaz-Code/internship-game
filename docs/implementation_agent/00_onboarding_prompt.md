@@ -74,24 +74,26 @@ Then read:
 
 8. `docs/18_agent_implementation_handoff.md`
 9. `docs/27_development_versioning.md`
-10. `docs/33_v0_3_0_0_readable_stealth_scope.md`
-11. `docs/34_v0_3_0_0_implementation_handoff.md`
-12. Only the design specs, decisions, architecture sections, existing code, and tests relevant to the assigned task.
+10. `docs/37_v0_4_0_0_spatial_readability_scope.md`
+11. `docs/38_v0_4_0_0_7c_level_plan.md`
+12. `docs/39_v0_4_0_0_implementation_handoff.md`
+13. `docs/33_v0_3_0_0_readable_stealth_scope.md` for protected regression behavior.
+14. Only the design specs, decisions, architecture sections, existing code, and tests relevant to the assigned task.
 
 Do not treat `docs/31_pt3_design_workspace.md` or any similarly labeled workspace/proposal as implementation authority.
 
 ## Current handoff snapshot
 
-This snapshot was verified read-only on 2026-08-01 and must be rechecked:
+This snapshot was verified read-only on 2026-08-02 and must be rechecked:
 
 - Unity project: `UnityProject/InternshipGameSynced`
 - Unity version: `6000.5.4f1`
 - Main scene: `Assets/_Project/Scenes/P01_CoreLoop.unity`
-- Current build identity: `v0.2.3.0`
+- Current local build identity: `v0.3.0.0`
 - Git branch and remote state at handoff: `master` at published commit `0636f5d0664b05b317d6504974bc82427be1d91b`
-- The implementation already includes Prototype 1’s multi-route fuel-rod extraction loop, Prototype 2’s readable route adaptation, and the later desktop/environment/threat polish through `v0.2.3.0`.
-- The working tree contained separate modified and untracked documentation/OpenXR-related files at handoff. Do not assume they are yours, discard them, or publish them without auditing scope and ownership.
-- `v0.3.0.0` Readable Stealth and Contractor Counterplay is now authorized by `docs/33_v0_3_0_0_readable_stealth_scope.md` and tasked through `docs/34_v0_3_0_0_implementation_handoff.md`. The current Unity implementation and build identity remain `v0.2.3.0` until that work is completed.
+- The implementation includes Prototype 1’s extraction loop, Prototype 2’s route adaptation, later desktop/environment/threat work, and local `v0.3.0.0` readable stealth/counterplay.
+- The working tree contains user-owned local v0.3 code, scene, tests, settings, evidence, documents, and other modified/untracked files. Do not assume they are yours, discard them, or publish them without auditing scope and ownership.
+- `v0.4.0.0` Spatial Readability and Pursuit Topology is authorized by `docs/37_v0_4_0_0_spatial_readability_scope.md` and tasked through documents 38–39. Preserve local v0.3 as the systems baseline.
 
 ## Mandatory startup audit
 

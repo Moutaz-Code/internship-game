@@ -1,6 +1,6 @@
 # Current Implementation State
 
-Last verified: 2026-07-28
+Last verified: 2026-08-02
 
 ## Repository and Project
 
@@ -11,16 +11,46 @@ Last verified: 2026-07-28
 | Unity version | `6000.5.4f1` |
 | Render pipeline | Universal Render Pipeline |
 | Main scene | `Assets/_Project/Scenes/P01_CoreLoop.unity` |
-| Build identity | `v0.2.3.0` |
-| Unity bundle version | `0.2.3.0` |
+| Current local build identity | `v0.3.0.0` |
+| Current local Unity bundle version | `0.3.0.0` |
 | Branch at handoff | `master` |
 | Published commit at handoff | `0636f5d0664b05b317d6504974bc82427be1d91b` |
 | Remote | `https://github.com/Moutaz-Code/internship-game.git` |
-| Windows build path | `UnityProject/InternshipGameSynced/Builds/v0.2.3.0/InternshipGame_v0.2.3.0.exe` |
+| Current local Windows build path | `UnityProject/InternshipGameSynced/Builds/v0.3.0.0/InternshipGame_v0.3.0.0.exe` |
 
-The current `HEAD` does contain the tracked `v0.2.3.0` implementation. Older July 26 notes saying the code was still uncommitted are stale.
+The current `HEAD` contains the tracked `v0.2.3.0` implementation. Older July 26 notes saying v0.2.3.0 was uncommitted are stale. The newer local `v0.3.0.0` implementation is present in the user-owned dirty working tree and was not published at the 2026-08-02 audit.
 
-The working tree was not clean at handoff. It included modified project documentation, an OpenXR settings asset, `.gitignore`, the generated docs canvas, and new game-design transfer/workspace documents. The exact list must be obtained again with Git before work. Do not assign ownership to those changes by inference.
+The working tree was not clean at handoff. It included the local v0.3 scene, builders, threat/player/feedback code, tests, settings, evidence, and documents, plus other modified/untracked project files. The exact list must be obtained again with Git before work. Treat all of it as user-owned and do not assign ownership by inference.
+
+## Local v0.3.0.0 Additions
+
+The local systems baseline adds:
+
+- Concealed/Noticeable/Exposed three-sample visual evidence and configurable confirmation;
+- evaluated hearing threshold and explicit knowledge-source priority;
+- protected full cover plus quiet relocation;
+- crouch/walk/sprint movement noise and graded spatial footsteps;
+- nine portable metal props with accepted-impact feedback;
+- three cooldown-limited MAINTENANCE TEST panels;
+- restrained Owl investigation feedback and expanded F1 telemetry;
+- adaptation-disabled primary comparison and adaptation-enabled compatibility behavior.
+
+Recorded evidence:
+
+- focused Edit Mode 22/22 passed;
+- full Edit Mode 133/133 passed;
+- integrated Play Mode 6/6 passed;
+- strict Windows build succeeded with zero errors and two rendering warnings;
+- the exact executable completed a deliberate 12-second smoke window without a project exception;
+- uninformed human evidence remains Not Tested.
+
+These behaviors are protected regressions for v0.4. See `../06_prototype_log.md` and `../33_v0_3_0_0_readable_stealth_scope.md`.
+
+## Authorized v0.4.0.0 Replacement Map
+
+The current generated ten-space West/Central/East facility remains the live scene until v0.4 implementation regenerates it. The authorized replacement is the locked three-lobed 7C circuit in `../37_v0_4_0_0_spatial_readability_scope.md` and `../38_v0_4_0_0_7c_level_plan.md`.
+
+Do not implement from the older “Facility and Run Variation” description below. It documents the current pre-v0.4 runtime for audit and regression purposes only.
 
 ## Current Playable Contract
 
@@ -140,4 +170,3 @@ Recorded in `../06_prototype_log.md`:
 - No project exception, missing script, OpenXR runtime failure, serialization failure, or invalid NavMesh-agent error was reported in that smoke log.
 
 These results describe the recorded build, not the current working tree. Re-run tests appropriate to any later change.
-

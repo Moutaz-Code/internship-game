@@ -2,7 +2,7 @@
 
 Status: Living internal continuity note for game-design assistants
 
-Last updated: 2026-08-01
+Last updated: 2026-08-02
 
 ## Audience Boundary
 
@@ -17,9 +17,9 @@ Implementation agents should receive a separate, explicitly approved, version-or
 - Engine: Unity 6000.5.4f1.
 - Unity project: `UnityProject/InternshipGameSynced`.
 - Main scene: `Assets/_Project/Scenes/P01_CoreLoop.unity`.
-- Current local build identity: `v0.2.3.0`.
-- Current published `master` commit: `v0.2.2.1` as of the 2026-07-26 audit.
-- Repository state on 2026-07-26: local `v0.2.2.2` and `v0.2.3.0` implementation and documentation changes are still uncommitted. The user confirmed these are intentional agent-produced changes and may be inspected or updated. Still do not commit, push, discard, or revert them without an explicit request.
+- Current local build identity: `v0.3.0.0`.
+- Current published `master` commit: `v0.2.3.0` at `0636f5d` as of the 2026-08-02 audit.
+- Repository state on 2026-08-02: local `v0.3.0.0` implementation and documentation are present in a substantial dirty working tree. Treat all changes as user-owned. Do not commit, push, discard, overwrite, or revert them without an explicit request.
 - Target headset, venue runtime, physical play space, and available haptic/sensor devices remain unconfirmed.
 
 ## Current Product Direction
@@ -43,7 +43,7 @@ The proof contract is not the permanent identity of the whole game.
 
 ## Current Build Reality
 
-Prototype 2 began as the Readable Route Adaptation experiment and later received explicit user-directed desktop and presentation work.
+Prototype 2 began as the Readable Route Adaptation experiment and later received explicit user-directed desktop and presentation work. It is published at `v0.2.3.0` and feature-frozen.
 
 `v0.2.3.0` includes:
 
@@ -58,12 +58,13 @@ Prototype 2 began as the Readable Route Adaptation experiment and later received
 - fitted portal geometry and room-specific greybox dressing,
 - multi-sample, cover-respecting Owl perception and last-credible-position search.
 
-Latest reported automated evidence for the local build:
+Latest recorded automated evidence for local `v0.3.0.0`:
 
-- Edit Mode: 111/111 passed.
+- focused Edit Mode: 22/22 passed.
+- full Edit Mode: 133/133 passed.
 - Play Mode: 6/6 passed.
-- Strict Windows build succeeded without reported build errors or warnings.
-- The exact player survived a 20-second smoke test.
+- Strict Windows build succeeded with zero errors and two rendering warnings.
+- The exact player survived a deliberate 12-second smoke window.
 
 This is strong implementation evidence, not complete game-design validation.
 
@@ -85,19 +86,19 @@ Use `32_pt2_human_validation_sheet.md` to collect and classify this evidence.
 
 Do not reopen PT2 as an indefinite polish bucket. Tune it only in response to observed evidence or a release-blocking defect.
 
-`v0.3.0.0` is now authorized as a substantial two-day Readable Stealth and Contractor Counterplay implementation ending 2026-08-02. It includes graded visual confirmation, movement noise, full-cover relocation, portable and fixed distractions, diegetic feedback, and operator telemetry. Primary stealth tests use route adaptation OFF; an integration run uses it ON. See `33_v0_3_0_0_readable_stealth_scope.md`, `34_v0_3_0_0_implementation_handoff.md`, and `35_v0_3_0_0_human_validation_sheet.md`.
+`v0.3.0.0` is implemented and automated delivery-validated locally. It includes graded visual confirmation, movement noise, full-cover relocation, portable and fixed distractions, diegetic feedback, and operator telemetry. Its uninformed human comprehension evidence remains Not Tested. See `33_v0_3_0_0_readable_stealth_scope.md`, `34_v0_3_0_0_implementation_handoff.md`, and `35_v0_3_0_0_human_validation_sheet.md`.
 
 The design protects full visual cover followed by quiet relocation. Confirmed sight outranks sound, and an accepted sound reveals only its own origin. The active feedback set is footsteps, accepted metal/machinery audio, and a restrained Owl investigation cue; breathing and visual stealth indicators are not in v0.3.
 
 ## Approved Next Design Direction
 
-The approved current internal design experiment is PT3: Readable Stealth and Contractor Counterplay.
+The approved next experiment is `v0.4.0.0` Spatial Readability and Pursuit Topology using the locked 7C macro layout.
 
 Locked question:
 
-> Can uninformed players deliberately manage graded visibility, movement noise, spatial hiding, and improvised distractions, and correctly explain whether the Owl acted on current sight, an accepted sound, or last credible evidence without a stealth meter?
+> Can uninformed players form a usable mental map of a three-lobed nuclear facility and deliberately switch between its distinct connectors and cover grammars to complete the existing three-rod contract while the Owl’s sight, sound, search, and route adaptation remain explainable?
 
-The internal design record is `31_pt3_design_workspace.md`. It is not the implementation feature list; the authoritative version brief is `33_v0_3_0_0_readable_stealth_scope.md`.
+The facility is an asymmetric circuit around an inaccessible shielding/service void: Containment & Control, Coolant & Maintenance, and Fuel Handling & Waste, connected by North Pipe Gallery, Utility Spine, and South Maintenance Channel. The authority is documents 37–39. `31_pt3_design_workspace.md` is historical design provenance, not v0.4 scope.
 
 ## Naming Boundary
 
@@ -105,11 +106,11 @@ Game-design conversations may use `PT3` and `PT3.x` as lightweight internal labe
 
 Implementation agents should remain on the development version scheme in `27_development_versioning.md`:
 
-- current weekly implementation begins at `v0.3.0.0`,
+- current weekly implementation begins at `v0.4.0.0` on 2026-08-03,
 - major changes inside that weekly prototype increment `z`,
 - minor changes increment `w`.
 
-When preparing an implementation handoff, translate approved design into a `v0.3.z.w` scope. Do not burden the implementation agent with the internal design-iteration naming scheme.
+When preparing a later implementation handoff, translate approved design into the active four-part version line. Do not burden the implementation agent with internal design-iteration naming.
 
 ## Stable Design Principles
 
@@ -172,18 +173,21 @@ Never silently select the most expansive interpretation.
 - Do uninformed players understand the approved v0.3 sight, sound, hiding, and distraction model?
 - Which threshold, cue, or placement changes are justified as bounded `v0.3.z.w` tuning?
 - Do the fixed and portable distractions remain situational alternatives rather than guaranteed control?
+- Do players recognize all three v0.4 lobes and return to the annex without an external map?
+- Are North, Utility, and South perceived as meaningfully different connector risks?
+- Does any v0.4 connector or Owl hold point become a mandatory choke?
 - When should flashlight visibility, explicit emergency hiding, and the electrical probe receive separate experiments after baseline stealth evidence?
 - What recoverable capture loop preserves a paid arcade session without creating a failure spiral?
 - What minimum art/readability pass is necessary for the August stakeholder demo?
 
 ## Immediate Recommended Sequence
 
-1. Re-audit and preserve the dirty working tree before `v0.3.0.0` implementation.
-2. Implement perception fairness and focused tests before multiplying content.
-3. Complete the two-day version gate in `34_v0_3_0_0_implementation_handoff.md` by 2026-08-02.
-4. Run v0.3 human sessions with F3 OFF and one integration run with F3 ON.
-5. Continue PT2 human sessions against the frozen build and classify its evidence separately.
-6. Begin `v0.4.0.0` on 2026-08-03; carry forward only evidence-backed v0.3 refinements.
+1. Re-audit and preserve the user-owned dirty tree and local v0.3 baseline.
+2. Implement v0.4 data/graph and explicit connector semantics before generated geometry.
+3. Build the complete three-lobed shell and prove player/Owl navigation before presentation detail.
+4. Add the three lobe grammars, objective distribution, Owl graph, and telemetry.
+5. Run focused/full regression, version/build/smoke gates, then use `40_v0_4_0_0_human_validation_sheet.md`.
+6. Continue PT2 and v0.3 human validation separately; do not merge or overclaim evidence.
 
 ## How Future Agents Should Maintain This File
 

@@ -150,7 +150,7 @@ namespace InternshipGame.Prototype
             PrototypeMapDefinition definition)
         {
             navigatorBehaviour = navigationBehaviour;
-            mapDefinition = definition;
+            SetMapDefinition(definition);
             ResolveDependencies();
         }
 
@@ -174,6 +174,7 @@ namespace InternshipGame.Prototype
         {
             if (mapDefinition != null)
             {
+                mapDefinition.ZoneEntered -= OnZoneEntered;
                 mapDefinition.ZoneEntered += OnZoneEntered;
             }
         }
@@ -458,7 +459,9 @@ namespace InternshipGame.Prototype
             var previousAdaptationState = model.Adaptation.State;
             var routeEvidenceRecorded = ThreatRouteEvidencePolicy.TryRecordInferredStimulus(
                 model,
-                InferWing(stimulus.Position),
+                mapDefinition != null
+                    ? mapDefinition.GetRouteFamilyAt(stimulus.Position).ToThreatWing()
+                    : ThreatWing.None,
                 runActive,
                 stimulus,
                 model.LastStimulusStrength,
@@ -882,6 +885,10 @@ namespace InternshipGame.Prototype
             var stimulusLine = lastStimulusDecision == "none this run"
                 ? "Stimulus: none this run"
                 : $"Stimulus: {lastStimulusKind} {lastStimulusDecision}";
+            var navMeshNavigator = navigatorBehaviour as NavMeshThreatNavigator;
+            var navigationLine = navMeshNavigator != null
+                ? $"Navigation: node {(mapDefinition != null ? mapDefinition.GetNearestPatrolNodeId(transform.position) : "none")} | destination ({currentKnowledgeTarget.x:0.0},{currentKnowledgeTarget.z:0.0}) | mode {navMeshNavigator.ActiveMode} | primary rejection {navMeshNavigator.LastPrimaryRejectionReason} | graph fallback {(navMeshNavigator.ActiveMode == ThreatNavigationMode.WaypointFallback ? "ACTIVE" : navMeshNavigator.HasWaypointFallback ? "ready" : "unavailable")}"
+                : $"Navigation: node none | destination ({currentKnowledgeTarget.x:0.0},{currentKnowledgeTarget.z:0.0}) | mode contract | graph fallback unknown";
 
             return
                 $"Owl: {CurrentState} | LOS {(HasLineOfSight ? "YES" : "no")} | {PlayerDistance:0.0}m | pressure {Pressure.TotalPressure:0.00}\n" +
@@ -891,7 +898,9 @@ namespace InternshipGame.Prototype
                 $"Knowledge: {knowledgeSource} -> ({currentKnowledgeTarget.x:0.0},{currentKnowledgeTarget.z:0.0}) | sight outranks sound\n" +
                 $"Memory: visual {visualAge} ({lastConfirmedVisualPosition.x:0.0},{lastConfirmedVisualPosition.z:0.0}) | sound {soundAge} ({acceptedSoundPosition.x:0.0},{acceptedSoundPosition.z:0.0})\n" +
                 $"Speeds: investigate {investigateSpeed:0.0} hunt {huntSpeed:0.0} search {searchSpeed:0.0}\n" +
-                $"Adapt: {(adaptation.Enabled ? "ON" : "OFF")} {adaptation.State} | W {adaptation.WestConfidence:0.00} C {adaptation.CentralConfidence:0.00} E {adaptation.EastConfidence:0.00} | dom {adaptation.DominantWing}\n" +
+                $"Spatial: {(mapDefinition != null ? mapDefinition.CurrentSpatialLabel : "unknown")} | connector {(mapDefinition != null ? mapDefinition.CurrentRouteFamily : FacilityRouteFamily.None)}\n" +
+                $"Route: {(mapDefinition != null ? mapDefinition.ActiveRouteProfileId : "unknown")} | {navigationLine}\n" +
+                $"Adapt: {(adaptation.Enabled ? "ON" : "OFF")} {adaptation.State} | North {adaptation.WestConfidence:0.00} Utility {adaptation.CentralConfidence:0.00} South {adaptation.EastConfidence:0.00} | dom {GetRouteFamilyLabel(adaptation.DominantWing)}\n" +
                 evidenceLine + "\n" +
                 $"Timing: bias {adaptation.BiasSecondsRemaining:0.0}s | decay in {adaptation.SecondsUntilDecay:0.0}s{counterTiming}\n" +
                 $"Response: {adaptation.SelectedResponse} | transition {adaptation.LastTransitionFrom}->{adaptation.LastTransitionTo} @ {adaptation.LastTransitionAtSeconds:0.0}s\n" +
@@ -901,13 +910,7 @@ namespace InternshipGame.Prototype
 
         private void OnZoneEntered(FacilityZoneId zone)
         {
-            var wing = zone switch
-            {
-                FacilityZoneId.WestMaintenance or FacilityZoneId.WestRodStorage => ThreatWing.West,
-                FacilityZoneId.CentralTransfer or FacilityZoneId.CoreVault => ThreatWing.Central,
-                FacilityZoneId.EastLaboratory or FacilityZoneId.EastReactor => ThreatWing.East,
-                _ => ThreatWing.None,
-            };
+            var wing = zone.ToThreatWing();
             var view = playerContext?.ViewTransform;
             var threatIsActive = stateMachine != null && IsActiveState(stateMachine.State);
             var hasLineOfSight = view != null && threatIsActive && HasLineOfSight;
@@ -947,7 +950,7 @@ namespace InternshipGame.Prototype
                 var patrolWings = new ThreatWing[points.Count];
                 for (var i = 0; i < points.Count; i++)
                 {
-                    patrolWings[i] = points[i] != null ? InferWing(points[i].position) : ThreatWing.None;
+                    patrolWings[i] = mapDefinition.GetPatrolThreatWing(i);
                 }
 
                 var model = PressureModel;
@@ -1010,9 +1013,10 @@ namespace InternshipGame.Prototype
             var bestDistance = float.PositiveInfinity;
             if (points != null)
             {
-                foreach (var point in points)
+                for (var pointIndex = 0; pointIndex < points.Count; pointIndex++)
                 {
-                    if (point == null || InferWing(point.position) != preferredWing)
+                    var point = points[pointIndex];
+                    if (point == null || mapDefinition.GetPatrolThreatWing(pointIndex) != preferredWing)
                     {
                         continue;
                     }
@@ -1053,14 +1057,35 @@ namespace InternshipGame.Prototype
             return currentSearchTarget;
         }
 
-        private static ThreatWing InferWing(Vector3 position)
+        private void SetMapDefinition(PrototypeMapDefinition definition)
         {
-            if (position.x < -3f)
+            if (mapDefinition == definition)
             {
-                return ThreatWing.West;
+                return;
             }
 
-            return position.x > 3f ? ThreatWing.East : ThreatWing.Central;
+            if (isActiveAndEnabled && mapDefinition != null)
+            {
+                mapDefinition.ZoneEntered -= OnZoneEntered;
+            }
+
+            mapDefinition = definition;
+            if (isActiveAndEnabled && mapDefinition != null)
+            {
+                mapDefinition.ZoneEntered -= OnZoneEntered;
+                mapDefinition.ZoneEntered += OnZoneEntered;
+            }
+        }
+
+        private static string GetRouteFamilyLabel(ThreatWing wing)
+        {
+            return wing switch
+            {
+                ThreatWing.West => "North Pipe Gallery",
+                ThreatWing.Central => "Utility Spine",
+                ThreatWing.East => "South Maintenance Channel",
+                _ => "None",
+            };
         }
     }
 }

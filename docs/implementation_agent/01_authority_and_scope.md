@@ -1,6 +1,6 @@
 # Authority, Scope, and Tool Boundaries
 
-Last verified: 2026-08-01
+Last verified: 2026-08-02
 
 ## Authority Order
 
@@ -109,13 +109,15 @@ If MCP is offline, the agent may continue read-only code/doc analysis or draft C
 
 ## Current Scope at Handoff
 
-As of 2026-08-01, `../33_v0_3_0_0_readable_stealth_scope.md` authorizes the `v0.3.0.0` Readable Stealth and Contractor Counterplay implementation, and `../34_v0_3_0_0_implementation_handoff.md` provides its task order. The replacement agent should audit first, then implement only that version scope and any newer direct user instruction.
+As of 2026-08-02, the local `v0.3.0.0` Readable Stealth and Contractor Counterplay implementation is complete and automated delivery-validated; its human evidence remains open. It is now a protected regression baseline rather than active feature scope.
 
-Prototype 2 feature expansion remains closed. Its human validation continues separately and does not authorize PT2 polish.
+`../37_v0_4_0_0_spatial_readability_scope.md` authorizes the locked `v0.4.0.0` Spatial Readability and Pursuit Topology implementation. `../38_v0_4_0_0_7c_level_plan.md` defines the greybox data, and `../39_v0_4_0_0_implementation_handoff.md` provides task order and validation. The replacement agent must audit first, then implement only that version scope and any newer direct user instruction.
+
+Prototype 2 and v0.3 feature expansion remain closed. Their human validation continues separately and does not authorize polish or redesign.
 
 The following remain non-authoritative unless a newer explicit user instruction promotes them:
 
-- exploratory material in `../31_pt3_design_workspace.md` beyond the locked decision record;
+- exploratory material in `../31_pt3_design_workspace.md` and discarded 7-series concept alternatives;
 - pending decisions in `../05_decision_log.md`;
 - future sections of the adaptive AI, tactics, contract, capture, hardware, or biofeedback documents;
 - backlog entries and prototype suggestions;

@@ -23,6 +23,11 @@ Use `working-map.canvas` for manual visual planning.
 - [[34_v0_3_0_0_implementation_handoff]]
 - [[35_v0_3_0_0_human_validation_sheet]]
 - [[36_v0_3_0_0_implementation_prompt]]
+- [[37_v0_4_0_0_spatial_readability_scope]]
+- [[38_v0_4_0_0_7c_level_plan]]
+- [[39_v0_4_0_0_implementation_handoff]]
+- [[40_v0_4_0_0_human_validation_sheet]]
+- [[41_v0_4_0_0_implementation_prompt]]
 
 ## Implementation Agent Transfer
 

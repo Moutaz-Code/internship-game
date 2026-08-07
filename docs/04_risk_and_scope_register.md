@@ -1,6 +1,6 @@
 # Risk and Scope Register
 
-Last updated: 2026-08-01
+Last updated: 2026-08-02
 
 Risk ratings:
 
@@ -41,6 +41,10 @@ Risk ratings:
 | R-027 | A substantial `v0.3.0.0` exceeds its two-day implementation window and arrives as many unverified parts. | High | High | Content multiplication begins before perception priority, reset, focused tests, and one complete interaction are green. | Reduce | Follow `33_v0_3_0_0_readable_stealth_scope.md` task order and cut extra panel polish, extra props, and visual variants before any fairness law, test, reset, or build gate. |
 | R-028 | Sound makes the Owl feel remotely controlled or omniscient because every nonzero stimulus replaces more credible knowledge. | High | High | Below-threshold sounds trigger investigation, throws redirect active visual pursuit, or telemetry cannot state why the target changed. | Reduce | Apply one evaluated hearing threshold, make confirmed sight outrank sound, store distinct last-seen/last-heard evidence, and test every target-source transition. |
 | R-029 | Desktop stealth evidence is overclaimed as proof of VR crouch, throwing, spatial audio, comfort, or safety. | High | High | Stakeholder reports omit platform limits or copy desktop posture/view behavior directly into XR. | Avoid | Keep controller-independent motion/perception seams, label desktop evidence, and retain explicit headset and hardware validation gates. |
+| R-030 | Replacing the facility regresses the working v0.3 contract, Owl fairness, navigation, reset, or build. | High | High | Map work begins with generated geometry before the declarative graph and focused regressions are green, or user-owned v0.3 changes are overwritten. | Reduce | Treat local v0.3 as the protected baseline; implement/test data first, regenerate only the disposable root through Unity MCP, and run focused v0.3 plus full regression/build gates. |
+| R-031 | Organic density becomes a maze, increases fatigue, or hides unfair sightlines. | High | High | Testers confuse lobes, repeatedly dead-end, crouch continuously, or cannot reconstruct Owl contact through geometry. | Reduce | Enforce one landmark and loop per lobe, two exits per objective pocket, explicit sightline bands, restrained clutter, and uninformed map-recall testing. |
+| R-032 | A connector becomes a mandatory choke or universal safe answer. | High | High | One Owl position controls two portals, one route is selected almost every time, or seeded variation removes an alternative. | Reduce | Use three pairwise connectors, anti-camping sight probes, connector-specific risk grammars, two graph-distinct routes from the Containment side of P01 to every active socket, and evidence-driven node/cover tuning. |
+| R-033 | A one-week level experiment expands into final art or generalized content infrastructure. | High | High | Work shifts to bespoke assets, a mission generator, procedural rooms, or decorative variants before navigation and human comprehension are validated. | Avoid | Use three replaceable greybox kits, the existing builder seams, the documented cut order, and no new mechanics or generalized framework. |
 
 ## Scope Guardrails
 

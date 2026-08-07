@@ -31,8 +31,12 @@ namespace InternshipGame.Prototype
         private float requestedSpeed;
         private bool destinationRequested;
         private float nextPrimaryRetryTime;
+        private string lastPrimaryRejectionReason = "not attempted";
 
         public Vector3 CurrentPosition => transform.position;
+        public Vector3 RequestedDestination => requestedDestination;
+        public string LastPrimaryRejectionReason => lastPrimaryRejectionReason;
+        public bool HasWaypointFallback => fallbackNavigator != null;
         public ThreatNavigationMode ActiveMode { get; private set; }
         public bool UsingNavMesh => ActiveMode == ThreatNavigationMode.NavMesh && CanUseNavMesh;
         public bool HasPath => ActiveMode switch
@@ -214,15 +218,25 @@ namespace InternshipGame.Prototype
         private bool TryActivateNavMesh(Vector3 destination, float speed)
         {
             candidatePath ??= new NavMeshPath();
-            if (!PrepareAgentAtCurrentPosition() ||
-                !NavMesh.SamplePosition(destination, out var hit, sampleRadius, agent.areaMask))
+            if (!PrepareAgentAtCurrentPosition())
             {
+                lastPrimaryRejectionReason = "start could not register on NavMesh";
+                return false;
+            }
+
+            if (!NavMesh.SamplePosition(destination, out var hit, sampleRadius, agent.areaMask))
+            {
+                lastPrimaryRejectionReason = "destination sample failed";
                 return false;
             }
 
             candidatePath.ClearCorners();
-            if (!IsCompletePathResult(agent.CalculatePath(hit.position, candidatePath), candidatePath.status))
+            var calculated = agent.CalculatePath(hit.position, candidatePath);
+            if (!IsCompletePathResult(calculated, candidatePath.status))
             {
+                lastPrimaryRejectionReason = calculated
+                    ? $"path {candidatePath.status}"
+                    : "path calculation rejected";
                 return false;
             }
 
@@ -230,12 +244,14 @@ namespace InternshipGame.Prototype
             agent.isStopped = false;
             if (!agent.SetPath(candidatePath))
             {
+                lastPrimaryRejectionReason = "agent rejected complete path";
                 return false;
             }
 
             plannedNavMeshDestination = hit.position;
             fallbackNavigator?.Stop();
             ActiveMode = ThreatNavigationMode.NavMesh;
+            lastPrimaryRejectionReason = "none";
             return true;
         }
 

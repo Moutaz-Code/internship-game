@@ -10,6 +10,12 @@ namespace InternshipGame.Prototype
 
         public FacilityZoneId Zone => zone;
 
+        public bool ContainsPoint(Vector3 worldPosition)
+        {
+            var trigger = GetComponent<BoxCollider>();
+            return trigger != null && trigger.bounds.Contains(worldPosition);
+        }
+
         public void Configure(FacilityZoneId facilityZone, PrototypeMapDefinition definition)
         {
             zone = facilityZone;

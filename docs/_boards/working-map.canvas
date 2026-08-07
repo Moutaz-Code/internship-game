@@ -3,7 +3,7 @@
     {
       "id": "v030-status",
       "type": "text",
-      "text": "v0.3.0.0 — Readable Stealth + Contractor Counterplay\n\nApproved 2026-08-01\nDelivery gate: 2026-08-02\nv0.4.0.0 begins: 2026-08-03",
+      "text": "v0.3.0.0 — Readable Stealth + Contractor Counterplay\n\nImplemented + automated delivery-validated\nHuman evidence: NOT TESTED\nProtected systems baseline for v0.4",
       "x": 0,
       "y": 0,
       "width": 430,
@@ -79,6 +79,86 @@
       "width": 430,
       "height": 250,
       "color": "2"
+    },
+    {
+      "id": "v040-status",
+      "type": "text",
+      "text": "v0.4.0.0 — SPATIAL READABILITY + PURSUIT TOPOLOGY\n\n7C LOCKED 2026-08-02\nImplementation: NOT STARTED\nWindow: 2026-08-03 → 2026-08-09",
+      "x": 0,
+      "y": 1050,
+      "width": 430,
+      "height": 230,
+      "color": "4"
+    },
+    {
+      "id": "v040-question",
+      "type": "text",
+      "text": "ONE PLAYER-OBSERVABLE QUESTION\n\nCan uninformed players form a usable mental map, choose among three distinct connectors, and complete the existing contract while Owl pressure remains explainable?",
+      "x": 0,
+      "y": 1360,
+      "width": 430,
+      "height": 270,
+      "color": "3"
+    },
+    {
+      "id": "v040-scope",
+      "type": "file",
+      "file": "37_v0_4_0_0_spatial_readability_scope.md",
+      "x": 500,
+      "y": 1010,
+      "width": 430,
+      "height": 280,
+      "color": "4"
+    },
+    {
+      "id": "v040-plan",
+      "type": "file",
+      "file": "38_v0_4_0_0_7c_level_plan.md",
+      "x": 500,
+      "y": 1360,
+      "width": 430,
+      "height": 280,
+      "color": "3"
+    },
+    {
+      "id": "v040-handoff",
+      "type": "file",
+      "file": "39_v0_4_0_0_implementation_handoff.md",
+      "x": 1000,
+      "y": 1010,
+      "width": 430,
+      "height": 280,
+      "color": "5"
+    },
+    {
+      "id": "v040-validation",
+      "type": "file",
+      "file": "40_v0_4_0_0_human_validation_sheet.md",
+      "x": 1000,
+      "y": 1360,
+      "width": 430,
+      "height": 280,
+      "color": "6"
+    },
+    {
+      "id": "v040-prompt",
+      "type": "file",
+      "file": "41_v0_4_0_0_implementation_prompt.md",
+      "x": 1500,
+      "y": 1010,
+      "width": 430,
+      "height": 280,
+      "color": "5"
+    },
+    {
+      "id": "v040-locks",
+      "type": "text",
+      "text": "LOCKED 7C LAWS\n\n• 3 unequal lobes / 3 pairwise connectors\n• inaccessible central void\n• 1 live rod per lobe\n• 2 exits per objective pocket\n• connector-only route evidence\n• preserve all v0.3 fairness laws",
+      "x": 1500,
+      "y": 1360,
+      "width": 430,
+      "height": 280,
+      "color": "2"
     }
   ],
   "edges": [
@@ -137,6 +217,78 @@
       "toNode": "v030-question",
       "toSide": "left",
       "label": "separate evidence gate"
+    },
+    {
+      "id": "edge-v030-v040",
+      "fromNode": "v030-status",
+      "fromSide": "bottom",
+      "toNode": "v040-status",
+      "toSide": "top",
+      "label": "protected baseline"
+    },
+    {
+      "id": "edge-v040-status-scope",
+      "fromNode": "v040-status",
+      "fromSide": "right",
+      "toNode": "v040-scope",
+      "toSide": "left",
+      "label": "authorizes"
+    },
+    {
+      "id": "edge-v040-question-scope",
+      "fromNode": "v040-question",
+      "fromSide": "right",
+      "toNode": "v040-scope",
+      "toSide": "left",
+      "label": "bounds"
+    },
+    {
+      "id": "edge-v040-scope-plan",
+      "fromNode": "v040-scope",
+      "fromSide": "bottom",
+      "toNode": "v040-plan",
+      "toSide": "top",
+      "label": "made concrete by"
+    },
+    {
+      "id": "edge-v040-scope-handoff",
+      "fromNode": "v040-scope",
+      "fromSide": "right",
+      "toNode": "v040-handoff",
+      "toSide": "left",
+      "label": "delegates"
+    },
+    {
+      "id": "edge-v040-plan-handoff",
+      "fromNode": "v040-plan",
+      "fromSide": "right",
+      "toNode": "v040-handoff",
+      "toSide": "bottom",
+      "label": "builder data"
+    },
+    {
+      "id": "edge-v040-handoff-validation",
+      "fromNode": "v040-handoff",
+      "fromSide": "bottom",
+      "toNode": "v040-validation",
+      "toSide": "top",
+      "label": "produces testable build"
+    },
+    {
+      "id": "edge-v040-handoff-prompt",
+      "fromNode": "v040-handoff",
+      "fromSide": "right",
+      "toNode": "v040-prompt",
+      "toSide": "left",
+      "label": "copy-ready delegation"
+    },
+    {
+      "id": "edge-v040-locks-handoff",
+      "fromNode": "v040-locks",
+      "fromSide": "top",
+      "toNode": "v040-prompt",
+      "toSide": "bottom",
+      "label": "hard boundaries"
     }
   ]
 }

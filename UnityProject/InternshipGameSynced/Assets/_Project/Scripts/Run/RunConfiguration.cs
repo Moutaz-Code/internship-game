@@ -6,9 +6,9 @@ namespace InternshipGame.Prototype
 {
     public enum RouteStateProfile
     {
-        MaintenanceObstruction,
-        LaboratoryQuarantine,
-        CentralPowerOutage,
+        OpenCircuit,
+        CoolantService,
+        FuelInspection,
     }
 
     public enum OwlBehaviorProfile
@@ -31,6 +31,17 @@ namespace InternshipGame.Prototype
     /// </summary>
     public sealed class RunConfiguration
     {
+        public const string C1 = "C1";
+        public const string C2 = "C2";
+        public const string C3 = "C3";
+        public const string K1 = "K1";
+        public const string K2 = "K2";
+        public const string K3 = "K3";
+        public const string F1 = "F1";
+        public const string F2 = "F2";
+
+        // Temporary compile bridge for the disposable v0.3 generated builder. These
+        // names are removed with that builder in the V040 scene slice.
         public const string WestStorageA = "west-storage-a";
         public const string WestStorageB = "west-storage-b";
         public const string CoreVaultA = "core-vault-a";
@@ -40,11 +51,11 @@ namespace InternshipGame.Prototype
         public const string Maintenance = "maintenance";
         public const string Laboratory = "laboratory";
 
-        private static readonly string[][] TerminalPairs =
+        private static readonly string[][] LobeSockets =
         {
-            new[] { WestStorageA, WestStorageB },
-            new[] { CoreVaultA, CoreVaultB },
-            new[] { EastReactorA, EastReactorB },
+            new[] { C1, C2, C3 },
+            new[] { K1, K2, K3 },
+            new[] { F1, F2 },
         };
 
         private readonly HashSet<string> liveLookup;
@@ -91,16 +102,19 @@ namespace InternshipGame.Prototype
             var live = new string[3];
             var inertCandidates = new List<string>(5);
 
-            for (var index = 0; index < TerminalPairs.Length; index++)
+            for (var index = 0; index < LobeSockets.Length; index++)
             {
-                var pair = TerminalPairs[index];
-                var liveIndex = random.Next(2);
-                live[index] = pair[liveIndex];
-                inertCandidates.Add(pair[1 - liveIndex]);
+                var lobe = LobeSockets[index];
+                var liveIndex = random.Next(lobe.Length);
+                live[index] = lobe[liveIndex];
+                for (var socketIndex = 0; socketIndex < lobe.Length; socketIndex++)
+                {
+                    if (socketIndex != liveIndex)
+                    {
+                        inertCandidates.Add(lobe[socketIndex]);
+                    }
+                }
             }
-
-            inertCandidates.Add(Maintenance);
-            inertCandidates.Add(Laboratory);
 
             var inert = new string[2];
             for (var index = 0; index < inert.Length; index++)

@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">v0.4.0.0 locked 7C three-lobed facility floor plan</title>
+  <desc id="desc">Dimensioned top-down implementation diagram with containment, coolant, fuel handling, three connectors, objective sockets, portals, and major occluders.</desc>
+  <defs>
+    <pattern id="grid" width="90" height="90" patternUnits="userSpaceOnUse">
+      <path d="M 90 0 L 0 0 0 90" fill="none" stroke="#26313b" stroke-width="1"/>
+    </pattern>
+    <pattern id="hot" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+      <rect width="14" height="14" fill="#3b2220"/>
+      <rect width="5" height="14" fill="#8b3b2d" opacity="0.55"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#d4dde4"/>
+    </marker>
+    <style>
+      .shell{fill:#29343d;stroke:#c3cbd1;stroke-width:5;stroke-linejoin:round}
+      .containment{fill:#41372f}.coolant{fill:#203d42}.fuel{fill:#413c27}.connector{fill:#303a42;stroke:#9eabb5;stroke-width:4;stroke-linejoin:round}
+      .void{fill:#090d11;stroke:#49545d;stroke-width:3;stroke-dasharray:10 8}
+      .landmark{fill:#11171c;stroke:#d0d6da;stroke-width:4}.water{fill:#1e5961;stroke:#73b5bd;stroke-width:3}
+      .wall{fill:#0d1216;stroke:#78838b;stroke-width:2}.machine{fill:#151c21;stroke:#a7763c;stroke-width:2}
+      .portal{stroke:#f1f4f6;stroke-width:8}.objective{fill:#a75bff;stroke:#ecd9ff;stroke-width:3}.panel{fill:#e3992f;stroke:#ffe0a8;stroke-width:2}
+      .socket{fill:#7650a9;stroke:#d9c5ff;stroke-width:2}.label{font-family:Segoe UI,Arial,sans-serif;fill:#eef3f6;font-size:22px;font-weight:700}
+      .small{font-family:Segoe UI,Arial,sans-serif;fill:#d4dde4;font-size:17px}.tiny{font-family:Segoe UI,Arial,sans-serif;fill:#c7d1d8;font-size:14px}
+      .dim{stroke:#d4dde4;stroke-width:2;marker-start:url(#arrow);marker-end:url(#arrow)}
+      .routeN{fill:none;stroke:#4dc4e6;stroke-width:6}.routeU{fill:none;stroke:#e2b251;stroke-width:6}.routeS{fill:none;stroke:#79c88c;stroke-width:6}
+    </style>
+  </defs>
+
+  <rect width="1600" height="980" fill="#0c1116"/>
+  <rect x="65" y="70" width="1100" height="820" fill="url(#grid)" stroke="#36424b" stroke-width="2"/>
+  <text x="70" y="45" class="label">v0.4.0.0 — THREE-LOBED FACILITY — LOCKED 7C FLOOR PLAN</text>
+  <text x="70" y="925" class="small">Coordinate convention: X east/west, Z north/south. Grid = 5 m. Bounding footprint ≈ 57 m × 40 m. Main floor Y = 0.</text>
+
+  <!-- Pairwise connectors are drawn first so lobe shells overlap them cleanly. -->
+  <polygon class="connector" points="506,212 632,158 812,140 830,194 650,212 524,266"/>
+  <polygon class="connector" points="938,428 1028,446 1028,572 938,572"/>
+  <polygon class="connector" points="560,572 632,698 758,752 794,698 686,644 596,536"/>
+
+  <!-- Major lobe shells. -->
+  <polygon class="shell containment" points="218,644 506,644 578,554 578,320 506,212 362,158 218,230 164,356 164,536"/>
+  <polygon class="shell coolant" points="758,374 812,140 1010,122 1100,212 1100,374 1028,446 848,446"/>
+  <polygon class="shell fuel" points="758,572 1064,572 1136,662 1100,824 830,842 722,752 722,626"/>
+  <polygon class="shell" points="110,608 236,608 236,464 110,464" fill="#263b31"/>
+
+  <!-- Inaccessible central shielding/service void. -->
+  <polygon class="void" points="600,292 748,224 892,482 820,552 686,604 600,518"/>
+  <text x="675" y="410" class="small" transform="rotate(-18 675 410)">INACCESSIBLE SHIELDING / SERVICE VOID</text>
+
+  <!-- Containment lobe: monumental and exposed. -->
+  <circle class="landmark" cx="380" cy="392" r="96"/>
+  <circle cx="380" cy="392" r="67" fill="#20282e" stroke="#66737c" stroke-width="3"/>
+  <text x="313" y="399" class="small">REACTOR DRUM</text>
+  <rect class="wall" x="225" y="270" width="88" height="22" rx="4" transform="rotate(20 269 281)"/>
+  <rect class="wall" x="489" y="334" width="22" height="76" rx="4"/>
+  <rect class="wall" x="307" y="568" width="104" height="22" rx="4" transform="rotate(-15 359 579)"/>
+  <rect class="wall" x="449" y="228" width="70" height="28" rx="4" transform="rotate(-15 484 242)"/>
+  <rect class="machine" x="470" y="252" width="66" height="44" rx="5"/>
+  <text x="200" y="205" class="label">A — CONTAINMENT &amp; CONTROL</text>
+  <text x="204" y="626" class="tiny">Monumental / exposed · 12–22 m views · four full-cover shields</text>
+
+  <!-- Coolant lobe: compact, dense, and legible. -->
+  <circle class="water" cx="956" cy="284" r="58"/>
+  <circle cx="956" cy="284" r="22" fill="#162228" stroke="#8dc5ca" stroke-width="3"/>
+  <rect class="machine" x="825" y="294" width="65" height="27" rx="6" transform="rotate(-20 857 308)"/>
+  <rect class="machine" x="1009" y="304" width="63" height="27" rx="6" transform="rotate(18 1040 318)"/>
+  <rect class="machine" x="864" y="168" width="74" height="26" rx="6"/>
+  <rect class="wall" x="878" y="350" width="80" height="18" rx="3" transform="rotate(20 918 359)"/>
+  <text x="795" y="112" class="label">B — COOLANT &amp; MAINTENANCE</text>
+  <text x="806" y="422" class="tiny">Dense but legible · 6–14 m views · compact local loop</text>
+
+  <!-- Fuel/waste lobe: structured lanes and crosscuts. -->
+  <rect class="machine" x="830" y="607" width="105" height="31" rx="5"/>
+  <rect class="machine" x="899" y="672" width="120" height="31" rx="5"/>
+  <rect class="machine" x="830" y="745" width="105" height="31" rx="5"/>
+  <rect x="1060" y="610" width="58" height="174" fill="url(#hot)" stroke="#c55a42" stroke-width="3"/>
+  <rect class="wall" x="961" y="588" width="16" height="214"/>
+  <rect class="machine" x="804" y="650" width="28" height="119" rx="4"/>
+  <text x="765" y="552" class="label">C — FUEL HANDLING &amp; WASTE</text>
+  <text x="758" y="818" class="tiny">Structured lanes · 10–20 m views · lateral cuts every 5–7 m</text>
+
+  <!-- Connector identities. -->
+  <path class="routeN" d="M520 236 Q640 177 814 168"/>
+  <text x="572" y="184" class="tiny">NORTH PIPE GALLERY · 3.2 m · QUIET / EXPOSED</text>
+  <path class="routeU" d="M980 441 L980 565"/>
+  <text x="1019" y="470" class="tiny" transform="rotate(90 1019 470)">UTILITY SPINE · 3.4 m · NOISY / COVER-RICH</text>
+  <path class="routeS" d="M582 564 Q650 699 773 717"/>
+  <text x="570" y="681" class="tiny" transform="rotate(18 570 681)">SOUTH MAINTENANCE · 3.6 m · SHIELDED / INDIRECT</text>
+
+  <!-- Contractor start, rack, and exit. -->
+  <text x="121" y="448" class="small">CONTRACTOR ANNEX</text>
+  <circle cx="145" cy="535" r="13" fill="#70db8b" stroke="#e0ffe7" stroke-width="3"/>
+  <text x="117" y="566" class="tiny">SPAWN</text>
+  <rect x="194" y="516" width="24" height="46" rx="4" fill="#70db8b" stroke="#e0ffe7" stroke-width="3"/>
+  <text x="180" y="584" class="tiny">RACK</text>
+  <line x1="112" y1="536" x2="112" y2="572" stroke="#70db8b" stroke-width="8"/>
+  <text x="82" y="595" class="tiny">EXIT</text>
+
+  <!-- Seven portal thresholds. -->
+  <line class="portal" x1="236" y1="515" x2="236" y2="557"/><text x="242" y="544" class="tiny">P01</text>
+  <line class="portal" x1="503" y1="223" x2="527" y2="251"/><text x="482" y="211" class="tiny">P02</text>
+  <line class="portal" x1="800" y1="153" x2="819" y2="183"/><text x="823" y="157" class="tiny">P03</text>
+  <line class="portal" x1="948" y1="430" x2="990" y2="430"/><text x="914" y="425" class="tiny">P04</text>
+  <line class="portal" x1="948" y1="571" x2="990" y2="571"/><text x="914" y="590" class="tiny">P05</text>
+  <line class="portal" x1="746" y1="720" x2="775" y2="694"/><text x="777" y="730" class="tiny">P06</text>
+  <line class="portal" x1="560" y1="573" x2="589" y2="548"/><text x="528" y="594" class="tiny">P07</text>
+
+  <!-- Objective socket families: eight candidate positions, three live and two inert active per seed. -->
+  <circle class="socket" cx="488" cy="293" r="11"/><text x="471" y="281" class="tiny">C1</text>
+  <circle class="socket" cx="308" cy="248" r="11"/><text x="291" y="236" class="tiny">C2</text>
+  <circle class="socket" cx="290" cy="500" r="11"/><text x="273" y="488" class="tiny">C3</text>
+  <circle class="socket" cx="1046" cy="212" r="11"/><text x="1029" y="199" class="tiny">K1</text>
+  <circle class="socket" cx="1028" cy="338" r="11"/><text x="1011" y="326" class="tiny">K2</text>
+  <circle class="socket" cx="848" cy="248" r="11"/><text x="831" y="236" class="tiny">K3</text>
+  <circle class="socket" cx="1028" cy="644" r="11"/><text x="1011" y="631" class="tiny">F1</text>
+  <circle class="socket" cx="1028" cy="734" r="11"/><text x="1011" y="721" class="tiny">F2</text>
+
+  <!-- One fixed distraction panel per lobe. -->
+  <rect class="panel" x="281" y="328" width="18" height="18"/><text x="304" y="343" class="tiny">Panel A</text>
+  <rect class="panel" x="839" y="185" width="18" height="18"/><text x="862" y="200" class="tiny">Panel B</text>
+  <rect class="panel" x="803" y="742" width="18" height="18"/><text x="825" y="757" class="tiny">Panel C</text>
+
+  <!-- Overall dimensions. -->
+  <line class="dim" x1="110" y1="880" x2="1136" y2="880"/>
+  <text x="570" y="872" class="small">57 m</text>
+  <line class="dim" x1="70" y1="122" x2="70" y2="842"/>
+  <text x="42" y="503" class="small" transform="rotate(-90 42 503)">40 m</text>
+
+  <!-- Legend and implementation notes. -->
+  <g transform="translate(1215 95)">
+    <rect width="340" height="790" rx="14" fill="#151d23" stroke="#56636d" stroke-width="2"/>
+    <text x="25" y="43" class="label">IMPLEMENTATION LEGEND</text>
+    <circle class="objective" cx="39" cy="82" r="11"/><text x="66" y="89" class="small">Active live objective</text>
+    <circle class="socket" cx="39" cy="122" r="10"/><text x="66" y="129" class="small">Candidate rod socket</text>
+    <rect class="panel" x="29" y="151" width="20" height="20"/><text x="66" y="168" class="small">Maintenance test panel</text>
+    <line class="portal" x1="25" y1="202" x2="55" y2="202"/><text x="66" y="208" class="small">2.76 m portal clear width</text>
+    <rect class="wall" x="27" y="232" width="28" height="18"/><text x="66" y="247" class="small">Full-cover architecture</text>
+    <rect class="machine" x="27" y="270" width="28" height="18"/><text x="66" y="285" class="small">Machinery / cask mass</text>
+
+    <text x="25" y="335" class="label">LOCKED TOPOLOGY</text>
+    <text x="25" y="370" class="small">Annex ↔ Containment</text>
+    <text x="25" y="400" class="small">Containment ↔ North ↔ Coolant</text>
+    <text x="25" y="430" class="small">Coolant ↔ Utility ↔ Fuel</text>
+    <text x="25" y="460" class="small">Fuel ↔ South ↔ Containment</text>
+
+    <text x="25" y="510" class="label">VERTICAL LIMITS</text>
+    <text x="25" y="545" class="small">Main floor: Y 0.00 m</text>
+    <text x="25" y="575" class="small">Control overlook: +0.80 m</text>
+    <text x="25" y="605" class="small">Fuel gantry: +0.60 m</text>
+    <text x="25" y="635" class="small">No ladders or jump-only paths</text>
+
+    <text x="25" y="685" class="label">CONSTRAINTS</text>
+    <text x="25" y="720" class="small">• One complete loop per lobe</text>
+    <text x="25" y="748" class="small">• Two exits per objective pocket</text>
+    <text x="25" y="776" class="small">• No central hub or safe perimeter</text>
+  </g>
+</svg>

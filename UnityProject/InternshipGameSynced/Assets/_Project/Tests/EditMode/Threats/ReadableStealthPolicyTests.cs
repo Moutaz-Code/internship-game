@@ -149,5 +149,25 @@ namespace InternshipGame.Prototype.Tests
             scheduler.Reset();
             Assert.That(scheduler.NextPulseAt, Is.Zero);
         }
+
+        [TestCase(MovementNoiseBand.Crouch)]
+        [TestCase(MovementNoiseBand.Walk)]
+        [TestCase(MovementNoiseBand.Sprint)]
+        public void FootstepSynthesisHasSoftAttackBoundedPeakAndNoHarshSampleJumps(MovementNoiseBand band)
+        {
+            var samples = ProceduralSpatialAudio.CreateFootstepSamples(band);
+            var peak = 0f;
+            var maximumStep = 0f;
+            for (var index = 1; index < samples.Length; index++)
+            {
+                peak = Mathf.Max(peak, Mathf.Abs(samples[index]));
+                maximumStep = Mathf.Max(maximumStep, Mathf.Abs(samples[index] - samples[index - 1]));
+            }
+
+            Assert.That(samples[0], Is.EqualTo(0f).Within(0.0001f));
+            Assert.That(peak, Is.InRange(0.08f, 0.5f));
+            Assert.That(maximumStep, Is.LessThan(0.035f));
+            Assert.That(Mathf.Abs(samples[^1]), Is.LessThan(0.002f));
+        }
     }
 }

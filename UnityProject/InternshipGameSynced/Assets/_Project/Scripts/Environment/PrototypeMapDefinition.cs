@@ -6,6 +6,7 @@ namespace InternshipGame.Prototype
 {
     public enum FacilityZoneId
     {
+        // v0.3 generated-map values retained until the scene builder is replaced.
         EntryExtraction,
         Decontamination,
         OperationsHub,
@@ -16,6 +17,68 @@ namespace InternshipGame.Prototype
         WestRodStorage,
         CoreVault,
         EastReactor,
+        Annex,
+        Containment,
+        NorthPipeGallery,
+        Coolant,
+        UtilitySpine,
+        FuelHandling,
+        SouthMaintenanceChannel,
+        ShieldingServiceVoid,
+    }
+
+    public enum FacilityRouteFamily
+    {
+        None,
+        NorthPipeGallery,
+        UtilitySpine,
+        SouthMaintenanceChannel,
+    }
+
+    public static class FacilityRouteSemantics
+    {
+        public static FacilityRouteFamily GetRouteFamily(this FacilityZoneId zone)
+        {
+            return zone switch
+            {
+                FacilityZoneId.NorthPipeGallery => FacilityRouteFamily.NorthPipeGallery,
+                FacilityZoneId.UtilitySpine => FacilityRouteFamily.UtilitySpine,
+                FacilityZoneId.SouthMaintenanceChannel => FacilityRouteFamily.SouthMaintenanceChannel,
+                _ => FacilityRouteFamily.None,
+            };
+        }
+
+        public static ThreatWing ToThreatWing(this FacilityRouteFamily routeFamily)
+        {
+            return routeFamily switch
+            {
+                FacilityRouteFamily.NorthPipeGallery => ThreatWing.West,
+                FacilityRouteFamily.UtilitySpine => ThreatWing.Central,
+                FacilityRouteFamily.SouthMaintenanceChannel => ThreatWing.East,
+                _ => ThreatWing.None,
+            };
+        }
+
+        public static ThreatWing ToThreatWing(this FacilityZoneId zone)
+        {
+            return zone.GetRouteFamily().ToThreatWing();
+        }
+
+        public static string GetDisplayName(this FacilityZoneId zone)
+        {
+            return zone switch
+            {
+                FacilityZoneId.Annex => "Extraction Annex",
+                FacilityZoneId.Containment => "Containment & Control",
+                FacilityZoneId.NorthPipeGallery => "North Pipe Gallery",
+                FacilityZoneId.Coolant => "Coolant & Maintenance",
+                FacilityZoneId.UtilitySpine => "Utility Spine",
+                FacilityZoneId.FuelHandling => "Fuel Handling & Waste",
+                FacilityZoneId.SouthMaintenanceChannel => "South Maintenance Channel",
+                FacilityZoneId.ShieldingServiceVoid => "Shielding / Service Void",
+                _ => zone.ToString(),
+            };
+        }
     }
 
     public sealed class PrototypeMapDefinition : MonoBehaviour, IMapContext, IPrototypeStatusProvider
@@ -43,8 +106,12 @@ namespace InternshipGame.Prototype
         public IReadOnlyList<Transform> OwlPatrolPoints => owlPatrolPoints;
         public string ActiveRouteProfileId { get; private set; } = string.Empty;
         public string ActiveLightingProfileId { get; private set; } = string.Empty;
-        public FacilityZoneId LastEnteredZone { get; private set; } = FacilityZoneId.EntryExtraction;
-        public string StatusLabel => $"Map: {rodSockets.Length} sockets | {ActiveRouteProfileId} | {ActiveLightingProfileId}";
+        public FacilityZoneId LastEnteredZone { get; private set; } = FacilityZoneId.Annex;
+        public FacilityRouteFamily CurrentRouteFamily => LastEnteredZone.GetRouteFamily();
+        public string CurrentSpatialLabel => LastEnteredZone.GetDisplayName();
+        public string StatusLabel =>
+            $"Map: {rodSockets.Length} sockets | {ActiveRouteProfileId} | {ActiveLightingProfileId}\n" +
+            $"Space: {CurrentSpatialLabel} | connector {CurrentRouteFamily}";
 
         public void Configure(
             Transform spawn,
@@ -92,6 +159,65 @@ namespace InternshipGame.Prototype
             return socketsById.TryGetValue(socketId ?? string.Empty, out socket);
         }
 
+        public FacilityRouteFamily GetPatrolRouteFamily(int patrolIndex)
+        {
+            if (patrolIndex < 0 || patrolIndex >= owlPatrolPoints.Length ||
+                owlPatrolPoints[patrolIndex] == null)
+            {
+                return FacilityRouteFamily.None;
+            }
+
+            var anchor = owlPatrolPoints[patrolIndex].GetComponent<OwlRouteNodeAnchor>();
+            return anchor != null ? anchor.RouteFamily : FacilityRouteFamily.None;
+        }
+
+        public ThreatWing GetPatrolThreatWing(int patrolIndex)
+        {
+            return GetPatrolRouteFamily(patrolIndex).ToThreatWing();
+        }
+
+        public string GetNearestPatrolNodeId(Vector3 worldPosition)
+        {
+            OwlRouteNodeAnchor nearest = null;
+            var nearestDistance = float.PositiveInfinity;
+            foreach (var point in owlPatrolPoints)
+            {
+                if (point == null)
+                {
+                    continue;
+                }
+
+                var metadata = point.GetComponent<OwlRouteNodeAnchor>();
+                if (metadata == null)
+                {
+                    continue;
+                }
+
+                var distance = (point.position - worldPosition).sqrMagnitude;
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    nearest = metadata;
+                }
+            }
+
+            return nearest != null ? nearest.NodeId : "none";
+        }
+
+        public FacilityRouteFamily GetRouteFamilyAt(Vector3 worldPosition)
+        {
+            foreach (var trigger in zoneTriggers)
+            {
+                if (trigger != null && trigger.Zone.GetRouteFamily() != FacilityRouteFamily.None &&
+                    trigger.ContainsPoint(worldPosition))
+                {
+                    return trigger.Zone.GetRouteFamily();
+                }
+            }
+
+            return FacilityRouteFamily.None;
+        }
+
         public void ApplyAuthoredVariation(string routeProfileId, string lightingProfileId)
         {
             ActiveRouteProfileId = routeProfileId ?? string.Empty;
@@ -111,7 +237,7 @@ namespace InternshipGame.Prototype
         public void ResetDefinition()
         {
             ApplyAuthoredVariation(string.Empty, string.Empty);
-            LastEnteredZone = FacilityZoneId.EntryExtraction;
+            LastEnteredZone = FacilityZoneId.Annex;
         }
 
         internal void NotifyZoneEntered(FacilityZoneId zone)

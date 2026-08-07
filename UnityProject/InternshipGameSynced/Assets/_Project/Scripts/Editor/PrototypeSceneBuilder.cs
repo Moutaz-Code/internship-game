@@ -30,7 +30,7 @@ namespace InternshipGame.Prototype.Editor
             "Lighting",
         };
 
-        [MenuItem("Prototype/Rebuild Polished Multi-Path Prototype")]
+        [MenuItem("Prototype/Rebuild V040 Spatial Readability Prototype")]
         public static void Build()
         {
             EditorSceneManager.SaveOpenScenes();
@@ -52,7 +52,7 @@ namespace InternshipGame.Prototype.Editor
 
             var materials = CreateMaterials();
             BuildBaseLighting(generatedRoot.transform);
-            var facility = ExpandedFacilityBuilder.Build(
+            var facility = V040FacilityBuilder.Build(
                 generatedRoot.transform,
                 new ExpandedFacilityMaterials
                 {
@@ -253,8 +253,8 @@ namespace InternshipGame.Prototype.Editor
 
             Selection.activeGameObject = systems;
             Debug.Log(
-                "Polished multi-path prototype built: 10 spaces, 8 sockets, 5 active rods, " +
-                "3 route profiles, 9 metal distractions, 3 machinery panels, " +
+                "V040 7C prototype built: Annex, three lobes, three connectors, 8 sockets, 5 active rods, " +
+                "3 local route profiles, 9 metal distractions, 3 machinery panels, 18 Owl nodes, " +
                 "NavMesh/graph-fallback Owl navigation, and extraction holdout.");
         }
 
@@ -489,7 +489,7 @@ namespace InternshipGame.Prototype.Editor
         {
             var root = new GameObject("Three-Slot Deposit Rack");
             root.transform.SetParent(parent, false);
-            root.transform.position = anchor.position;
+            root.transform.SetPositionAndRotation(anchor.position, anchor.rotation);
 
             CreatePrimitiveLocal("Rack Base", PrimitiveType.Cube, root.transform, new Vector3(0f, 0.28f, 0f), new Vector3(3.25f, 0.55f, 1f), materials.metal, true);
             CreatePrimitiveLocal("Rack Front Plinth", PrimitiveType.Cube, root.transform, new Vector3(0f, 0.3f, -0.53f), new Vector3(3.38f, 0.62f, 0.08f), materials.darkTrim, false);
@@ -546,7 +546,7 @@ namespace InternshipGame.Prototype.Editor
         {
             var root = new GameObject("Extraction Exit");
             root.transform.SetParent(parent, false);
-            root.transform.position = anchor.position;
+            root.transform.SetPositionAndRotation(anchor.position, anchor.rotation);
             var closedDoor = CreatePrimitiveLocal(
                 "Cycling Blast Door",
                 PrimitiveType.Cube,
@@ -685,32 +685,28 @@ namespace InternshipGame.Prototype.Editor
             {
                 new ThreatWaypointConnection(0, 1),
                 new ThreatWaypointConnection(1, 2),
-                new ThreatWaypointConnection(1, 7, PrototypeVariationIds.CentralPowerOutage),
-                new ThreatWaypointConnection(1, 20),
-                new ThreatWaypointConnection(20, 11, PrototypeVariationIds.LaboratoryQuarantine),
-                new ThreatWaypointConnection(2, 3, PrototypeVariationIds.MaintenanceObstruction),
+                new ThreatWaypointConnection(2, 3),
                 new ThreatWaypointConnection(3, 4),
-                new ThreatWaypointConnection(4, 21),
-                new ThreatWaypointConnection(21, 22),
-                new ThreatWaypointConnection(22, 5),
-                new ThreatWaypointConnection(22, 6),
-                new ThreatWaypointConnection(6, 8),
-                new ThreatWaypointConnection(5, 14),
-                new ThreatWaypointConnection(5, 17),
+                new ThreatWaypointConnection(4, 5),
+                new ThreatWaypointConnection(5, 6),
+                new ThreatWaypointConnection(6, 7, PrototypeVariationIds.CoolantService),
                 new ThreatWaypointConnection(7, 8),
-                new ThreatWaypointConnection(8, 9),
-                new ThreatWaypointConnection(8, 10),
-                new ThreatWaypointConnection(10, 12),
+                new ThreatWaypointConnection(8, 6),
+                new ThreatWaypointConnection(7, 9),
+                new ThreatWaypointConnection(9, 10),
+                new ThreatWaypointConnection(10, 11),
                 new ThreatWaypointConnection(11, 12),
                 new ThreatWaypointConnection(12, 13),
-                new ThreatWaypointConnection(13, 16),
-                new ThreatWaypointConnection(13, 19),
-                new ThreatWaypointConnection(9, 15),
+                new ThreatWaypointConnection(13, 11, PrototypeVariationIds.FuelInspection),
+                new ThreatWaypointConnection(13, 14),
                 new ThreatWaypointConnection(14, 15),
-                new ThreatWaypointConnection(15, 16),
-                new ThreatWaypointConnection(14, 17),
-                new ThreatWaypointConnection(15, 18),
-                new ThreatWaypointConnection(16, 19),
+                new ThreatWaypointConnection(15, 1),
+                new ThreatWaypointConnection(16, 1),
+                new ThreatWaypointConnection(16, 2),
+                new ThreatWaypointConnection(16, 3),
+                new ThreatWaypointConnection(17, 6),
+                new ThreatWaypointConnection(17, 7),
+                new ThreatWaypointConnection(17, 8),
             };
         }
 
@@ -734,15 +730,15 @@ namespace InternshipGame.Prototype.Editor
             root.transform.SetParent(parent, false);
             var positions = new[]
             {
-                new Vector3(-12.8f, 0.45f, -3.8f),
-                new Vector3(-9.2f, 0.45f, 2.2f),
-                new Vector3(-12.2f, 0.45f, 6.6f),
-                new Vector3(-1.6f, 0.45f, 5.5f),
-                new Vector3(1.6f, 0.45f, -1.5f),
-                new Vector3(1.4f, 0.45f, 7.2f),
-                new Vector3(12.8f, 0.45f, -3.8f),
-                new Vector3(9.2f, 0.45f, 2.2f),
-                new Vector3(12.2f, 0.45f, 6.6f),
+                new Vector3(-21.2f, 0.45f, -4.8f),
+                new Vector3(-20.6f, 0.45f, 7.2f),
+                new Vector3(-7.2f, 0.45f, 1.2f),
+                new Vector3(10.2f, 0.45f, 6f),
+                new Vector3(24f, 0.45f, 6.5f),
+                new Vector3(24f, 0.45f, 19f),
+                new Vector3(9f, 0.45f, -5.8f),
+                new Vector3(10f, 0.45f, -16.2f),
+                new Vector3(23f, 0.45f, -16f),
             };
             var result = new ThrowableThreatStimulus[positions.Length];
 
@@ -788,9 +784,9 @@ namespace InternshipGame.Prototype.Editor
             root.transform.SetParent(parent, false);
             var placements = new[]
             {
-                ("West", new Vector3(-14.8f, 1.15f, -1.5f), Quaternion.Euler(0f, 90f, 0f)),
-                ("Central", new Vector3(-2.4f, 1.15f, 2f), Quaternion.Euler(0f, 90f, 0f)),
-                ("East", new Vector3(14.8f, 1.15f, -1.5f), Quaternion.Euler(0f, -90f, 0f)),
+                ("Containment", new Vector3(-20f, 1.15f, 9f), Quaternion.Euler(0f, 90f, 0f)),
+                ("Coolant", new Vector3(11f, 1.15f, 17f), Quaternion.Euler(0f, 90f, 0f)),
+                ("Fuel Handling", new Vector3(9f, 1.15f, -14f), Quaternion.Euler(0f, 90f, 0f)),
             };
             var result = new MachineryDistractionPanel[placements.Length];
             for (var i = 0; i < placements.Length; i++)

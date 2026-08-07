@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">v0.4.0.0 7C gameplay overlay</title>
+  <desc id="desc">Top-down gameplay overlay showing player circulation, Owl patrol graph, route evidence families, sightline budgets, noise identities, full-cover masses, objectives, and recovery pockets.</desc>
+  <defs>
+    <pattern id="grid" width="90" height="90" patternUnits="userSpaceOnUse"><path d="M90 0L0 0 0 90" fill="none" stroke="#26313b" stroke-width="1"/></pattern>
+    <pattern id="noise" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M0 16L16 0M-4 4L4-4M12 20L20 12" stroke="#e5af4c" stroke-width="3" opacity="0.55"/></pattern>
+    <marker id="cyanArrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0 0L0 8L9 4z" fill="#50c7e8"/></marker>
+    <marker id="redArrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0 0L0 8L9 4z" fill="#ef5555"/></marker>
+    <style>
+      .shell{fill:#27323a;stroke:#aeb8bf;stroke-width:4;stroke-linejoin:round}.void{fill:#090d11;stroke:#505b64;stroke-width:3;stroke-dasharray:9 8}
+      .major{fill:#10161a;stroke:#89959d;stroke-width:3}.cover{fill:#11171b;stroke:#7fc992;stroke-width:4}.obj{fill:#a95cff;stroke:#ead8ff;stroke-width:3}
+      .player{fill:none;stroke:#50c7e8;stroke-width:6;marker-end:url(#cyanArrow)}.owl{fill:none;stroke:#ef5555;stroke-width:5;stroke-dasharray:13 9;marker-end:url(#redArrow)}
+      .sight{stroke:#e8bd5b;stroke-width:4;stroke-dasharray:7 7}.recovery{fill:#3a6748;stroke:#9be0ab;stroke-width:3;stroke-dasharray:5 4}
+      .node{fill:#ef5555;stroke:#ffd0d0;stroke-width:2}.label{font-family:Segoe UI,Arial,sans-serif;fill:#eef3f6;font-size:22px;font-weight:700}
+      .small{font-family:Segoe UI,Arial,sans-serif;fill:#d4dde4;font-size:17px}.tiny{font-family:Segoe UI,Arial,sans-serif;fill:#c8d2d9;font-size:14px}
+    </style>
+  </defs>
+  <rect width="1600" height="980" fill="#0c1116"/><rect x="65" y="70" width="1100" height="820" fill="url(#grid)" stroke="#36424b" stroke-width="2"/>
+  <text x="70" y="45" class="label">v0.4.0.0 — 7C GAMEPLAY OVERLAY</text>
+
+  <!-- Locked macro footprint. -->
+  <polygon class="shell" points="506,212 632,158 812,140 830,194 650,212 524,266"/>
+  <polygon class="shell" points="938,428 1028,446 1028,572 938,572"/>
+  <polygon class="shell" points="560,572 632,698 758,752 794,698 686,644 596,536"/>
+  <polygon class="shell" points="218,644 506,644 578,554 578,320 506,212 362,158 218,230 164,356 164,536"/>
+  <polygon class="shell" points="758,374 812,140 1010,122 1100,212 1100,374 1028,446 848,446"/>
+  <polygon class="shell" points="758,572 1064,572 1136,662 1100,824 830,842 722,752 722,626"/>
+  <polygon class="shell" points="110,608 236,608 236,464 110,464" fill="#263b31"/>
+  <polygon class="void" points="600,292 748,224 892,482 820,552 686,604 600,518"/>
+
+  <!-- Major landmarks and protected full-cover masses. -->
+  <circle class="major" cx="380" cy="392" r="96"/><circle class="major" cx="956" cy="284" r="58"/>
+  <rect class="cover" x="225" y="270" width="88" height="22" rx="4" transform="rotate(20 269 281)"/>
+  <rect class="cover" x="489" y="334" width="22" height="76" rx="4"/>
+  <rect class="cover" x="307" y="568" width="104" height="22" rx="4" transform="rotate(-15 359 579)"/>
+  <rect class="cover" x="449" y="228" width="70" height="28" rx="4" transform="rotate(-15 484 242)"/>
+  <rect class="cover" x="825" y="294" width="65" height="27" rx="6" transform="rotate(-20 857 308)"/>
+  <rect class="cover" x="1009" y="304" width="63" height="27" rx="6" transform="rotate(18 1040 318)"/>
+  <rect class="cover" x="864" y="168" width="74" height="26" rx="6"/>
+  <rect class="cover" x="830" y="607" width="105" height="31" rx="5"/>
+  <rect class="cover" x="899" y="672" width="120" height="31" rx="5"/>
+  <rect class="cover" x="830" y="745" width="105" height="31" rx="5"/>
+
+  <!-- Noisy surfaces: Utility Spine and fuel-handling lane. -->
+  <rect x="938" y="428" width="90" height="144" fill="url(#noise)"/>
+  <path d="M800 612H1070V785H800Z" fill="url(#noise)" opacity="0.35"/>
+
+  <!-- Example player route choices; arrows are illustrative, not rails. -->
+  <path class="player" d="M150 535 C220 520 250 520 280 500 C235 445 230 345 300 270 C380 185 475 205 530 238 C640 180 725 175 815 170 C860 160 885 190 900 225"/>
+  <path class="player" d="M900 225 C1040 220 1080 290 1030 365 C995 405 980 440 980 500 C980 555 1000 590 1050 625 C1090 680 1060 770 960 790 C865 810 780 770 750 720 C685 695 630 655 580 565 C520 620 410 630 320 585 C250 560 205 550 150 535"/>
+  <text x="610" y="128" class="small">NORTH: shortest quiet approach, but periodic 18–22 m exposure</text>
+  <text x="1045" y="470" class="small" transform="rotate(90 1045 470)">UTILITY: loud, close, cover-rich</text>
+  <text x="520" y="790" class="small">SOUTH: indirect, shielded, several turns</text>
+
+  <!-- Owl patrol graph: 18 authored nodes. -->
+  <path class="owl" d="M270 500 L255 355 L380 215 L500 305 L270 500"/>
+  <path class="owl" d="M380 215 L520 235 L650 180 L800 170 L860 190 L1020 250 L980 375 L860 190"/>
+  <path class="owl" d="M980 375 L980 445 L980 555 L1030 625 L1035 750 L850 770 L1030 625"/>
+  <path class="owl" d="M850 770 L760 720 L650 730 L560 590 L270 500"/>
+  <g>
+    <circle class="node" cx="270" cy="500" r="7"/><circle class="node" cx="255" cy="355" r="7"/><circle class="node" cx="380" cy="215" r="7"/><circle class="node" cx="500" cy="305" r="7"/>
+    <circle class="node" cx="520" cy="235" r="7"/><circle class="node" cx="650" cy="180" r="7"/><circle class="node" cx="800" cy="170" r="7"/><circle class="node" cx="860" cy="190" r="7"/>
+    <circle class="node" cx="1020" cy="250" r="7"/><circle class="node" cx="980" cy="375" r="7"/><circle class="node" cx="980" cy="445" r="7"/><circle class="node" cx="980" cy="555" r="7"/>
+    <circle class="node" cx="1030" cy="625" r="7"/><circle class="node" cx="1035" cy="750" r="7"/><circle class="node" cx="850" cy="770" r="7"/><circle class="node" cx="760" cy="720" r="7"/>
+    <circle class="node" cx="650" cy="730" r="7"/><circle class="node" cx="560" cy="590" r="7"/>
+  </g>
+
+  <!-- Representative deliberate sightlines. -->
+  <line class="sight" x1="235" y1="455" x2="500" y2="345"/><text x="300" y="385" class="tiny">22 m cap</text>
+  <line class="sight" x1="835" y1="350" x2="1010" y2="200"/><text x="895" y="260" class="tiny">14–16 m</text>
+  <line class="sight" x1="790" y1="640" x2="1080" y2="640"/><text x="900" y="630" class="tiny">18–20 m lane</text>
+
+  <!-- Recovery pockets sit after exposure and before route recombination. -->
+  <ellipse class="recovery" cx="520" cy="290" rx="30" ry="20"/><text x="485" y="321" class="tiny">RECOVERY</text>
+  <ellipse class="recovery" cx="850" cy="395" rx="31" ry="20"/><text x="814" y="426" class="tiny">RECOVERY</text>
+  <ellipse class="recovery" cx="760" cy="645" rx="31" ry="20"/><text x="724" y="676" class="tiny">RECOVERY</text>
+
+  <!-- Objective positions: one live objective family per lobe. -->
+  <circle class="obj" cx="488" cy="293" r="13"/><text x="465" y="277" class="tiny">ROD A</text>
+  <circle class="obj" cx="1046" cy="212" r="13"/><text x="1023" y="195" class="tiny">ROD B</text>
+  <circle class="obj" cx="1028" cy="698" r="13"/><text x="1005" y="681" class="tiny">ROD C</text>
+
+  <!-- Legend. -->
+  <g transform="translate(1205 90)">
+    <rect width="360" height="805" rx="14" fill="#151d23" stroke="#56636d" stroke-width="2"/>
+    <text x="25" y="44" class="label">GAMEPLAY CONTRACT</text>
+    <line class="player" x1="28" y1="82" x2="88" y2="82"/><text x="110" y="89" class="small">Player options</text>
+    <line class="owl" x1="28" y1="124" x2="88" y2="124"/><text x="110" y="131" class="small">Owl patrol/intercept</text>
+    <rect class="cover" x="29" y="153" width="58" height="22"/><text x="110" y="171" class="small">Verified full cover</text>
+    <line class="sight" x1="29" y1="206" x2="88" y2="206"/><text x="110" y="212" class="small">Authored exposure</text>
+    <rect x="29" y="238" width="58" height="24" fill="url(#noise)"/><text x="110" y="257" class="small">Noisy surface/zone</text>
+    <ellipse class="recovery" cx="58" cy="298" rx="30" ry="17"/><text x="110" y="304" class="small">Relocation pocket</text>
+
+    <text x="25" y="355" class="label">ROUTE EVIDENCE</text>
+    <text x="25" y="392" class="small">Internal West ID → North Gallery</text>
+    <text x="25" y="423" class="small">Internal Central ID → Utility Spine</text>
+    <text x="25" y="454" class="small">Internal East ID → South Channel</text>
+    <text x="25" y="490" class="tiny">Only connector zones generate direct route-choice</text>
+    <text x="25" y="512" class="tiny">evidence. Destination lobes are not route choices.</text>
+
+    <text x="25" y="565" class="label">FAIRNESS LAWS</text>
+    <text x="25" y="602" class="small">• No Owl position watches two connectors</text>
+    <text x="25" y="633" class="small">• Full cover blocks all three sight samples</text>
+    <text x="25" y="664" class="small">• Every rod pocket has two exits</text>
+    <text x="25" y="695" class="small">• Quiet relocation never leaks position</text>
+    <text x="25" y="726" class="small">• Sound targets its event origin only</text>
+    <text x="25" y="757" class="small">• No jump-only critical path</text>
+  </g>
+  <text x="70" y="930" class="small">Overlay is test authority for topology and encounter intent, not a requirement to reproduce every decorative object shown in the 7C concept render.</text>
+</svg>

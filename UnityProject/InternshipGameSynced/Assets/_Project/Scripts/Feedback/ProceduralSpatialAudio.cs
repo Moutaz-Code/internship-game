@@ -11,6 +11,7 @@ namespace InternshipGame.Prototype
         [SerializeField] private AudioSource audioSource;
 
         private readonly Dictionary<string, AudioClip> clips = new();
+        private int footstepVariant;
 
         public int PlayCount { get; private set; }
         public string LastCue { get; private set; } = string.Empty;
@@ -38,12 +39,13 @@ namespace InternshipGame.Prototype
                 MovementNoiseBand.Sprint => "footstep.sprint",
                 _ => "footstep.walk",
             };
-            var clip = GetOrCreate(cue, () => CreateFootstep(band));
+            var variant = footstepVariant++ & 1;
+            var clip = GetOrCreate($"{cue}.{variant}", () => CreateFootstep(band, variant));
             var volume = band switch
             {
-                MovementNoiseBand.Crouch => 0.18f,
-                MovementNoiseBand.Sprint => 0.72f,
-                _ => 0.38f,
+                MovementNoiseBand.Crouch => 0.10f,
+                MovementNoiseBand.Sprint => 0.36f,
+                _ => 0.22f,
             };
             PlayOneShot(cue, clip, volume);
         }
@@ -91,23 +93,54 @@ namespace InternshipGame.Prototype
             return clip;
         }
 
-        private static AudioClip CreateFootstep(MovementNoiseBand band)
+        private static AudioClip CreateFootstep(MovementNoiseBand band, int variant)
         {
-            var duration = band == MovementNoiseBand.Sprint ? 0.15f : band == MovementNoiseBand.Crouch ? 0.08f : 0.11f;
+            return CreateClip($"{band} Footstep {variant + 1}", CreateFootstepSamples(band, variant));
+        }
+
+        internal static float[] CreateFootstepSamples(MovementNoiseBand band, int variant = 0)
+        {
+            var duration = band == MovementNoiseBand.Sprint ? 0.19f : band == MovementNoiseBand.Crouch ? 0.13f : 0.17f;
             var samples = new float[Mathf.CeilToInt(SampleRate * duration)];
-            var baseFrequency = band == MovementNoiseBand.Sprint ? 92f : band == MovementNoiseBand.Crouch ? 145f : 118f;
+            var heelStartFrequency = band == MovementNoiseBand.Sprint ? 78f : band == MovementNoiseBand.Crouch ? 58f : 68f;
+            heelStartFrequency += (variant & 1) == 0 ? -2.5f : 2.5f;
+            var heelEndFrequency = heelStartFrequency * 0.64f;
+            var toeDelay = band == MovementNoiseBand.Sprint ? 0.052f : band == MovementNoiseBand.Crouch ? 0.036f : 0.045f;
+            var toeFrequency = heelStartFrequency * 1.42f;
+            var noiseState = 0x9e3779b9u ^ ((uint)band * 0x85ebca6bu) ^ ((uint)(variant + 1) * 0xc2b2ae35u);
+            var filteredNoise = 0f;
+
             for (var i = 0; i < samples.Length; i++)
             {
                 var t = i / (float)SampleRate;
                 var normalized = i / (float)samples.Length;
-                var envelope = Mathf.Pow(1f - normalized, 2.4f);
-                var hash = (i * 1103515245 + 12345) & 0x7fffffff;
-                var noise = hash / (float)int.MaxValue * 2f - 1f;
-                var tone = Mathf.Sin(2f * Mathf.PI * baseFrequency * t);
-                samples[i] = (tone * 0.68f + noise * 0.32f) * envelope * 0.32f;
+                var attack = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(t / 0.006f));
+                var heelEnvelope = attack * Mathf.Exp(-t / (duration * 0.27f));
+                var heelPhase = 2f * Mathf.PI *
+                    (heelStartFrequency * t + 0.5f * (heelEndFrequency - heelStartFrequency) * t * t / duration);
+
+                noiseState ^= noiseState << 13;
+                noiseState ^= noiseState >> 17;
+                noiseState ^= noiseState << 5;
+                var rawNoise = noiseState / (float)uint.MaxValue * 2f - 1f;
+                filteredNoise += (rawNoise - filteredNoise) * 0.055f;
+
+                var heel = Mathf.Sin(heelPhase) * heelEnvelope * 0.30f;
+                var texture = filteredNoise * heelEnvelope * 0.13f;
+                var toeTime = t - toeDelay;
+                var toe = 0f;
+                if (toeTime > 0f)
+                {
+                    var toeAttack = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(toeTime / 0.004f));
+                    var toeEnvelope = toeAttack * Mathf.Exp(-toeTime / (duration * 0.18f));
+                    toe = (Mathf.Sin(2f * Mathf.PI * toeFrequency * toeTime) * 0.12f + filteredNoise * 0.045f) * toeEnvelope;
+                }
+
+                var tail = Mathf.SmoothStep(1f, 0f, Mathf.InverseLerp(0.72f, 1f, normalized));
+                samples[i] = (heel + texture + toe) * tail;
             }
 
-            return CreateClip($"{band} Footstep", samples);
+            return samples;
         }
 
         private static AudioClip CreateMetalImpact()

@@ -280,7 +280,7 @@ namespace InternshipGame.Prototype.Tests
             {
                 switch (candidate.name)
                 {
-                    case "Generated Facility":
+                    case "Generated Facility V040 7C":
                         facility = candidate;
                         break;
                     case "Mission Display Assembly":
@@ -300,47 +300,37 @@ namespace InternshipGame.Prototype.Tests
             Assert.That(facility, Is.Not.Null);
             Assert.That(legacyFloorIdentityCount, Is.Zero, "Full-room stacked identity plates must not return.");
 
-            var spaces = facility.Find("Authored Spaces");
-            Assert.That(spaces, Is.Not.Null);
-            Assert.That(spaces.childCount, Is.EqualTo(10));
-            for (var i = 0; i < spaces.childCount; i++)
+            var floorPads = facility.Find("7C Navigable Floor Pads");
+            Assert.That(floorPads, Is.Not.Null);
+            var navigableFloorCount = 0;
+            var routeInlayCount = 0;
+            for (var i = 0; i < floorPads.childCount; i++)
             {
-                var space = spaces.GetChild(i);
-                var inlay = space.Find($"{space.name} Route Inlay");
-                var profile = space.Find("Scrappable Architectural Profile");
-                var sign = space.Find($"{space.name} Identity Sign/Fitted Text");
-                Assert.That(inlay, Is.Not.Null, $"{space.name} is missing its inset route cue.");
-                Assert.That(profile, Is.Not.Null, $"{space.name} is missing its authored silhouette profile.");
-                Assert.That(profile.childCount, Is.GreaterThan(0), $"{space.name} has an empty profile.");
-                Assert.That(sign, Is.Not.Null, $"{space.name} is missing fitted identity signage.");
-                Assert.That(inlay.position.y, Is.EqualTo(0.009f).Within(0.001f));
-                Assert.That(inlay.localScale.y, Is.EqualTo(0.018f).Within(0.001f));
-                Assert.That(sign.lossyScale, Is.EqualTo(Vector3.one).Using(Vector3ComparerWithEqualsOperator.Instance));
-                var signText = sign.GetComponent<TMP_Text>();
-                Assert.That(signText, Is.Not.Null);
-                Assert.That(signText.fontSizeMax, Is.GreaterThanOrEqualTo(0.8f));
-                Assert.That(signText.text, Does.Contain(space.name.ToUpperInvariant()));
+                var child = floorPads.GetChild(i);
+                navigableFloorCount += child.name == "Continuous Navigable Floor" ? 1 : 0;
+                routeInlayCount += child.name.EndsWith("Route Inlay", System.StringComparison.Ordinal) ? 1 : 0;
             }
+            Assert.That(navigableFloorCount, Is.EqualTo(10));
+            Assert.That(routeInlayCount, Is.EqualTo(10));
 
-            var routeFamilies = facility.Find("Route Families");
-            Assert.That(routeFamilies, Is.Not.Null);
+            var architecture = facility.Find("7C Shell And Portal Architecture");
+            Assert.That(architecture, Is.Not.Null);
+            Assert.That(architecture.Find("INACCESSIBLE CENTRAL SHIELDING SERVICE VOID"), Is.Not.Null);
             var portalCount = 0;
-            for (var i = 0; i < routeFamilies.childCount; i++)
+            for (var i = 0; i < architecture.childCount; i++)
             {
-                var portal = routeFamilies.GetChild(i);
-                var left = portal.Find("Left Fitted Jamb");
+                var portal = architecture.GetChild(i);
+                var left = portal.Find("Left Jamb");
                 if (left == null)
                 {
                     continue;
                 }
 
                 portalCount++;
-                var right = portal.Find("Right Fitted Jamb");
-                var header = portal.Find("Fitted Header");
-                var wallCap = portal.Find("Fitted Wall Cap");
+                var right = portal.Find("Right Jamb");
+                var header = portal.Find("Header");
                 Assert.That(right, Is.Not.Null, $"{portal.name} has no right jamb.");
                 Assert.That(header, Is.Not.Null, $"{portal.name} has no fitted header.");
-                Assert.That(wallCap, Is.Not.Null, $"{portal.name} has no wall infill above its frame.");
                 var clearWidth = right.localPosition.x - right.localScale.x * 0.5f -
                                  (left.localPosition.x + left.localScale.x * 0.5f);
                 Assert.That(clearWidth, Is.EqualTo(2.76f).Within(0.01f), $"{portal.name} clear width changed.");
@@ -356,21 +346,19 @@ namespace InternshipGame.Prototype.Tests
                 foreach (var doorwayHit in doorwayHits)
                 {
                     Assert.That(
-                        doorwayHit.transform.IsChildOf(portal) ||
-                        doorwayHit.transform.IsChildOf(facility.Find("Interior Architecture")),
-                        Is.False,
+                        doorwayHit.isTrigger || doorwayHit.name == "Continuous Navigable Floor",
+                        Is.True,
                         $"{portal.name} clear opening is obstructed by {doorwayHit.name}.");
                 }
             }
 
-            Assert.That(portalCount, Is.EqualTo(13));
-            var entryCorridor = routeFamilies.Find("Entry-Decon");
-            var entryInlay = spaces.Find("Entry and Extraction Bay/Entry and Extraction Bay Route Inlay");
-            Assert.That(entryCorridor, Is.Not.Null);
-            Assert.That(entryInlay, Is.Not.Null);
-            var corridorSurface = entryCorridor.position.y + entryCorridor.localScale.y * 0.5f;
-            var roomSurface = entryInlay.position.y + entryInlay.localScale.y * 0.5f;
-            Assert.That(corridorSurface - roomSurface, Is.GreaterThanOrEqualTo(0.005f), "Overlapping route surfaces need explicit vertical separation.");
+            Assert.That(portalCount, Is.EqualTo(7));
+            var grammars = facility.Find("Three Lobe Spatial Grammars");
+            Assert.That(grammars, Is.Not.Null);
+            Assert.That(grammars.childCount, Is.EqualTo(3));
+            Assert.That(grammars.Find("Containment & Control Grammar/Reactor Drum Landmark"), Is.Not.Null);
+            Assert.That(grammars.Find("Coolant & Maintenance Grammar/Coolant Basin Landmark"), Is.Not.Null);
+            Assert.That(grammars.Find("Fuel Handling & Waste Grammar/Hot Wall Landmark"), Is.Not.Null);
 
             Assert.That(missionAssembly, Is.Not.Null);
             var missionTextTransform = missionAssembly.Find("Diegetic Mission Display");
@@ -417,11 +405,20 @@ namespace InternshipGame.Prototype.Tests
             var machineryPanels = Object.FindObjectsByType<MachineryDistractionPanel>(FindObjectsInactive.Include);
             var motionStimuli = Object.FindObjectsByType<PlayerThreatStimulusEmitter>(FindObjectsInactive.Include);
 
-            Assert.That(Application.version, Is.EqualTo("0.3.0.0"));
+            Assert.That(Application.version, Is.EqualTo("0.4.0.0"));
             Assert.That(maps, Has.Length.EqualTo(1));
             Assert.That(sockets, Has.Length.EqualTo(8));
             Assert.That(maps[0].RodSockets.Count, Is.EqualTo(8));
             Assert.That(rods, Has.Length.EqualTo(5));
+            foreach (var rod in rods)
+            {
+                var body = rod.GetComponent<Rigidbody>();
+                Assert.That(body, Is.Not.Null, $"{rod.name} requires a Rigidbody.");
+                Assert.That(
+                    body.detectCollisions,
+                    Is.True,
+                    $"{rod.name} must remain visible to the desktop pickup ray after startup/reset.");
+            }
             Assert.That(objectiveSets, Has.Length.EqualTo(1));
             Assert.That(objectiveSets[0].Items.Count, Is.EqualTo(5));
             Assert.That(objectiveSets[0].RequiredLiveRods, Is.EqualTo(3));
@@ -439,6 +436,30 @@ namespace InternshipGame.Prototype.Tests
             Assert.That(throwableStimuli, Has.Length.EqualTo(9));
             Assert.That(machineryPanels, Has.Length.EqualTo(3));
             Assert.That(motionStimuli, Has.Length.EqualTo(1));
+            Assert.That(maps[0].OwlPatrolPoints.Count, Is.EqualTo(18));
+            var connectorNodeCount = 0;
+            var northNodeCount = 0;
+            var utilityNodeCount = 0;
+            var southNodeCount = 0;
+            foreach (var patrolPoint in maps[0].OwlPatrolPoints)
+            {
+                var metadata = patrolPoint.GetComponent<OwlRouteNodeAnchor>();
+                Assert.That(metadata, Is.Not.Null, $"{patrolPoint.name} lacks explicit V040 metadata.");
+                if (metadata.Kind != OwlRouteNodeKind.Connector)
+                {
+                    Assert.That(metadata.RouteFamily, Is.EqualTo(FacilityRouteFamily.None));
+                    continue;
+                }
+
+                connectorNodeCount++;
+                northNodeCount += metadata.RouteFamily == FacilityRouteFamily.NorthPipeGallery ? 1 : 0;
+                utilityNodeCount += metadata.RouteFamily == FacilityRouteFamily.UtilitySpine ? 1 : 0;
+                southNodeCount += metadata.RouteFamily == FacilityRouteFamily.SouthMaintenanceChannel ? 1 : 0;
+            }
+            Assert.That(connectorNodeCount, Is.EqualTo(6));
+            Assert.That(northNodeCount, Is.EqualTo(2));
+            Assert.That(utilityNodeCount, Is.EqualTo(2));
+            Assert.That(southNodeCount, Is.EqualTo(2));
             foreach (var throwable in throwableStimuli)
             {
                 Assert.That(throwable.GetComponent<ProceduralSpatialAudio>(), Is.Not.Null);
@@ -477,6 +498,11 @@ namespace InternshipGame.Prototype.Tests
             Assert.That(owls[0].ConfirmationThreshold, Is.EqualTo(1f).Within(0.0001f));
             Assert.That(owls[0].IsRouteAdaptationEnabled, Is.True);
             Assert.That(owls[0].StatusLabel, Does.Contain("Adapt: ON"));
+            Assert.That(owls[0].StatusLabel, Does.Contain("Spatial:"));
+            Assert.That(owls[0].StatusLabel, Does.Contain("Route:"));
+            Assert.That(owls[0].StatusLabel, Does.Contain("Navigation: node"));
+            Assert.That(owls[0].StatusLabel, Does.Contain("primary rejection"));
+            Assert.That(owls[0].StatusLabel, Does.Contain("graph fallback"));
             owls[0].SetRouteAdaptationEnabled(false);
             Assert.That(owls[0].IsRouteAdaptationEnabled, Is.False);
             Assert.That(owls[0].StatusLabel, Does.Contain("Adapt: OFF"));
@@ -506,9 +532,9 @@ namespace InternshipGame.Prototype.Tests
             var originalLightingProfile = map.ActiveLightingProfileId;
             var routeProfiles = new[]
             {
-                PrototypeVariationIds.MaintenanceObstruction,
-                PrototypeVariationIds.LaboratoryQuarantine,
-                PrototypeVariationIds.CentralPowerOutage,
+                PrototypeVariationIds.OpenCircuit,
+                PrototypeVariationIds.CoolantService,
+                PrototypeVariationIds.FuelInspection,
             };
 
             try
@@ -601,6 +627,73 @@ namespace InternshipGame.Prototype.Tests
                 navigator.Stop();
                 map.ApplyAuthoredVariation(originalRouteProfile, originalLightingProfile);
                 owl.SetRouteProfile(originalRouteProfile);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator IntegratedPrototype_AllFuelRodsHaveAnAccessibleDesktopPickupApproach()
+        {
+            var loadOperation = SceneManager.LoadSceneAsync(PrototypeScenePath, LoadSceneMode.Single);
+            Assert.That(loadOperation, Is.Not.Null);
+            while (!loadOperation.isDone)
+            {
+                yield return null;
+            }
+
+            yield return null;
+            yield return null;
+
+            var interactor = Object.FindAnyObjectByType<DesktopGrabInteractor>(FindObjectsInactive.Include);
+            var view = Camera.main;
+            var rods = Object.FindObjectsByType<FuelRodItem>(FindObjectsInactive.Include);
+            Assert.That(interactor, Is.Not.Null);
+            Assert.That(view, Is.Not.Null);
+            Assert.That(rods, Has.Length.EqualTo(5));
+
+            var originalPosition = view.transform.position;
+            var originalRotation = view.transform.rotation;
+            var approachDirections = new[]
+            {
+                Vector3.forward,
+                Vector3.back,
+                Vector3.left,
+                Vector3.right,
+                new Vector3(1f, 0f, 1f).normalized,
+                new Vector3(-1f, 0f, 1f).normalized,
+                new Vector3(1f, 0f, -1f).normalized,
+                new Vector3(-1f, 0f, -1f).normalized,
+            };
+
+            try
+            {
+                foreach (var rod in rods)
+                {
+                    var targetable = false;
+                    foreach (var direction in approachDirections)
+                    {
+                        var target = rod.GetComponent<Collider>().bounds.center;
+                        view.transform.SetPositionAndRotation(
+                            target + direction * 2f,
+                            Quaternion.LookRotation(-direction, Vector3.up));
+                        Physics.SyncTransforms();
+                        if (interactor.TryFindTarget(out var hit) &&
+                            hit.collider.GetComponentInParent<FuelRodItem>() == rod)
+                        {
+                            targetable = true;
+                            break;
+                        }
+                    }
+
+                    Assert.That(
+                        targetable,
+                        Is.True,
+                        $"{rod.name} has no unobstructed desktop pickup approach within interaction range.");
+                }
+            }
+            finally
+            {
+                view.transform.SetPositionAndRotation(originalPosition, originalRotation);
+                Physics.SyncTransforms();
             }
         }
 

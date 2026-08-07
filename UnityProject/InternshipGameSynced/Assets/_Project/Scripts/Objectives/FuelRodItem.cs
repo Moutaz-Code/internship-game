@@ -240,11 +240,11 @@ namespace InternshipGame.Prototype
 
             if (body != null)
             {
+                body.linearVelocity = Vector3.zero;
+                body.angularVelocity = Vector3.zero;
                 body.isKinematic = true;
                 body.useGravity = false;
                 body.detectCollisions = false;
-                body.linearVelocity = Vector3.zero;
-                body.angularVelocity = Vector3.zero;
             }
 
             StateChanged?.Invoke(this);
@@ -330,7 +330,12 @@ namespace InternshipGame.Prototype
 
             startIsKinematic = body.isKinematic;
             startUseGravity = body.useGravity;
-            startDetectCollisions = body.detectCollisions;
+            // XRGrabInteractable performs its own Rigidbody setup during Awake. In the
+            // generated scene that setup can run before this component and transiently
+            // disable collisions. A fuel rod's authored spawn state is always a live,
+            // raycastable pickup, so do not preserve that transient XR value as reset state.
+            startDetectCollisions = true;
+            body.detectCollisions = true;
             startInterpolation = body.interpolation;
             startCollisionDetectionMode = body.collisionDetectionMode;
             startConstraints = body.constraints;

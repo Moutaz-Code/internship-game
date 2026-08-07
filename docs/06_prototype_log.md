@@ -427,3 +427,113 @@ Automated and runtime evidence:
 Human evidence: Not Tested. Use `35_v0_3_0_0_human_validation_sheet.md`; desktop evidence will not close XR or physical-hardware gates.
 
 Schedule and cut line: deliver the coherent `v0.3.0.0` gate by 2026-08-02 and begin `v0.4.0.0` on 2026-08-03. Cut extra presentation and content copies before perception fairness, reset, tests, build validation, or honest evidence reporting.
+
+### v0.4.0.0: Spatial Readability And Pursuit Topology
+
+Date authorized: 2026-08-02
+
+Status: Design-locked and delegated; implementation and all v0.4 evidence Not Tested
+
+Question:
+
+> Can uninformed players form a usable mental map of a three-lobed nuclear facility and deliberately switch between its distinct connectors and cover grammars to complete the existing three-rod contract while the Owl’s sight, sound, search, and route adaptation remain explainable?
+
+Locked scope:
+
+- concept 7C translated into an approximately 57 m × 40 m asymmetric circuit around an inaccessible shielding/service void;
+- three unequal lobes: Containment & Control, Coolant & Maintenance, and Fuel Handling & Waste;
+- three pairwise connectors: North Pipe Gallery, Utility Spine, and South Maintenance Channel;
+- one landmark and one complete local loop per lobe;
+- seven 2.76 m-clear portals and two exits from every objective pocket;
+- eight candidate sockets with exactly one live rod per lobe and two inert decoys from unused sockets;
+- one existing machinery panel and three existing portable metal props per lobe;
+- explicit connector metadata as the only route-choice evidence, with legacy West/Central/East retained only as narrow internal compatibility values;
+- approximately 18 Owl nodes, two approaches to every lobe, and no normal hold position controlling two connectors;
+- preservation of the completed local v0.3 sight, sound, evidence-priority, hiding, distraction, feedback, objective, reset, and extraction behavior.
+
+Authority:
+
+- `37_v0_4_0_0_spatial_readability_scope.md`
+- `38_v0_4_0_0_7c_level_plan.md`
+- `39_v0_4_0_0_implementation_handoff.md`
+- decisions D-090 through D-092
+
+Design artifacts:
+
+- locked concept: `docs/_assets/v0_4_0_0_7c_locked_concept.png`;
+- deterministic floor plan: `docs/_assets/v0_4_0_0_7c_floor_plan.svg` and rendered PNG;
+- gameplay overlay: `docs/_assets/v0_4_0_0_7c_gameplay_overlay.svg` and rendered PNG.
+
+Evidence at authorization:
+
+- published repository: master at `v0.2.3.0` commit `0636f5d`;
+- local user-owned `v0.3.0.0` implementation remains uncommitted in the audited tree;
+- recorded local v0.3 delivery evidence: focused 22/22, full Edit Mode 133/133, Play Mode 6/6, strict Windows build success, and smoke success;
+- live Unity audit: Unity 6000.5.4f1, `P01_CoreLoop` open in Edit Mode, no console errors, three obsolete test warnings;
+- v0.3 uninformed human evidence: Not Tested;
+- v0.4 automated, runtime, build, and human evidence: Not Tested;
+- XR, headset comfort, venue hardware, physical effects, haptics, and heart-rate evidence: Not Tested.
+
+Implementation must begin with data/graph and connector semantics, then generated shell/NavMesh, lobe grammars, objective/content distribution, Owl graph/sightlines, telemetry/runtime inspection, and the full regression/version/build gate. Final art, new mechanics, new objectives, procedural rooms, mission generators, and hardware work are excluded.
+
+Human evidence belongs in `40_v0_4_0_0_human_validation_sheet.md`. Primary spatial sessions use F3 ON; the separate v0.3 stealth sheet continues to use F3 OFF and must not be merged into this result.
+
+### v0.4.0.0 implementation evidence
+
+Date completed: 2026-08-02
+
+Status: implementation, automated regression, strict Windows build, and launch-only smoke complete; uninformed desktop gameplay, XR, and physical-hardware evidence Not Tested
+
+Authority used:
+
+- `37_v0_4_0_0_spatial_readability_scope.md` for the locked player-facing result;
+- `38_v0_4_0_0_7c_level_plan.md` for topology, coordinates, portal, socket, landmark, and node authoring;
+- `39_v0_4_0_0_implementation_handoff.md` for V040-001 through V040-009, validation order, and reporting.
+
+Implementation:
+
+- Replaced the generated facility with the asymmetric 7C circuit: Contractor Annex, Containment & Control, Coolant & Maintenance, and Fuel Handling & Waste around an inaccessible shielding/service void, joined by North Pipe Gallery, Utility Spine, and South Maintenance Channel.
+- Authored P01-P07 at the locked coordinates with 2.76 m clear width and 2.52 m clear height, eight lobe-owned sockets C1-C3/K1-K3/F1-F2, the three landmark/cover grammars, three maintenance panels, and nine portable metal props.
+- Added an explicit 20-node route model. All three supported profiles preserve every socket and two graph-distinct approaches from the Containment side of P01. Open Circuit leaves local branches open; Coolant Service and Fuel Inspection each alter only their named local branch.
+- Run generation deterministically selects exactly one live rod per lobe plus two unique inert decoys from unused sockets. Same-seed reset behavior remains deterministic.
+- Route evidence now uses explicit North Pipe Gallery, Utility Spine, and South Maintenance Channel zones/nodes. Legacy West/Central/East values remain only as narrow North/Utility/South compatibility mappings; active evidence no longer infers a route family from world X position.
+- Authored 18 Owl nodes: one Annex node, three per lobe, two per connector, and two search probes. Only the six connector nodes carry route-family metadata. Patrol/search selection and F1 telemetry consume the authored node and zone contracts.
+- F1 now includes current spatial label, connector family, route profile, nearest authored patrol node, pursuit destination, navigation mode, primary rejection reason, and graph-fallback state. Normal HUD behavior was not expanded.
+- `PlayerSettings.bundleVersion` is `0.4.0.0`. The active scene is `Assets/_Project/Scenes/P01_CoreLoop.unity` and was left saved, clean, in Edit Mode with all 13 ceiling objects active.
+
+Automated evidence:
+
+- Focused V040 Edit Mode: `28/28` passed.
+- Full Edit Mode regression: `141/141` passed, `0` failed, `0` skipped, `0.213 s`.
+- Full Play Mode regression: `7/7` passed, `0` failed, `0` skipped, `3.8685 s`.
+- Covered topology/profile connectivity, two graph-distinct socket routes, connector-only evidence, deterministic one-live-per-lobe distribution, exact portal dimensions/openings, lobe grammar, 18-node metadata, every socket under every profile on NavMesh, Owl navigation under every profile, telemetry tokens, objective/extraction/reset regressions, and the protected v0.3 perception/counterplay cases.
+
+Console and build evidence:
+
+- Final Unity console query: `0` error entries; compilation idle.
+- A Play Mode entry immediately after repeated tests/domain reloads produced pre-existing AR/OpenXR duplicate subsystem-descriptor registration noise. After clearing, the active runtime produced no further errors or warnings. No project-code compile error remained.
+- Strict clean Windows development build: `Succeeded`, `0` errors, `2` build warnings, `187,497,977` bytes, `84.73 s`.
+- The two reported build warnings were the URP asset-inclusion report and runtime-debug shader-variant stripping. The desktop build sanitizer temporarily excluded and restored 49 OpenXR feature objects.
+- Output: `UnityProject/InternshipGameSynced/Builds/v0.4.0.0/InternshipGame_v0.4.0.0.exe`.
+- Standalone launch smoke: the exact executable remained alive for the deliberate 12-second observation window, initialized Unity `6000.5.4f1` and Direct3D 12, and logged no exception, crash, abort, initialization failure, or `NullReferenceException`; it was then closed deliberately. Log: `Builds/v0.4.0.0/v0.4.0.0_smoke.log`.
+
+Runtime and visual evidence:
+
+- Automated runtime coverage exercised every socket and all three route profiles for player and Owl NavMesh reachability. It does not substitute for the required uninformed spatial-readability session.
+- Captures: `Assets/_Project/Captures/V040/V040_7C_Overhead_Open.png`, `V040_Containment.png`, `V040_Coolant.png`, `V040_Fuel.png`, and `V040_Runtime_Spawn.png`.
+- A human-controlled complete forward/reverse circuit, carried rod through every portal, lobe-by-lobe quiet relocation, distraction comparison, F3 ON/OFF comparison, rod scan/deposit, Owl contact/escape, restart, and clean exit: Not Tested.
+- Uninformed desktop sessions from `40_v0_4_0_0_human_validation_sheet.md`: Not Tested.
+- XR/headset comfort, haptics, physical effects, venue hardware, and heart-rate evidence: Not Tested. Desktop evidence does not close any of those gates.
+
+Cuts, deviations, and risks:
+
+- The optional +0.80 m Containment overlook and playable +0.60 m Fuel gantry were cut; the ground-level loop/crosscut contract remains complete and the Fuel Inspection profile is implemented as a local ground-branch variation.
+- Shield D retains the planned visual footprint but uses a shorter physical/vision collider segment to keep P02 clear. The Fuel full-height shield retains its planned silhouette but uses segmented colliders at the two authored crosscuts so F1 and F2 remain pass-through pockets.
+- No required lobe, connector, portal, landmark, loop, socket, panel, portable-prop copy, profile, test, or build gate was cut.
+- Sightline budgets, normal Owl hold-point portal control, connector/lobe recognition, and the player experience of the new scale still require human observation.
+- Recommended first v0.4.z.w refinement: run the first uninformed F3-ON desktop session, then make only the smallest evidence-driven connector preview/signage or cover-framing adjustment supported by that session.
+
+Scope and repository:
+
+- No unapproved mechanic, gameplay family, final-art family, new entity, objective type, generalized level framework, or v0.3 perception/tuning redesign was added.
+- Pre-existing documentation, OpenXR-related, and local v0.3 changes were preserved. No commit or push was performed.
