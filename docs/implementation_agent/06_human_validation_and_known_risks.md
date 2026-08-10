@@ -1,21 +1,22 @@
 # Human Validation and Known Risks
 
-Last verified: 2026-08-01
+Last verified: 2026-08-10
 
 ## Evidence Boundary
 
 Automated tests establish deterministic logic, serialized scene expectations, route connectivity, collision clearances, and integration regressions. They do not establish whether the game feels fair, readable, frightening, comfortable, or well paced.
 
-Do not convert the automated `v0.2.3.0` pass into a human-design claim.
+Do not convert the automated `v0.4.0.0` pass into a human-design claim.
 
 ## Immediate Desktop Human Validation
 
-The next person-led PT2 validation should check:
+The next person-led v0.4 validation should use `../40_v0_4_0_0_human_validation_sheet.md` and check:
 
 - whether a first-time player states the mission correctly within two minutes;
 - whether scanning, Geiger guidance, live Heat confirmation, inert feedback, rack rejection, and extraction cues are understood;
 - whether the full run trends toward 15–20 minutes without artificial waiting;
-- whether West, Central, and East are distinguishable while moving without F1;
+- whether Containment, Coolant, and Fuel are distinguishable while moving without F1;
+- whether players can return to the Contractor Annex and deliberately choose among North Pipe Gallery, Utility Spine, and South Maintenance Channel;
 - whether the Owl visibly appears suspicious after one credible observation and adapted after two;
 - whether players respond by varying routes;
 - whether that adaptation feels plausible rather than omniscient;
@@ -28,12 +29,12 @@ The next person-led PT2 validation should check:
 - whether lean distance, roll, collision limiting, and corner usefulness feel natural;
 - whether pickup reach/assistance feels forgiving without selecting the wrong object;
 - whether throw force and loose-prop distraction are legible;
-- whether all thirteen portal approaches feel clear at native resolution;
+- whether all seven portal approaches feel clear at native resolution;
 - whether signs and mission/rack UI remain readable while moving, crouched, and leaned;
 - whether lighting, inlays, and room silhouettes reduce navigation confusion;
 - whether pause, cursor, fullscreen, and 144 Hz movement remain reliable in the standalone build.
 
-Use `../32_pt2_human_validation_sheet.md` for the currently prepared PT2 session structure. That sheet guides evidence collection; it does not authorize new gameplay.
+Continue the separate route-adaptation and readable-stealth gates with `../32_pt2_human_validation_sheet.md` and `../35_v0_3_0_0_human_validation_sheet.md`. These sheets guide evidence collection; they do not authorize new gameplay.
 
 ## Hardware and XR Evidence Still Missing
 
@@ -55,13 +56,13 @@ Desktop simulation is not evidence for physical-device safety or headset comfort
 
 ## Known Project Risks
 
-### Dirty working tree ownership
+### Working tree ownership
 
-At handoff, multiple documentation files and an OpenXR asset were modified or untracked outside the published `v0.2.3.0` commit. A replacement agent must not clean, commit, or overwrite them without a fresh audit.
+The repository matched `origin/master` before the 2026-08-10 documentation refresh, but that fact can become stale immediately. A replacement agent must run a fresh status audit and preserve any newer user-owned changes.
 
-### v0.3 breadth can outrun its two-day gate
+### Scope can outrun the remaining delivery window
 
-PT2 feature expansion remains closed. `../33_v0_3_0_0_readable_stealth_scope.md` now authorizes a substantial v0.3 slice, but only through its explicit inclusions, exclusions, task order, and cut order. Do not import additional stealth, capture, inventory, hardware, or environment families from broader documents. Preserve tests, fairness rules, reset, and build validation before multiplying content.
+PT2, v0.3, and v0.4 feature expansion are closed except for evidence-driven tuning or release-blocking fixes. No later feature family is authorized by the current documents. Preserve tests, fairness rules, reset behavior, human-validation time, and build reliability before adding content.
 
 ### Generated versus manual environment content
 
@@ -81,7 +82,7 @@ The 144 Hz WASD bug was caused by a movement threshold, not lost input. Preserve
 
 ### AI fairness and knowledge leakage
 
-The Owl’s implementation must retain a distinction between visible observations, inferred wing evidence, last credible observation, and hidden current player position. A convenient reference to the live player transform can silently reintroduce omniscience.
+The Owl’s implementation must retain a distinction between visible observations, authored connector evidence, last credible observation, and hidden current player position. A convenient reference to the live player transform can silently reintroduce omniscience.
 
 ### Feedback semantics
 

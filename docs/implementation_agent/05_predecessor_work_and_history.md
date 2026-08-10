@@ -156,9 +156,8 @@ These seams exist for known replacement needs. They are not permission to build 
 
 - The Git repository and GitHub remote were established at `Moutaz-Code/internship-game`.
 - Prototype 1, Prototype 2.0, environment/fullscreen increments, and `v0.2.3.0` were committed and pushed when requested.
-- The current published `master` at handoff contains commit `0636f5d` (`v0.2.3.0`).
+- At the 2026-08-02 predecessor handoff, published `master` contained commit `0636f5d` (`v0.2.3.0`); later repository history supersedes that dated snapshot.
 - Supervisor-facing captures and video artifacts were prepared in the repository workspace.
 - Build output directories are versioned locally and normally excluded according to repository rules.
 
 Always verify the current remote and history. This history is continuity context, not a request to perform another release.
-

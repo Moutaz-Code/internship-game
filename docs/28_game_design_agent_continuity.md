@@ -2,7 +2,7 @@
 
 Status: Living internal continuity note for game-design assistants
 
-Last updated: 2026-08-02
+Last updated: 2026-08-10
 
 ## Audience Boundary
 
@@ -17,9 +17,9 @@ Implementation agents should receive a separate, explicitly approved, version-or
 - Engine: Unity 6000.5.4f1.
 - Unity project: `UnityProject/InternshipGameSynced`.
 - Main scene: `Assets/_Project/Scenes/P01_CoreLoop.unity`.
-- Current local build identity: `v0.3.0.0`.
-- Current published `master` commit: `v0.2.3.0` at `0636f5d` as of the 2026-08-02 audit.
-- Repository state on 2026-08-02: local `v0.3.0.0` implementation and documentation are present in a substantial dirty working tree. Treat all changes as user-owned. Do not commit, push, discard, overwrite, or revert them without an explicit request.
+- Current implementation identity: `v0.4.0.0`.
+- Repository state verified 2026-08-10: local `master` and `origin/master` contained the v0.4 implementation and handoff material and matched before this documentation refresh.
+- Build outputs are ignored and device-local. Verify the working tree, Unity editor, and local build artifact before release work; preserve any newer user-owned changes.
 - Target headset, venue runtime, physical play space, and available haptic/sensor devices remain unconfirmed.
 
 ## Current Product Direction
@@ -43,7 +43,7 @@ The proof contract is not the permanent identity of the whole game.
 
 ## Current Build Reality
 
-Prototype 2 began as the Readable Route Adaptation experiment and later received explicit user-directed desktop and presentation work. It is published at `v0.2.3.0` and feature-frozen.
+Prototype 2 began as the Readable Route Adaptation experiment and later received explicit user-directed desktop and presentation work. It is represented by `v0.2.3.0` and remains feature-frozen.
 
 `v0.2.3.0` includes:
 
@@ -58,7 +58,7 @@ Prototype 2 began as the Readable Route Adaptation experiment and later received
 - fitted portal geometry and room-specific greybox dressing,
 - multi-sample, cover-respecting Owl perception and last-credible-position search.
 
-Latest recorded automated evidence for local `v0.3.0.0`:
+Latest recorded automated evidence for `v0.3.0.0`:
 
 - focused Edit Mode: 22/22 passed.
 - full Edit Mode: 133/133 passed.
@@ -66,7 +66,7 @@ Latest recorded automated evidence for local `v0.3.0.0`:
 - Strict Windows build succeeded with zero errors and two rendering warnings.
 - The exact player survived a deliberate 12-second smoke window.
 
-This is strong implementation evidence, not complete game-design validation.
+`v0.4.0.0` is also implemented and tracked. It replaces the earlier ten-space map with the 7C three-lobed circuit, explicit connector evidence, authored Owl nodes, deterministic one-live-rod-per-lobe distribution, and expanded F1 topology telemetry. Recorded delivery evidence is focused Edit Mode 28/28, full Edit Mode 141/141, Play Mode 7/7, strict Windows build success, and a clean 12-second launch smoke. This is strong implementation evidence, not complete game-design validation.
 
 ## Current Design And Delivery Gate
 
@@ -86,13 +86,13 @@ Use `32_pt2_human_validation_sheet.md` to collect and classify this evidence.
 
 Do not reopen PT2 as an indefinite polish bucket. Tune it only in response to observed evidence or a release-blocking defect.
 
-`v0.3.0.0` is implemented and automated delivery-validated locally. It includes graded visual confirmation, movement noise, full-cover relocation, portable and fixed distractions, diegetic feedback, and operator telemetry. Its uninformed human comprehension evidence remains Not Tested. See `33_v0_3_0_0_readable_stealth_scope.md`, `34_v0_3_0_0_implementation_handoff.md`, and `35_v0_3_0_0_human_validation_sheet.md`.
+`v0.3.0.0` is implemented, tracked, and automated delivery-validated. It includes graded visual confirmation, movement noise, full-cover relocation, portable and fixed distractions, diegetic feedback, and operator telemetry. Its uninformed human comprehension evidence remains Not Tested. See `33_v0_3_0_0_readable_stealth_scope.md`, `34_v0_3_0_0_implementation_handoff.md`, and `35_v0_3_0_0_human_validation_sheet.md`.
 
 The design protects full visual cover followed by quiet relocation. Confirmed sight outranks sound, and an accepted sound reveals only its own origin. The active feedback set is footsteps, accepted metal/machinery audio, and a restrained Owl investigation cue; breathing and visual stealth indicators are not in v0.3.
 
-## Approved Next Design Direction
+## Current Validation Direction
 
-The approved next experiment is `v0.4.0.0` Spatial Readability and Pursuit Topology using the locked 7C macro layout.
+The implemented experiment is `v0.4.0.0` Spatial Readability and Pursuit Topology using the locked 7C macro layout. No later feature version is approved; the next work is evidence collection and bounded, evidence-driven correction.
 
 Locked question:
 
@@ -106,7 +106,7 @@ Game-design conversations may use `PT3` and `PT3.x` as lightweight internal labe
 
 Implementation agents should remain on the development version scheme in `27_development_versioning.md`:
 
-- current weekly implementation begins at `v0.4.0.0` on 2026-08-03,
+- the current implementation baseline is `v0.4.0.0`,
 - major changes inside that weekly prototype increment `z`,
 - minor changes increment `w`.
 
@@ -182,12 +182,12 @@ Never silently select the most expansive interpretation.
 
 ## Immediate Recommended Sequence
 
-1. Re-audit and preserve the user-owned dirty tree and local v0.3 baseline.
-2. Implement v0.4 data/graph and explicit connector semantics before generated geometry.
-3. Build the complete three-lobed shell and prove player/Owl navigation before presentation detail.
-4. Add the three lobe grammars, objective distribution, Owl graph, and telemetry.
-5. Run focused/full regression, version/build/smoke gates, then use `40_v0_4_0_0_human_validation_sheet.md`.
-6. Continue PT2 and v0.3 human validation separately; do not merge or overclaim evidence.
+1. Re-audit and preserve the current repository and v0.4 implementation baseline.
+2. Run the uninformed desktop sessions in `40_v0_4_0_0_human_validation_sheet.md`.
+3. Continue PT2 and v0.3 human validation separately; do not merge or overclaim evidence.
+4. Apply only evidence-driven tuning or release-blocking fixes, with proportional regression and a fresh build when required.
+5. Confirm headset, venue, and hardware constraints before claiming XR readiness or starting broad integration.
+6. Require a new explicitly approved version brief before beginning another feature family.
 
 ## How Future Agents Should Maintain This File
 

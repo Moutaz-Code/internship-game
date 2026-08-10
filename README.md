@@ -4,17 +4,17 @@ Pixoul internship project for a polished minimum lovable product by 2026-08-28.
 
 ## Current Working Summary
 
-The current desktop-first vertical slice is a 15-20 minute sci-fi extraction-horror run through a 10-space authored facility. Find and hold rods long enough to scan them, use the Geiger counter to search, deliver three confirmed-live rods while one adaptive Owl patrols the route network, survive the 20-second extraction cycle, then cross the open exit. The player, threat navigation, feedback devices, and run configuration remain behind narrow seams so XR and physical hardware implementations can replace their desktop simulators later.
+The current desktop-first vertical slice is a 15-20 minute sci-fi extraction-horror run through an asymmetric three-lobed nuclear facility. Find and hold rods long enough to scan them, use the Geiger counter to search, recover one live rod from each lobe, choose among three distinct connectors while one adaptive Owl patrols the route network, survive the 20-second extraction cycle, then cross the open exit. The player, threat navigation, feedback devices, and run configuration remain behind narrow seams so XR and physical hardware implementations can replace their desktop simulators later.
 
-Current local build identity: `v0.2.3.0`. Prototype 2 now includes readable route adaptation plus the desktop embodiment/threat pass: fitted portal geometry, crouch, corner lean, forgiving occlusion-safe pickup targeting, and a more capable but still cover-respecting Owl. PT2 feature expansion is closed; human validation remains. The next proposed game-design experiment is readable stealth and contractor counterplay, but no `v0.3.0.0` implementation scope is authorized yet.
+Current implementation identity: `v0.4.0.0`. It includes the protected `v0.3.0.0` readable-stealth/counterplay systems and the 7C Spatial Readability and Pursuit Topology facility. Automated Edit Mode, Play Mode, Windows build, and launch-smoke evidence is recorded; uninformed desktop, XR, and physical-hardware validation remains open.
 
-Repository note: the 2026-07-28 audit found published `master` at `v0.2.3.0` (`0636f5d`) with separate documentation/OpenXR-related working-tree changes still present. Verify branch, `HEAD`, and exact dirty paths before release or transfer work.
+Repository note: `v0.4.0.0` source, tests, scene, captures, and handoff material are tracked on `master`. Build outputs remain intentionally ignored, so verify the live branch, working tree, Unity editor state, and local build artifact before release or transfer work.
 
 ## Prototype Quick Start
 
 - Unity project: `UnityProject/InternshipGameSynced`
 - Main scene: `Assets/_Project/Scenes/P01_CoreLoop.unity`
-- Windows player: `UnityProject/InternshipGameSynced/Builds/v0.2.3.0/InternshipGame_v0.2.3.0.exe`
+- Windows build output (generated and ignored): `UnityProject/InternshipGameSynced/Builds/v0.4.0.0/InternshipGame_v0.4.0.0.exe`
 
 Desktop controls:
 
@@ -58,6 +58,11 @@ Docs are living control panels, not a waterfall phase. Each update should help m
 - [Game Design Agent Transfer Checklist](docs/30_game_design_agent_transfer_checklist.md)
 - [PT3 Design Workspace](docs/31_pt3_design_workspace.md)
 - [PT2 Human Validation Sheet](docs/32_pt2_human_validation_sheet.md)
+- [v0.3 Readable Stealth Scope](docs/33_v0_3_0_0_readable_stealth_scope.md)
+- [v0.3 Human Validation Sheet](docs/35_v0_3_0_0_human_validation_sheet.md)
+- [v0.4 Spatial Readability Scope](docs/37_v0_4_0_0_spatial_readability_scope.md)
+- [v0.4 7C Level Plan](docs/38_v0_4_0_0_7c_level_plan.md)
+- [v0.4 Human Validation Sheet](docs/40_v0_4_0_0_human_validation_sheet.md)
 - [Implementation Agent Handoff](docs/implementation_agent/README.md)
 - [Implementation Agent Onboarding Prompt](docs/implementation_agent/00_onboarding_prompt.md)
 - [First Playable Spec](docs/09_first_playable_spec.md)

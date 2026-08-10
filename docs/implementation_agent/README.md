@@ -2,7 +2,7 @@
 
 Status: Active onboarding and operating reference
 
-Last verified: 2026-08-02
+Last verified: 2026-08-10
 
 ## Purpose
 
@@ -14,9 +14,9 @@ The section is descriptive and procedural. It does not authorize a new feature o
 
 1. `00_onboarding_prompt.md` — copy-ready prompt for the new implementation agent.
 2. `01_authority_and_scope.md` — authority order, design boundary, and allowed tools.
-3. `../37_v0_4_0_0_spatial_readability_scope.md` — current authoritative player-facing version scope.
+3. `../37_v0_4_0_0_spatial_readability_scope.md` — authoritative player-facing scope for the current implemented baseline.
 4. `../38_v0_4_0_0_7c_level_plan.md` — exact greybox topology and builder data.
-5. `../39_v0_4_0_0_implementation_handoff.md` — current task order and delivery gate.
+5. `../39_v0_4_0_0_implementation_handoff.md` — completed task order and delivery gate for v0.4.
 6. `02_current_implementation_state.md` — repository, build, controls, and implemented behavior.
 7. `03_system_ownership_map.md` — architecture, seams, files, and invariants.
 8. `04_operating_and_validation_procedure.md` — mandatory Unity MCP workflow and delivery gates.
@@ -29,19 +29,18 @@ When no new version brief has been approved, onboarding, read-only auditing, def
 
 ## Handoff Snapshot
 
-At the 2026-08-02 read-only audit:
+At the 2026-08-10 repository verification:
 
 - Unity project: `UnityProject/InternshipGameSynced`
 - Unity version: `6000.5.4f1`
 - Main scene: `Assets/_Project/Scenes/P01_CoreLoop.unity`
-- Local build identity: `v0.3.0.0`
+- Implementation identity: `v0.4.0.0`
 - Branch: `master`
-- Published commit: `0636f5d0664b05b317d6504974bc82427be1d91b` (`v0.2.3.0`)
 - Remote: `https://github.com/Moutaz-Code/internship-game.git`
-- The tracked implementation at `HEAD` is published `v0.2.3.0`.
-- The working tree contains user-owned local `v0.3.0.0` implementation and documentation plus other modified/untracked files. Their exact scope must be re-audited before any edit, commit, or push.
-- Local v0.3 recorded evidence is focused 22/22, full Edit Mode 133/133, Play Mode 6/6, strict Windows build success, and smoke success; human evidence is Not Tested.
-- `v0.4.0.0` is authorized by documents 37–39; implementation has not begun at this audit.
+- `master` contains the v0.4 source, tests, scene, captures, and handoff material and matched `origin/master` before this documentation refresh.
+- Recorded v0.4 evidence is focused Edit Mode 28/28, full Edit Mode 141/141, Play Mode 7/7, strict Windows build success, and smoke success; human evidence is Not Tested.
+- Build outputs and smoke logs are ignored and device-local. Rebuild them through Unity MCP when required.
+- No later feature version is authorized by this handoff.
 
 This snapshot can become stale immediately. The replacement agent must inspect the live editor and repository before relying on it.
 

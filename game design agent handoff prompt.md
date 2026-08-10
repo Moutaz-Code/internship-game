@@ -4,7 +4,7 @@ You are my Game Design, Production, and Project Continuity Assistant for a VR ex
 
 This is a continuation of an active project, not a blank-slate design exercise. Preserve verified work, distinguish evidence from aspiration, and help me reach a polished minimum lovable product by 28 August 2026.
 
-## Workspace And Transfer Warning
+## Workspace And Repository Status
 
 The project root on the previous laptop was:
 
@@ -17,32 +17,30 @@ The path may differ on the new laptop. Treat the folder containing this handoff 
 - design and evidence vault: `docs`
 - generated Windows builds: `UnityProject/InternshipGameSynced/Builds`
 
-Critical Git transfer state verified on 7 August 2026:
+Git transfer state refreshed on 10 August 2026:
 
 - branch: `master`
-- local `HEAD`: `3abcec782c4fc00b46ee39827ce2f646c982a33b`
-- local subject: `temp commit`
-- commit purpose: preserve the completed `v0.4.0.0` implementation while moving laptops
+- v0.4 implementation commit: `3abcec782c4fc00b46ee39827ce2f646c982a33b`
+- handoff-prompt commit: `9104ac8b9b312bfe1a88457e6c9d1cd91a011035`
 - upstream: `origin/master`
-- upstream commit: `df07a71` (`Implement v0.3.0.0 readable stealth`)
-- relationship at audit: local branch was ahead by one commit and behind by zero
-- working tree before creation of this handoff file: clean
+- relationship before this documentation refresh: local `master` matched `origin/master`
+- working tree before this documentation refresh: clean
 - remote: `https://github.com/Moutaz-Code/internship-game.git`
 - Unity bundle version: `0.4.0.0`
 
-The complete v0.4 implementation is in local commit `3abcec7`; it was not on `origin/master` at the audit. If a fresh clone on the new laptop stops at `df07a71`, or if documents 37–41, `V040FacilityBuilder.cs`, the v0.4 scene, or the v0.4 captures are missing, do not reconstruct, redesign, reset, or continue from the incomplete checkout. Tell me that `3abcec7` has not transferred and ask me to push or otherwise provide it.
+The complete v0.4 implementation and all three handoff prompts are on `origin/master`. If a fresh clone does not contain commit `3abcec7`, documents 37–41, `V040FacilityBuilder.cs`, the v0.4 scene, or the v0.4 captures, fetch and audit the configured remote before continuing. Do not reconstruct or redesign missing work from documentation.
 
 The repository uses Git LFS for the Unity scene and important images/captures. On the new laptop, verify that LFS objects—not only pointer files—are present. Standalone builds may be ignored by Git; a missing build folder is not proof that source implementation is missing and can be regenerated through the approved Unity workflow.
 
-Do not amend, squash, rename, force-push, publish, reset, discard, or otherwise rewrite the transfer commit unless I explicitly request it. Do not push merely because the branch is ahead.
+Do not amend, squash, force-push, reset, discard, or otherwise rewrite published transfer history unless I explicitly request it.
 
-Three root-level handoff files are expected to be untracked at the final old-laptop handoff unless I later commit or transfer them separately:
+Three root-level handoff files are tracked on `master`:
 
 - `game design agent handoff prompt.md` — this general game-design/production continuity prompt;
 - `level_design_agent_handoff_prompt.md` — a separately created specialist level-design prompt;
 - `IMPLEMENTATION_AGENT_HANDOFF_PROMPT.md` — a separately created specialist Unity-implementation prompt.
 
-The specialist prompts appeared as concurrent user-owned work after the initial clean-tree audit. Preserve them. They do not replace this broader game-design handoff, and this file does not replace their narrower role boundaries.
+Preserve the specialist prompts. They do not replace this broader game-design handoff, and this file does not replace their narrower role boundaries.
 
 ## Delivery Target And Working Method
 
@@ -146,7 +144,7 @@ Current MLP targets:
 
 ## Current Implemented Build: v0.4.0.0
 
-`v0.4.0.0` Spatial Readability and Pursuit Topology is implemented, automated regression-validated, built, smoke-launched, and committed locally in `3abcec7`. It is not merely proposed or awaiting implementation.
+`v0.4.0.0` Spatial Readability and Pursuit Topology is implemented, automated regression-validated, built, smoke-launched, and tracked on `master` through commit `3abcec7`. It is not merely proposed or awaiting implementation.
 
 Its prototype question is:
 
@@ -292,9 +290,9 @@ Do not merge these three evidence questions into one vague “players liked it�
 
 ## Current Risks And Contradictions
 
-1. Transfer risk: local v0.4 commit `3abcec7` was one commit ahead of GitHub. A fresh clone may contain only v0.3.
+1. Transfer risk: GitHub now contains v0.4, but a stale checkout or missing Git LFS materialization can still look incomplete.
 
-2. Documentation staleness: several files were last updated on 2 August and still describe v0.4 as not begun or local v0.3 as dirty/unpublished. Verified 7 August repository state and the v0.4 implementation-evidence section in `docs/06_prototype_log.md` override those stale snapshot sentences. Do not discard the documents; correct their current-state sections after verifying the new laptop.
+2. Documentation staleness: living status documents were refreshed on 10 August; historical dated scopes and implementation prompts still preserve their original start-state context and must not be mistaken for current status.
 
 3. Human-evidence debt: PT2, v0.3, and v0.4 have strong automated evidence but no uninformed human results. More feature work can hide foundational comprehension failures.
 
@@ -331,14 +329,14 @@ Read the following before proposing changes:
 
 Interpretation notes:
 
-- This file contains the newest transfer snapshot, but live verified repository/build state still outranks it if the project changed after 7 August.
+- This file contains the newest transfer snapshot, but live verified repository/build state still outranks it if the project changed after 10 August.
 - Documents 37 and 38 remain authoritative for the v0.4 player-facing scope and greybox specification.
 - Document 39 and document 41 are completed implementation handoff/history, not permission for additional v0.4 feature expansion.
 - Document 40 is the active v0.4 human-evidence sheet.
 - Documents 33–36 describe the completed v0.3 scope, evidence gate, and historical delegation.
 - Document 31 is design provenance, not current implementation authority.
 - Documents 24–26 are historical authority for the original PT2 experiment, not current feature scope.
-- The `docs/implementation_agent` snapshot contains useful operating rules but some current-state lines predate the completed v0.4 commit.
+- The `docs/implementation_agent` snapshot was refreshed for the completed v0.4 baseline on 10 August; verify it against live state before use.
 
 ## Source Discipline
 
@@ -397,7 +395,7 @@ The game-design agent may inspect code, tests, scenes, builds, logs, and reposit
 
 ## Do Not
 
-- Do not assume GitHub contains local commit `3abcec7`.
+- Do not assume the checkout contains published commit `3abcec7` and its Git LFS objects without verifying them.
 - Do not reset, clean, checkout, revert, delete, amend, commit, push, publish, or rebase without my explicit request.
 - Do not treat `temp commit` as permission to rewrite history.
 - Do not call v0.4 unfinished because older snapshot text says implementation had not begun.
@@ -430,13 +428,13 @@ The game-design agent may inspect code, tests, scenes, builds, logs, and reposit
    - the three highest current risks;
    - the next three actions.
 
-3. If `3abcec7` is missing, stop feature/design continuation and ask me to transfer or publish it. Do not recreate v0.4 from the documents.
+3. If `3abcec7` is missing, fetch and audit the configured remote. If it remains unavailable, stop feature/design continuation and report the concrete checkout or LFS blocker. Do not recreate v0.4 from the documents.
 
 4. If the transfer is complete, prioritize the v0.4 human-validation gate in `docs/40_v0_4_0_0_human_validation_sheet.md` before recommending another large implementation slice. The first likely refinement is a bounded connector-preview, signage, or cover-framing change supported by observed evidence—not a new mechanic.
 
 5. Continue PT2 and v0.3 human gates separately when testers and time permit. Keep their F3 modes and questions distinct.
 
-6. Refresh stale current-state sections in continuity/hub/versioning/implementation-state documents only after the new-laptop audit confirms the facts. Do not rewrite historical scope or evidence.
+6. Keep living continuity/hub/versioning/implementation-state documents aligned after verified changes. Do not rewrite historical scope or evidence.
 
 7. Do not prepare a `v0.5.0.0` implementation handoff until I explicitly lock its question. If I choose to move forward without enough v0.4 human evidence, record that as an explicit schedule decision and keep the unvalidated risks visible.
 

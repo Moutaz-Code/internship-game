@@ -1,6 +1,6 @@
 # Current Design Synthesis
 
-Last updated: 2026-08-02
+Last updated: 2026-08-10
 
 Sources: approved pitch/business case, Offline Game Design Workbook, Prototype 1 and Prototype 2 implementation evidence, and follow-up design answers.
 
@@ -106,11 +106,11 @@ A paid 20-minute session should not end instantly because of one capture. Close 
 
 ## Current Implementation Reality
 
-Published master is `v0.2.3.0` at commit `0636f5d`. The user-owned dirty working tree also contains a completed local `v0.3.0.0` implementation with graded visual confirmation, normalized movement noise, protected full-cover relocation, evidence-priority rules, nine portable metal distractions, three machinery-test panels, diegetic feedback, and expanded F1 telemetry.
+`master` contains the complete `v0.4.0.0` implementation. Its protected `v0.3.0.0` baseline provides graded visual confirmation, normalized movement noise, protected full-cover relocation, evidence-priority rules, nine portable metal distractions, three machinery-test panels, diegetic feedback, and expanded F1 telemetry.
 
-Recorded local v0.3 automated evidence is strong: focused 22/22, full Edit Mode 133/133, Play Mode 6/6, a strict Windows build, and a clean smoke run. This is not complete design validation. Uninformed human evidence for both PT2 route adaptation and v0.3 stealth comprehension remains Not Tested.
+Recorded v0.3 automated evidence is strong: focused 22/22, full Edit Mode 133/133, Play Mode 6/6, a strict Windows build, and a clean smoke run. This is not complete design validation. Uninformed human evidence for both PT2 route adaptation and v0.3 stealth comprehension remains Not Tested.
 
-`v0.4.0.0` is now design-locked but not implemented. It replaces the divided-cube facility with the 7C three-lobed circuit and tests spatial readability, connector choice, cover grammar, and Owl pursuit topology while preserving the v0.3 system laws.
+`v0.4.0.0` is implemented, automated regression-validated, built, and smoke-launched according to the recorded delivery evidence. It replaces the divided-cube facility with the 7C three-lobed circuit and tests spatial readability, connector choice, cover grammar, and Owl pursuit topology while preserving the v0.3 system laws. Its uninformed desktop gameplay gate remains open.
 
 Desktop tests can answer those questions provisionally. They cannot prove VR comfort, XR interaction quality, or physical hardware value.
 
@@ -150,11 +150,11 @@ Prototype 2 still needs to answer through human observation in parallel:
 
 > Does the Owl appear to notice repeated route-family use, become suspicious after one credible observation, adapt after two, and encourage the player to vary routes without feeling omniscient or making any route unusable?
 
-PT2 implementation remains feature-frozen. Local `v0.3.0.0` is implemented and automated delivery-validated, but still needs human evidence:
+PT2 implementation remains feature-frozen. `v0.3.0.0` is implemented and automated delivery-validated, but still needs human evidence:
 
 > Can uninformed players deliberately manage graded visibility, movement noise, spatial hiding, and improvised distractions, and correctly explain whether the Owl acted on current sight, an accepted sound, or last credible evidence without a stealth meter?
 
-The active implementation target is `v0.4.0.0` Spatial Readability and Pursuit Topology:
+The active human-validation target is `v0.4.0.0` Spatial Readability and Pursuit Topology:
 
 > Can uninformed players form a usable mental map of a three-lobed nuclear facility and deliberately switch between its distinct connectors and cover grammars to complete the existing three-rod contract while the Owl’s sight, sound, search, and route adaptation remain explainable?
 

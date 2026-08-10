@@ -109,9 +109,9 @@ If MCP is offline, the agent may continue read-only code/doc analysis or draft C
 
 ## Current Scope at Handoff
 
-As of 2026-08-02, the local `v0.3.0.0` Readable Stealth and Contractor Counterplay implementation is complete and automated delivery-validated; its human evidence remains open. It is now a protected regression baseline rather than active feature scope.
+As of 2026-08-10, `v0.3.0.0` Readable Stealth and Contractor Counterplay is complete, tracked, and automated delivery-validated; its human evidence remains open. It is a protected regression baseline rather than active feature scope.
 
-`../37_v0_4_0_0_spatial_readability_scope.md` authorizes the locked `v0.4.0.0` Spatial Readability and Pursuit Topology implementation. `../38_v0_4_0_0_7c_level_plan.md` defines the greybox data, and `../39_v0_4_0_0_implementation_handoff.md` provides task order and validation. The replacement agent must audit first, then implement only that version scope and any newer direct user instruction.
+`v0.4.0.0` Spatial Readability and Pursuit Topology is also implemented and tracked. `../37_v0_4_0_0_spatial_readability_scope.md` defines its player-facing contract, `../38_v0_4_0_0_7c_level_plan.md` defines the greybox data, and `../39_v0_4_0_0_implementation_handoff.md` records its completed task order and validation gate. No later feature version is authorized without a newer direct instruction or explicitly approved brief.
 
 Prototype 2 and v0.3 feature expansion remain closed. Their human validation continues separately and does not authorize polish or redesign.
 

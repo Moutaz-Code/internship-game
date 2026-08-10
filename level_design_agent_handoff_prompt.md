@@ -2,7 +2,7 @@
 
 Status: Copy-ready onboarding prompt for the next level-design assistant
 
-Last verified: 2026-08-07, Asia/Dubai
+Last verified: 2026-08-10, Asia/Dubai
 
 Paste the following into a fresh assistant conversation after the project folder has been transferred to the new laptop.
 
@@ -37,7 +37,7 @@ If implementation is requested, define the approved player-facing result, constr
 
 WORKSPACE
 
-C:\Users\Motaz\Documents\Codex\Internship Game
+Use the folder containing this repository as the workspace root; do not assume a device-specific absolute path.
 
 Unity project:
 
@@ -55,34 +55,29 @@ DELIVERY TARGET
 
 28 August 2026: a polished minimum lovable product.
 
-At this handoff date, 7 August 2026, 21 calendar days remain.
+At this handoff date, 10 August 2026, 18 calendar days remain.
 
-CRITICAL LAPTOP-TRANSFER WARNING
+REPOSITORY TRANSFER STATUS
 
-The repository state is more recent locally than on GitHub.
-
-Verified on 2026-08-07:
+Verified on 2026-08-10:
 
 - branch: master;
-- working tree before this handoff file was created: clean;
-- local HEAD: 3abcec782c4fc00b46ee39827ce2f646c982a33b;
-- local HEAD subject: “temp commit”;
-- local HEAD date: 2026-08-07T14:57:13+04:00;
-- origin/master: df07a717e3fc231e59bd5d3ef19fc4d5a27d8e2a;
-- origin/master subject: “Implement v0.3.0.0 readable stealth”;
-- local master is one commit ahead of origin/master.
+- v0.4 implementation commit: 3abcec782c4fc00b46ee39827ce2f646c982a33b;
+- handoff-prompt commit: 9104ac8b9b312bfe1a88457e6c9d1cd91a011035;
+- local master matched origin/master before the 2026-08-10 documentation refresh;
+- working tree was clean before the documentation refresh.
 
-Commit 3abcec7 contains the v0.4.0.0 three-lobed facility implementation, its tests, captures, design documents, and the updated P01_CoreLoop scene. The remote branch does not contain that commit at this audit.
+Commit 3abcec7 contains the v0.4.0.0 three-lobed facility implementation, its tests, captures, design documents, and the updated P01_CoreLoop scene. It is present on the remote branch.
 
 On the new laptop:
 
 1. verify that commit 3abcec7 exists before trusting the project;
 2. verify git status, branch, HEAD, and origin relationship;
-3. do not reset to origin/master or independently recreate the level if 3abcec7 is missing;
-4. tell me immediately if only df07a71 or an older commit is available;
-5. do not push or otherwise publish the local commit unless I explicitly ask.
+3. fetch and audit the configured remote if 3abcec7 is missing;
+4. verify that Git LFS objects are materialized rather than left as pointer files;
+5. do not independently recreate the level from documentation.
 
-This handoff Markdown file itself is created after the repository audit and may also require explicit transfer.
+This handoff Markdown file is tracked on `master`.
 
 SOURCE DISCIPLINE
 
@@ -109,19 +104,9 @@ Label information explicitly as:
 
 Never promote an inference or proposal into approved design.
 
-STALE DOCUMENT WARNING
+DOCUMENT STATUS
 
-Several otherwise useful files still describe the pre-v0.4 state. Do not let them override the prototype log or live repository:
-
-- README.md still describes v0.2.3.0 and says v0.3 is not authorized.
-- docs/00_project_hub.md says v0.4 is about to begin.
-- docs/14_current_design_synthesis.md says v0.4 is not implemented.
-- docs/27_development_versioning.md says v0.4 implementation begins 3 August.
-- docs/28_game_design_agent_continuity.md still lists local v0.3.0.0.
-- docs/29_game_design_agent_onboarding_prompt.md says v0.4 is not implemented.
-- docs/implementation_agent/README.md and 02_current_implementation_state.md describe v0.4 as pending.
-
-These files remain useful for product principles and historical reasoning, but their current-state language is stale as of 2026-08-07.
+Living project-status and onboarding documents were refreshed on 2026-08-10 to identify v0.4 as implemented and tracked. Historical scopes, implementation prompts, and dated evidence entries intentionally retain their original start-state context.
 
 READ FIRST
 
@@ -137,8 +122,8 @@ READ FIRST
 10. docs/35_v0_3_0_0_human_validation_sheet.md for the separate v0.3 gate.
 11. docs/32_pt2_human_validation_sheet.md for the separate route-adaptation gate.
 12. docs/10_technical_architecture_outline.md only as needed to understand implementation boundaries.
-13. docs/27_development_versioning.md for version syntax, while treating its status line as stale.
-14. docs/28_game_design_agent_continuity.md for product judgment, while treating its build snapshot as stale.
+13. docs/27_development_versioning.md for version syntax and current mapping.
+14. docs/28_game_design_agent_continuity.md for current product judgment and validation priorities.
 
 The original v0.4 implementation assignment is recorded in:
 
@@ -509,7 +494,7 @@ CURRENT HIGHEST RISKS
 
 1. Transfer/version loss
 
-The v0.4 implementation is one local commit ahead of GitHub. A new laptop may receive only v0.3 unless commit 3abcec7 and this prompt are transferred.
+The v0.4 implementation and this prompt are tracked on GitHub. A stale checkout or missing Git LFS materialization can still appear incomplete and must be audited before design conclusions are drawn.
 
 2. Automated confidence replacing human evidence
 
@@ -651,7 +636,7 @@ DO NOT
 
 HIGH-VALUE OPEN QUESTIONS
 
-- Is local commit 3abcec7 safely present on the new laptop?
+- Is published commit 3abcec7 and its Git LFS content present in the checkout?
 - Can at least three uninformed desktop testers be scheduled immediately?
 - Can one informed operator first complete the full forward and reverse runtime checklist?
 - Do players recognize each lobe from geometry before reading signs?
@@ -667,10 +652,10 @@ HIGH-VALUE OPEN QUESTIONS
 
 IMMEDIATE ASSIGNMENT
 
-1. Confirm the new laptop contains commit 3abcec7 and report the exact Git state.
+1. Confirm the checkout contains commit 3abcec7, materialized Git LFS content, and report the exact Git state.
 2. Read the v0.4 implementation-evidence entry and inspect all five V040 captures.
 3. Briefly reconcile the locked design with the delivered deviations.
-4. Identify stale documents without rewriting them unless I ask.
+4. Distinguish current living documents from historical start-state records.
 5. Recommend the next three actions, led by:
    - secure transfer/source continuity;
    - one informed full-circuit runtime walkthrough;
@@ -707,4 +692,3 @@ Next three actions:
 
 Do not begin with a full retelling of every design document. Confirm the transfer, identify the live authority, and keep momentum.
 ~~~
-

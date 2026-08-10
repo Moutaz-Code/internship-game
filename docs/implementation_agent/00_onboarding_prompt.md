@@ -84,16 +84,16 @@ Do not treat `docs/31_pt3_design_workspace.md` or any similarly labeled workspac
 
 ## Current handoff snapshot
 
-This snapshot was verified read-only on 2026-08-02 and must be rechecked:
+This snapshot was verified on 2026-08-10 and must still be rechecked at the start of each task:
 
 - Unity project: `UnityProject/InternshipGameSynced`
 - Unity version: `6000.5.4f1`
 - Main scene: `Assets/_Project/Scenes/P01_CoreLoop.unity`
-- Current local build identity: `v0.3.0.0`
-- Git branch and remote state at handoff: `master` at published commit `0636f5d0664b05b317d6504974bc82427be1d91b`
-- The implementation includes Prototype 1’s extraction loop, Prototype 2’s route adaptation, later desktop/environment/threat work, and local `v0.3.0.0` readable stealth/counterplay.
-- The working tree contains user-owned local v0.3 code, scene, tests, settings, evidence, documents, and other modified/untracked files. Do not assume they are yours, discard them, or publish them without auditing scope and ownership.
-- `v0.4.0.0` Spatial Readability and Pursuit Topology is authorized by `docs/37_v0_4_0_0_spatial_readability_scope.md` and tasked through documents 38–39. Preserve local v0.3 as the systems baseline.
+- Current implementation identity: `v0.4.0.0`
+- Git branch and remote state at handoff: `master` contains the v0.4 implementation and handoff material and matched `origin/master` before this documentation refresh.
+- The implementation includes Prototype 1’s extraction loop, Prototype 2’s route adaptation, `v0.3.0.0` readable stealth/counterplay, and the `v0.4.0.0` 7C three-lobed facility/topology pass.
+- Build outputs and smoke logs are ignored and device-local. Rebuild through Unity MCP when a fresh artifact is required.
+- `v0.4.0.0` is the protected current baseline. No later feature version is authorized without a newer direct instruction or explicitly approved version brief.
 
 ## Mandatory startup audit
 

@@ -1,30 +1,30 @@
 # Current Implementation State
 
-Last verified: 2026-08-02
+Last verified: 2026-08-10
 
 ## Repository and Project
 
 | Item | Verified value |
 |---|---|
-| Repository root | `C:\Users\Motaz\Documents\Codex\Internship Game` |
+| Repository root | Use the live checkout root; do not rely on a device-specific absolute path |
 | Unity project | `UnityProject/InternshipGameSynced` |
 | Unity version | `6000.5.4f1` |
 | Render pipeline | Universal Render Pipeline |
 | Main scene | `Assets/_Project/Scenes/P01_CoreLoop.unity` |
-| Current local build identity | `v0.3.0.0` |
-| Current local Unity bundle version | `0.3.0.0` |
+| Current implementation identity | `v0.4.0.0` |
+| Current Unity bundle version | `0.4.0.0` |
 | Branch at handoff | `master` |
-| Published commit at handoff | `0636f5d0664b05b317d6504974bc82427be1d91b` |
+| Repository state at verification | Local `master` matched `origin/master` and contained the v0.4 implementation before the documentation refresh |
 | Remote | `https://github.com/Moutaz-Code/internship-game.git` |
-| Current local Windows build path | `UnityProject/InternshipGameSynced/Builds/v0.3.0.0/InternshipGame_v0.3.0.0.exe` |
+| Windows build output | `UnityProject/InternshipGameSynced/Builds/v0.4.0.0/InternshipGame_v0.4.0.0.exe` (generated/ignored; rebuild locally when required) |
 
-The current `HEAD` contains the tracked `v0.2.3.0` implementation. Older July 26 notes saying v0.2.3.0 was uncommitted are stale. The newer local `v0.3.0.0` implementation is present in the user-owned dirty working tree and was not published at the 2026-08-02 audit.
+The tracked branch contains Prototype 2, the protected `v0.3.0.0` readable-stealth/counterplay baseline, and the complete `v0.4.0.0` 7C facility/topology pass. Historical notes describing v0.3 as dirty/unpublished or v0.4 as pending are stale status snapshots, not current authority.
 
-The working tree was not clean at handoff. It included the local v0.3 scene, builders, threat/player/feedback code, tests, settings, evidence, and documents, plus other modified/untracked project files. The exact list must be obtained again with Git before work. Treat all of it as user-owned and do not assign ownership by inference.
+Always re-run Git status before work. Build output and smoke logs are intentionally ignored and may be absent on a fresh checkout even when the matching source and recorded evidence are present.
 
-## Local v0.3.0.0 Additions
+## Protected v0.3.0.0 Systems Baseline
 
-The local systems baseline adds:
+The systems baseline adds:
 
 - Concealed/Noticeable/Exposed three-sample visual evidence and configurable confirmation;
 - evaluated hearing threshold and explicit knowledge-source priority;
@@ -46,18 +46,16 @@ Recorded evidence:
 
 These behaviors are protected regressions for v0.4. See `../06_prototype_log.md` and `../33_v0_3_0_0_readable_stealth_scope.md`.
 
-## Authorized v0.4.0.0 Replacement Map
+## Implemented v0.4.0.0 Facility
 
-The current generated ten-space West/Central/East facility remains the live scene until v0.4 implementation regenerates it. The authorized replacement is the locked three-lobed 7C circuit in `../37_v0_4_0_0_spatial_readability_scope.md` and `../38_v0_4_0_0_7c_level_plan.md`.
-
-Do not implement from the older “Facility and Run Variation” description below. It documents the current pre-v0.4 runtime for audit and regression purposes only.
+The live scene uses the locked three-lobed 7C circuit from `../37_v0_4_0_0_spatial_readability_scope.md` and `../38_v0_4_0_0_7c_level_plan.md`. Durable generation is owned by `Assets/_Project/Scripts/Editor/V040FacilityBuilder.cs` and orchestrated by `PrototypeSceneBuilder.cs`; do not treat the older expanded-facility builder as the current map source.
 
 ## Current Playable Contract
 
 The implemented desktop-first slice is a 15–20 minute extraction-horror run:
 
-1. Enter a ten-space authored nuclear facility.
-2. Search West, Central, and East route families.
+1. Enter through the Contractor Annex into an asymmetric three-lobed nuclear facility.
+2. Search Containment & Control, Coolant & Maintenance, and Fuel Handling & Waste through North Pipe Gallery, Utility Spine, and South Maintenance Channel.
 3. Find rod candidates selected from eight authored sockets.
 4. Carry one rod at a time and hold it for a three-second scan.
 5. Use Geiger guidance to locate candidates.
@@ -89,15 +87,15 @@ The build starts borderless fullscreen and retains a resizable 1280×720 windowe
 
 ## Facility and Run Variation
 
-- Approximate footprint: 36 m × 55 m.
-- Authored spaces: Entry/Extraction, Decontamination, Operations Hub, West Maintenance, Central Transfer, East Laboratory, North Cross Hall, West Rod Storage, Core Vault, East Reactor.
-- Route families: West, Central, East, with cross-links.
-- Thirteen fitted portal openings use one shared generated source of truth.
-- Every terminal destination has a required non-jump path; jump is optional.
-- The Maintenance shortcut has a non-jump alternative.
-- Room-specific peripheral and overhead greybox profiles reduce symmetry without committing to final art.
-- Same-seed restart reproduces authored configuration.
-- New-seed restart selects rod sockets, one route profile, lighting/audio profile, and Owl profile without procedurally generating geometry.
+- Approximate footprint: 57 m × 40 m around an inaccessible shielding/service void.
+- Playable macro areas: Contractor Annex, Containment & Control, Coolant & Maintenance, and Fuel Handling & Waste.
+- Pairwise connectors: North Pipe Gallery, Utility Spine, and South Maintenance Channel.
+- Seven authored portals P01-P07 use 2.76 m clear width and 2.52 m clear height.
+- Eight sockets are lobe-owned: C1-C3, K1-K3, and F1-F2.
+- Every seed selects exactly one live rod per lobe plus two inert decoys from unused sockets.
+- Open Circuit, Coolant Service, and Fuel Inspection are the supported deterministic route profiles.
+- A 20-node route graph preserves every socket and two graph-distinct approaches from the Containment side of P01 under every profile.
+- Same-seed restart reproduces the authored configuration; new-seed restart changes eligible authored state without procedurally generating geometry.
 
 ## Objective and Feedback Behavior
 
@@ -131,6 +129,8 @@ The build starts borderless fullscreen and retains a resizable 1280×720 windowe
 
 - Navigation is behind `IThreatNavigator`.
 - `NavMeshThreatNavigator` is primary; an authored waypoint graph remains a fallback.
+- Eighteen authored Owl nodes cover the Annex, three lobes, three connectors, and two search probes; only the six connector nodes carry route-family metadata.
+- Route-choice evidence comes from authored North/Utility/South connector zones and nodes, not world-X inference. Legacy West/Central/East values remain narrow internal compatibility IDs only.
 - Route blockers carve/replan rather than allowing wall crossing.
 - Perception uses head, upper-body, and lower-body samples at a bounded interval.
 - Current documented values: 22 m main sight range, 120° main view, 170° near view only inside 2.5 m, 80 ms sampling.
@@ -158,15 +158,15 @@ The build starts borderless fullscreen and retains a resizable 1280×720 windowe
 - In-world route color meanings remain cyan extraction, amber maintenance, green radiation/objective areas, and red closure/danger.
 - Presentation remains intentionally greyboxed and replaceable.
 
-## Automated Evidence at `v0.2.3.0`
+## Recorded Automated Evidence at `v0.4.0.0`
 
 Recorded in `../06_prototype_log.md`:
 
-- Edit Mode: 111/111 passed.
-- Integrated Play Mode: 6/6 passed.
-- Play Mode validation covered all thirteen portals, seeded player/Owl connectivity, new pickup/Owl values, objective/extraction/reset determinism, and multi-sample Owl sight around partial versus full cover.
-- Strict clean `StandaloneWindows64` development build succeeded in 136.20 seconds at 187,683,002 bytes with zero reported build errors or warnings.
-- The exact player remained alive for a 20-second smoke window and was then deliberately closed.
-- No project exception, missing script, OpenXR runtime failure, serialization failure, or invalid NavMesh-agent error was reported in that smoke log.
+- Focused V040 Edit Mode: 28/28 passed.
+- Full Edit Mode regression: 141/141 passed.
+- Full Play Mode regression: 7/7 passed.
+- Coverage includes topology/profile connectivity, graph-distinct socket routes, connector-only evidence, deterministic one-live-per-lobe distribution, portal dimensions, lobe grammar, authored Owl metadata/navigation, telemetry, objective/extraction/reset, and protected v0.3 perception/counterplay behavior.
+- Strict clean `StandaloneWindows64` development build succeeded with zero errors and two rendering warnings.
+- The exact player remained alive for a deliberate 12-second smoke window and logged no project exception or startup failure before it was closed.
 
-These results describe the recorded build, not the current working tree. Re-run tests appropriate to any later change.
+These results describe the recorded v0.4 source/build, not every later checkout or machine. Re-run tests and produce a fresh ignored build artifact when required. Uninformed desktop gameplay, XR, and physical-hardware validation remain open.

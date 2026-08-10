@@ -2,7 +2,7 @@
 
 Status: Active project protocol
 
-Last updated: 2026-08-02
+Last updated: 2026-08-10
 
 ## Purpose
 
@@ -35,18 +35,19 @@ Escalate a conflict instead of choosing the most expansive interpretation.
 | Future Example / Parking Lot | Product direction only; no implementation. |
 | Historical / Superseded | Context only; do not use as current requirements. |
 
-## Current Authorized Implementation Scope
+## Current Implementation Baseline And Authority
 
-`v0.4.0.0` Spatial Readability and Pursuit Topology is authorized by `37_v0_4_0_0_spatial_readability_scope.md`. Use `38_v0_4_0_0_7c_level_plan.md` for exact greybox data, `39_v0_4_0_0_implementation_handoff.md` for task order, and `40_v0_4_0_0_human_validation_sheet.md` for person-led evidence.
+`v0.4.0.0` Spatial Readability and Pursuit Topology is implemented. `37_v0_4_0_0_spatial_readability_scope.md` and `38_v0_4_0_0_7c_level_plan.md` remain the behavior/topology authority, `39_v0_4_0_0_implementation_handoff.md` is the completed task record, and `40_v0_4_0_0_human_validation_sheet.md` owns the open person-led evidence gate.
 
-Local `v0.3.0.0` is implemented and automated delivery-validated; preserve it as the systems regression baseline. Its human validation remains separate.
+`v0.3.0.0` remains the protected systems regression baseline inside v0.4. Its human validation remains separate.
 
 Current implementation baseline:
 
-- Published `v0.2.3.0` contains the Prototype 2 route-adaptation experiment plus later user-directed desktop embodiment, portal, pickup, presentation, and Owl-perception increments.
-- Local `v0.3.0.0` adds readable stealth and contractor counterplay and is the protected systems baseline for v0.4.
-- The 2026-08-02 audit found `master` at published commit `0636f5d`, with the local v0.3 implementation and other user-owned changes still present in the dirty working tree.
-- Preserve both the published baseline and unrelated local work. Do not revert, re-version, commit, or publish new changes without explicit user instruction.
+- `v0.2.3.0` contains the Prototype 2 route-adaptation experiment plus later user-directed desktop embodiment, portal, pickup, presentation, and Owl-perception increments.
+- `v0.3.0.0` adds readable stealth and contractor counterplay and remains the protected systems baseline.
+- `v0.4.0.0` adds the 7C three-lobed facility, explicit connector evidence, authored Owl topology, deterministic one-live-rod-per-lobe distribution, and expanded operator telemetry.
+- The source, tests, scene, captures, and handoff material for these versions are tracked on `master`. Build and smoke artifacts remain ignored and must be regenerated locally when required.
+- Preserve unrelated local work. Do not revert, re-version, commit, or publish new changes without explicit user instruction.
 - PT2 may receive evidence-driven tuning or release-blocking defect fixes only when the user explicitly requests them.
 
 Dedicated replacement-agent onboarding and operating details are in `implementation_agent/README.md`.
@@ -59,9 +60,9 @@ Historical PT2 authority:
 
 These files explain the original experiment but no longer authorize new PT2 feature work.
 
-Current implementation:
+Current change boundary:
 
-- Implement only the explicitly approved `v0.4.0.0` brief and newer direct user instructions.
+- Treat `v0.4.0.0` as the current implementation baseline. No later feature version is authorized without a newer direct user instruction or explicitly approved version brief.
 - `31_pt3_design_workspace.md` remains an internal design record; it is not the implementation feature list.
 - Use only the `v{x}.{y}.{z}.{w}` scheme in `27_development_versioning.md` for code, builds, commits, and implementation reports.
 

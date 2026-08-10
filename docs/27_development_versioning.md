@@ -1,6 +1,6 @@
 # Development Versioning
 
-Last updated: 2026-08-02
+Last updated: 2026-08-10
 
 ## Format
 
@@ -21,8 +21,8 @@ During early active development (`x = 0`):
 - `v0.2.2.1` = fullscreen and versioning maintenance change on top of that baseline.
 - `v0.2.2.2` = high-refresh desktop locomotion regression fix.
 - `v0.2.3.0` = major Prototype 2 desktop embodiment, portal-accuracy, pickup, and Owl-difficulty pass.
-- `v0.3.0.0` = Readable Stealth and Contractor Counterplay. Implemented and automated delivery-validated locally; not yet published in the audited repository state and human validation remains open.
-- `v0.4.0.0` = locked Spatial Readability and Pursuit Topology experiment using the 7C three-lobed facility. Implementation begins 2026-08-03.
+- `v0.3.0.0` = Readable Stealth and Contractor Counterplay. Implemented, tracked, and automated delivery-validated; human validation remains open.
+- `v0.4.0.0` = Spatial Readability and Pursuit Topology using the 7C three-lobed facility. Implemented, tracked, automated regression-validated, built, and smoke-launched; uninformed desktop, XR, and physical-hardware validation remains open.
 
 ## Repository and Build Rules
 

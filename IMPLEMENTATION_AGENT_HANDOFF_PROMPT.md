@@ -2,30 +2,27 @@
 
 Status: Copy-ready continuity prompt for the next dedicated Unity implementation agent
 
-Snapshot prepared: 2026-08-07, Asia/Dubai
+Snapshot refreshed: 2026-08-10, Asia/Dubai
 
-You are the dedicated Unity implementation owner for this existing project. You are taking over a working repository and a completed local `v0.4.0.0` implementation; you are not starting a new project and you do not have authority to invent the next feature.
+You are the dedicated Unity implementation owner for this existing project. You are taking over a working repository with a completed, tracked `v0.4.0.0` implementation; you are not starting a new project and you do not have authority to invent the next feature.
 
 Read this document completely before taking action. Then perform the mandatory read-only audit below. Live repository and Unity evidence outrank stale status prose, but they do not override the user's design authority.
 
-## Transfer-Critical Warning
+## Repository Transfer Status
 
-At the time this prompt was prepared, the important `v0.4.0.0` work existed only in a local commit on the old laptop:
+Verified on 2026-08-10:
 
 - repository: `Moutaz-Code/internship-game`;
 - remote: `https://github.com/Moutaz-Code/internship-game.git`;
 - branch: `master`;
-- local `HEAD`: `3abcec782c4fc00b46ee39827ce2f646c982a33b`;
-- local commit subject/body: `temp commit` / `moving laptops`;
-- upstream `origin/master`: `df07a717e3fc231e59bd5d3ef19fc4d5a27d8e2a` (`Implement v0.3.0.0 readable stealth`);
-- relationship: local `master` was one commit ahead and zero behind;
-- at the initial audit, before the handoff prompts were created, the working tree was clean;
-- during preparation, three root-level prompt files became untracked: this file, `game design agent handoff prompt.md`, and `level_design_agent_handoff_prompt.md`;
-- the two sibling prompts are concurrent user/other-agent work and must not be overwritten or bundled by inference.
+- commit `3abcec782c4fc00b46ee39827ce2f646c982a33b` contains the `v0.4.0.0` implementation;
+- commit `9104ac8b9b312bfe1a88457e6c9d1cd91a011035` contains the three root-level handoff prompts;
+- both commits are present on `origin/master`;
+- local `master` matched `origin/master` and the working tree was clean before the 2026-08-10 documentation refresh.
 
-Do not assume a fresh clone contains v0.4. If `git rev-parse HEAD` does not resolve to `3abcec7` or a descendant containing that commit, stop and tell the user that the local transfer commit must be pushed or copied from the old laptop. Do not recreate the implementation from documentation and do not reset either copy.
+A fresh clone should contain v0.4. If `git rev-parse HEAD` does not resolve to `3abcec7` or a descendant containing it, fetch and audit the configured remote before doing implementation work. Do not recreate the implementation from documentation or rewrite history by inference.
 
-Git LFS is required. The local commit has seven new LFS objects still awaiting upload with the commit: the five V040 capture PNGs and the two v0.4 floor-plan/overlay PNGs. A normal authorized push should run the LFS hook, but verify the LFS upload. On a fresh clone, install Git LFS and pull LFS objects before opening Unity. Do not push, amend, rebase, force-push, or rewrite the temporary commit unless the user explicitly requests it.
+Git LFS is required. On a fresh clone, install Git LFS and verify that the five V040 capture PNGs and two v0.4 floor-plan/overlay PNGs are materialized rather than remaining pointer files.
 
 The Windows build and smoke log are ignored by Git and will not arrive in a normal clone:
 
@@ -76,7 +73,7 @@ Read these files completely before implementation:
 17. `docs/27_development_versioning.md`
 18. Current code and tests relevant to the user's assigned task.
 
-Several general onboarding files were not updated after v0.4 implementation and still say that v0.4 has not begun, that the working tree contains uncommitted v0.3 work, or that `v0.3.0.0` is the current local build. Those status statements are stale. The code at commit `3abcec7` and the `v0.4.0.0 implementation evidence` section at the end of `docs/06_prototype_log.md` are the newest implementation evidence. Documents 37-39 remain the design/topology authority for what v0.4 was intended to do.
+The living hub, synthesis, versioning, continuity, and implementation-state documents were refreshed on 2026-08-10. Historical scopes and dated handoffs intentionally retain their original start-state context. The code at commit `3abcec7` and the `v0.4.0.0 implementation evidence` section at the end of `docs/06_prototype_log.md` remain the implementation evidence; documents 37-39 remain the design/topology authority for what v0.4 was intended to do.
 
 Do not silently “fix” every stale document as part of an unrelated task. Report the discrepancy and update continuity documents only when the user requests or the approved task requires it.
 
@@ -144,7 +141,7 @@ Desktop keyboard/mouse remains the active development path. XR and physical-devi
 
 ## Completed v0.4.0.0 Implementation
 
-`v0.4.0.0 Spatial Readability and Pursuit Topology` is implemented in commit `3abcec7`; do not repeat V040-001 through V040-009 unless a live audit proves the commit is missing or broken.
+`v0.4.0.0 Spatial Readability and Pursuit Topology` is implemented in commit `3abcec7` and tracked on `master`; do not repeat V040-001 through V040-009 unless a live audit proves the implementation is missing or broken.
 
 Implemented facility:
 

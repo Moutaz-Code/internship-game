@@ -1,6 +1,6 @@
 # Project Hub
 
-Last updated: 2026-08-02
+Last updated: 2026-08-10
 
 ## Project Identity
 
@@ -10,7 +10,7 @@ Client/company context: Pixoul
 
 Delivery target: 2026-08-28
 
-Current phase: published master is `v0.2.3.0`; local user-owned `v0.3.0.0` is implemented and automated delivery-validated but still needs uninformed human evidence; locked `v0.4.0.0` Spatial Readability and Pursuit Topology begins 2026-08-03
+Current phase: `v0.4.0.0` Spatial Readability and Pursuit Topology is implemented, tracked on `master`, and backed by recorded automated regression, Windows build, and launch-smoke evidence. PT2, v0.3, and v0.4 still have separate uninformed-human validation gates; XR and physical-hardware validation remains open.
 
 Current production style: prototype-heavy agile, weekly loops
 
@@ -74,7 +74,7 @@ Build a 15-20 minute single-player VR MLP that proves:
 - Heart rate may later influence avatar breathing/noise, but never gives an entity raw direct detection.
 - Prototype 1 uses deterministic adaptive game AI; pre-trained/model-driven strategy is post-MLP R&D.
 - For `v0.3.0.0`, player stealth feedback uses graded footsteps, accepted impact/machinery audio, restrained Owl investigation cues, and complete operator telemetry; breathing and visual stealth indicators are deferred.
-- `v0.4.0.0` replaces the current divided-cube facility with the locked 7C three-lobed circuit while preserving the v0.3 systems baseline.
+- `v0.4.0.0` uses the locked 7C three-lobed circuit while preserving the v0.3 systems baseline.
 - A simulated stress slider/adapter precedes real heart-rate integration.
 - Electrical probe is the current close-range stun-tool direction.
 - The no-cart rod loop remains authoritative; a small staging cart is a separate design experiment.
@@ -105,4 +105,4 @@ PT2 and v0.3 feature expansion are closed except for evidence-driven tuning or r
 
 ## Next Sprint Goal
 
-From 2026-08-03 through 2026-08-09, implement, test, build, and honestly classify `v0.4.0.0` against `37_v0_4_0_0_spatial_readability_scope.md` and `38_v0_4_0_0_7c_level_plan.md`. Preserve the completed local v0.3 stealth/counterplay behavior, continue PT2 and v0.3 human gates separately, and prioritize a complete navigable greybox plus human map/route evidence over final-art polish.
+From 2026-08-10, treat `v0.4.0.0` as the implementation and regression baseline. Close its desktop spatial-readability gate with `40_v0_4_0_0_human_validation_sheet.md`, continue the separate PT2 and v0.3 human gates, and prioritize evidence-driven fixes plus demo reliability over new feature scope. No `v0.5.0.0` feature brief is authorized yet.
