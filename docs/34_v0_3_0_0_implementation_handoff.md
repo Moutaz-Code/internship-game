@@ -150,7 +150,7 @@ Likely files:
 
 - `Assets/_Project/Scripts/Threats/ThrowableThreatStimulus.cs`
 - feedback cue/profile code
-- `Assets/_Project/Scripts/Editor/PrototypeSceneBuilder.cs`
+- `Assets/_Project/Scripts/Editor/FacilityGeneration/PrototypeSceneBuilder.cs`
 
 Actions:
 
@@ -169,7 +169,7 @@ Likely files:
 
 - one new narrow `IPlayerInteractable` MonoBehaviour under Interaction or Threats
 - feedback/audio support if required
-- `Assets/_Project/Scripts/Editor/PrototypeSceneBuilder.cs` or the appropriate facility builder
+- `Assets/_Project/Scripts/Editor/FacilityGeneration/PrototypeSceneBuilder.cs` or the appropriate facility builder
 - focused Edit Mode and Play Mode tests
 
 Build three matching `MAINTENANCE TEST` panels, one per route family:

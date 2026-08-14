@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 1600 1600">
+  <style>
+    .zone-blue{fill:#6fa8dc;fill-opacity:.18}.zone-tan{fill:#d6a85f;fill-opacity:.18}.zone-teal{fill:#63b7b1;fill-opacity:.20}.zone-olive{fill:#9da85b;fill-opacity:.21}.zone-gray{fill:#87929a;fill-opacity:.19}.zone-red{fill:#c95858;fill-opacity:.18}
+    .divider{fill:#505961;fill-opacity:.80;stroke:#111;stroke-width:4}.fixture{fill:#728087;fill-opacity:.60;stroke:#111;stroke-width:3}
+    .label rect{fill:#fff;fill-opacity:.92;stroke:#111;stroke-width:1.5}.label text{fill:#111;font-family:Arial,sans-serif;font-size:20px;font-weight:700;text-anchor:middle;dominant-baseline:middle}.label .small{font-size:17px}
+    .title{fill:#111;font-family:Arial,sans-serif;font-size:28px;font-weight:700}.marker{fill:#7a3db8;stroke:#fff;stroke-width:4}.marker-text{fill:#fff;font-family:Arial,sans-serif;font-size:20px;font-weight:700;text-anchor:middle;dominant-baseline:middle}
+  </style>
+
+  <text class="title" x="56" y="62">OPTION 2 — STEALTH GRAMMARS</text>
+
+  <circle class="zone-red" cx="454" cy="705" r="216"/>
+  <rect class="zone-blue" x="770" y="1305" width="235" height="150"/>
+  <polygon class="zone-blue" points="585,1165 775,1165 790,1310 600,1310"/>
+  <polygon class="zone-blue" points="1185,1240 1380,1265 1380,1450 1215,1450"/>
+  <polygon class="zone-tan" points="625,360 930,360 1010,520 1000,795 905,890 680,865 595,705 635,500"/>
+  <rect class="zone-tan" x="625" y="48" width="370" height="105"/>
+  <polygon class="zone-gray" points="610,245 770,245 800,330 680,420 600,360"/>
+  <polygon class="zone-teal" points="1000,165 1235,165 1300,240 1270,405 1035,420 975,300"/>
+  <polygon class="zone-teal" points="1305,225 1405,225 1430,275 1410,345 1320,355 1295,305"/>
+  <rect class="zone-gray" x="1160" y="430" width="205" height="205"/>
+  <polygon class="zone-olive" points="1030,675 1290,680 1375,850 1315,1145 1070,1120 970,900"/>
+  <polygon class="zone-gray" points="520,835 690,870 730,1005 605,1080 510,980"/>
+
+  <path d="M535 482 Q570 495 608 532" fill="none" stroke="#4f9fcd" stroke-width="14" stroke-linecap="round"/>
+
+  <g aria-label="Containment full-cover shields">
+    <rect class="divider" x="680" y="460" width="70" height="150" rx="5" transform="rotate(-18 715 535)"/>
+    <rect class="divider" x="855" y="460" width="70" height="150" rx="5" transform="rotate(18 890 535)"/>
+    <rect class="divider" x="690" y="695" width="70" height="145" rx="5" transform="rotate(8 725 767)"/>
+    <rect class="divider" x="850" y="695" width="70" height="145" rx="5" transform="rotate(-8 885 767)"/>
+  </g>
+  <g aria-label="Coolant dense machinery">
+    <circle class="fixture" cx="1110" cy="270" r="52"/>
+    <rect class="fixture" x="1018" y="210" width="68" height="38" rx="7" transform="rotate(-15 1052 229)"/>
+    <rect class="fixture" x="1190" y="200" width="76" height="42" rx="7" transform="rotate(20 1228 221)"/>
+    <rect class="fixture" x="1190" y="325" width="80" height="42" rx="7" transform="rotate(-14 1230 346)"/>
+  </g>
+  <g aria-label="Fuel storage lanes">
+    <rect class="divider" x="1050" y="780" width="235" height="38" rx="7" transform="rotate(17 1167 799)"/>
+    <rect class="divider" x="1025" y="875" width="250" height="38" rx="7" transform="rotate(17 1150 894)"/>
+    <rect class="divider" x="1005" y="975" width="225" height="38" rx="7" transform="rotate(17 1117 994)"/>
+  </g>
+  <g aria-label="Service channel shields">
+    <rect class="divider" x="555" y="885" width="105" height="34" rx="4" transform="rotate(27 607 902)"/>
+    <rect class="divider" x="620" y="965" width="105" height="34" rx="4" transform="rotate(-24 672 982)"/>
+  </g>
+
+  <g class="label"><rect x="333" y="676" width="242" height="58" rx="4"/><text x="454" y="695"><tspan x="454">INACCESSIBLE</tspan><tspan x="454" dy="23">REACTOR CORE</tspan></text></g>
+  <g class="label"><rect x="696" y="617" width="219" height="42" rx="4"/><text x="805" y="638">CONTAINMENT FLOOR</text></g>
+  <g class="label"><rect x="657" y="59" width="288" height="56" rx="4"/><text class="small" x="801" y="77"><tspan x="801">CONTAINMENT</tspan><tspan x="801" dy="21">CONTROL</tspan></text></g>
+  <g class="label"><rect x="627" y="300" width="157" height="37" rx="4"/><text class="small" x="705" y="319">PIPE GALLERY</text></g>
+  <g class="label"><rect x="1068" y="280" width="208" height="57" rx="4"/><text class="small" x="1172" y="298"><tspan x="1172">COOLANT</tspan><tspan x="1172" dy="21">MAINTENANCE</tspan></text></g>
+  <g class="label"><rect x="1315" y="253" width="111" height="57" rx="4"/><text class="small" x="1370" y="271"><tspan x="1370">PUMP</tspan><tspan x="1370" dy="21">CONTROL</tspan></text></g>
+  <g class="label"><rect x="1178" y="500" width="154" height="36" rx="4"/><text class="small" x="1255" y="518">UTILITY SPINE</text></g>
+  <g class="label"><rect x="1200" y="609" width="135" height="36" rx="4"/><text class="small" x="1267" y="627">MACHINE SHOP</text></g>
+  <g class="label"><rect x="1081" y="1013" width="213" height="56" rx="4"/><text class="small" x="1187" y="1031"><tspan x="1187">FUEL STORAGE</tspan><tspan x="1187" dy="21">LANES</tspan></text></g>
+  <g class="label"><rect x="550" y="930" width="168" height="36" rx="4"/><text class="small" x="634" y="948">SERVICE CHANNEL</text></g>
+  <g class="label"><rect x="792" y="963" width="164" height="36" rx="4"/><text class="small" x="874" y="981">FUEL TRANSFER</text></g>
+  <g class="label"><rect x="597" y="1175" width="174" height="56" rx="4"/><text class="small" x="684" y="1193"><tspan x="684">SECURITY &amp;</tspan><tspan x="684" dy="21">DECON</tspan></text></g>
+  <g class="label"><rect x="796" y="1362" width="184" height="56" rx="4"/><text class="small" x="888" y="1380"><tspan x="888">CONTRACTOR</tspan><tspan x="888" dy="21">ANNEX</tspan></text></g>
+  <g class="label"><rect x="1200" y="1284" width="169" height="56" rx="4"/><text class="small" x="1284" y="1302"><tspan x="1284">INTAKE &amp;</tspan><tspan x="1284" dy="21">EXTRACTION</tspan></text></g>
+
+  <circle class="marker" cx="795" cy="660" r="18"/><text class="marker-text" x="795" y="660">A</text>
+  <circle class="marker" cx="1190" cy="372" r="18"/><text class="marker-text" x="1190" y="372">B</text>
+  <circle class="marker" cx="1190" cy="930" r="18"/><text class="marker-text" x="1190" y="930">C</text>
+</svg>

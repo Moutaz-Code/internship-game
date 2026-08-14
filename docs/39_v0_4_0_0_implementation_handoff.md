@@ -4,6 +4,8 @@ Status: Active implementation handoff
 
 Last updated: 2026-08-02
 
+Repository note: the 2026-08-11 cleanup moved the active builders to `Assets/_Project/Scripts/Editor/FacilityGeneration/` and removed the superseded `ExpandedFacilityBuilder`; references to it below describe the historical pre-v0.4 starting point.
+
 ## One-Sentence Assignment
 
 Replace the current rectangular proof-facility greybox with the locked 7C three-lobed circuit, preserving the completed v0.3 stealth and contract systems while making lobe identity, connector choice, Owl pressure, and return navigation readable and testable.

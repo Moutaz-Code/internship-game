@@ -48,7 +48,7 @@ These behaviors are protected regressions for v0.4. See `../06_prototype_log.md`
 
 ## Implemented v0.4.0.0 Facility
 
-The live scene uses the locked three-lobed 7C circuit from `../37_v0_4_0_0_spatial_readability_scope.md` and `../38_v0_4_0_0_7c_level_plan.md`. Durable generation is owned by `Assets/_Project/Scripts/Editor/V040FacilityBuilder.cs` and orchestrated by `PrototypeSceneBuilder.cs`; do not treat the older expanded-facility builder as the current map source.
+The live scene uses the locked three-lobed 7C circuit from `../37_v0_4_0_0_spatial_readability_scope.md` and `../38_v0_4_0_0_7c_level_plan.md`. Durable generation is owned by `Assets/_Project/Scripts/Editor/FacilityGeneration/V040FacilityBuilder.cs` and orchestrated by `FacilityGeneration/PrototypeSceneBuilder.cs`. The superseded pre-7C builder was removed on 2026-08-11 and remains available in Git history.
 
 ## Current Playable Contract
 

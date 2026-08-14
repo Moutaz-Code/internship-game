@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048">
+  <title>Option 3 — Experimental Contract Layout overlay</title>
+  <desc>Transparent proposed contract-relay overlay for the locked Internship Horror Map base.</desc>
+  <style>
+    .fixture { stroke: #111111; stroke-width: 4; vector-effect: non-scaling-stroke; }
+    .cell { fill: #7c6aac; fill-opacity: 0.50; }
+    .coolant { fill: #419eb9; fill-opacity: 0.50; }
+    .fuel { fill: #b18e35; fill-opacity: 0.50; }
+    .service { fill: #568a6c; fill-opacity: 0.52; }
+    .locker { fill: #70808a; fill-opacity: 0.48; }
+    .label { font-family: Arial, Helvetica, sans-serif; font-size: 21px; font-weight: 500; fill: #111111; paint-order: stroke fill; stroke: #ffffff; stroke-width: 6; stroke-linejoin: round; }
+    .small { font-size: 18px; }
+    .marker-label { font-size: 16px; }
+    .proposal { fill: #a34fd1; fill-opacity: 0.86; stroke: #111111; stroke-width: 4; }
+    .exit { fill: #268b59; fill-opacity: 0.88; stroke: #111111; stroke-width: 4; }
+    .intake { fill: #2f8b7a; fill-opacity: 0.86; stroke: #111111; stroke-width: 4; }
+  </style>
+
+  <g id="contract-zones">
+    <path fill="#826bb5" fill-opacity="0.11" d="M900 690 L1055 480 H1185 L1295 690 V1060 L1215 1130 H900 Z"/>
+    <path fill="#43a2be" fill-opacity="0.11" d="M1325 280 H1750 L1805 335 V470 L1745 530 H1325 Z"/>
+    <path fill="#b08d38" fill-opacity="0.11" d="M1470 1215 L1700 1250 L1665 1418 L1475 1380 Z"/>
+    <path fill="#4d9472" fill-opacity="0.11" d="M1515 670 H1695 V1035 H1515 Z"/>
+    <path fill="#48a16f" fill-opacity="0.10" d="M820 340 L985 340 L985 525 L840 525 L790 465 Z"/>
+  </g>
+
+  <g id="reactor-observation">
+    <path d="M862 792 A302 302 0 0 1 862 1013" fill="none" stroke="#2596b5" stroke-width="18" stroke-opacity="0.44"/>
+    <path d="M874 801 A314 314 0 0 1 874 1004" fill="none" stroke="#111111" stroke-width="3" stroke-opacity="0.72"/>
+    <text class="label small" x="894" y="910">REACTOR OBSERVATION</text>
+  </g>
+
+  <g id="inspection-cells">
+    <path class="fixture cell" d="M950 725 L1010 700 L1070 725 L1070 790 L1010 815 L950 790 Z"/>
+    <path class="fixture cell" d="M1145 825 L1205 800 L1265 825 L1265 890 L1205 915 L1145 890 Z"/>
+    <path class="fixture cell" d="M965 985 L1025 960 L1085 985 L1085 1050 L1025 1075 L965 1050 Z"/>
+    <text class="label" x="950" y="675">CONTRACT INSPECTION</text>
+  </g>
+
+  <g id="coolant-test-cell">
+    <circle class="fixture coolant" cx="1500" cy="408" r="66"/>
+    <rect class="fixture coolant" x="1340" y="328" width="100" height="42" rx="16" transform="rotate(-12 1390 349)"/>
+    <rect class="fixture coolant" x="1690" y="350" width="92" height="40" rx="16" transform="rotate(8 1736 370)"/>
+    <text class="label" x="1380" y="295">COOLANT TEST CELL</text>
+  </g>
+
+  <g id="fuel-sweep">
+    <rect class="fixture fuel" x="1485" y="1240" width="146" height="30" rx="10"/>
+    <rect class="fixture fuel" x="1545" y="1320" width="158" height="30" rx="10"/>
+    <text class="label" x="1485" y="1210">FUEL SWEEP</text>
+  </g>
+
+  <g id="repurposed-rooms">
+    <rect class="fixture locker" x="790" y="1535" width="52" height="30" rx="5"/>
+    <rect class="fixture locker" x="862" y="1535" width="52" height="30" rx="5"/>
+    <text class="label small" x="770" y="1515">RECOVERY STORES</text>
+    <rect class="fixture locker" x="1090" y="62" width="62" height="28" rx="4"/>
+    <rect class="fixture locker" x="1170" y="62" width="62" height="28" rx="4"/>
+    <text class="label small" x="805" y="112">CONTROL</text>
+  </g>
+
+  <g id="proposed-contract-markers">
+    <circle class="proposal" cx="1110" cy="935" r="16"/><text class="label marker-label" x="1135" y="941">PROPOSED ROD</text>
+    <circle class="proposal" cx="1500" cy="408" r="16"/><text class="label marker-label" x="1528" y="414">PROPOSED ROD</text>
+    <circle class="proposal" cx="1635" cy="1288" r="16"/><text class="label marker-label" x="1495" y="1294">PROPOSED ROD</text>
+
+    <rect class="intake" x="1580" y="910" width="112" height="42" rx="5"/>
+    <text class="label marker-label" x="1565" y="890">PROPOSED INTAKE</text>
+
+    <rect class="exit" x="886" y="415" width="28" height="28" transform="rotate(45 900 429)"/>
+    <text class="label marker-label" x="924" y="436">ACTIVE EXIT</text>
+  </g>
+</svg>

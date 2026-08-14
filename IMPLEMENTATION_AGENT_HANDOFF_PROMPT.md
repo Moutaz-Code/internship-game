@@ -176,12 +176,12 @@ Bounded implementation deviations/cuts:
 - the Fuel Inspection profile uses a local ground-branch variation rather than a playable gantry closure;
 - no required lobe, connector, portal, landmark, loop, socket, panel, prop copy, profile, test, or build gate was cut.
 
-Durable scene generation is now owned by `Assets/_Project/Scripts/Editor/V040FacilityBuilder.cs`, orchestrated by `PrototypeSceneBuilder.cs`. The older `ExpandedFacilityBuilder.cs` remains in the project for compile/history compatibility but is not the active V040 facility generator. Do not edit generated scene objects as the durable source. Change the builder/specification first, then regenerate only the disposable `_Generated Polished Prototype` root through Unity MCP; preserve manual content outside it.
+Durable scene generation is owned by `Assets/_Project/Scripts/Editor/FacilityGeneration/V040FacilityBuilder.cs`, orchestrated by `FacilityGeneration/PrototypeSceneBuilder.cs`. The superseded pre-7C `ExpandedFacilityBuilder` was removed during the 2026-08-11 repository cleanup and remains recoverable from Git history. Do not edit generated scene objects as the durable source. Change the builder/specification first, then regenerate only the disposable `_Generated Polished Prototype` root through Unity MCP; preserve manual content outside it.
 
 Important current implementation files:
 
-- `Assets/_Project/Scripts/Editor/V040FacilityBuilder.cs`
-- `Assets/_Project/Scripts/Editor/PrototypeSceneBuilder.cs`
+- `Assets/_Project/Scripts/Editor/FacilityGeneration/V040FacilityBuilder.cs`
+- `Assets/_Project/Scripts/Editor/FacilityGeneration/PrototypeSceneBuilder.cs`
 - `Assets/_Project/Scripts/Environment/FacilityRouteGraph.cs`
 - `Assets/_Project/Scripts/Environment/FacilityZoneTrigger.cs`
 - `Assets/_Project/Scripts/Environment/OwlRouteNodeAnchor.cs`

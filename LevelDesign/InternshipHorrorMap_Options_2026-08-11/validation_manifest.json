@@ -1,0 +1,51 @@
+{
+  "generatedAt": "2026-08-11T11:37:22.828Z",
+  "source": "C:/Users/Mou/Pictures/Krita Drawings/InternshipHorrorMap.png",
+  "sourceSha256": "857275437965e59390fbe8939b8d0844fe404fb4db77f94042f7a21ba1dc7969",
+  "lockedBase": "InternshipHorrorMap_locked.png",
+  "lockedBaseSha256": "857275437965e59390fbe8939b8d0844fe404fb4db77f94042f7a21ba1dc7969",
+  "byteForByteIdentical": true,
+  "canvas": {
+    "width": 2048,
+    "height": 2048
+  },
+  "overlaysEmbedBase": false,
+  "options": [
+    {
+      "overlay": "option_1_operational_clarity_overlay.svg",
+      "overlaySha256": "75a5c99e186c88d19642a00ab807b071a79cb203d07e9df9aafb5c3887d78652",
+      "composite": "option_1_operational_clarity_composite.png",
+      "compositeSha256": "cac119d5b3d0e79639a1825b5fed83d7c9435c95257af868c40b602a9ebe9f98",
+      "width": 2048,
+      "height": 2048,
+      "base": "InternshipHorrorMap_locked.png"
+    },
+    {
+      "overlay": "option_2_stealth_grammars_overlay.svg",
+      "overlaySha256": "2c35f0ebd6902e2baee0c08de7c579c5fd004380654673895fe0cf240fee9a1f",
+      "composite": "option_2_stealth_grammars_composite.png",
+      "compositeSha256": "cf1e6477e606251a7aa2830d0099814aa7fee0d288965fabfa178da571d729a6",
+      "width": 2048,
+      "height": 2048,
+      "base": "InternshipHorrorMap_locked.png"
+    },
+    {
+      "overlay": "option_3_experimental_contract_overlay.svg",
+      "overlaySha256": "2965218b0ff1dcfeccdc7bab11a6614a5cedb707a54f851da75c82e15f76f248",
+      "composite": "option_3_experimental_contract_composite.png",
+      "compositeSha256": "4b3ef0ba7bca58ae33a6b7ff4df18789d64dc7f4f501acc4e2ee4032590d4ee7",
+      "width": 2048,
+      "height": 2048,
+      "base": "InternshipHorrorMap_locked.png"
+    },
+    {
+      "overlay": "artistic_room_themes_overlay.svg",
+      "overlaySha256": "397883f188c9f749c58cfd7e818ed9ecaacc4e39b87b323ba052846a0d1cde7d",
+      "composite": "artistic_room_themes_composite.png",
+      "compositeSha256": "62385ff394cbe9faa36d4e25c5ccacb47d9354e2fbdfa69678aea53a0f663823",
+      "width": 2048,
+      "height": 2048,
+      "base": "InternshipHorrorMap_locked.png"
+    }
+  ]
+}

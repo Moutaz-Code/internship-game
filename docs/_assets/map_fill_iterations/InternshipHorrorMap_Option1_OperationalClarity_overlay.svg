@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 1600 1600">
+  <style>
+    .zone-blue{fill:#6fa8dc;fill-opacity:.18}.zone-tan{fill:#d6a85f;fill-opacity:.16}.zone-teal{fill:#63b7b1;fill-opacity:.18}.zone-olive{fill:#9da85b;fill-opacity:.19}.zone-gray{fill:#87929a;fill-opacity:.16}.zone-red{fill:#c95858;fill-opacity:.20}
+    .divider{fill:#59636b;fill-opacity:.78;stroke:#111;stroke-width:4}.fixture{fill:#76828a;fill-opacity:.56;stroke:#111;stroke-width:3}
+    .label rect{fill:#fff;fill-opacity:.91;stroke:#111;stroke-width:1.5}.label text{fill:#111;font-family:Arial,sans-serif;font-size:20px;font-weight:700;text-anchor:middle;dominant-baseline:middle}.label .small{font-size:17px}
+    .title{fill:#111;font-family:Arial,sans-serif;font-size:28px;font-weight:700}.marker{fill:#7a3db8;stroke:#fff;stroke-width:4}.marker-text{fill:#fff;font-family:Arial,sans-serif;font-size:20px;font-weight:700;text-anchor:middle;dominant-baseline:middle}
+  </style>
+
+  <text class="title" x="56" y="62">OPTION 1 — OPERATIONAL CLARITY</text>
+
+  <circle class="zone-red" cx="454" cy="705" r="216"/>
+  <rect class="zone-blue" x="770" y="1305" width="235" height="150"/>
+  <polygon class="zone-blue" points="585,1165 775,1165 790,1310 600,1310"/>
+  <polygon class="zone-blue" points="1185,1240 1380,1265 1380,1450 1215,1450"/>
+  <polygon class="zone-tan" points="625,360 930,360 1010,520 1000,795 905,890 680,865 595,705 635,500"/>
+  <rect class="zone-tan" x="625" y="48" width="370" height="105"/>
+  <polygon class="zone-tan" points="610,245 770,245 800,330 680,420 600,360"/>
+  <polygon class="zone-teal" points="1000,165 1235,165 1300,240 1270,405 1035,420 975,300"/>
+  <polygon class="zone-teal" points="1305,225 1405,225 1430,275 1410,345 1320,355 1295,305"/>
+  <rect class="zone-gray" x="1160" y="430" width="205" height="205"/>
+  <polygon class="zone-olive" points="1030,675 1290,680 1375,850 1315,1145 1070,1120 970,900"/>
+
+  <path d="M535 482 Q570 495 608 532" fill="none" stroke="#4f9fcd" stroke-width="14" stroke-linecap="round"/>
+
+  <g aria-label="Containment shield dividers">
+    <rect class="divider" x="700" y="468" width="48" height="132" rx="5" transform="rotate(-10 724 534)"/>
+    <rect class="divider" x="855" y="470" width="48" height="132" rx="5" transform="rotate(9 879 536)"/>
+    <rect class="divider" x="690" y="690" width="55" height="125" rx="5" transform="rotate(8 718 752)"/>
+    <rect class="divider" x="850" y="690" width="55" height="125" rx="5" transform="rotate(-8 878 752)"/>
+  </g>
+  <g aria-label="Coolant machinery">
+    <circle class="fixture" cx="1100" cy="255" r="42"/>
+    <rect class="fixture" x="1175" y="215" width="72" height="42" rx="7" transform="rotate(18 1211 236)"/>
+    <rect class="fixture" x="1160" y="320" width="84" height="44" rx="7" transform="rotate(-12 1202 342)"/>
+  </g>
+  <g aria-label="Fuel cask rows">
+    <rect class="divider" x="1070" y="790" width="200" height="34" rx="7" transform="rotate(18 1170 807)"/>
+    <rect class="divider" x="1045" y="875" width="220" height="34" rx="7" transform="rotate(18 1155 892)"/>
+    <rect class="divider" x="1020" y="965" width="205" height="34" rx="7" transform="rotate(18 1122 982)"/>
+  </g>
+
+  <g class="label"><rect x="333" y="676" width="242" height="58" rx="4"/><text x="454" y="695"><tspan x="454">INACCESSIBLE</tspan><tspan x="454" dy="23">REACTOR CORE</tspan></text></g>
+  <g class="label"><rect x="704" y="613" width="208" height="42" rx="4"/><text x="808" y="634">SHIELDING GALLERY</text></g>
+  <g class="label"><rect x="673" y="61" width="256" height="37" rx="4"/><text x="801" y="80">CONTROL ROOM</text></g>
+  <g class="label"><rect x="614" y="286" width="181" height="57" rx="4"/><text class="small" x="704" y="304"><tspan x="704">REACTOR</tspan><tspan x="704" dy="21">OBSERVATION</tspan></text></g>
+  <g class="label"><rect x="1064" y="274" width="203" height="57" rx="4"/><text class="small" x="1165" y="293"><tspan x="1165">COOLANT</tspan><tspan x="1165" dy="21">PUMP HALL</tspan></text></g>
+  <g class="label"><rect x="1320" y="255" width="101" height="36" rx="4"/><text class="small" x="1370" y="273">FILTRATION</text></g>
+  <g class="label"><rect x="1181" y="479" width="156" height="36" rx="4"/><text class="small" x="1259" y="497">SWITCHGEAR</text></g>
+  <g class="label"><rect x="1170" y="603" width="156" height="36" rx="4"/><text class="small" x="1248" y="621">MAINTENANCE</text></g>
+  <g class="label"><rect x="1091" y="1012" width="176" height="37" rx="4"/><text class="small" x="1179" y="1031">FUEL HANDLING</text></g>
+  <g class="label"><rect x="598" y="1177" width="166" height="36" rx="4"/><text class="small" x="681" y="1195">INTAKE &amp; ASSAY</text></g>
+  <g class="label"><rect x="790" y="947" width="178" height="36" rx="4"/><text class="small" x="879" y="965">FUEL RECEIVING</text></g>
+  <g class="label"><rect x="796" y="1362" width="184" height="56" rx="4"/><text class="small" x="888" y="1380"><tspan x="888">CONTRACTOR</tspan><tspan x="888" dy="21">ANNEX</tspan></text></g>
+  <g class="label"><rect x="1210" y="1284" width="152" height="56" rx="4"/><text class="small" x="1286" y="1302"><tspan x="1286">FIXED</tspan><tspan x="1286" dy="21">EXTRACTION</tspan></text></g>
+
+  <circle class="marker" cx="760" cy="1060" r="18"/><text class="marker-text" x="760" y="1060">A</text>
+  <circle class="marker" cx="1188" cy="370" r="18"/><text class="marker-text" x="1188" y="370">B</text>
+  <circle class="marker" cx="920" cy="92" r="18"/><text class="marker-text" x="920" y="92">C</text>
+</svg>

@@ -24,6 +24,7 @@ The section is descriptive and procedural. It does not authorize a new feature o
 10. `06_human_validation_and_known_risks.md` — evidence still requiring a person or unavailable hardware.
 11. `../18_agent_implementation_handoff.md` — live project change-control protocol.
 12. `../27_development_versioning.md` — version rules.
+13. `07_facility_kit_and_p02_authoring.md` — approved-facility P02 rebuild, modular-kit conventions, transform, and deviation register.
 
 When no new version brief has been approved, onboarding, read-only auditing, defect diagnosis, and explicitly requested maintenance are allowed. Backlog items and exploratory design workspaces are not permission to start feature work.
 

@@ -537,3 +537,32 @@ Scope and repository:
 
 - No unapproved mechanic, gameplay family, final-art family, new entity, objective type, generalized level framework, or v0.3 perception/tuning redesign was added.
 - Pre-existing documentation, OpenXR-related, and local v0.3 changes were preserved. No commit or push was performed.
+
+### 2026-08-11 repository cleanup and level-overhaul preparation
+
+Authority: direct user request to remove obsolete/unneeded files, make the structure more intuitive, validate the cleanup, and prepare the implementation workspace for a separately approved future level overhaul.
+
+Scope and result:
+
+- Removed the superseded pre-7C `ExpandedFacilityBuilder`; its history remains recoverable in Git.
+- Extracted the two small data containers still used by v0.4 into `Editor/FacilityGeneration/FacilityBuildModels.cs` with current names.
+- Moved `PrototypeSceneBuilder.cs` and `V040FacilityBuilder.cs` into `Editor/FacilityGeneration/` and moved the desktop XR build sanitizer into `Editor/BuildPipeline/`. Unity GUIDs for all three moved scripts were preserved.
+- Deleted two ignored `Assets/InitTestScene*.unity` Test Runner artifacts and the empty tracked `Assets/Samples` placeholder.
+- Deleted 3,621 ignored, regenerable files from the duplicate root `Builds/` tree and the Unity project `Builds/` tree, reclaiming approximately 2,022.26 MB. Historical captures, recordings, tracked evidence, XR assets, backup/sync markers, and incoming level-design work were deliberately preserved.
+- Updated current implementation ownership/path references. Historical v0.4 handoff text keeps its pre-v0.4 builder references with an explicit cleanup note.
+- No scene content, gameplay behavior, tuning, package, Player Settings, build settings, version, or approved design scope changed.
+
+Validation:
+
+- Pre-cleanup baseline: Edit Mode `141/141` passed; Play Mode `7/7` passed.
+- Post-cleanup forced import/compilation: zero errors and zero warnings.
+- Post-cleanup regression: Edit Mode `141/141` passed, `0` failed, `0` skipped; Play Mode `7/7` passed, `0` failed, `0` skipped.
+- Scene validation: `P01_CoreLoop` reported zero issues, zero missing scripts, and zero broken prefabs; the scene remained loaded, clean, in Edit Mode at build index 0.
+- Build settings still contain only `Assets/_Project/Scenes/P01_CoreLoop.unity`; bundle version remains `0.4.0.0`.
+- After tests, the only console entries were Test Runner result/cleanup output and an MCP batch-execution warning; no project-code error remained.
+- A fresh player build and human gameplay session were not required for this repository-only cleanup and remain Not Tested.
+
+Repository boundary:
+
+- Pre-existing `Assets/XR/Settings/OpenXRPackageSettings.asset` modification and untracked `LevelDesign/` plus `docs/_assets/map_fill_iterations/` work were preserved and excluded from cleanup ownership.
+- No commit or push was requested or performed.

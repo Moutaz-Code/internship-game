@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048">
+  <title>Option 1 — Operational Clarity overlay</title>
+  <desc>Transparent functional-layout overlay for the locked Internship Horror Map base.</desc>
+  <style>
+    .zone { stroke: none; }
+    .fixture { stroke: #111111; stroke-width: 4; vector-effect: non-scaling-stroke; }
+    .cover { fill: #596772; fill-opacity: 0.52; }
+    .machine { fill: #4f9db8; fill-opacity: 0.48; }
+    .fuel { fill: #bd8b3d; fill-opacity: 0.48; }
+    .console { fill: #6c7f8b; fill-opacity: 0.48; }
+    .label { font-family: Arial, Helvetica, sans-serif; font-size: 21px; font-weight: 500; fill: #111111; paint-order: stroke fill; stroke: #ffffff; stroke-width: 6; stroke-linejoin: round; }
+    .small { font-size: 18px; }
+    .marker-label { font-size: 16px; }
+    .objective { fill: #8b5cf6; fill-opacity: 0.82; stroke: #111111; stroke-width: 4; }
+    .exit { fill: #37a56a; fill-opacity: 0.82; stroke: #111111; stroke-width: 4; }
+  </style>
+
+  <g id="functional-zones">
+    <path class="zone" fill="#65a9be" fill-opacity="0.11" d="M995 1685 H1275 V1840 H995 Z"/>
+    <path class="zone" fill="#769eb0" fill-opacity="0.11" d="M760 1490 H995 V1680 H785 L750 1645 V1530 Z"/>
+    <path class="zone" fill="#c59648" fill-opacity="0.11" d="M1475 1215 L1700 1250 L1665 1415 L1480 1375 Z"/>
+    <path class="zone" fill="#7399aa" fill-opacity="0.10" d="M805 50 H1265 V185 H805 Z"/>
+    <path class="zone" fill="#52a8bf" fill-opacity="0.11" d="M1330 280 H1760 L1810 335 V475 L1750 535 H1330 Z"/>
+    <path class="zone" fill="#8a9aa2" fill-opacity="0.09" d="M900 690 L1055 480 H1185 L1295 690 V1055 L1215 1130 H900 Z"/>
+    <path class="zone" fill="#7a9a88" fill-opacity="0.10" d="M1530 650 H1695 V1030 H1530 Z"/>
+  </g>
+
+  <g id="reactor-observation">
+    <path d="M862 792 A302 302 0 0 1 862 1013" fill="none" stroke="#2596b5" stroke-width="18" stroke-opacity="0.44"/>
+    <path d="M874 801 A314 314 0 0 1 874 1004" fill="none" stroke="#111111" stroke-width="3" stroke-opacity="0.72"/>
+    <text class="label small" x="894" y="910">REACTOR OBSERVATION</text>
+  </g>
+
+  <g id="operational-fixtures">
+    <rect class="fixture console" x="1080" y="62" width="64" height="28" rx="4"/>
+    <rect class="fixture console" x="1160" y="62" width="64" height="28" rx="4"/>
+    <rect class="fixture console" x="1080" y="101" width="144" height="28" rx="4"/>
+
+    <circle class="fixture machine" cx="1400" cy="355" r="43"/>
+    <circle class="fixture machine" cx="1515" cy="355" r="43"/>
+    <circle class="fixture machine" cx="1458" cy="465" r="43"/>
+    <rect class="fixture machine" x="1690" y="330" width="92" height="40" rx="8"/>
+    <rect class="fixture machine" x="1690" y="400" width="92" height="40" rx="8"/>
+
+    <rect class="fixture cover" x="945" y="714" width="158" height="44" rx="4" transform="rotate(-17 1024 736)"/>
+    <rect class="fixture cover" x="1180" y="718" width="46" height="152" rx="4"/>
+    <rect class="fixture cover" x="975" y="1030" width="176" height="44" rx="4" transform="rotate(8 1063 1052)"/>
+    <rect class="fixture cover" x="1255" y="902" width="46" height="142" rx="4"/>
+
+    <rect class="fixture fuel" x="1490" y="1240" width="90" height="34" rx="10"/>
+    <rect class="fixture fuel" x="1600" y="1240" width="80" height="34" rx="10"/>
+
+    <rect class="fixture machine" x="1565" y="845" width="104" height="74" rx="8"/>
+    <rect class="fixture console" x="1050" y="1740" width="175" height="38" rx="5"/>
+  </g>
+
+  <g id="functional-labels">
+    <text class="label small" x="805" y="112">CONTROL</text>
+    <text class="label" x="1375" y="300">COOLANT PROCESSING</text>
+    <text class="label" x="970" y="640">CONTAINMENT HALL</text>
+    <text class="label small" x="1550" y="950">WASTE SERVICE</text>
+    <text class="label small" x="1485" y="1210">FUEL STORAGE</text>
+    <text class="label small" x="775" y="1510">ROD RECEIVING</text>
+    <text class="label small" x="1100" y="1725">INTAKE</text>
+  </g>
+
+  <g id="objective-markers">
+    <circle class="objective" cx="790" cy="1550" r="14"/><text class="label marker-label" x="814" y="1556">ROD A</text>
+    <circle class="objective" cx="1560" cy="1287" r="14"/><text class="label marker-label" x="1584" y="1294">ROD B</text>
+    <circle class="objective" cx="850" cy="145" r="14"/><text class="label marker-label" x="875" y="151">ROD C</text>
+  </g>
+
+</svg>

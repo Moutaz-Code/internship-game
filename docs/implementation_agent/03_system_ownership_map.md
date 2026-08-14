@@ -24,7 +24,7 @@ The governing principle is narrow, typed seams around real variation points. Avo
 | Run/session | `Run/PrototypeRunController.cs`, `PrototypeRunStateMachine.cs`, `PrototypeRunInput.cs`, `RunConfiguration.cs` | Own run state, seeded configuration, reset, extraction cycle, escape/failure; do not make it know concrete controllers or devices. |
 | Objectives | `Objectives/FuelRodItem.cs`, `FuelRodObjectiveSet.cs`, `FuelRodDepositRack.cs`, `FuelRodRunCoordinator.cs`, `RunProgressSnapshot.cs` | Own unique rod identity, hidden classification, scan, carry/deposit state, typed rack results, and aggregate progress. |
 | Map/environment | `Environment/PrototypeMapDefinition.cs`, `FacilityRouteGraph.cs`, zone/socket/variation/lighting anchors | Expose typed authored anchors and connectivity. Do not rely on scene object-name searches for gameplay. |
-| Facility generation | `Editor/ExpandedFacilityBuilder.cs`, `PrototypeSceneBuilder.cs` | Generate the replaceable facility root, portal geometry, anchors, presentation, and navigation setup. Preserve manual content outside the generated root. |
+| Facility generation | `Editor/FacilityGeneration/V040FacilityBuilder.cs`, `FacilityGeneration/PrototypeSceneBuilder.cs` | Generate the replaceable facility root, portal geometry, anchors, presentation, and navigation setup. Preserve manual content outside the generated root. Add a new approved version builder here rather than reviving the removed pre-7C builder. |
 | Player | `Player/PlayerModeController.cs`, `DesktopFirstPersonController.cs`, `PlayerMotionSource.cs`, movement/posture helpers | Keep `IPlayerContext` as the controller swap seam and motion telemetry generic. Desktop embodiment must not silently define XR comfort behavior. |
 | Interaction | `Interaction/DesktopGrabInteractor.cs`, `GrabbableObject.cs` | Own desktop targeting, ownership, exact holding, state restoration, drop, and throw. Keep XR ownership mutually exclusive. |
 | Threat decision | `Threats/ThreatPressureModel.cs`, `PursuitThreatStateMachine.cs`, `PursuitThreatController.cs`, `ThreatContracts.cs` | Keep evidence, adaptation, state decisions, credible observations, and expression testable. Do not hide exact player knowledge inside navigation. |
@@ -34,7 +34,7 @@ The governing principle is narrow, typed seams around real variation points. Avo
 | Geiger | `Feedback/GeigerCounterController.cs`, `Threats/GeigerSignalModel.cs` | Guide discovery, support bounded comparison interference, never classify rods or emit Heat truth. |
 | Biometrics | `Biometrics/BiometricContracts.cs`, `BiometricHub.cs`, `BluetoothHeartRateSensorStub.cs` | Compile-ready abstraction/stub only. It is not authorized gameplay input. |
 | UI/display | `Run/PrototypeHudPresenter.cs`, `Core/DesktopPauseController.cs`, `DesktopDisplayController.cs` | Separate player-facing communication, pause/cursor state, display mode, and operator telemetry. |
-| XR desktop-build hygiene | `Editor/DesktopPrototypeXrBuildSanitizer.cs` | Keep no-headset Windows builds clean while restoring XR feature configuration after the build. |
+| XR desktop-build hygiene | `Editor/BuildPipeline/DesktopPrototypeXrBuildSanitizer.cs` | Keep no-headset Windows builds clean while restoring XR feature configuration after the build. |
 | Tests | `Assets/_Project/Tests/EditMode/**`, `PlayMode/PrototypePlayModeTests.cs` | Prove deterministic logic, boundaries, scene structure, integration, and regressions. |
 
 ## Core Contracts
@@ -135,4 +135,3 @@ Current important packages include:
 - Unity MCP package from `CoplayDev/unity-mcp`
 
 Do not add or upgrade packages merely because a newer version exists. Package changes require task relevance, Unity MCP operation, compilation/regression checks, and explicit reporting.
-
