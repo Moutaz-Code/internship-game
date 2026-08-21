@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace CreepyCat.ScifiWarehouseKit
+{
 public class Turn_Move : MonoBehaviour {
 	public float TurnX;
 	public float TurnY;
@@ -28,4 +30,5 @@ public class Turn_Move : MonoBehaviour {
 			transform.Translate(MoveX * Time.deltaTime, MoveY * Time.deltaTime, MoveZ * Time.deltaTime, Space.Self);
 		}
 	}
+}
 }
