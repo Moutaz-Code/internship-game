@@ -1,0 +1,586 @@
+{
+  "sourcePptx": "C:\\Users\\Mou\\Downloads\\Summer2223_Internship_Presentation.pptx",
+  "workspace": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer",
+  "outDir": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect",
+  "generatedAt": "2026-08-30T13:27:40.325Z",
+  "slideCount": 38,
+  "slideArtifacts": [
+    {
+      "slide": 1,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-01.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-01.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-01.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-01.layout.json"
+    },
+    {
+      "slide": 2,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-02.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-02.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-02.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-02.layout.json"
+    },
+    {
+      "slide": 3,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-03.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-03.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-03.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-03.layout.json"
+    },
+    {
+      "slide": 4,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-04.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-04.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-04.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-04.layout.json"
+    },
+    {
+      "slide": 5,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-05.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-05.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-05.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-05.layout.json"
+    },
+    {
+      "slide": 6,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-06.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-06.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-06.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-06.layout.json"
+    },
+    {
+      "slide": 7,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-07.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-07.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-07.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-07.layout.json"
+    },
+    {
+      "slide": 8,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-08.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-08.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-08.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-08.layout.json"
+    },
+    {
+      "slide": 9,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-09.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-09.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-09.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-09.layout.json"
+    },
+    {
+      "slide": 10,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-10.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-10.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-10.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-10.layout.json"
+    },
+    {
+      "slide": 11,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-11.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-11.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-11.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-11.layout.json"
+    },
+    {
+      "slide": 12,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-12.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-12.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-12.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-12.layout.json"
+    },
+    {
+      "slide": 13,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-13.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-13.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-13.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-13.layout.json"
+    },
+    {
+      "slide": 14,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-14.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-14.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-14.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-14.layout.json"
+    },
+    {
+      "slide": 15,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-15.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-15.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-15.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-15.layout.json"
+    },
+    {
+      "slide": 16,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-16.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-16.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-16.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-16.layout.json"
+    },
+    {
+      "slide": 17,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-17.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-17.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-17.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-17.layout.json"
+    },
+    {
+      "slide": 18,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-18.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-18.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-18.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-18.layout.json"
+    },
+    {
+      "slide": 19,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-19.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-19.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-19.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-19.layout.json"
+    },
+    {
+      "slide": 20,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-20.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-20.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-20.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-20.layout.json"
+    },
+    {
+      "slide": 21,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-21.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-21.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-21.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-21.layout.json"
+    },
+    {
+      "slide": 22,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-22.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-22.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-22.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-22.layout.json"
+    },
+    {
+      "slide": 23,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-23.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-23.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-23.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-23.layout.json"
+    },
+    {
+      "slide": 24,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-24.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-24.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-24.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-24.layout.json"
+    },
+    {
+      "slide": 25,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-25.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-25.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-25.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-25.layout.json"
+    },
+    {
+      "slide": 26,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-26.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-26.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-26.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-26.layout.json"
+    },
+    {
+      "slide": 27,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-27.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-27.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-27.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-27.layout.json"
+    },
+    {
+      "slide": 28,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-28.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-28.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-28.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-28.layout.json"
+    },
+    {
+      "slide": 29,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-29.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-29.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-29.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-29.layout.json"
+    },
+    {
+      "slide": 30,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-30.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-30.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-30.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-30.layout.json"
+    },
+    {
+      "slide": 31,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-31.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-31.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-31.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-31.layout.json"
+    },
+    {
+      "slide": 32,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-32.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-32.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-32.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-32.layout.json"
+    },
+    {
+      "slide": 33,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-33.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-33.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-33.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-33.layout.json"
+    },
+    {
+      "slide": 34,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-34.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-34.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-34.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-34.layout.json"
+    },
+    {
+      "slide": 35,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-35.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-35.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-35.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-35.layout.json"
+    },
+    {
+      "slide": 36,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-36.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-36.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-36.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-36.layout.json"
+    },
+    {
+      "slide": 37,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-37.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-37.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-37.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-37.layout.json"
+    },
+    {
+      "slide": 38,
+      "previewPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\source-slides\\source-slide-38.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-38.png",
+      "layoutPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\layouts\\source-slide-38.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-38.layout.json"
+    }
+  ],
+  "inspectPath": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\template-inspect.ndjson",
+  "inspectRelativePath": "template-inspect/template-inspect.ndjson",
+  "inspectTruncated": false,
+  "inspectMetadata": {
+    "revision": "d2d9in",
+    "target": {
+      "id": "pr/ww7wit"
+    },
+    "kind": {
+      "requested": "slide,textbox,shape,image,table,chart",
+      "tokens": [
+        "slide",
+        "textbox",
+        "shape",
+        "image",
+        "table",
+        "chart"
+      ]
+    },
+    "include": {
+      "tokens": []
+    },
+    "exclude": {
+      "tokens": []
+    },
+    "notices": []
+  },
+  "extractedMedia": [
+    {
+      "entry": "ppt/media/image14.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image14.png",
+      "relativePath": "template-inspect/assets/ppt/media/image14.png",
+      "bytes": 1250281
+    },
+    {
+      "entry": "ppt/media/image13.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image13.png",
+      "relativePath": "template-inspect/assets/ppt/media/image13.png",
+      "bytes": 786566
+    },
+    {
+      "entry": "ppt/media/image12.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image12.png",
+      "relativePath": "template-inspect/assets/ppt/media/image12.png",
+      "bytes": 717465
+    },
+    {
+      "entry": "ppt/media/image11.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image11.png",
+      "relativePath": "template-inspect/assets/ppt/media/image11.png",
+      "bytes": 829452
+    },
+    {
+      "entry": "ppt/media/image10.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image10.png",
+      "relativePath": "template-inspect/assets/ppt/media/image10.png",
+      "bytes": 432132
+    },
+    {
+      "entry": "ppt/media/image25.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image25.png",
+      "relativePath": "template-inspect/assets/ppt/media/image25.png",
+      "bytes": 812393
+    },
+    {
+      "entry": "ppt/media/image8.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image8.png",
+      "relativePath": "template-inspect/assets/ppt/media/image8.png",
+      "bytes": 1280199
+    },
+    {
+      "entry": "ppt/media/image7.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image7.png",
+      "relativePath": "template-inspect/assets/ppt/media/image7.png",
+      "bytes": 191627
+    },
+    {
+      "entry": "ppt/media/image15.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image15.png",
+      "relativePath": "template-inspect/assets/ppt/media/image15.png",
+      "bytes": 739356
+    },
+    {
+      "entry": "ppt/media/image5.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image5.png",
+      "relativePath": "template-inspect/assets/ppt/media/image5.png",
+      "bytes": 193374
+    },
+    {
+      "entry": "ppt/media/image4.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image4.png",
+      "relativePath": "template-inspect/assets/ppt/media/image4.png",
+      "bytes": 414141
+    },
+    {
+      "entry": "ppt/media/image3.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image3.png",
+      "relativePath": "template-inspect/assets/ppt/media/image3.png",
+      "bytes": 651671
+    },
+    {
+      "entry": "ppt/media/image2.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image2.png",
+      "relativePath": "template-inspect/assets/ppt/media/image2.png",
+      "bytes": 242827
+    },
+    {
+      "entry": "ppt/media/image1.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image1.png",
+      "relativePath": "template-inspect/assets/ppt/media/image1.png",
+      "bytes": 6726
+    },
+    {
+      "entry": "ppt/media/image16.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image16.png",
+      "relativePath": "template-inspect/assets/ppt/media/image16.png",
+      "bytes": 1217836
+    },
+    {
+      "entry": "ppt/media/image17.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image17.png",
+      "relativePath": "template-inspect/assets/ppt/media/image17.png",
+      "bytes": 838150
+    },
+    {
+      "entry": "ppt/media/image18.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image18.png",
+      "relativePath": "template-inspect/assets/ppt/media/image18.png",
+      "bytes": 881358
+    },
+    {
+      "entry": "ppt/media/image20.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image20.png",
+      "relativePath": "template-inspect/assets/ppt/media/image20.png",
+      "bytes": 379592
+    },
+    {
+      "entry": "ppt/media/image21.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image21.png",
+      "relativePath": "template-inspect/assets/ppt/media/image21.png",
+      "bytes": 484211
+    },
+    {
+      "entry": "ppt/media/image22.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image22.png",
+      "relativePath": "template-inspect/assets/ppt/media/image22.png",
+      "bytes": 601677
+    },
+    {
+      "entry": "ppt/media/image23.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image23.png",
+      "relativePath": "template-inspect/assets/ppt/media/image23.png",
+      "bytes": 956227
+    },
+    {
+      "entry": "ppt/media/image24.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image24.png",
+      "relativePath": "template-inspect/assets/ppt/media/image24.png",
+      "bytes": 413091
+    },
+    {
+      "entry": "ppt/media/image19.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image19.png",
+      "relativePath": "template-inspect/assets/ppt/media/image19.png",
+      "bytes": 570833
+    },
+    {
+      "entry": "ppt/media/image37.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image37.png",
+      "relativePath": "template-inspect/assets/ppt/media/image37.png",
+      "bytes": 171587
+    },
+    {
+      "entry": "ppt/media/image36.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image36.png",
+      "relativePath": "template-inspect/assets/ppt/media/image36.png",
+      "bytes": 188647
+    },
+    {
+      "entry": "ppt/media/image35.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image35.png",
+      "relativePath": "template-inspect/assets/ppt/media/image35.png",
+      "bytes": 302689
+    },
+    {
+      "entry": "ppt/media/image34.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image34.png",
+      "relativePath": "template-inspect/assets/ppt/media/image34.png",
+      "bytes": 331219
+    },
+    {
+      "entry": "ppt/media/image33.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image33.png",
+      "relativePath": "template-inspect/assets/ppt/media/image33.png",
+      "bytes": 298209
+    },
+    {
+      "entry": "ppt/media/image32.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image32.png",
+      "relativePath": "template-inspect/assets/ppt/media/image32.png",
+      "bytes": 216603
+    },
+    {
+      "entry": "ppt/media/image31.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image31.png",
+      "relativePath": "template-inspect/assets/ppt/media/image31.png",
+      "bytes": 272987
+    },
+    {
+      "entry": "ppt/media/image30.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image30.png",
+      "relativePath": "template-inspect/assets/ppt/media/image30.png",
+      "bytes": 303826
+    },
+    {
+      "entry": "ppt/media/image29.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image29.png",
+      "relativePath": "template-inspect/assets/ppt/media/image29.png",
+      "bytes": 321858
+    },
+    {
+      "entry": "ppt/media/image28.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image28.png",
+      "relativePath": "template-inspect/assets/ppt/media/image28.png",
+      "bytes": 578267
+    },
+    {
+      "entry": "ppt/media/image27.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image27.png",
+      "relativePath": "template-inspect/assets/ppt/media/image27.png",
+      "bytes": 764020
+    },
+    {
+      "entry": "ppt/media/image26.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image26.png",
+      "relativePath": "template-inspect/assets/ppt/media/image26.png",
+      "bytes": 536376
+    },
+    {
+      "entry": "ppt/media/image9.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image9.png",
+      "relativePath": "template-inspect/assets/ppt/media/image9.png",
+      "bytes": 1044031
+    },
+    {
+      "entry": "ppt/media/image6.png",
+      "path": "C:\\Users\\Mou\\Documents\\Codex\\Internship Game\\tmp\\presentation_review\\summer\\template-inspect\\assets\\ppt\\media\\image6.png",
+      "relativePath": "template-inspect/assets/ppt/media/image6.png",
+      "bytes": 391511
+    }
+  ],
+  "fonts": [
+    "+mj-cs",
+    "+mj-ea",
+    "+mj-lt",
+    "+mn-cs",
+    "+mn-ea",
+    "+mn-lt",
+    "Angsana New",
+    "Arial",
+    "Calibri",
+    "Calibri Light",
+    "Cordia New",
+    "DaunPenh",
+    "DokChampa",
+    "Ebrima",
+    "Estrangelo Edessa",
+    "Euphemia",
+    "Gautami",
+    "Iskoola Pota",
+    "Javanese Text",
+    "Kalinga",
+    "Kartika",
+    "Latha",
+    "Leelawadee UI",
+    "MV Boli",
+    "Mangal",
+    "Microsoft Himalaya",
+    "Microsoft JhengHei",
+    "Microsoft New Tai Lue",
+    "Microsoft Tai Le",
+    "Microsoft Uighur",
+    "Microsoft Yi Baiti",
+    "Mongolian Baiti",
+    "MoolBoran",
+    "Myanmar Text",
+    "Nirmala UI",
+    "Nyala",
+    "Phagspa",
+    "Plantagenet Cherokee",
+    "Raavi",
+    "Segoe UI",
+    "Shruti",
+    "Sylfaen",
+    "Tahoma",
+    "Times New Roman",
+    "Tunga",
+    "Vrinda",
+    "新細明體",
+    "游ゴシック",
+    "游ゴシック Light",
+    "等线",
+    "等线 Light",
+    "맑은 고딕"
+  ],
+  "packageParts": {
+    "mediaCount": 37,
+    "slideXmlCount": 38,
+    "chartCount": 0,
+    "tableSlideCount": 0
+  }
+}

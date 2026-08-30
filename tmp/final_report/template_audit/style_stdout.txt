@@ -1,0 +1,7 @@
+[style_lint] direct run-formatting runs: 148
+[style_lint] direct paragraph-formatting paragraphs: 137
+[style_lint] top fonts by char count: Times New Roman(5240), TimesNewRoman(1)
+[style_lint] heading-like paragraphs not using Heading styles (first 10):
+  - #8: style='Normal' text='Internship Report � IT System Administrator'
+  - #240: style='Normal' text='Week'
+  - #241: style='Normal' text='Activities'

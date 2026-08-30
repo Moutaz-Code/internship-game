@@ -1,0 +1,1938 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/hgzapcr6",
+    "id": "hgzapcr6",
+    "slide": 13,
+    "layoutId": "/ppt/slideLayouts/slideLayout3.xml",
+    "layoutName": "1_Title and Content",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1040,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Custom 2",
+    "colors": {
+      "accent1": "#F04E98",
+      "accent2": "#ED7D31",
+      "accent3": "#A5A5A5",
+      "accent4": "#FFC000",
+      "accent5": "#5B9BD5",
+      "accent6": "#70AD47",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#44546A",
+      "lt2": "#E7E6E6",
+      "hlink": "#0563C1",
+      "folHlink": "#954F72"
+    },
+    "fontScheme": {
+      "name": "Office Theme",
+      "majorFont": {
+        "latinTypeface": "Calibri Light"
+      },
+      "minorFont": {
+        "latinTypeface": "Calibri"
+      }
+    },
+    "typefaces": [
+      "Arial",
+      "Calibri",
+      "Calibri Light",
+      "Tahoma"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout3.xml",
+      "name": "1_Title and Content",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/10",
+          "id": "10",
+          "name": "Picture Placeholder 9",
+          "bbox": [
+            0,
+            81.62,
+            440.93,
+            638.38
+          ]
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/14",
+          "id": "14",
+          "name": "Freeform 13",
+          "bbox": [
+            -2.87,
+            -4.95,
+            221.15,
+            88.5
+          ],
+          "rotation": 0,
+          "geometry": "custom",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle"
+          },
+          "fillColor": "#0C2340",
+          "lineWidth": 1
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/15",
+          "id": "15",
+          "name": "Freeform 14",
+          "bbox": [
+            178.4,
+            -4.95,
+            866.17,
+            88.5
+          ],
+          "rotation": 0,
+          "geometry": "custom",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle"
+          },
+          "fillColor": "#EE2737",
+          "lineWidth": 1
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/3",
+          "id": "3",
+          "name": "Content Placeholder 2",
+          "bbox": [
+            511.5,
+            131.67,
+            303.61,
+            38.59
+          ],
+          "text": "Title here",
+          "textPreview": "Title here",
+          "resolvedTextStyle": {
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Title here",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Title here"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/17",
+          "id": "17",
+          "name": "Title 1",
+          "bbox": [
+            511.5,
+            22.33,
+            214.72,
+            15.29
+          ],
+          "text": "Title comes here",
+          "textPreview": "Title comes here",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "autoFit": "none",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Title comes here",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Title comes here"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 6,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/18",
+          "id": "18",
+          "name": "Subtitle 2",
+          "bbox": [
+            511.5,
+            42.51,
+            214.72,
+            27.85
+          ],
+          "text": "PowerPoint presentation",
+          "textPreview": "PowerPoint presentation",
+          "resolvedTextStyle": {
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "PowerPoint presentation",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "PowerPoint presentation"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 7,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/23",
+          "id": "23",
+          "name": "Text Placeholder 22",
+          "bbox": [
+            742.17,
+            22.33,
+            218.67,
+            17
+          ],
+          "text": "13 October 2019",
+          "textPreview": "13 October 2019",
+          "resolvedTextStyle": {
+            "autoFit": "none",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "13 October 2019",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "13 October 2019"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 8,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/12",
+          "id": "12",
+          "name": "Content Placeholder 2",
+          "bbox": [
+            511.5,
+            170.26,
+            303.61,
+            38.59
+          ],
+          "text": "Subtitle here",
+          "textPreview": "Subtitle here",
+          "resolvedTextStyle": {
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Subtitle here",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Subtitle here"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 9,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/19",
+          "id": "19",
+          "name": "Content Placeholder 2",
+          "bbox": [
+            511.5,
+            245.14,
+            214.72,
+            114.98
+          ],
+          "text": "Lorem ipsum dolor sit amet, consectetuer minim vadipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi minim est enim ad minim veniam, quis nostrud exerci tation ullamcorperem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpatewrt wisi nostrud exerci tation ullamcorper.",
+          "textPreview": "Lorem ipsum dolor sit amet, consectetuer minim vadipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam ...",
+          "resolvedTextStyle": {
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Lorem ipsum dolor sit amet, consectetuer minim vadipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi minim est enim ad minim veniam, quis nostrud exerci tation ullamcorperem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpatewrt wisi nostrud exerci tation ullamcorper.",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Lorem ipsum dolor sit "
+                },
+                {
+                  "index": 2,
+                  "text": "amet"
+                },
+                {
+                  "index": 3,
+                  "text": ", "
+                },
+                {
+                  "index": 4,
+                  "text": "consectetuer"
+                },
+                {
+                  "index": 5,
+                  "text": " minim "
+                },
+                {
+                  "index": 6,
+                  "text": "vadipiscing"
+                },
+                {
+                  "index": 7,
+                  "text": " "
+                },
+                {
+                  "index": 8,
+                  "text": "elit"
+                },
+                {
+                  "index": 9,
+                  "text": ", "
+                },
+                {
+                  "index": 10,
+                  "text": "sed"
+                },
+                {
+                  "index": 11,
+                  "text": " "
+                },
+                {
+                  "index": 12,
+                  "text": "diam"
+                },
+                {
+                  "index": 13,
+                  "text": " "
+                },
+                {
+                  "index": 14,
+                  "text": "nonummy"
+                },
+                {
+                  "index": 15,
+                  "text": " "
+                },
+                {
+                  "index": 16,
+                  "text": "nibh"
+                },
+                {
+                  "index": 17,
+                  "text": " "
+                },
+                {
+                  "index": 18,
+                  "text": "euismod"
+                },
+                {
+                  "index": 19,
+                  "text": " "
+                },
+                {
+                  "index": 20,
+                  "text": "tincidunt"
+                },
+                {
+                  "index": 21,
+                  "text": " "
+                },
+                {
+                  "index": 22,
+                  "text": "ut"
+                },
+                {
+                  "index": 23,
+                  "text": " "
+                },
+                {
+                  "index": 24,
+                  "text": "laoreet"
+                },
+                {
+                  "index": 25,
+                  "text": " dolore magna "
+                },
+                {
+                  "index": 26,
+                  "text": "aliquam"
+                },
+                {
+                  "index": 27,
+                  "text": " "
+                },
+                {
+                  "index": 28,
+                  "text": "erat"
+                },
+                {
+                  "index": 29,
+                  "text": " "
+                },
+                {
+                  "index": 30,
+                  "text": "volutpat"
+                },
+                {
+                  "index": 31,
+                  "text": ". Ut "
+                },
+                {
+                  "index": 32,
+                  "text": "wisi"
+                },
+                {
+                  "index": 33,
+                  "text": " minim "
+                },
+                {
+                  "index": 34,
+                  "text": "est"
+                },
+                {
+                  "index": 35,
+                  "text": " "
+                },
+                {
+                  "index": 36,
+                  "text": "enim"
+                },
+                {
+                  "index": 37,
+                  "text": " ad minim "
+                },
+                {
+                  "index": 38,
+                  "text": "veniam"
+                },
+                {
+                  "index": 39,
+                  "text": ", "
+                },
+                {
+                  "index": 40,
+                  "text": "quis"
+                },
+                {
+                  "index": 41,
+                  "text": " "
+                },
+                {
+                  "index": 42,
+                  "text": "nostrud"
+                },
+                {
+                  "index": 43,
+                  "text": " "
+                },
+                {
+                  "index": 44,
+                  "text": "exerci"
+                },
+                {
+                  "index": 45,
+                  "text": " "
+                },
+                {
+                  "index": 46,
+                  "text": "tation"
+                },
+                {
+                  "index": 47,
+                  "text": " "
+                },
+                {
+                  "index": 48,
+                  "text": "ullamcorperem"
+                },
+                {
+                  "index": 49,
+                  "text": " ipsum dolor sit "
+                },
+                {
+                  "index": 50,
+                  "text": "amet"
+                },
+                {
+                  "index": 51,
+                  "text": ", "
+                },
+                {
+                  "index": 52,
+                  "text": "consectetuer"
+                },
+                {
+                  "index": 53,
+                  "text": " "
+                },
+                {
+                  "index": 54,
+                  "text": "adipiscing"
+                },
+                {
+                  "index": 55,
+                  "text": " "
+                },
+                {
+                  "index": 56,
+                  "text": "elit"
+                },
+                {
+                  "index": 57,
+                  "text": ", "
+                },
+                {
+                  "index": 58,
+                  "text": "sed"
+                },
+                {
+                  "index": 59,
+                  "text": " "
+                },
+                {
+                  "index": 60,
+                  "text": "diam"
+                },
+                {
+                  "index": 61,
+                  "text": " "
+                },
+                {
+                  "index": 62,
+                  "text": "nonummy"
+                },
+                {
+                  "index": 63,
+                  "text": " "
+                },
+                {
+                  "index": 64,
+                  "text": "nibh"
+                },
+                {
+                  "index": 65,
+                  "text": " "
+                },
+                {
+                  "index": 66,
+                  "text": "euismod"
+                },
+                {
+                  "index": 67,
+                  "text": " "
+                },
+                {
+                  "index": 68,
+                  "text": "tincidunt"
+                },
+                {
+                  "index": 69,
+                  "text": " "
+                },
+                {
+                  "index": 70,
+                  "text": "ut"
+                },
+                {
+                  "index": 71,
+                  "text": " "
+                },
+                {
+                  "index": 72,
+                  "text": "laoreet"
+                },
+                {
+                  "index": 73,
+                  "text": " dolore magna "
+                },
+                {
+                  "index": 74,
+                  "text": "aliquam"
+                },
+                {
+                  "index": 75,
+                  "text": " "
+                },
+                {
+                  "index": 76,
+                  "text": "erat"
+                },
+                {
+                  "index": 77,
+                  "text": " "
+                },
+                {
+                  "index": 78,
+                  "text": "volutpatewrt"
+                },
+                {
+                  "index": 79,
+                  "text": " "
+                },
+                {
+                  "index": 80,
+                  "text": "wisi"
+                },
+                {
+                  "index": 81,
+                  "text": " "
+                },
+                {
+                  "index": 82,
+                  "text": "nostrud"
+                },
+                {
+                  "index": 83,
+                  "text": " "
+                },
+                {
+                  "index": 84,
+                  "text": "exerci"
+                },
+                {
+                  "index": 85,
+                  "text": " "
+                },
+                {
+                  "index": 86,
+                  "text": "tation"
+                },
+                {
+                  "index": 87,
+                  "text": " "
+                },
+                {
+                  "index": 88,
+                  "text": "ullamcorper"
+                },
+                {
+                  "index": 89,
+                  "text": "."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 10,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/20",
+          "id": "20",
+          "name": "Content Placeholder 2",
+          "bbox": [
+            747.05,
+            245.14,
+            214.72,
+            114.98
+          ],
+          "text": "Lorem ipsum dolor sit amet, consectetuer minim vadipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi minim est enim ad minim veniam, quis nostrud exerci tation ullamcorperem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpatewrt wisi nostrud exerci tation ullamcorper.",
+          "textPreview": "Lorem ipsum dolor sit amet, consectetuer minim vadipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam ...",
+          "resolvedTextStyle": {
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Lorem ipsum dolor sit amet, consectetuer minim vadipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi minim est enim ad minim veniam, quis nostrud exerci tation ullamcorperem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpatewrt wisi nostrud exerci tation ullamcorper.",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Lorem ipsum dolor sit "
+                },
+                {
+                  "index": 2,
+                  "text": "amet"
+                },
+                {
+                  "index": 3,
+                  "text": ", "
+                },
+                {
+                  "index": 4,
+                  "text": "consectetuer"
+                },
+                {
+                  "index": 5,
+                  "text": " minim "
+                },
+                {
+                  "index": 6,
+                  "text": "vadipiscing"
+                },
+                {
+                  "index": 7,
+                  "text": " "
+                },
+                {
+                  "index": 8,
+                  "text": "elit"
+                },
+                {
+                  "index": 9,
+                  "text": ", "
+                },
+                {
+                  "index": 10,
+                  "text": "sed"
+                },
+                {
+                  "index": 11,
+                  "text": " "
+                },
+                {
+                  "index": 12,
+                  "text": "diam"
+                },
+                {
+                  "index": 13,
+                  "text": " "
+                },
+                {
+                  "index": 14,
+                  "text": "nonummy"
+                },
+                {
+                  "index": 15,
+                  "text": " "
+                },
+                {
+                  "index": 16,
+                  "text": "nibh"
+                },
+                {
+                  "index": 17,
+                  "text": " "
+                },
+                {
+                  "index": 18,
+                  "text": "euismod"
+                },
+                {
+                  "index": 19,
+                  "text": " "
+                },
+                {
+                  "index": 20,
+                  "text": "tincidunt"
+                },
+                {
+                  "index": 21,
+                  "text": " "
+                },
+                {
+                  "index": 22,
+                  "text": "ut"
+                },
+                {
+                  "index": 23,
+                  "text": " "
+                },
+                {
+                  "index": 24,
+                  "text": "laoreet"
+                },
+                {
+                  "index": 25,
+                  "text": " dolore magna "
+                },
+                {
+                  "index": 26,
+                  "text": "aliquam"
+                },
+                {
+                  "index": 27,
+                  "text": " "
+                },
+                {
+                  "index": 28,
+                  "text": "erat"
+                },
+                {
+                  "index": 29,
+                  "text": " "
+                },
+                {
+                  "index": 30,
+                  "text": "volutpat"
+                },
+                {
+                  "index": 31,
+                  "text": ". Ut "
+                },
+                {
+                  "index": 32,
+                  "text": "wisi"
+                },
+                {
+                  "index": 33,
+                  "text": " minim "
+                },
+                {
+                  "index": 34,
+                  "text": "est"
+                },
+                {
+                  "index": 35,
+                  "text": " "
+                },
+                {
+                  "index": 36,
+                  "text": "enim"
+                },
+                {
+                  "index": 37,
+                  "text": " ad minim "
+                },
+                {
+                  "index": 38,
+                  "text": "veniam"
+                },
+                {
+                  "index": 39,
+                  "text": ", "
+                },
+                {
+                  "index": 40,
+                  "text": "quis"
+                },
+                {
+                  "index": 41,
+                  "text": " "
+                },
+                {
+                  "index": 42,
+                  "text": "nostrud"
+                },
+                {
+                  "index": 43,
+                  "text": " "
+                },
+                {
+                  "index": 44,
+                  "text": "exerci"
+                },
+                {
+                  "index": 45,
+                  "text": " "
+                },
+                {
+                  "index": 46,
+                  "text": "tation"
+                },
+                {
+                  "index": 47,
+                  "text": " "
+                },
+                {
+                  "index": 48,
+                  "text": "ullamcorperem"
+                },
+                {
+                  "index": 49,
+                  "text": " ipsum dolor sit "
+                },
+                {
+                  "index": 50,
+                  "text": "amet"
+                },
+                {
+                  "index": 51,
+                  "text": ", "
+                },
+                {
+                  "index": 52,
+                  "text": "consectetuer"
+                },
+                {
+                  "index": 53,
+                  "text": " "
+                },
+                {
+                  "index": 54,
+                  "text": "adipiscing"
+                },
+                {
+                  "index": 55,
+                  "text": " "
+                },
+                {
+                  "index": 56,
+                  "text": "elit"
+                },
+                {
+                  "index": 57,
+                  "text": ", "
+                },
+                {
+                  "index": 58,
+                  "text": "sed"
+                },
+                {
+                  "index": 59,
+                  "text": " "
+                },
+                {
+                  "index": 60,
+                  "text": "diam"
+                },
+                {
+                  "index": 61,
+                  "text": " "
+                },
+                {
+                  "index": 62,
+                  "text": "nonummy"
+                },
+                {
+                  "index": 63,
+                  "text": " "
+                },
+                {
+                  "index": 64,
+                  "text": "nibh"
+                },
+                {
+                  "index": 65,
+                  "text": " "
+                },
+                {
+                  "index": 66,
+                  "text": "euismod"
+                },
+                {
+                  "index": 67,
+                  "text": " "
+                },
+                {
+                  "index": 68,
+                  "text": "tincidunt"
+                },
+                {
+                  "index": 69,
+                  "text": " "
+                },
+                {
+                  "index": 70,
+                  "text": "ut"
+                },
+                {
+                  "index": 71,
+                  "text": " "
+                },
+                {
+                  "index": 72,
+                  "text": "laoreet"
+                },
+                {
+                  "index": 73,
+                  "text": " dolore magna "
+                },
+                {
+                  "index": 74,
+                  "text": "aliquam"
+                },
+                {
+                  "index": 75,
+                  "text": " "
+                },
+                {
+                  "index": 76,
+                  "text": "erat"
+                },
+                {
+                  "index": 77,
+                  "text": " "
+                },
+                {
+                  "index": 78,
+                  "text": "volutpatewrt"
+                },
+                {
+                  "index": 79,
+                  "text": " "
+                },
+                {
+                  "index": 80,
+                  "text": "wisi"
+                },
+                {
+                  "index": 81,
+                  "text": " "
+                },
+                {
+                  "index": 82,
+                  "text": "nostrud"
+                },
+                {
+                  "index": 83,
+                  "text": " "
+                },
+                {
+                  "index": 84,
+                  "text": "exerci"
+                },
+                {
+                  "index": 85,
+                  "text": " "
+                },
+                {
+                  "index": 86,
+                  "text": "tation"
+                },
+                {
+                  "index": 87,
+                  "text": " "
+                },
+                {
+                  "index": 88,
+                  "text": "ullamcorper"
+                },
+                {
+                  "index": 89,
+                  "text": "."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 11,
+          "kind": "image",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/26",
+          "id": "26",
+          "name": "Picture 20",
+          "bbox": [
+            15.52,
+            11.14,
+            164.37,
+            59.28
+          ],
+          "contentType": "image/png",
+          "asset": {
+            "assetId": "/ppt/media/image1.png",
+            "contentType": "image/png",
+            "byteLength": 6726
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image1.png",
+            "contentType": "image/png",
+            "byteLength": 6726
+          }
+        },
+        {
+          "order": 12,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/22",
+          "id": "22",
+          "name": "Date Placeholder 3",
+          "bbox": [
+            71.5,
+            667.33,
+            234,
+            38.33
+          ],
+          "text": "2021",
+          "textPreview": "2021",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "2021",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "2021"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 13,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/24",
+          "id": "24",
+          "name": "Footer Placeholder 4",
+          "bbox": [
+            344.5,
+            667.33,
+            351,
+            38.33
+          ],
+          "text": "© 2021 Feras Abusharkh. ",
+          "textPreview": "© 2021 Feras Abusharkh.",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "© 2021 Feras Abusharkh. ",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "© 2021 "
+                },
+                {
+                  "index": 2,
+                  "text": "Feras"
+                },
+                {
+                  "index": 3,
+                  "text": " "
+                },
+                {
+                  "index": 4,
+                  "text": "Abusharkh"
+                },
+                {
+                  "index": 5,
+                  "text": ". "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 14,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout3.xml/25",
+          "id": "25",
+          "name": "Slide Number Placeholder 5",
+          "bbox": [
+            734.5,
+            667.33,
+            234,
+            38.33
+          ],
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "type": "master",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/2",
+          "id": "2",
+          "name": "Title Placeholder 1",
+          "bbox": [
+            71.5,
+            38.33,
+            897,
+            139.17
+          ],
+          "geometry": "rect",
+          "text": "Click to edit Master title style",
+          "textPreview": "Click to edit Master title style",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Click to edit Master title style",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Click to edit Master title style"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/3",
+          "id": "3",
+          "name": "Text Placeholder 2",
+          "bbox": [
+            71.5,
+            191.67,
+            897,
+            456.83
+          ],
+          "geometry": "rect",
+          "text": "Edit Master text styles\nSecond level\nThird level\nFourth level\nFifth level",
+          "textPreview": "Edit Master text styles | Second level | Third level | Fourth level | Fifth level",
+          "resolvedTextStyle": {
+            "vertical": 1,
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Edit Master text styles",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Edit Master text styles"
+                }
+              ]
+            },
+            {
+              "index": 2,
+              "text": "Second level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Second level"
+                }
+              ]
+            },
+            {
+              "index": 3,
+              "text": "Third level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Third level"
+                }
+              ]
+            },
+            {
+              "index": 4,
+              "text": "Fourth level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Fourth level"
+                }
+              ]
+            },
+            {
+              "index": 5,
+              "text": "Fifth level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Fifth level"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/4",
+          "id": "4",
+          "name": "Date Placeholder 3",
+          "bbox": [
+            71.5,
+            667.33,
+            234,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "2021",
+          "textPreview": "2021",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "2021",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "2021"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/5",
+          "id": "5",
+          "name": "Footer Placeholder 4",
+          "bbox": [
+            344.5,
+            667.33,
+            351,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "© 2021 Feras Abusharkh. ",
+          "textPreview": "© 2021 Feras Abusharkh.",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "© 2021 Feras Abusharkh. ",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "© 2021 "
+                },
+                {
+                  "index": 2,
+                  "text": "Feras"
+                },
+                {
+                  "index": 3,
+                  "text": " "
+                },
+                {
+                  "index": 4,
+                  "text": "Abusharkh"
+                },
+                {
+                  "index": 5,
+                  "text": ". "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Slide Number Placeholder 5",
+          "bbox": [
+            734.5,
+            667.33,
+            234,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/zed4fup4",
+      "id": "2",
+      "name": "Picture Placeholder 1",
+      "bbox": [
+        0,
+        81.62,
+        440.93,
+        638.38
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bq9orito",
+      "id": "3",
+      "name": "Content Placeholder 2",
+      "bbox": [
+        544.34,
+        212.46,
+        416.5,
+        38.59
+      ],
+      "text": "Thank You\n\n\nQuestions?",
+      "textPreview": "Thank You |  |  | Questions?",
+      "resolvedFontSize": 37.33,
+      "resolvedTextStyle": {
+        "vertical": 1,
+        "fontSize": 37.33,
+        "typeface": "Arial",
+        "color": "#0C2340",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 7,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Thank You"
+          },
+          {
+            "index": 2,
+            "text": ""
+          },
+          {
+            "index": 3,
+            "text": ""
+          },
+          {
+            "index": 4,
+            "text": ""
+          },
+          {
+            "index": 5,
+            "text": ""
+          },
+          {
+            "index": 6,
+            "text": ""
+          },
+          {
+            "index": 7,
+            "text": "Questions?"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Thank You",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Thank You"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 4,
+          "text": "Questions?",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Questions?",
+              "fontSize": 72,
+              "color": "#0070C0"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 90000
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/o3i5w3ad",
+      "id": "4",
+      "name": "Title 3",
+      "bbox": [
+        511.5,
+        22.33,
+        214.72,
+        15.29
+      ],
+      "resolvedFontSize": 14.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "vertical": 1,
+        "fontSize": 14.67,
+        "typeface": "Tahoma",
+        "color": "bg1",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      }
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/p4r6p8by",
+      "id": "5",
+      "name": "Subtitle 4",
+      "bbox": [
+        511.5,
+        42.51,
+        214.72,
+        27.85
+      ],
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "vertical": 1,
+        "fontSize": 12,
+        "typeface": "Arial",
+        "color": "bg1",
+        "alignment": "left",
+        "autoFit": "shrinkText",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      }
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/21gnuts7",
+      "id": "6",
+      "name": "Text Placeholder 5",
+      "bbox": [
+        742.17,
+        22.33,
+        218.67,
+        17
+      ],
+      "resolvedFontSize": 14.67,
+      "resolvedTextStyle": {
+        "vertical": 1,
+        "fontSize": 14.67,
+        "typeface": "Arial",
+        "color": "bg1",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      }
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hcfy9k3u",
+      "id": "10",
+      "name": "Date Placeholder 9",
+      "bbox": [
+        71.5,
+        667.33,
+        234,
+        38.33
+      ],
+      "text": "2021",
+      "textPreview": "2021",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "vertical": 1,
+        "fontSize": 16,
+        "typeface": "Calibri",
+        "color": "#8B8D9D",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "2021"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "2021",
+          "runs": [
+            {
+              "index": 1,
+              "text": "2021"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gb6x0zm9",
+      "id": "11",
+      "name": "Footer Placeholder 10",
+      "bbox": [
+        344.5,
+        667.33,
+        351,
+        38.33
+      ],
+      "text": "© 2021 Feras Abusharkh. ",
+      "textPreview": "© 2021 Feras Abusharkh.",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "vertical": 1,
+        "fontSize": 16,
+        "typeface": "Calibri",
+        "color": "#8B8D9D",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "© 2021 Feras Abusharkh."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "© 2021 Feras Abusharkh. ",
+          "runs": [
+            {
+              "index": 1,
+              "text": "© 2021 Feras Abusharkh. "
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vaxg7ulo",
+      "id": "12",
+      "name": "Slide Number Placeholder 11",
+      "bbox": [
+        734.5,
+        667.33,
+        234,
+        38.33
+      ],
+      "text": "13",
+      "textPreview": "13",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "vertical": 1,
+        "fontSize": 16,
+        "typeface": "Calibri",
+        "color": "#8B8D9D",
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "13"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "13",
+          "runs": [
+            {
+              "index": 1,
+              "text": "13"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u9ofyp43",
+      "id": "13",
+      "name": "Title 1",
+      "bbox": [
+        110.5,
+        158.13,
+        234,
+        92.91
+      ],
+      "geometry": "rect",
+      "text": "Software Developer Intern\n",
+      "textPreview": "Software Developer Intern |",
+      "resolvedFontSize": 37.33,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "vertical": 1,
+        "fontSize": 37.33,
+        "typeface": "Tahoma",
+        "color": "#0C2340",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Software"
+          },
+          {
+            "index": 2,
+            "text": "Developer"
+          },
+          {
+            "index": 3,
+            "text": "Intern"
+          },
+          {
+            "index": 4,
+            "text": ""
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Software Developer Intern",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Software Developer Intern",
+              "fontSize": 42.67,
+              "typeface": "Arial"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0,
+          "lineSpacingPercent": 90000
+        }
+      ],
+      "fillColor": "bg1"
+    }
+  ],
+  "composeRuns": []
+}

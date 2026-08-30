@@ -1,0 +1,1088 @@
+ Department of Computer Science and Information Technology
+                  College of Engineering
+                   Abu Dhabi University
+
+
+
+
+CSC 399 Internship Report – IT System Administrator
+
+
+
+
+                              By:
+                Aayat Faisal Sabati, 1076358
+       Bachelor of Science in Information Technology
+
+
+
+
+                  Academic Supervisor:
+                   Dr. Mohamed Elhadad
+
+
+
+
+                  Institution Supervisor:
+                        Mr. Allan Yu
+
+
+
+
+                   Al Ain, United Arab Emirates
+                      Summer 2022 – 2023
+ACKNOWLEDGEMENTS
+
+
+
+I would like to express my sincere gratitude to the Abu Dhabi University IMTS department for giving
+me the invaluable opportunity to serve as an intern. I am deeply thankful to Mr. Sajin, the manager of
+IMTS, for generously sharing his wealth of experience and guiding me throughout my time in the
+department. I am also extremely appreciative of Mr. Allan Yu, my company supervisor, for providing
+me with valuable resources, challenging problem-solving tasks, and unwavering support during the
+internship.
+Furthermore, I extend my heartfelt thanks to my faculty/academic supervisor, Dr. Mohamed Elhadad,
+for being an exceptional mentor and consistently offering the best support and guidance throughout
+this internship journey.
+I would also like to acknowledge the instructors in the Computer Science and Information Technology
+department at the university. The courses they taught me proved to be immensely beneficial during
+the internship, as I was able to apply the knowledge gained to real-world scenarios.
+Lastly, I wish to extend my gratitude to the entire IMTS team, including Mr. Sahir, Mr. Mahmoud,
+and Mr. Ibrahim, who played an instrumental role in my learning process. Their continuous efforts in
+educating me in various IT-related tasks allowed me to gain valuable experience, and their cooperation
+was truly invaluable.
+I am incredibly grateful for the enriching experience I had during this internship, and I am truly
+fortunate to have been part of such a supportive and nurturing team. Thank you for this unforgettable
+opportunity, and I look forward to continuing my journey in the field of IT with the lessons and
+experiences gained from this internship.
+
+
+
+
+                                                                                                     2
+ABSTRACT
+
+
+
+This internship report documents my experience as an IT major student interning at the IMTS
+department of Abu Dhabi University. The primary goal of the internship was to acquire hands-on
+knowledge of various IT operations and activities inside a university environment. The report outlines
+a diverse range of activities spanning user support, IT infrastructure management, project
+development, network configuration, security measures, and more. Throughout the internship, I
+engaged in tasks such as creating user accounts, configuring network devices, developing software
+projects like room signage solutions, and implementing cybersecurity measures. The hands-on
+experience significantly enhanced my technical skills, including system administration, network
+configuration, and utilizing various IT tools. Additionally, the internship fostered the development of
+professional skills like teamwork, workplace ethics, and communication. The exposure to real-world
+IT scenarios has not only prepared me for future IT roles but has also ignited an interest in pursuing
+further academic endeavors, such as a master's degree in cybersecurity.
+
+
+
+
+                                                                                                      3
+Table of Contents
+
+
+Acknowledgements ---------------------------------------------------------------------------------------------- 2
+
+Abstract ------------------------------------------------------------------------------------------------------------ 3
+
+Table of Contents ------------------------------------------------------------------------------------------------ 4
+
+Weekly Timetable------------------------------------------------------------------------------------------------ 6
+
+1. Introduction -------------------------------------------------------------------------------------------------- 1
+
+  1.1     Learning Goals ------------------------------------------------------------------------------------------ 2
+
+  1.2     Learning Activities -------------------------------------------------------------------------------------- 2
+
+2. Company Description -------------------------------------------------------------------------------------- 3
+
+  2.1     About the Company ------------------------------------------------------------------------------------- 3
+
+  2.2     Organizational Layout---------------------------------------------------------------------------------- 3
+
+  2.2.1     Clients of the Company ( Technological Partners) ---------------------------------------------- 4
+
+  2.3     Company History ---------------------------------------------------------------------------------------- 6
+
+3. Internship Activities ---------------------------------------------------------------------------------------- 6
+
+  3.1     Training -------------------------------------------------------------------------------------------------- 7
+
+  3.2     Help Desk Support and User Assistance ------------------------------------------------------------- 8
+
+  3.3     IT Infrastructure and System Management --------------------------------------------------------- 12
+
+  3.4     Lab Setup and Maintenance -------------------------------------------------------------------------- 14
+
+  3.5     Network Infrastructure and Security ---------------------------------------------------------------- 17
+
+  3.6     Cybersecurity Measures ------------------------------------------------------------------------------- 23
+
+  3.7     Queue System and IT Operations -------------------------------------------------------------------- 24
+
+  3.8     Project Development----------------------------------------------------------------------------------- 26
+
+4. Overall Internship Experience -------------------------------------------------------------------------- 27
+
+  4.1     Technical Skills ----------------------------------------------------------------------------------------- 28
+
+                                                                                                                     4
+  4.2    Professional Skills-------------------------------------------------------------------------------------- 29
+
+  4.3    Soft Skills ------------------------------------------------------------------------------------------------ 30
+
+  4.4    University Applied Knowledge ----------------------------------------------------------------------- 30
+
+  4.5    Career Influence---------------------------------------------------------------------------------------- 31
+
+5. Conclusion --------------------------------------------------------------------------------------------------- 32
+
+References -------------------------------------------------------------------------------------------------------- 34
+
+
+
+
+                                                                                                                      5
+WEEKLY TIMETABLE
+
+
+
+
+                   Table 1 Weekly Timetable
+                                              6
+1.     INTRODUCTION
+
+During the immersive internship experience with the Information Technology Management Services
+(IMTS) at Abu Dhabi University, the journey as an IT major student was enriched with invaluable
+hands-on opportunities and real-world exposure. This internship's main objective was to provide in-
+depth knowledge of the complex operations of an IT department within a university. I had the
+opportunity to work on a wide range of jobs and projects throughout the internship, all of which were
+intended to deepen my understanding of IT operations and their applications in an academic setting.
+I was exposed to a variety of tasks throughout my internship, from user support and system
+management to cybersecurity precautions and network configuration. Each assignment I completed
+increased my practical knowledge and skill set, whether it was assisting with helpdesk technical
+support for students and staff or re-imaging smartboards and setting network devices. In addition, the
+internship gave me the chance to learn more about intricate systems including Active Directory, the
+Avamar backup program, and the Fortinet FortiGate 601E primary firewall.
+One of the significant achievements during the internship was the involvement in the creation of a
+room signage project using the Bubble.io platform. The project catered to the university's need for
+efficient class scheduling and room availability updates. Moreover, I gained insight into the
+deployment and management of cutting-edge technologies, such as Aruba Networks for robust
+wireless connectivity and Threatlocker for cybersecurity.
+This transformative journey was facilitated by a team of experienced professionals, who guided and
+supervised me every step of the way. By witnessing and participating in the execution of various IT
+tasks, we not only honed our technical skills but also developed a comprehensive understanding of the
+strategic importance of IT in a dynamic educational environment.
+Thus, the IMTS internship at Abu Dhabi University turned out to be a noteworthy chapter in our
+academic and professional development. We developed practical skills and deepened our
+understanding of how IT can improve the operational effectiveness and security of educational
+institutions through the wide range of activities and projects. We can undoubtfully state that this
+internship has given me the skills, knowledge, and confidence I needed to succeed in the field of
+information technology and make a meaningful contribution to the rapidly changing digital
+environment.
+
+
+
+
+                                                                                                      1
+1.1       Learning Goals
+
+      •   Gain technical proficiency in IT tools, software, and platforms.
+      •   Understand cybersecurity measures and threats.
+      •   Develop troubleshooting and problem-solving skills.
+      •   Improve collaboration and communication abilities.
+      •   Learn project management principles and practices.
+      •   Understand IT infrastructure components and maintenance.
+      •   Develop customer service skills in IT support.
+      •   Embrace adaptability and stay updated with IT trends.
+      •   Gain knowledge in data management and backups.
+      •   Explore ethical considerations in IT decision-making.
+1.2       Learning Activities
+
+      •   Configured network devices like routers and switches.
+      •   Participated in user support, troubleshooting software and hardware issues.
+      •   Utilized active directory for user management and access controls.
+      •   Created and managed backups using tools like Avamar.
+      •   Set up and reimaged PCs with Windows 11 and necessary applications.
+      •   Installed and configured software for specialized labs.
+      •   Participated in cybersecurity measures using tools like Threatlocker.
+      •   Observed and learned about firewall and network security with Fortinet.
+      •   Engaged in content creation and digital media projects.
+      •   Participated in the development and testing of the Queue System.
+      •   Worked on the Room Signage Bubble Project using Bubble.io.
+      •   Gained insight into IT infrastructure and server room operations.
+      •   Observed network configuration and VLAN setup using Aruba Networks.
+      •   Managed and monitored digital signage systems.
+      •   Collaborated in a team environment for project development.
+      •   Engaged in workshops and presentations on IT topics.
+      •   Learned about workplace ethics and professionalism.
+
+
+
+
+                                                                                        2
+2.     COMPANY DESCRIPTION
+2.1    About the Company
+
+Abu Dhabi University, an esteemed institution of higher learning, stands as a beacon of education and
+innovation in the heart of the UAE. At the core of this academic powerhouse lies the Information
+Management and Technology Services (IMTS) department, where I had the privilege of interning.
+The IMTS department plays a pivotal role in nurturing a seamless technological ecosystem within the
+university.
+Responsible for an array of critical functions, IMTS oversees the university's website, ensuring a
+dynamic digital presence that connects the academic community. The department also manages the
+intricate web of the data center, safeguarding and optimizing the university's digital assets. From
+computer labs to classrooms, from servers to auditoriums, IMTS weaves a cohesive network that binds
+these diverse spaces, ensuring that technological excellence permeates every facet of the university
+experience. My internship journey within the IMTS department granted me a unique vantage point
+into the intricate web of Abu Dhabi University's technological prowess, illuminating the vital role this
+department plays in enabling seamless connectivity and innovation across the campus.
+Moreover, IMTS emerges as the sentinel of cybersecurity, fortifying the institution's digital frontiers
+against potential threats by safeguarding the integrity of data. Their meticulous attention extends
+further, enveloping the network security that keeps the university's various domains interconnected
+and thriving. As an intern, I have had the privilege of witnessing firsthand how IMTS is the unsung
+architect of Abu Dhabi University's technological landscape, ensuring that both the digital and physical
+spaces remain harmoniously linked, secure, and forward-looking across the campus.
+2.2    Organizational Layout
+
+The Information Management and Technology Services (IMTS) department's organizational structure
+is carefully planned over five hierarchical levels, with each level offering a specific area of knowledge
+to guarantee the efficient operation and progress of the university's technological ecosystem. The IT
+Director, a visionary leader in charge of high-level decision-making and innovation, directs the
+department's strategic vision. The IT Senior Manager, who directly answers to the IT Director, is in
+charge of coordinating several functional areas within the division, from planning to resource
+allocation. The IT manager is responsible for translating higher-level plans into actionable initiatives,
+guaranteeing their successful implementation and alignment with departmental goals. This person
+works at the interface between strategy and execution.
+
+
+                                                                                                        3
+The IT Support Coordinator organizes the efforts of the support teams, guaranteeing efficient user help
+and smooth communication, while the Service Delivery Leader drives operational excellence by
+concentrating on optimizing support mechanisms and handling escalated issues. The Network
+Administrator, System Administrator, and Website Administrator are the three crucial positions that
+the IT Support Administrator oversees at the operational forefront. Together, they oversee the
+university's digital presence, system operations, and network infrastructure, guaranteeing a safe,
+effective, and user-focused technological environment. This multi-tiered organizational structure
+highlights the IMTS department's commitment to fostering technological innovation, enhancing
+educational experiences, and assisting the institution's overarching mission by leveraging collaborative
+efforts across strategic planning, project execution, and operational management. Thus, this
+organizational structure is visualized in a chart below in Figure 1.
+
+
+
+
+                                    Figure 1 IMTS Organizational Layout
+
+2.2.1 Clients of the Company ( Technological Partners)
+
+The Information Management and Technology Services (IMTS) department at Abu Dhabi University
+collaborates with a strategic roster of industry leaders and technological partners as seen in Figure 2,
+to fortify its comprehensive IT infrastructure.
+
+
+
+
+                                                                                                       4
+                                    Figure 2 Collaborations of the company
+
+•   Aruba Networks: A prominent name in networking solutions, Aruba Networks offers cutting-
+    edge technologies for wireless networks, ensuring seamless connectivity and robust network
+    management [1].
+•   Fortinet: As a leading cybersecurity provider, Fortinet equips the IMTS department with advanced
+    tools to safeguard digital assets and defend against a spectrum of cyber threats [2].
+•   Ankabut: Anchoring the university's connectivity, Ankabut serves as a leading IT service provider
+    in the UAE, offering high-speed networking solutions that facilitate seamless data exchange and
+    knowledge sharing within the academic realm [3].
+•   Dell: Partnering with Dell empowers the IMTS department to deliver state-of-the-art computing
+    solutions, including hardware and software, optimizing learning experiences within the university's
+    tech ecosystem [4].
+•   Al Abbas Group - MFPs: Collaborating with Al Abbas Group for multifunction printers (MFPs)
+    bridges the digital and physical realms, enhancing administrative efficiency and document
+    management [5].
+•   Jumbo Electronics: Partnering with JUMBO Electronics ensures access to cutting-edge computer
+    technology, enabling the IMTS department to maintain a modern and efficient computing
+    environment for students and staff [7].
+•   Alpha Data: Alpha Data contributes to the IMTS department's computing capabilities by
+    providing advanced computer systems, reinforcing the university's commitment to technological
+    excellence [7].
+
+
+
+                                                                                                      5
+Together, these collaborations empower Abu Dhabi University's IMTS department to build a robust,
+secure, and efficient IT environment that supports seamless communication, innovative learning, and
+academic growth.
+2.3    Company History
+
+Founded in 2003 by His Highness Sheikh Hamdan Bin Zayed Al Nahyan, Abu Dhabi University has
+since embarked on a transformative journey of academic excellence and innovation. This journey was
+paralleled by the establishment of the Information Management and Technology Services (IMTS)
+department, which started its operations concurrently. The early stages of IMTS saw the gradual
+incorporation of technology, marking a transition from conventional practices to a more digitally
+integrated environment.
+The global pandemic, however, acted as a catalyst for quickening transformation. The IMTS
+department quickly adopted cutting-edge technical solutions in response to the rising requirement for
+distant learning and effective virtual collaboration. This change was further accelerated by the constant
+development of technology, compelling the department to adapt swiftly to the evolving digital
+landscape.
+This adaptation necessitated strategic partnerships with third-party technology providers. The IMTS
+department diligently sought out alliances with reputable companies such as Cisco, Aruba, Fortinet,
+Ankabut, Dell, Al Abbas, Jumbo, and Alpha Data. These partnerships were carefully managed to
+preserve cost effectiveness while ensuring access to cutting-edge tools and expertise. This approach is
+a reflection of the department's dedication to being at the forefront of technology developments and
+supporting a setting that promotes seamless operations, robust connectivity, and enhanced educational
+experiences [8].
+
+3.     INTERNSHIP ACTIVITIES
+During my internship at IMTS in Abu Dhabi University, I had an enriching and dynamic experience.
+The journey started with proper training regarding the server room, that formed the basis for a lot of
+subsequent hands-on work. Practical tasks constituted a significant part of the internship, comprising
+more than 70% of the overall activities. This section offers a concise overview of the training and
+pivotal aspects such as user assistance, system and network management, security, lab maintenance,
+operational tasks, and project development that were integral to the internship program.
+
+
+
+
+                                                                                                        6
+3.1      Training
+
+•     Observing the components in the Main Server room: Under the guidance of the network
+      administrator, we got the honor of touring the main server room. We discovered that the room has
+      a Tecnair LV CCV cooling system, providing ideal conditions for server performance. The
+      architecture highlighted a network hierarchy, where IDFs connected via fiber cables to the patch
+      panel in Figure 3, which then led to the core switch as seen in Figure 3, forming the network's
+      backbone. Redundant connections were present in most server racks, enhancing reliability. A
+      noteworthy addition was the Ankabut switch, designed for UAE's educational resources
+      framework, offering a WAN connection through Etisalat as seen in Figure 5. Additionally, I
+      grasped the significance of the Fortinet FortiGate firewall, strengthening cybersecurity by
+      managing WAN connections and data filtration.
+
+
+
+
+                                        Figure 3 Aruba Core Switch
+
+
+
+
+                                           Figure 4 Edge Switch
+
+
+
+
+                                                                                                     7
+                                           Figure 5 Ankabut Connection
+
+
+3.2       Help Desk Support and User Assistance
+•     Resetting Students Passwords: The activity of resetting students' passwords was executed by
+      leveraging admin privileges on the IMTS management console. This activity played a crucial role
+      in ensuring uninterrupted access to course materials and seamless communication with instructors.
+      This essential task was undertaken to align with the university's robust password policy, reinforcing
+      security measures while facilitating efficient user interactions.
+•     Configuring Cisco Jabber Telephone: During the first week of the internship, from July 5 to July
+      12, 2023, installing Cisco Jabber Telephone lines was a key task. he IMTS department, equipped
+      with 300 lines from Etisalat, embarked on configuring Cisco Jabber Telephone lines to cater to the
+      communication needs of staff and faculty. This process was made accessible by utilizing the Cisco
+      Unified CM Administration interface, which was remotely available via the Cisco telephone server
+      that can be viewed below in Figure 6. By logging in with administrative credentials, the process
+      involved navigating to the 'Phone' option under the device tab. Further steps included the diligent
+      search for the device via directory number, subsequently enabling the definition of access controls,
+      phone naming, and implementation of appropriate rules and policies. This careful configuration
+      process exemplifies the department's dedication to ensuring streamlined communication solutions
+      for the university's staff and faculty.
+
+
+
+
+                                                                                                          8
+            a)   Observing Cisco Phone                           b) Configuring Cisco Phone
+
+
+
+
+                                     c)   Searching with directory number
+                 Figure 6 Cisco Jabber Phone configuration on Cisco Unified CM Administration
+
+•   Setting up Duo Mobile Authentication App for Faculty: For faculty members, installing the
+    Duo Mobile Authentication App required a careful process designed to improve the security and
+    usability of their accounts. First, a strengthened authentication system was established by installing
+    the Duo Mobile authentication app on faculty members' smartphones. Following that, essential
+    information was added to the Duo Mobile authentication page, including the mobile brand, model,
+    phone number, and email as seen in Figure 7, through admin access. This thorough input made it
+    easier to create a distinctive QR code, which in turn gave faculty members immediate access to the
+    organizational structure of Abu Dhabi University in a safe manner. Through this method, faculty
+    members were given quicker access to vital platforms like Teams and Outlook as well as increased
+
+                                                                                                         9
+    cybersecurity for their accounts. This activity took place through the last two weeks of the
+    internship period, which was exactly when this authentication update was introduced.
+
+
+
+
+                                      Figure 7 Duo Mobile Authentication
+
+•   Assigning shared MFPs: Within a single day, the task of allocating shared Multi-Function
+    Printers (MFPs) was successfully completed, easing network-wide printer accessibility. This
+    process involved a systematic approach: accessing the devices and printers, selecting the specific
+    MFP, then entering the printer's IP address as seen in Figure 8. Through this diligent process, the
+    printers were made network-shareable, effectively allowing numerous users to access and utilize
+    the printer's features without any difficulty, accelerating the workflow within the technological
+    environment of the institution.
+
+
+
+
+                            Figure 8 Allowing share printer access with IP address
+
+•   Assisting users with HDD replacement: In a specific period of two hours, the task of helping
+    users replace their HDDs developed as a crucial undertaking meant to improve system
+    performance. In order to increase operational speed and responsiveness, this technique entailed
+                                                                                                    10
+    carefully removing and replacing the hard disk drive (HDD) within laptops with Toshiba
+    MQ01ACF050 500GB Hard Drive. Beyond simple replacement, a comprehensive strategy was
+    used, and the laptop's main components underwent careful cleaning, allowing the laptops operate
+    more effectively. Images from carrying out this task can be viewed in Figure 9.
+
+
+
+
+         b) Observing hardware components                                        a)     HDD
+
+                                        Figure 9 HDD replacement
+
+•   Creating an instructional support video for the usage of BenQ smartboard: At the guidance
+    of our company supervisor as seen in Figure 10, we undertook the task of creating an instructive
+    video to facilitate the effective use of the BenQ smartboard with faculty. We carefully detailed
+    various operations to ensure seamless interaction with the technology, such as: powering on the
+    device, logging in to the Windows system, seamlessly transitioning between Windows and
+    Android platforms, harnessing the functionalities of VideoCams and Polycom systems, as well as
+    exploring the process of writing overactive screens. In addition, we provided insightful guidance
+    on utilizing the EasyWrite application for enhanced interaction, as well as saving files to a USB
+    device.
+
+
+
+
+                        Figure 10 Company Supervisor's instructions on what to record
+
+                                                                                                   11
+3.3      IT Infrastructure and System Management
+•     Re-imaging BenQ Smartboards and assigning new policies: This activity took place on a period
+      of two days. To improve the performance of the smartboards, the process began by choosing a
+      Smartboard with Windows 10. The procedure included formatting, installing apps, updating the
+      graphics, and putting new policies in place. These policies included a lock screen that displayed
+      IMTS information and provided faculty with quick support in case of technical difficulties.
+      Another policy limited student account access and granted faculty and staff the only right to use
+      the Smartboard. The configured Smartboard was then carefully recreated as an image and stored
+      on a CD for replication among other Smartboards. The subsequent re-imaging procedure involved
+      utilizing an external CD/DVD drive, entering the boot menu, and navigating through various
+      options including "repair your computer", "troubleshoot", and "system image recovery". With each
+      Smartboard taking around 45 minutes to complete re-imaging, the process concluded with logging
+      in with admin credentials, modifying device name in PC properties, and affiliating it with the
+      adu.ac.ae domain as seen in Figure 11.
+
+
+
+
+              a)   System Image Recovery                    b) Changing name and connecting to domain
+                                   Figure 11 Re-imaging BenQ Smartboard
+
+
+•     Accessing the Active Directory: The integration of the Active Directory into the Windows
+      environment makes accessing it a crucial responsibility within the IMTS division of ADU.
+      Through the integration of resources like ERP and Blackboard, this application not only makes
+      operations simpler but also enhances processes. However, our use of the Active Directory strictly
+      followed the terms of the license agreement, allowing access to only five trusted individuals who
+      swear to keep their identities private. They are unable to misuse user passwords or examine profiles
+      without express permission. Beyond these limitations, the Active Directory offers a number of
+      benefits, including improved security measures and quicker resource sharing. Although our access
+
+                                                                                                        12
+wasn't comprehensive, our supervisor expertly assisted us in configuring access controls. This
+process involved a search for my name in the students folder, that can be found in the Al Ain
+Campus folder. Then, by right-clicking and accessing properties linked to my account, we modified
+the access controls, ultimately bestowing administrative access. This action positioned me as an
+Active Directory domain services folder member as seen in Figure 12. Lastly, we also viewed all
+the computers in the College of Engineering and their details as seen in Figure 13.
+
+
+
+
+                                Figure 12 Modifying access controls
+
+
+
+
+                            Figure 13 Viewing details of COE computers
+
+
+
+                                                                                               13
+•     Utilizing Avamar backup tool: During the fourth week of our internship, under the guidance of
+      our internship supervisor, we engaged in the task of utilizing the Avamar backup tool, that lasted
+      for around an hour. The choice to employ Avamar was driven by the presence of Dell EMC servers
+      within Abu Dhabi University's IT infrastructure as seen in Figure 14. Notably, Avamar positions
+      itself as a reasonably priced substitute for cloud-based backup software. Our involvement included
+      overseeing data management and replication procedures, ensuring the storage of data across
+      several geographic locations. This approach aligns with the dynamic nature of the university's
+      campus data center, which shifts its physical location on a monthly basis.
+
+
+
+
+                       a)   Avamar backup tool                                      b) Dell Servers
+                            Figure 14 Using Avamar Backup Tool and Observing Dell Servers
+
+
+3.4      Lab Setup and Maintenance
+•     Setting up PC’s and re-imaging them: During our internship, we had the valuable opportunity
+      to contribute to the setup of new Dell PCs, along with their keyboards and mouses as seen in Figure
+      15. Our task involved utilizing Rescuezilla for the re-imaging process, a choice driven by its
+      efficiency and reliability. The re-imaging process was commenced by employing an external
+      CD/DVD drive containing an up-to-date Windows 11 image, along with essential applications such
+      as Teams, Zoom, and RocScience. Once the PCs were physically set, we accessed the boot menu
+      to begin the re-imaging process, which included five steps: determining the image location and
+      partition, selecting the backup image, designating the drive for restoration, specifying the partitions
+      for restoration, and ultimately confirming the restore configuration as seen in Figure 16. Upon
+                                                                                                          14
+    completion, we proceeded to rename the device and establish a connection to the domain through
+    its properties.
+
+
+
+
+                                     Figure 15 Setting up the new PCs
+
+
+
+
+                                Figure 16 Using Rescuezilla for re-imaging
+•   Formatting, Updating, Installing, and Account Creation: This task was done throughout the
+    duration of our internship period because we encompassed every single lab and faculty office on
+    the campus. The process included careful formatting of older PCs, for enhanced performance.
+    Concurrently, we began updating current PCs to the latest Windows 11 version (22H2),
+    incorporating the latest enhancements and features. The installation of requisite applications was
+    another crucial component as it had to be tailored to each lab's specific functionality or the
+    academic disciplines it served as seen in Figure 17. Moreover, our involvement extended to
+    creating user accounts, that enabled access to resources for the summer camp COE workshops.
+
+                                                                                                    15
+                           Figure 17 Updating and Installing necessary applications
+
+
+
+•   Installing Kali Linux with BalenaEtcher for the Cyber Security Lab: Over a span of two days,
+    our involvement in the Installing Kali Linux with BalenaEtcher activity was a notable experience
+    that was unfolded within the dedicated cybersecurity lab. The process commenced with a
+    meticulous observation of the disk management of the PCs, ensuring we assessed the available free
+    space for the upcoming installation. So, we found that an extraneous partition of only 713 MB
+    positioned between the substantial C volume of 237 GB and the unallocated volume of 715.40 GB.
+    Thus, we engaged the diskpart.exe utility, selecting the irrelevant volume (Disk 0), listing its
+    partitions, then deleting partition 5 as it was the volume with 713 MB. With the unallocated volume
+    now liberated, we were able to merge it with the C volume, rendering the space required for Kali
+    Linux. Our next move involved using BalenaEtcher, a dependable tool, for the installation process.
+    Utilizing a USB flash disk as the medium, we initiated the installation that was done through the
+    boot menu, and following the steps in order and filling in the required information such as domain
+    name, user name and password, region, and Wi-Fi details. Upon completion, the computer reboots
+    and displays users with the choice between two distinct options: Kali Linux or Windows as seen
+    in Figure 18.
+
+
+
+
+                                                                                                    16
+                           b) Accessing Disk Manager                                        a)   BalenaEtcher
+
+
+
+
+               c)   Logging into Kali Linux                            d) Choosing Kali Linux or Windows
+
+
+                                              Figure 18 Installing Kali Linux
+
+
+3.5      Network Infrastructure and Security
+•     Configuring DWR-M961 4G AC1200 LTE Router with an Ethernet cable: This task has
+      fortified our networking expertise. The process unfolded methodically, commencing with the
+      connection of an Ethernet cable to both the DWR-M961 4G AC1200 LTE router and the laptop as
+      seen in Figure 19. Following this, we initiated a crucial step by resetting the router, ensuring it was
+      primed for configuration. With the physical setup in place, exploration of network connections was
+      possible. By Selecting the Ethernet connection, a right-click led us to its properties, revealing the
+      default gateway. So, we input the default gateway into a web browser, subsequently granting us
+      access to the DWR-M961 web page, where we logged in with the admin username and password.
+      The pivotal setup wizard was then activated, unfurling a series of seven sequential steps as seen in
+      Figure 20. Within the LAN interface setup, we entered the IP address and subnet mask. In the
+                                                                                                                17
+subsequent WAN interface setup, we opted for DHCP client as the WAN Access type,
+meticulously entering the SSID to become the network connection name. In addition to this, the
+password's creation was handled carefully. Thus, we successfully established connections, with
+testing from our personal mobile phones for further validation as seen in Figure 21.
+
+
+
+
+         b) Connecting cable to router                          a)   Opening Router Page
+                              Figure 19 Initial Router configuration steps
+
+
+
+
+                                Figure 20 6-step configuration process
+
+
+
+                                                                                            18
+                  b) Connection Successful                          a)   Connecting from mobile phone
+                        Figure 21 Successful Configuration and Validating Connection
+•   Configuring Cisco Catalyst 2950 series switch and its ports with PuTTY: This task was an
+    immersive learning venture that took place in the sixth week of our internship. The process started
+    by powering the switch on through connection to a power plug socket. Then, various connections
+    were carefully made, including: first, powering the switch; second, creating a connection through
+    the console cable; and finally, fusing a USB-to-serial converter connected to the laptop. By firmly
+    pressing the mode button for 15 seconds, the switch was thoroughly reset, providing a blank canvas
+    for configuration. Next, the device manager was launched from the laptop and a careful inspection
+    of the ports section was made to locate the relevant switch, which was designated as "Prolific USB-
+    to Serial Comm port (COM4)." The next steps were starting the PuTTy program, choosing the
+    serial option, and then choosing COM4 as the Serial Line as seen in Figure 23. The "open"
+    command was then clicked to start PuTTy terminal, for configuration of the switch. Setting up the
+    switch's hostname and accompanying password was the first step in navigating the setup
+    environment. The development of distinctive VLANs was the next step, each matched with various
+    capabilities — IT, HR, Wi-Fi, Staff, Student, and Faculty — was a crucial component of this
+    process to smooth out traffic. Furthermore, port configuration was the next step since the VLANs
+    were now ready to be assigned. Although the switch had 24 ports in total, the configuration process
+    carefully concentrated on a certain subset. The process started by entering the configuration
+    terminal, followed by the targeted selection of a port utilizing the "int" command, accompanied by
+    the appropriate port number. Once this alignment was established, the specific VLAN assignment
+    was performed through the "switchport access" command, ensuring seamless integration with the
+    respective VLANs. Lastly, configuring VLAN300 also occurred when we defined the port range,
+    containing specific ports for configuration, using the "int range fa0/5, fa0/10" command. Then, we
+    advanced by executing the appropriate VLAN assignment using the "switchport access vlan300"
+    command as seen in Figure 24. To ensure configurations were properly saved, we used the “wr
+    mem” command after every step.
+                                                                                                        19
+                             Figure 22 Cisco Catalyst 2950 series switch
+
+
+
+
+                     Figure 23 Using PuTTY Configuration to enter serial details
+
+
+
+
+a)   Creating hostname and password                              b) showing present VLANs
+
+
+
+
+                                      c)   Assigning ports to VLANs
+
+                      Figure 24 Using PuTTY for switch and port configuration
+
+
+
+
+                                                                                            20
+•   Using Aruba Networks for new WLAN set up: Aruba Networks emerged as a preferred choice
+    within the university's IT infrastructure, particularly during the pandemic, due to its cost-
+    effectiveness and efficiency. It boasts around 300 access points carefully distributed for seamless
+    wireless connectivity. Although it is only one network connection, however, different access points
+    cater to multiple SSIDs such as IMTS, Student, Staff, and Guest, each directing users to different
+    routes to mitigate network congestion. Utilizing Aruba Networks improves network performance
+    and management even further. Each access point has a distinctive name, such as "IDF-A-GF-03-
+    AP-12," that makes it simple to identify and configure as seen in Figure 25. By using the IP address
+    192.168.32.5 to connect to the Aruba mobility controller as seen in Figure 26, we were able to add
+    new WLANs, including the IMTS network with its appropriate new password as seen in Figure
+    26. Utilizing Aruba Networks and its mobility controller has numerous advantages. In addition to
+    enabling smooth and secure wireless connectivity across different user groups, it also effectively
+    regulates network traffic, improving overall performance. Not only that, but we were also able to
+    see the number of clients on each WLAN, as well as the amount of traffic caused by each user,
+    enabling us to disconnect them from the WLAN in severe traffic cases.
+
+
+
+
+                  a)   Fiber-optic cables                                     b) Access points
+
+                         Figure 25 Aruba Network Connections in IDF and Server Room
+
+
+
+
+                                                                                                     21
+                          Figure 26 Using Aruba Mobility Controller to view traffic
+
+
+
+
+                                  Figure 27 Creating password for WLAN
+
+•   Using KVM for monitoring: We were able to monitor multiple servers effectively with the use
+    of the Rack KVM setup that accommodates up to 8 devices simultaneously as seen in Figure 28.
+    We carefully attached the required cables to the KVM switch with the help of the network
+    administrator to ensure smooth communication between the servers and our monitoring interface.
+    This procedure enabled for quick resolution of any problems that might have arisen in addition to
+    facilitating real-time monitoring and control of the servers, ensuring streamlined management
+    within the server room environment.
+
+
+
+
+                                                                                                   22
+                                 Figure 28 Using KVM Switch to monitor server
+
+
+3.6      Cybersecurity Measures
+•     Using Threatlocker for prevention of cybersecurity attacks and endpoint protection: Abu
+      Dhabi university has recently bought the license to use Threatlocker for cybersecurity measures.
+      So, with the installation of Threatlocker, we were able to secure our network infrastructure,
+      combining advanced threat detection with efficient prevention measures. This experience allowed
+      me to actively participate in the deployment and management of security policies, ensuring that
+      only permitted programs and processes could execute on our systems. As a result, I created a policy
+      that purposefully prevented the execution of.exe files as a preventative measure to stop potential
+      security breaches, improving the security posture and reducing the chance of malware and illegal
+      access as seen in Figure 29.
+
+
+
+
+                                     Figure 29 Threatlocker message popup
+
+•     Utilizing Fortinet FortiGate Firewall: The network administrator led a critical task involving the
+      utilization of the Fortinet FortiGate 601E primary firewall for robust security protection. While the
+      intricacies of this task were primarily managed by the network administrator due to its critical
+
+                                                                                                        23
+      nature, I had the invaluable opportunity to observe and learn from this process. The administrator
+      was responsible for setting up VPN connections to ensure secure remote access, configuring
+      firewall rules to manage traffic flow, implementing intrusion prevention systems (IPS) to detect
+      and eliminate threats, and coordinating web filtering for restricted internet access. These tasks
+      demonstrated the Fortinet FortiGate firewalls' complex function in protecting networks from a
+      variety of cybersecurity threats. An image of the Fortinet FortiGate firewall can be seen in Figure
+      30.
+
+
+
+
+                                     Figure 30 Fortinet FortiGate Firewall
+
+
+3.7         Queue System and IT Operations
+•     Managing the RSI Queue system: Our objective was to ensure the seamless presentation of the
+      RSI queue system on the TV’s on the first floor, which was accomplished by preparing the content
+      and displaying it on the main PC in the IDF room as seen in Figure 31. A splitter was used to bring
+      this content to display on the Sony TVs. This technology made it possible for four distinct outputs
+      connected to TVs on the first floor to receive digital content from the computer in the IDF. The
+      four HDMI cables were used to link the four TVs once the signal had gone across HDMI from the
+      PC to the splitter. Ceiling restrictions may present technological obstacles, however RG45 to
+      HDMI converters were successfully used to get around them. We also played the part of
+      troubleshooters during this process, addressing connectivity issues that some devices had with the
+      WiFi network.
+
+
+
+
+                             a)   PC in IDF Room                             b) Splitter
+                                    Figure 31 Managing RSI Queue System
+
+
+                                                                                                       24
+•   Managing the Digital Signage: Our objective was to ensure the seamless presentation of data
+    using Digital Signage, which was accomplished by preparing the content and displaying it on the
+    Sony Digital Signage TVs. The process began by designing the content using the Sony
+    management Portal, which has details of all the 21 devices used in the university. These TVs, while
+    functioning as digital displays, possess an embedded chip that enables content storage and
+    scheduled on/off functionality. For the digital signage to work, we had to operate from the admin
+    account on the portal, and followed a structured procedure consisting of four primary steps. Firstly,
+    we uploaded new media onto the server. Subsequently, we designed the content by selecting
+    templates, constructing pages, and curating playlists as seen in Figure 32. The third step involved
+    choosing the appropriate workplace solution, and finally, we scheduled the content for display. We
+    also played the part of troubleshooters during this process, addressing connectivity issues that some
+    devices had with the WiFi network as seen in Figure 33.
+
+
+
+
+             a)   Adding content                                      b) Scheduling content
+                                   Figure 32 Content creation for Digital Signage
+
+
+
+
+                           Figure 33 Troubleshooting Devices with connectivity issues
+                                                                                                       25
+•     Testing the new Queue System: The institution's proactive attitude to resource management was
+      evident in the creation of this queue system, which was designed as a more economical replacement
+      for the current RSI queue system, which was made using Bubble.io platform as seen in Figure 34.
+      Even though we weren't actively working on the development, our function was solely based on
+      testing. We carefully examined the system's operation as testers to make sure it complied with the
+      necessary requirements for quality and dependability. By taking on this duty, we helped to improve
+      the product's functionality and its capacity to provide the highest level of customer pleasure, as our
+      comments were taken into notice by the project Developer: Dr Hamad Odhabi and his team.
+
+
+
+
+                                       Figure 34 New ADU Queue System
+
+
+3.8      Project Development
+•     Room Signage Bubble Project: Engaging in the Room Signage Bubble Project was a significant
+      endeavor guided by the request of the IMTS IT Manager. The goal of the project was to use the
+      Bubble.io platform, which the university frequently uses for its many systems, to build an effective
+      and user-friendly room signage system. We started the development process by adhering to the IT
+      Manager's specifications and the summer semester's schedule. The project's primary goal was to
+      give users an easy way to search for the availability of a certain classroom as seen in Figure 36.
+      The system cleverly presented the continuing class information, such as the course title, instructor's
+      name, and timing, if a room was not available. The system also displayed details on the subsequent
+      class that will be held in the same location as seen in Figure 35. We made sure to incorporate
+      efficient human-computer interaction approaches at every stage of development to ensure user
+      satisfaction and a seamless experience.
+
+                                                                                                         26
+                                  Figure 35 Classroom Information Page
+
+
+
+
+                                    Figure 36 Classroom Search Page
+
+
+4.     OVERALL INTERNSHIP EXPERIENCE
+
+Abu Dhabi University, an esteemed institution of higher learning, stands as a beacon of education and
+innovation in the heart of the UAE. At the core of this academic powerhouse lies the Information
+Management and Technology Services (IMTS) department, where I had the privilege of interning.
+                                                                                                   27
+ The IMTS department plays a pivotal role in nurturing a seamless technological ecosystem within the
+ university. where I had the honor of serving as an intern, is the brainchild of this intellectual
+ powerhouse. IMTS plays a pivotal role in nurturing a seamless technological ecosystem within the
+ university. Responsible for an array of critical functions, IMTS oversees the university's website,
+ ensuring a dynamic digital presence that connects the academic community. In addition, the
+ department oversees the data center's intricate web, safeguarding and optimizing the university's digital
+ assets.
+ From computer labs to classrooms, from servers to auditoriums, IMTS weaves a cohesive network that
+ binds these diverse spaces, ensuring that technological excellence permeates every facet of the
+ university experience. Beyond these tangible realms, IMTS takes charge of the digital realm,
+ spearheading web development to ensure an engaging online interface for students and faculty alike.
+ Moreover, IMTS emerges as the sentinel of cybersecurity, fortifying the institution's digital frontiers
+ against potential threats by safeguarding the integrity of data. Their meticulous attention extends
+ further, enveloping the network security that keeps the university's various domains interconnected
+ and thriving. As an intern, I've had the privilege of witnessing firsthand how IMTS is the unsung
+ architect of Abu Dhabi University's technological landscape, ensuring that both the digital and physical
+ spaces remain harmoniously linked, secure, and forward-looking across the campus.
+4.1        Technical Skills
+
+ •    Network Configuration and Management: Acquired practical knowledge of configuring and
+      managing network equipment, such as wireless access points, switches, and routers. In order to
+      accomplish this, VLAN configuration, routing, and efficient and secure network communication
+      were done.
+ •    System Administration: Working with tools like Active Directory helped develop system
+      administration skills, learned how to maintain a secure and well-organized IT environment by
+      creating user accounts, managing permissions, and making sure adequate access restrictions are in
+      place.
+ •    Operating System Management: Acquired expertise in the installation, configuration, and update
+      of operating systems. This includes checking appropriate functionality, installing required
+      software, and updating to the most recent versions.
+ •    Cybersecurity precautions: Technologies like Threatlocker and Fortinet have provided insights
+      into cybersecurity best practices as well as knowledge on how to control firewalls, stop
+      cybersecurity attacks, and shield endpoints from potential dangers.
+
+
+                                                                                                        28
+ •    Content Creation and Digital Media: Filming and editing videos allowed me to explore the
+      world of digital media and content development. Through this experience, multimedia skills
+      improved, making it possible to effectively communicate technical ideas through visual
+      information.
+ •    Project Development and Management: Zero code platforms were used in initiatives like the
+      Room Signage Bubble Project. This comprised the analysis of the requirements, creation, testing,
+      and implementation of software solutions.
+ •    Troubleshooting and User Support: Developed abilities in identifying and addressing
+      technological problems. The capacity to solve problems and explain technical solutions to non-
+      technical people also improved.
+ •    Network Infrastructure: Working with equipment like switches and routers allowed me to gain
+      knowledge of the network infrastructure. This expertise included setting up VLANs, configuring
+      ports, and guaranteeing smooth network connection.
+ •    IT Infrastructure Management: Gaining knowledge about how to maintain and manage IT
+      systems effectively and securely by being exposed to server rooms, backup solutions like Avamar,
+      and IT infrastructure configuration.
+
+4.2      Professional Skills
+
+ •    Project Coordination: Developed the ability to manage tasks within projects, ensuring alignment
+      with goals and stakeholder expectations.
+ •    Team Collaboration: Gained experience in working effectively as part of a team, achieving
+      shared objectives through cooperation.
+ •    Problem Solving: Enhanced skills in analyzing complex issues and making informed decisions
+      for efficient problem resolution.
+ •    Time Management: Demonstrated the ability to prioritize tasks and meet deadlines, optimizing
+      productivity.
+ •    Communication Skills: Effectively communicated technical concepts in both written
+      documentation and verbal interactions.
+ •    Analytical Thinking: Developed the capacity to analyze information critically and make strategic
+      decisions based on data-driven insights.
+ •    Initiative and Self-Motivation: Proactively contributed to projects and tasks, showing self-
+      motivation and enthusiasm.
+
+
+                                                                                                    29
+ •    Customer Service: Interacted with end-users, providing technical support in a helpful and patient
+      manner.
+ •    Professional Ethics: Maintained integrity, confidentiality, and responsibility in all interactions.
+ •    Decision-making: Demonstrated sound decision-making by weighing pros and cons and making
+      informed choices.
+ •    Continuous Learning: Displayed a commitment to learning and improvement, embracing
+      opportunities to expand skills.
+
+4.3      Soft Skills
+
+ •    Adaptability: Successfully adjusted to new technologies, tasks, and environments, showcasing
+      flexibility and openness to change.
+ •    Critical Thinking: Displayed the ability to evaluate situations from various angles, make well-
+      reasoned decisions, and address challenges proactively.
+ •    Empathy: Interacted with others empathetically, understanding their perspectives and tailoring
+      personal approach to meet others needs.
+ •    Conflict Resolution: Demonstrated skill in resolving conflicts constructively, promoting positive
+      relationships within the team.
+ •    Leadership: Took initiative in certain situations, inspiring and guiding others toward achieving
+      shared goals.
+ •    Self-Motivation: Showed strong self-discipline and self-motivation, actively seeking
+      opportunities to learn and improve.
+ •    Networking: Developed professional relationships and connections within your field, nurturing
+      valuable contacts for future endeavors.
+ •    Flexibility: Adapted to changing circumstances and requirements with flexibility, contributing to
+      a collaborative and innovative work environment.
+ •    Presentation Skills: Improved presentation skills by creating and delivering content to various
+      audiences, whether during project presentations, workshops, or demonstrations. This skill boosts
+      ability to convey information persuasively and engaging the audience.
+
+4.4      University Applied Knowledge
+
+ The courses I undertook during my university education played a pivotal role in enhancing my
+ performance during the internship at IMTS in Abu Dhabi University. These academic foundations not
+ only facilitated comprehension but also allowed me to connect theoretical concepts with real-world
+                                                                                                        30
+ scenarios. For instance, concepts learned in computer ethics seamlessly aligned with workplace ethical
+ considerations. However, the most significant benefits were derived from certain specific courses as
+ seen in Figure 37. Human-computer interaction enabled me to critically analyze applications and
+ identify areas for improvement, which was invaluable in both ongoing projects and my personal room
+ signage initiative. The knowledge gained from information security underscored the importance of
+ safeguarding sensitive information and implementing robust cybersecurity measures within the
+ organization. Similarly, the insights from system and network administration were directly applicable
+ in tasks involving network security and system management. My expertise in designing and
+ implementing computer networks, garnered from another course, proved vital in configuring routers,
+ switches, and comprehending fiber optics cables and connectivity. Lastly, project management
+ techniques learned were directly translated into the efficient development of projects, exemplified by
+ the well-organized execution of the room signage project. This symbiotic relationship between
+ academic coursework and practical experience greatly enriched my internship journey.
+
+
+
+
+                                        Figure 37 University Courses
+
+4.5     Career Influence
+
+ Participating in the IMTS internship at Abu Dhabi University has been a transformative experience
+ that holds significant implications for my future career. The immersive exposure to various aspects of
+ IT, ranging from technical skills to professional and soft skills, has equipped me with a robust toolkit
+ that I am confident will set me apart in the professional landscape. This internship not only gave me a
+ platform for real-world application, but it also stoked my desire to learn more. The practical exposure
+                                                                                                       31
+to network infrastructure, cybersecurity protocols, software development, and system management has
+opened my eyes to the variety of prospects available in the IT industry. The mentorship and guidance
+from experts in the industry have accelerated my learning curve and have inspired me to delve deeper
+into this dynamic sector.
+Looking ahead, I am enthusiastic about pursuing a career that aligns with the comprehensive skill set
+I've acquired during this internship. The exposure to innovative technologies like Aruba Networks and
+Fortinet Firewalls has instilled in me a curiosity to continually engage with emerging trends and
+evolving challenges. I am eager to apply this knowledge to future IT roles, contributing effectively to
+my future teams and organizations.
+Additionally, this internship has sparked an interest in further academic pursuits. The exposure to
+cybersecurity measures has intrigued me about the intricate world of data protection and risk
+management. I envision myself pursuing advanced studies, perhaps a master's in cybersecurity, to
+delve deeper into this crucial domain and enhance my contribution to safeguarding digital landscapes.
+In essence, my internship has strengthened both my technical skills and my resolve to take on similar
+projects in the future. I am dedicated to discovering new opportunities and consistently challenging
+myself to grow and succeed in the ever-changing IT world, whether it is in the context of academic
+endeavors or IT careers.
+
+5.     CONCLUSION
+In conclusion, my internship experience with the IMTS department at Abu Dhabi University has been
+an invaluable journey of learning, growth, and transformation. This opportunity has allowed me to
+bridge the gap between theoretical knowledge and practical application, equipping me with a diverse
+skill set that encompasses technical expertise, professional acumen, and essential soft skills. From
+tackling complex technical tasks such as network configuration and system management to honing
+professionalism, communication, and teamwork, this internship has provided a comprehensive and
+well-rounded learning experience.
+
+Throughout this journey, I've had the privilege of working alongside skilled professionals who have
+generously shared their knowledge, thoughts, and advice. This exposure to real-world challenges and
+innovative solutions has not only expanded my horizons but has also inspired me to continue exploring
+new avenues within the field of IT. I am deeply grateful for the trust placed in me to contribute to
+critical projects, from cybersecurity measures to system development, which has significantly
+enhanced my confidence and problem-solving capabilities.
+The lasting impact of this internship goes beyond technical skills and extends to shaping my career
+trajectory. As I step into the future, I carry with me a newfound enthusiasm and determination to make
+                                                                                                     32
+meaningful contributions to the IT sector. This experience has solidified my passion for continuous
+learning and has opened doors to potential avenues such as pursuing advanced studies in cybersecurity.
+The invaluable lessons learned and connections made during this internship will undoubtedly influence
+my journey as a lifelong learner and a dedicated IT professional.
+I extend my sincere gratitude to the entire IMTS team at Abu Dhabi University for providing me with
+this enriching opportunity. I am excited to leverage the knowledge and skills gained to make
+meaningful contributions in the ever-evolving landscape of information technology. This internship
+has been a pivotal chapter in my academic and professional journey, and I am eager to embrace the
+challenges and opportunities that lie ahead with confidence and enthusiasm.
+
+
+
+
+                                                                                                    33
+References
+
+
+[1]       “Making         connections,          anywhere,”       HPE        Aruba         Networking,
+      https://www.arubanetworks.com/company/about-
+      us/#:~:text=Recognized%20industry%20leadership&text=The%20world%27s%20largest%20c
+      ompanies%20rely,center%2C%20and%20remote%20working%20environments.                     (accessed
+      Aug. 15, 2023).
+
+[2] D. Robb, “Fortinet Fortigate Firewall Review: Description & features,” eSecurityPlanet,
+      https://www.esecurityplanet.com/products/fortinet-fortigate/ (accessed Aug. 16, 2023).
+
+[3] “About Us,” Ankabut, https://www.ankabut.ae/about-us/about-us/ (accessed Aug. 16, 2023).
+
+[4] About the Author: Bob Zuber                  Bob Zuber is the Director of Product Management for
+      Dell’s Cloud Service Provider computer portfolio et al., “Partner with Dell for optimized, simple
+      and open solutions,” Dell, https://www.dell.com/en-us/blog/partner-with-dell-for-optimized-
+      simple-and-open-solutions/ (accessed Aug. 16, 2023).
+
+[5] “Al Abbas trading,” Al Abbas Group, https://alabbas.com/al-abbas-trading (accessed Aug. 16,
+      2023).
+
+[6] “Jumbo Electronics - GS1 UAE: The global language of business,” GS1 UAE | The Global
+      Language                 of                Business,              https://www.gs1ae.org/jumbo-
+      electronics/#:~:text=The%20company%27s%20accelerated%20growth%20in,%2C%20access
+      ories%2C%20and%20telecom%20services. (accessed Aug. 16, 2023).
+
+[7]    Alpha      Data     -        Overview,     News       &   competitors      |    Zoominfo.com,
+      https://www.zoominfo.com/c/alpha-data-llc/353475537 (accessed Aug. 16, 2023).
+
+[8] “Our History,” Adu.ac.ae, https://www.adu.ac.ae/about-adu/our-profile1/our-history (accessed
+      Aug. 18, 2023).
+
+
+
+
+                                                                                                     34
+

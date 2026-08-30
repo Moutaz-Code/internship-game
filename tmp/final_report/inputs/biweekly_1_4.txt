@@ -1,0 +1,343 @@
+                Bi-weekly Intern Report
+
+    Name of Intern: Motaz Pharaon
+    Abu Dhabi University ID #: 1086106
+    Name of Organization: Pixoul Gaming
+     Week # 3
+     Week Beginning: July 13th 2026                                                                                                                  Week Ending: July 17th 2026
+                                                                                         10:00AM
+
+                                                                                                   10:30AM
+
+                                                                                                             11:00AM
+
+                                                                                                                       11:30AM
+
+                                                                                                                                 12:00PM
+
+                                                                                                                                           12:30PM
+                                   7:00AM
+
+                                            7:30AM
+
+                                                     8:00AM
+
+                                                              8:30AM
+
+                                                                       9:00AM
+
+                                                                                9:30AM
+
+
+
+
+                                                                                                                                                     1:00PM
+
+                                                                                                                                                              1:30PM
+
+                                                                                                                                                                       2:00PM
+
+                                                                                                                                                                                2:30PM
+
+                                                                                                                                                                                         3:00PM
+
+                                                                                                                                                                                                  3:30PM
+
+                                                                                                                                                                                                           4:00PM
+
+                                                                                                                                                                                                                    4:30PM
+
+                                                                                                                                                                                                                             5:00PM
+
+                                                                                                                                                                                                                                      5:30PM
+
+                                                                                                                                                                                                                                               6:00PM
+
+                                                                                                                                                                                                                                                        6:30PM
+
+                                                                                                                                                                                                                                                                 7:00PM
+
+                                                                                                                                                                                                                                                                          7:30PM
+
+                                                                                                                                                                                                                                                                                   8:00PM
+
+
+
+                                                                                                                                                                                                                                                                                              8:30PM
+     Sat Fri Thu Wed Tue Mon Sun
+
+
+
+
+     Total Working Hours: ____40_______
+
+
+     Week # 4
+     Week Beginning: July 20th 2026                                                                                                                  Week Ending: July 24th 2026
+                                                                                         10:00AM
+
+                                                                                                   10:30AM
+
+                                                                                                             11:00AM
+
+                                                                                                                       11:30AM
+
+                                                                                                                                 12:00PM
+
+                                                                                                                                           12:30PM
+                                   7:00AM
+
+                                            7:30AM
+
+                                                     8:00AM
+
+                                                              8:30AM
+
+                                                                       9:00AM
+
+                                                                                9:30AM
+
+
+
+
+                                                                                                                                                     1:00PM
+
+                                                                                                                                                              1:30PM
+
+                                                                                                                                                                       2:00PM
+
+                                                                                                                                                                                2:30PM
+
+                                                                                                                                                                                         3:00PM
+
+                                                                                                                                                                                                  3:30PM
+
+                                                                                                                                                                                                           4:00PM
+
+                                                                                                                                                                                                                    4:30PM
+
+                                                                                                                                                                                                                             5:00PM
+
+                                                                                                                                                                                                                                      5:30PM
+
+                                                                                                                                                                                                                                               6:00PM
+
+                                                                                                                                                                                                                                                        6:30PM
+
+                                                                                                                                                                                                                                                                 7:00PM
+
+                                                                                                                                                                                                                                                                          7:30PM
+
+                                                                                                                                                                                                                                                                                   8:00PM
+
+
+
+                                                                                                                                                                                                                                                                                              8:30PM
+     Sat Fri Thu Wed Tue Mon Sun
+
+
+
+
+     Total Working Hours: ______40_____
+
+
+                                                                                 Career Development Department
+                                                                                 P.O. Box 59911, Abu Dhabi, United Arab Emirates Tel. 02-5015919 | internship@adu.ac.ae
+
+
+Document Ref: YZPTJ-NFBPR-GXEAR-LXNIQ                                                                                                                                                                                                                                                       Page 1 of 5
+     Bi-weekly Report: 13–24 July 2026
+
+     Assignments engaged in:
+
+     - Reviewed and consolidated the game’s vision, first-playable specification, technical
+     architecture, risk register, sprint scope, backlog, and prototype acceptance criteria.
+     - Set up a structured Unity development workflow using Unity MCP and established
+     the project’s Git/GitHub repository and version history.
+     - Converted the initial Unity project into a desktop-first prototype that simulates the
+     intended VR experience through first-person keyboard and mouse controls.
+     - Designed the code architecture so the desktop controller can later be replaced by an
+     XR controller without rewriting objectives, interactions, threat behavior, or feedback
+     systems.
+     - Created simulator-ready abstractions for controller haptics, floor vibration, heat, wind,
+     and Bluetooth heart-rate devices while physical hardware was unavailable.
+     - Implemented a large greyboxed nuclear facility containing ten distinct spaces and
+     West, Central, and East route families.
+     - Added typed scene anchors for player spawning, fuel-rod positions, extraction
+     equipment, Owl patrol points, lighting variants, route blockers, and facility zones.
+     - Implemented deterministic run generation, allowing the same seed to reproduce rod
+     placements, route conditions, lighting, and Owl behavior.
+     - Developed the fuel-rod objective loop with three live rods, two inert decoys, eight
+     possible sockets, a three-second scanning process, one-at-a-time carrying, and a
+     three-slot deposit rack.
+     - Added distinct feedback for live, inert, unscanned, rejected, duplicated, and
+     successfully deposited rods.
+     - Implemented Geiger-counter guidance and bounded Owl interference without
+     allowing interference to falsify a rod’s classification.
+     - Added a 20-second extraction holdout, emergency presentation, an opening exit,
+     explicit success/failure states, pause controls, and deterministic restart behavior.
+     - Implemented desktop movement features including sprinting, jumping, coyote time,
+     input buffering, acceleration, braking, air momentum, crouching, and leaning.
+     - Improved physical interaction by restoring complete Rigidbody and collision state
+     after dropping objects, supporting deliberate throwing, and adding forgiving but
+     occlusion-safe pickup targeting.
+     - Developed the Owl’s patrol, investigation, warning, chase, lost-sight, search,
+     disengagement, stimulus response, and NavMesh navigation behavior.
+     - Implemented Prototype 2’s readable route-adaptation system. The Owl now gathers
+     credible direct and inferred evidence about repeated West, Central, or East route use,
+     becomes suspicious, adapts its route choices, and weakens its prediction when the
+     player varies tactics.
+     - Added safeguards against omniscient AI, including perception-gated knowledge,
+     inferred-evidence rate limiting, last-credible-position tracking, confidence decay,
+     capped patrol bias, and forced patrol variety.
+
+                                 Career Development Department
+                                 P.O. Box 59911, Abu Dhabi, United Arab Emirates Tel. 02-5015919 | internship@adu.ac.ae
+
+
+Document Ref: YZPTJ-NFBPR-GXEAR-LXNIQ                                                                          Page 2 of 5
+     - Added developer telemetry and comparison controls: F1 for detailed operator
+     information, F2 for Geiger-interference testing, and F3 for adaptation-enabled versus
+     baseline comparison.
+     - Performed a deep greybox polish pass by reducing room symmetry, improving room
+     silhouettes, correcting door and wall alignment, removing Z-fighting risks, fitting portal
+     frames, and improving in-world signs and mission displays.
+     - Added fullscreen/windowed support and established the four-part development
+     versioning convention.
+     - Diagnosed editor-versus-build problems involving OpenXR, NavMesh startup,
+     physical movement, and high-refresh-rate input behavior.
+     - Expanded automated validation to 111 Edit Mode tests and six integrated Play Mode
+     tests, in addition to Windows build and launch smoke testing.
+     - Produced versioned Windows builds and supervisor-facing screenshots/video
+     material for demonstrating the prototype.
+
+     Skilled applied/learned:
+
+     - Unity 6 development using C# and the Universal Render Pipeline.
+     - Unity MCP-based editor automation, scene construction, testing, console inspection,
+     screenshots, and build production.
+     - Unity Input System, CharacterController movement, Rigidbody physics, collision
+     queries, camera control, and first-person interaction.
+     - Unity XR Interaction Toolkit and OpenXR project configuration.
+     - Unity AI Navigation, NavMesh agents, route blockers, line-of-sight testing, and
+     fallback waypoint navigation.
+     - Object-oriented design, SOLID principles, dependency inversion, interface-driven
+     architecture, and low-coupling system integration.
+     - Developing hot-swappable player controllers, threat navigation adapters, hardware
+     outputs, map definitions, and objective systems.
+     - Deterministic state machines, seeded configurations, complete reset behavior, and
+     reproducible testing.
+     - AI perception and behavior design using direct observations, inferred evidence,
+     confidence thresholds, state transitions, and bounded adaptation.
+     - Creating data-driven greybox environments with reusable room, corridor, portal,
+     landmark, and anchor definitions.
+     - UI/UX communication using TextMeshPro, operator overlays, player-facing mission
+     guidance, diegetic signs, and consistent terminology.
+     - Physics-state caching and restoration for reliable object pickup, carrying, dropping,
+     throwing, and depositing.
+     - Unity Test Framework usage through focused Edit Mode tests and integrated Play
+     Mode scene tests.
+     - Debugging frame-rate-dependent movement, standalone-build discrepancies,
+     OpenXR startup behavior, NavMesh initialization, and serialization warnings.
+     - Git and GitHub repository management, structured commits, pushes, development
+     versioning, and release artifact organization.
+     - Maintaining prototype, decision, risk, architecture, and implementation-handoff
+     documentation.
+
+
+                                 Career Development Department
+                                 P.O. Box 59911, Abu Dhabi, United Arab Emirates Tel. 02-5015919 | internship@adu.ac.ae
+
+
+Document Ref: YZPTJ-NFBPR-GXEAR-LXNIQ                                                                          Page 3 of 5
+     Knowledge gained:
+
+     - Learned how to structure a Unity prototype so desktop simulation, XR input, and
+     future physical hardware can share gameplay systems without becoming tightly
+     coupled.
+     - Learned that complete physical state restoration is essential when transferring
+     objects between scripted carrying and normal Rigidbody simulation.
+     - Learned how frame rate can affect seemingly unrelated gameplay behavior. The
+     standalone WASD issue was caused by CharacterController movement thresholds
+     becoming significant at high refresh rates rather than by missing keyboard input.
+     - Gained a stronger understanding of fair adaptive AI: an enemy should act only on
+     information it could plausibly observe or infer, and adaptation should create pressure
+     without making a player’s strategy unusable.
+     - Learned the importance of separating AI perception, evidence, decision-making,
+     state transitions, and navigation so each part remains testable and replaceable.
+     - Learned how tactical variety can act as counterplay by reducing an AI system’s
+     confidence in its previous prediction.
+     - Learned that developer telemetry and baseline toggles are important when
+     evaluating whether intelligent behavior is genuinely functioning or merely appearing
+     random.
+     - Learned to use deterministic seeds to combine replay variation with reproducible
+     debugging and automated testing.
+     - Learned that authored variation can provide replayability without the cost and
+     unpredictability of fully procedural level generation.
+     - Gained experience designing facilities around multiple viable routes, sight breaks,
+     landmarks, optional shortcuts, and non-jump critical paths.
+     - Learned that greybox presentation still requires careful attention to doorway
+     clearance, collider placement, room identity, lighting, text scale, and overlapping
+     surfaces.
+     - Learned that player-facing terminology should be simple and consistent; for example,
+     “scan” communicated the rod-identification action more clearly than the internal
+     engineering term “assay.”
+     - Learned that feedback devices require unique meanings. Heat confirms live rods,
+     vibration communicates Owl proximity, and wind communicates extraction progress.
+     - Gained an understanding of fault-tolerant hardware architecture, where disconnected
+     or failed physical devices must not interrupt the game loop.
+     - Learned that desktop first-person camera effects cannot automatically be transferred
+     into VR because headset comfort, physical posture, and camera ownership require
+     separate testing.
+     - Learned the difference between automated verification and human design validation.
+     Tests can prove logic, connectivity, reset behavior, and regressions, but they cannot
+     prove comprehension, comfort, tension, pacing, or perceived fairness.
+     - Improved my understanding of iterative prototyping: each pass should answer a
+     focused question, preserve measurable evidence, and avoid expanding into unrelated
+     gameplay systems.
+
+
+
+
+                                 Career Development Department
+                                 P.O. Box 59911, Abu Dhabi, United Arab Emirates Tel. 02-5015919 | internship@adu.ac.ae
+
+
+Document Ref: YZPTJ-NFBPR-GXEAR-LXNIQ                                                                          Page 4 of 5
+     Intern Signature: ______________________
+     Company Supervisor: __________________
+     ADU Faculty Supervisor: _________________
+
+
+                                Please forward this form to your faculty supervisor
+
+
+
+
+                                 Career Development Department
+                                 P.O. Box 59911, Abu Dhabi, United Arab Emirates Tel. 02-5015919 | internship@adu.ac.ae
+
+
+Document Ref: YZPTJ-NFBPR-GXEAR-LXNIQ                                                                          Page 5 of 5
+REF. NUMBER                                                      DOCUMENT COMPLETED BY ALL PARTIES ON
+YZPTJ-NFBPR-GXEAR-LXNIQ                                                   28 JUL 2026 13:26:45
+                                                                                           UTC
+
+
+SIGNER                       TIMESTAMP              SIGNATURE
+
+                             SENT
+EMAIL                        28 JUL 2026 13:26:45
+1086106@STUDENTS.ADU.AC.AE
+                             SIGNED
+                             28 JUL 2026 13:26:45
+                                                    IP ADDRESS
+                                                    94.59.4.117
+                                                    LOCATION
+                                                    ABU DHABI, UNITED ARAB EMIRATES
+
+
+
+
+    Signed with PandaDoc              PAGE 1 OF 1
+

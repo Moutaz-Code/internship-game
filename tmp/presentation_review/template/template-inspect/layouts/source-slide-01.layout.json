@@ -1,0 +1,1121 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/y90nupkv",
+    "id": "y90nupkv",
+    "slide": 1,
+    "layoutId": "/ppt/slideLayouts/slideLayout1.xml",
+    "layoutName": "Title Slide",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1040,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Custom 2",
+    "colors": {
+      "accent1": "#F04E98",
+      "accent2": "#ED7D31",
+      "accent3": "#A5A5A5",
+      "accent4": "#FFC000",
+      "accent5": "#5B9BD5",
+      "accent6": "#70AD47",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#44546A",
+      "lt2": "#E7E6E6",
+      "hlink": "#0563C1",
+      "folHlink": "#954F72"
+    },
+    "fontScheme": {
+      "name": "Office Theme",
+      "majorFont": {
+        "latinTypeface": "Calibri Light"
+      },
+      "minorFont": {
+        "latinTypeface": "Calibri"
+      }
+    },
+    "typefaces": [
+      "Arial",
+      "Calibri",
+      "Calibri Light",
+      "Tahoma"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout1.xml",
+      "name": "Title Slide",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/22",
+          "id": "22",
+          "name": "Rectangle 21",
+          "bbox": [
+            0,
+            0,
+            1040,
+            720
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle"
+          },
+          "fillColor": "#EE2737",
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/21",
+          "id": "21",
+          "name": "Graphic 19",
+          "bbox": [
+            201.78,
+            -3.54,
+            838.22,
+            729.72
+          ],
+          "geometry": "custom",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle"
+          },
+          "fillColor": "bg1",
+          "lineWidth": 0.76
+        },
+        {
+          "order": 3,
+          "kind": "image",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/23",
+          "id": "23",
+          "name": "Picture 8",
+          "bbox": [
+            31.05,
+            70.92,
+            292.41,
+            105.46
+          ],
+          "contentType": "image/png",
+          "asset": {
+            "assetId": "/ppt/media/image1.png",
+            "contentType": "image/png",
+            "byteLength": 6726
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image1.png",
+            "contentType": "image/png",
+            "byteLength": 6726
+          }
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/2",
+          "id": "2",
+          "name": "Title 1",
+          "bbox": [
+            448.39,
+            78.16,
+            429.97,
+            45.06
+          ],
+          "text": "Cover design",
+          "textPreview": "Cover design",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Cover design",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Cover design"
+                }
+              ]
+            }
+          ],
+          "fillColor": "bg1"
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/3",
+          "id": "3",
+          "name": "Subtitle 2",
+          "bbox": [
+            448.39,
+            123.21,
+            429.97,
+            27.85
+          ],
+          "text": "PowerPoint presentation",
+          "textPreview": "PowerPoint presentation",
+          "resolvedTextStyle": {
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "PowerPoint presentation",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "PowerPoint presentation"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 6,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/13",
+          "id": "13",
+          "name": "Text Placeholder 12",
+          "bbox": [
+            448.33,
+            168.27,
+            395.83,
+            26.83
+          ],
+          "text": "13 October 2019",
+          "textPreview": "13 October 2019",
+          "resolvedTextStyle": {
+            "autoFit": "none",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "13 October 2019",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "13 October 2019"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 7,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/8",
+          "id": "8",
+          "name": "Date Placeholder 3",
+          "bbox": [
+            71.5,
+            667.33,
+            234,
+            38.33
+          ],
+          "text": "2021",
+          "textPreview": "2021",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "2021",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "2021"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 8,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/10",
+          "id": "10",
+          "name": "Footer Placeholder 4",
+          "bbox": [
+            344.5,
+            667.33,
+            351,
+            38.33
+          ],
+          "text": "© 2021 Feras Abusharkh. ",
+          "textPreview": "© 2021 Feras Abusharkh.",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "© 2021 Feras Abusharkh. ",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "© 2021 "
+                },
+                {
+                  "index": 2,
+                  "text": "Feras"
+                },
+                {
+                  "index": 3,
+                  "text": " "
+                },
+                {
+                  "index": 4,
+                  "text": "Abusharkh"
+                },
+                {
+                  "index": 5,
+                  "text": ". "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 9,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout1.xml/11",
+          "id": "11",
+          "name": "Slide Number Placeholder 5",
+          "bbox": [
+            734.5,
+            667.33,
+            234,
+            38.33
+          ],
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "type": "master",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/2",
+          "id": "2",
+          "name": "Title Placeholder 1",
+          "bbox": [
+            71.5,
+            38.33,
+            897,
+            139.17
+          ],
+          "geometry": "rect",
+          "text": "Click to edit Master title style",
+          "textPreview": "Click to edit Master title style",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Click to edit Master title style",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Click to edit Master title style"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/3",
+          "id": "3",
+          "name": "Text Placeholder 2",
+          "bbox": [
+            71.5,
+            191.67,
+            897,
+            456.83
+          ],
+          "geometry": "rect",
+          "text": "Edit Master text styles\nSecond level\nThird level\nFourth level\nFifth level",
+          "textPreview": "Edit Master text styles | Second level | Third level | Fourth level | Fifth level",
+          "resolvedTextStyle": {
+            "vertical": 1,
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Edit Master text styles",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Edit Master text styles"
+                }
+              ]
+            },
+            {
+              "index": 2,
+              "text": "Second level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Second level"
+                }
+              ]
+            },
+            {
+              "index": 3,
+              "text": "Third level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Third level"
+                }
+              ]
+            },
+            {
+              "index": 4,
+              "text": "Fourth level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Fourth level"
+                }
+              ]
+            },
+            {
+              "index": 5,
+              "text": "Fifth level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Fifth level"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/4",
+          "id": "4",
+          "name": "Date Placeholder 3",
+          "bbox": [
+            71.5,
+            667.33,
+            234,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "2021",
+          "textPreview": "2021",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "2021",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "2021"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/5",
+          "id": "5",
+          "name": "Footer Placeholder 4",
+          "bbox": [
+            344.5,
+            667.33,
+            351,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "© 2021 Feras Abusharkh. ",
+          "textPreview": "© 2021 Feras Abusharkh.",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "© 2021 Feras Abusharkh. ",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "© 2021 "
+                },
+                {
+                  "index": 2,
+                  "text": "Feras"
+                },
+                {
+                  "index": 3,
+                  "text": " "
+                },
+                {
+                  "index": 4,
+                  "text": "Abusharkh"
+                },
+                {
+                  "index": 5,
+                  "text": ". "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Slide Number Placeholder 5",
+          "bbox": [
+            734.5,
+            667.33,
+            234,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/utg3698n",
+      "id": "9",
+      "name": "Title 1",
+      "bbox": [
+        869.19,
+        671.99,
+        168.57,
+        33.67
+      ],
+      "geometry": "rect",
+      "text": "January 2025",
+      "textPreview": "January 2025",
+      "resolvedFontSize": 37.33,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "vertical": 1,
+        "fontSize": 37.33,
+        "typeface": "Tahoma",
+        "color": "#0C2340",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "January 2025"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "January 2025",
+          "runs": [
+            {
+              "index": 1,
+              "text": "January 2025",
+              "fontSize": 18.67,
+              "typeface": "Arial"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0,
+          "lineSpacingPercent": 90000
+        }
+      ],
+      "fillColor": "bg1"
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/547294r6",
+      "id": "2",
+      "name": "Title 1",
+      "bbox": [
+        448.33,
+        64.85,
+        493.08,
+        45.06
+      ],
+      "text": "Internship in IT",
+      "textPreview": "Internship in IT",
+      "resolvedFontSize": 37.33,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "vertical": 1,
+        "fontSize": 37.33,
+        "typeface": "Tahoma",
+        "color": "#0C2340",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Internship in IT"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Internship in IT",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Internship in IT"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 90000
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sryl4zqx",
+      "id": "7",
+      "name": "TextBox 6",
+      "bbox": [
+        120.85,
+        168.27,
+        258.64,
+        203.57
+      ],
+      "geometry": "rect",
+      "text": "Computer Science and Information Technology Department\nCollege of Engineering",
+      "textPreview": "Computer Science and Information Technology Department | College of Engineering",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 6,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Computer Science"
+          },
+          {
+            "index": 2,
+            "text": "and Information"
+          },
+          {
+            "index": 3,
+            "text": "Technology"
+          },
+          {
+            "index": 4,
+            "text": "Department"
+          },
+          {
+            "index": 5,
+            "text": "College of"
+          },
+          {
+            "index": 6,
+            "text": "Engineering"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Computer Science and Information Technology Department",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Computer Science and Information Technology Department",
+              "fontSize": 26.67,
+              "typeface": "Arial",
+              "color": "bg1"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "College of Engineering",
+          "runs": [
+            {
+              "index": 1,
+              "text": "College of Engineering",
+              "fontSize": 26.67,
+              "typeface": "Arial",
+              "color": "bg1"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fu94fe98",
+      "id": "8",
+      "name": "Title 1",
+      "bbox": [
+        442.27,
+        222.2,
+        505.14,
+        92.91
+      ],
+      "geometry": "rect",
+      "text": "Software Developer in ALEF Education\n",
+      "textPreview": "Software Developer in ALEF Education |",
+      "resolvedFontSize": 37.33,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "vertical": 1,
+        "fontSize": 37.33,
+        "typeface": "Tahoma",
+        "color": "#0C2340",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Software Developer in ALEF"
+          },
+          {
+            "index": 2,
+            "text": "Education"
+          },
+          {
+            "index": 3,
+            "text": ""
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Software Developer in ALEF Education",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Software Developer in ALEF Education",
+              "typeface": "Arial"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0,
+          "lineSpacingPercent": 90000
+        }
+      ],
+      "fillColor": "bg1"
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wn6dc7eh",
+      "id": "10",
+      "name": "Subtitle 2",
+      "bbox": [
+        448.33,
+        417.98,
+        505.14,
+        237.16
+      ],
+      "text": "By: \nFeras Abusharkh\tID: 1072275\n\nSupervised By: \nDr. Mohamed ELHADAD",
+      "textPreview": "By:  | Feras Abusharkh\tID: 1072275 |  | Supervised By:  | Dr. Mohamed ELHADAD",
+      "resolvedFontSize": 26.67,
+      "resolvedTextStyle": {
+        "vertical": 1,
+        "fontSize": 26.67,
+        "typeface": "Arial",
+        "color": "#0C2340",
+        "alignment": "left",
+        "autoFit": "shrinkText",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 9,
+        "lines": [
+          {
+            "index": 1,
+            "text": "By:"
+          },
+          {
+            "index": 2,
+            "text": ""
+          },
+          {
+            "index": 3,
+            "text": "Feras AbusharkhID: 1072275"
+          },
+          {
+            "index": 4,
+            "text": ""
+          },
+          {
+            "index": 5,
+            "text": ""
+          },
+          {
+            "index": 6,
+            "text": ""
+          },
+          {
+            "index": 7,
+            "text": "Supervised By:"
+          },
+          {
+            "index": 8,
+            "text": ""
+          },
+          {
+            "index": 9,
+            "text": "Dr. Mohamed ELHADAD"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "By: ",
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "By: ",
+              "fontSize": 24,
+              "color": "tx1",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 2,
+          "text": "Feras Abusharkh\tID: 1072275",
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Feras",
+              "fontSize": 24,
+              "color": "tx1"
+            },
+            {
+              "index": 2,
+              "text": " ",
+              "fontSize": 24,
+              "color": "tx1"
+            },
+            {
+              "index": 3,
+              "text": "Abusharkh",
+              "fontSize": 24,
+              "color": "tx1"
+            },
+            {
+              "index": 4,
+              "text": "\t",
+              "fontSize": 24,
+              "color": "tx1"
+            },
+            {
+              "index": 5,
+              "text": "ID: ",
+              "fontSize": 24,
+              "color": "tx1",
+              "bold": true
+            },
+            {
+              "index": 6,
+              "text": "1072275",
+              "fontSize": 24,
+              "color": "tx1"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 4,
+          "text": "Supervised By: ",
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Supervised By: ",
+              "fontSize": 24,
+              "color": "tx1",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 5,
+          "text": "Dr. Mohamed ELHADAD",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Dr. Mohamed ELHADAD",
+              "fontSize": 24,
+              "color": "tx1"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 90000
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/432dwn6l",
+      "id": "29",
+      "name": "Slide Number Placeholder 28",
+      "bbox": [
+        42.87,
+        667.33,
+        42,
+        38.33
+      ],
+      "text": "1",
+      "textPreview": "1",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "vertical": 1,
+        "fontSize": 16,
+        "typeface": "Calibri",
+        "color": "#8B8D9D",
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "1"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "1",
+          "runs": [
+            {
+              "index": 1,
+              "text": "1",
+              "fontSize": 18.67
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    }
+  ],
+  "composeRuns": []
+}

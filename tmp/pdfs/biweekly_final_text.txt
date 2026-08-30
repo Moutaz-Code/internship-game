@@ -1,0 +1,289 @@
+                 Bi-weekly Intern Report
+
+     Name of Intern: Motaz Pharaon
+     Abu Dhabi University ID #: 1086106
+     Name of Organization: Pixoul Gaming
+
+     Week # 5
+     Week Beginning: July 27th 2026                                                                                                      Week Ending: July 31st 2026
+                                                                                   10:00AM
+
+                                                                                             10:30AM
+
+                                                                                                       11:00AM
+
+                                                                                                                 11:30AM
+
+                                                                                                                           12:00PM
+
+                                                                                                                                     12:30PM
+                            7:00AM
+
+                                     7:30AM
+
+                                              8:00AM
+
+                                                       8:30AM
+
+                                                                9:00AM
+
+                                                                          9:30AM
+
+
+
+
+                                                                                                                                               1:00PM
+
+                                                                                                                                                        1:30PM
+
+                                                                                                                                                                 2:00PM
+
+                                                                                                                                                                          2:30PM
+
+                                                                                                                                                                                   3:00PM
+
+                                                                                                                                                                                            3:30PM
+
+                                                                                                                                                                                                     4:00PM
+
+                                                                                                                                                                                                              4:30PM
+
+                                                                                                                                                                                                                       5:00PM
+
+                                                                                                                                                                                                                                5:30PM
+
+                                                                                                                                                                                                                                         6:00PM
+
+                                                                                                                                                                                                                                                  6:30PM
+
+                                                                                                                                                                                                                                                           7:00PM
+
+                                                                                                                                                                                                                                                                    7:30PM
+
+                                                                                                                                                                                                                                                                             8:00PM
+
+                                                                                                                                                                                                                                                                                       8:30PM
+      Thu Wed Tue Mon Sun
+      Fri
+      Sat
+
+
+
+
+     Total Working Hours: ______40______
+
+     Week # 6
+     Week Beginning: August 3rd 2026                                                                                                     Week Ending: August 7th 2026
+                                                                                   10:00AM
+
+                                                                                             10:30AM
+
+                                                                                                       11:00AM
+
+                                                                                                                 11:30AM
+
+                                                                                                                           12:00PM
+
+                                                                                                                                     12:30PM
+                            7:00AM
+
+                                     7:30AM
+
+                                              8:00AM
+
+                                                       8:30AM
+
+                                                                9:00AM
+
+                                                                          9:30AM
+
+
+
+
+                                                                                                                                               1:00PM
+
+                                                                                                                                                        1:30PM
+
+                                                                                                                                                                 2:00PM
+
+                                                                                                                                                                          2:30PM
+
+                                                                                                                                                                                   3:00PM
+
+                                                                                                                                                                                            3:30PM
+
+                                                                                                                                                                                                     4:00PM
+
+                                                                                                                                                                                                              4:30PM
+
+                                                                                                                                                                                                                       5:00PM
+
+                                                                                                                                                                                                                                5:30PM
+
+                                                                                                                                                                                                                                         6:00PM
+
+                                                                                                                                                                                                                                                  6:30PM
+
+                                                                                                                                                                                                                                                           7:00PM
+
+                                                                                                                                                                                                                                                                    7:30PM
+
+                                                                                                                                                                                                                                                                             8:00PM
+
+                                                                                                                                                                                                                                                                                       8:30PM
+      Thu Wed Tue Mon Sun
+      Fri
+      Sat
+
+
+
+
+     Total Working Hours: ______40______
+
+
+
+                                                                         Career Development Department
+                                                                         P.O. Box 59911, Abu Dhabi, United Arab Emirates Tel. 02-5015919 | internship@adu.ac.ae
+
+
+
+Document Ref: ______________________________                                                                                                                                                                                                                                          Page 1 of 5
+     Bi-weekly Report: 27 July - 7 August 2026
+
+     Assignments engaged in:
+     - Defined and implemented the v0.3.0.0 Readable Stealth and Contractor Counterplay prototype around one
+     clear question: whether players could understand and deliberately manage the Owl's sight, sound, hiding,
+     and distraction behavior without a stealth meter.
+     - Reworked Owl vision into three-sample Concealed, Noticeable, and Exposed evidence with graded
+     confirmation rates instead of instant binary detection.
+     - Unified crouching, walking, sprinting, landing, and object impacts through a normalized sound-stimulus path
+     with distance falloff and an explicit hearing threshold.
+     - Separated confirmed sight, accepted sound, last-seen position, last-heard position, search probes, and
+     patrol targets so the Owl acted on credible information rather than a hidden live player position.
+     - Protected full visual cover followed by quiet relocation as a dependable stealth rule, with current confirmed
+     sight taking priority over distracting sounds.
+     - Added nine portable metal distractions with single-impact gating, spatial audio, cooldown protection, and
+     complete reset behavior.
+     - Added three maintenance-test panels that create localized machinery distractions, visible active states,
+     cooldowns, and matching procedural audio.
+     - Expanded F1/F3 developer telemetry to expose visual samples, confirmation, movement noise, hearing
+     decisions, knowledge source, target position, route-adaptation state, and panel status.
+     - Validated v0.3.0.0 with 22 focused Edit Mode tests, 133 total Edit Mode tests, six Play Mode tests, a clean
+     Unity console, a Windows development build, and a launch smoke test.
+     - Designed the v0.4.0.0 Spatial Readability and Pursuit Topology experiment and locked an asymmetric
+     three-lobed nuclear facility connected by North Pipe Gallery, Utility Spine, and South Maintenance Channel.
+
+
+
+
+                                   Career Development Department
+                                   P.O. Box 59911, Abu Dhabi, United Arab Emirates Tel. 02-5015919 | internship@adu.ac.ae
+
+
+
+Document Ref: ______________________________                                                                                Page 2 of 5
+     - Replaced the previous rectangular greybox with the new facility while preserving the completed objective,
+     extraction, stealth, feedback, reset, and route-adaptation systems.
+     - Authored the facility's portals, objective sockets, room landmarks, cover grammars, maintenance panels,
+     and portable distraction placements from deterministic layout data.
+     - Built an explicit 20-node route model with three supported route profiles and two graph-distinct approaches
+     to every required objective location.
+     - Changed route evidence from world-position inference to authored connector zones and Owl nodes,
+     improving the fairness and explainability of adaptive pursuit.
+     - Implemented deterministic objective distribution with exactly one live fuel rod per facility lobe and two inert
+     decoys selected from unused sockets.
+     - Authored 18 Owl navigation and search nodes and expanded operator telemetry with spatial labels,
+     connector identity, route profile, target node, navigation mode, and fallback status.
+     - Validated v0.4.0.0 with 28 focused Edit Mode tests, 141 total Edit Mode tests, seven Play Mode tests, a
+     clean Windows build, a launch smoke test, and overhead and room-level evidence captures.
+     - Prepared scope, implementation, validation, risk, and agent-handoff documentation so the project could be
+     transferred between development machines without losing authority or known limitations.
+
+     Skills applied/learned:
+     - Unity 6 C# development with the Universal Render Pipeline, Unity AI Navigation, procedural spatial audio,
+     Rigidbody interaction, and deterministic scene generation.
+     - Designing graded visual-confirmation systems, hearing thresholds, evidence priority, last-known-position
+     tracking, and fair stealth counterplay.
+     - Creating reusable portable and fixed distraction systems with impact gating, cooldowns, spatial feedback,
+     and complete reset semantics.
+     - Graph-based level design using explicit rooms, connectors, route profiles, portal dimensions, objective
+     sockets, and authored AI nodes.
+     - Designing asymmetric greybox spaces around landmarks, sight breaks, recovery cover, alternative paths,
+     and readable circulation.
+     - Separating gameplay semantics from compatibility identifiers so existing systems could be preserved while
+     the level topology changed.
+     - Using deterministic seeds and constrained selection rules to guarantee meaningful objective distribution
+     and reproducible test cases.
+     - Writing focused Edit Mode tests, integrated Play Mode tests, topology validation, NavMesh reachability
+     checks, and reset regressions.
+     - Producing Windows development builds, launch smoke tests, console audits, runtime captures, and
+     implementation evidence.
+     - Maintaining scope documents, technical handoffs, decision records, known-risk registers, and
+     evidence-based cut lines.
+
+
+
+
+                                   Career Development Department
+                                   P.O. Box 59911, Abu Dhabi, United Arab Emirates Tel. 02-5015919 | internship@adu.ac.ae
+
+
+
+Document Ref: ______________________________                                                                                Page 3 of 5
+     Knowledge gained:
+     - Learned that readable stealth depends on causal feedback: the player should be able to distinguish current
+     sight, accepted sound, and remembered evidence instead of treating every enemy reaction as arbitrary.
+     - Learned that current confirmed sight must outrank a remote distraction; otherwise the player can
+     unrealistically redirect an enemy that is already watching them.
+     - Learned to evaluate sound after distance falloff and to separate the hearing threshold from the stronger
+     evidence threshold used for long-term route adaptation.
+     - Learned that full cover is only useful when the AI also supports last-seen memory, quiet relocation, search
+     behavior, and eventual disengagement.
+     - Gained experience designing procedural audio and local visual feedback so stealth information remains
+     diegetic rather than dependent on a HUD meter.
+     - Learned that a map's topology should be represented explicitly. Inferring route choice from world
+     coordinates can confuse destinations with the paths used to reach them.
+     - Learned that landmarks and room silhouettes support mental mapping, but connector identity and repeated
+     circulation patterns are equally important for navigation.
+     - Learned to use constrained deterministic generation to ensure every run exercises the intended experiment,
+     such as requiring one live objective in each lobe.
+     - Improved my understanding of pursuit design: patrol nodes, search probes, connector evidence, NavMesh
+     movement, and graph fallback each solve different problems and should remain independently testable.
+     - Learned that automated reachability proves technical connectivity but cannot prove that a player
+     understands the layout, feels safe carrying an object through it, or considers the Owl fair.
+     - Learned to preserve known limitations honestly. Desktop automation and launch smoke tests do not
+     validate XR comfort, spatial audio in a headset, haptics, physical effects, or uninformed player
+     comprehension.
+     - Learned that hard scope boundaries and ordered cut lists protect the prototype question when schedule
+     pressure encourages unrelated feature expansion.
+     - Gained experience producing implementation handoffs that record authority, ownership, validation
+     evidence, open risks, and exact restart procedures rather than relying on undocumented memory.
+
+
+
+
+                                   Career Development Department
+                                   P.O. Box 59911, Abu Dhabi, United Arab Emirates Tel. 02-5015919 | internship@adu.ac.ae
+
+
+
+Document Ref: ______________________________                                                                                Page 4 of 5
+     Intern Signature:
+
+     Company Supervisor:
+
+     ADU Faculty Supervisor:
+
+
+                                 Please forward this form to your faculty supervisor
+
+
+
+
+                                   Career Development Department
+                                   P.O. Box 59911, Abu Dhabi, United Arab Emirates Tel. 02-5015919 | internship@adu.ac.ae
+
+
+
+Document Ref: ______________________________                                                                                Page 5 of 5
+

@@ -1,0 +1,1 @@
+[a11y] wrote report -> C:\Users\Mou\Documents\Codex\Internship Game\tmp\final_report\template_audit\a11y.json | high=0 medium=2 low=0

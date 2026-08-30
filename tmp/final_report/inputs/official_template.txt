@@ -1,0 +1,360 @@
+Internship Report – IT System Administrator
+
+
+
+
+                        by
+
+                  Soheyl E. Fard
+
+
+               Bachelor of Science in
+
+              Information Technology
+
+
+
+
+          Abu Dhabi, United Arab Emirates
+
+                   January 2025
+                                       Acknowledgements
+
+I would like to sincerely show my gratitude towards Alef for choosing me to intern with them and
+
+always helping me throughout all my technical backfires. I would like to also thank Mr. Rajeh Khamis,
+
+IT Operations Manager for always lending his experiences and his aid to us as interns under his
+
+department.
+
+I would also like to thank Mrs. Fasila Haneefa, my supervisor in IT System Admin for always providing
+
+useful resources, suggestions, and timely material and documentation to help me with my development.
+
+I would also like to thank my faculty supervisor Dr. Abid Mehmood for his guidance and his aid in
+
+every phase of my internship. I would also like to thank the Computer Science and Information
+
+Technology department in Abu Dhabi University for all their course learnings and referrals to real life
+
+scenarios in which I have applied during my internship period.
+
+A special mention to Mr. Sajin Mohanan and Ms. Hasnae Taleb for considering me as a potential
+
+candidate as well as giving me an opportunity to grow and learn. Lastly, I would like to thank the entire
+
+System Admin and Alef team for their cooperation, friendly advice and always informative resolutions
+
+on everything.
+
+I am grateful for having met these skillful and knowledgeable people and will use all what I have learnt
+
+as a steppingstone in my professional career.
+
+
+
+
+                                                    i
+                                        Summary/Abstract
+
+
+The goal of the internship program as a core course in the Bachelor of Science in Information
+Technology, is to provide real-world experience and create a professional working environment for
+students to be able to learn and adhere to professional work ethics.
+
+
+Alef Education is a global education technology company that is based in the United Arab Emirates.
+They use a smart platform to engage with students and teachers alike to be able to achieve student
+learnability and classroom excellence using technology to full potential.
+
+
+The role that I was given after a week training was IT System admin, but unlike the general System
+Admin position, I was dealing with developing internal & external web-applications to help solve the
+issues and provide better solutions to outdated legacy maneuvers.
+
+
+
+
+                                                     ii
+                                                Table of Contents
+
+
+
+
+Acknowledgements ---------------------------------------------------------------------------------------------------- i
+
+Summary/Abstract ----------------------------------------------------------------------------------------------------ii
+
+Table of Contents ----------------------------------------------------------------------------------------------------- iii
+
+Weekly Timetable ---------------------------------------------------------------------------------------------------- iv
+
+1. Introduction ------------------------------------------------------------------------------------------------------- 1
+  1.1     Learning Goals ------------------------------------------------------------------------------------------------ 1
+  1.2     Learning Activities ------------------------------------------------------------------------------------------- 1
+
+2. Company Description ------------------------------------------------------------------------------------------- 2
+  2.1     About the Company ------------------------------------------------------------------------------------------ 2
+  2.2     Organizational Layout --------------------------------------------------------------------------------------- 2
+  2.2.1     Clients of the Company ----------------------------------------------------------------------------------- 3
+  2.3     Company History --------------------------------------------------------------------------------------------- 4
+
+3. Internship Activities --------------------------------------------------------------------------------------------- 5
+  3.1     Training -------------------------------------------------------------------------------------------------------- 5
+  3.2     Internal Web App Development ---------------------------------------------------------------------------- 5
+
+4. Overall Internship Experience -------------------------------------------------------------------------------- 6
+  4.1     Technical Skills --------------------------------------------------------- Error! Bookmark not defined.
+  4.2     Professional Skills ------------------------------------------------------ Error! Bookmark not defined.
+  4.3     Soft Skills ---------------------------------------------------------------- Error! Bookmark not defined.
+  4.4     University Applied Knowledge --------------------------------------- Error! Bookmark not defined.
+  4.5     Career Influence--------------------------------------------------------- Error! Bookmark not defined.
+
+5. Conclusion --------------------------------------------------------------------------------------------------------- 7
+
+References --------------------------------------------------------------------------------------------------------------- 8
+
+
+
+
+                                                             iii
+                Weekly Timetable
+
+
+
+Week     Activities
+
+         •   Activity 1
+         •   Activity 2
+Week#1
+         •   Activity 3
+
+
+         •   Activity 1
+         •   Activity 2
+Week#2
+         •   Activity 3
+
+
+         •   Activity 1
+         •   Activity 2
+Week#3
+         •   Activity 3
+
+
+         •   Activity 1
+         •   Activity 2
+Week#4
+         •   Activity 3
+
+
+         •   Activity 1
+         •   Activity 2
+Week#5
+         •   Activity 3
+
+
+         •   Activity 1
+         •   Activity 2
+Week#6
+         •   Activity 3
+
+
+
+
+                          iv
+1.        INTRODUCTION
+
+This section will provide insight as to what was the main objective of the internship and what was its
+outcomes. The main purpose of an internship program dedicated to students is to provide hands on
+professional experience in their respective career. This training period was used to gain technical, soft
+and hard skill experiences and can then be applied to the Resume as a professional experience.
+Following will be a list of Outcomes and Activities that have been achieved interning in Alef Education.
+
+
+1.1       Learning Goals
+
+      •   Being part of a team
+      •   Work-place Ethics
+      •   Professionalism
+
+
+
+1.2       Learning Activities
+
+      •   Full stack Development using latest technologies.
+      •   Developed ability to analyze, and design products based on stakeholder requirements.
+      •   Integrated RESTful API’s to create dynamic and interactive reports dashboard.
+      •   Facilitated IT System Admin training for newly employed staff.
+      •   Soft skills such as communication and time-management.
+
+
+
+
+                                                     1
+2.      COMPANY DESCRIPTION
+
+2.1     About the Company
+The fastest growing education technology company in the MENA Region. A revolutionary smart
+educational platform which replaces the old legacy teacher centric system to a student centric system.
+This not only guides the students but also provides each learning task in categories of games, questions,
+videos, audios and quizzes.
+
+
+The company offers students a smart online platform that runs within the school servers that host the
+platform. Moreover, they have web-services offered for the on-site support to manage users in the
+schools, raise tickets for different levels of network issues faced, and google admin console to add users
+to their respective school district to be able to access the drive.
+
+
+
+2.2     Organizational Layout
+
+
+
+
+                                    Figure 1: Organizational Chart
+
+
+                                                       2
+The company is divided into many major components that focus on producing content for the students to
+be able to learn and extending the learnability process by updating policies, devices, products,
+networking appliances and business deliverables. The Service delivery acts as a last layer of security and
+first layer of ticket escalation. The service delivery department also develop internal applications for any
+project that relates to issues on-site or to optimize and reduce redundant paper-based work and replace it
+with a smart application. The system admin team oversees creating innovative solutions to using google
+applications in a custom web portal that helps makes everything efficient and resolute.
+
+
+
+2.2.1 Clients of the Company
+
+
+
+
+                                        Figure 2: Alef Clients
+
+Department of Education & Knowledge, U.A.E.
+Focuses on enhancing the learnability process within schools and make efficient these enhancement for
+students, faculty and others alike.
+Ministry of Education, U.A.E.
+Focuses on quality of schools within sectors of the country and standardizes the school curriculum to
+always be updated.
+These are the clients in which have implemented the necessary software and hardware to be able to host
+company services and provide these services in their respective schools as of beginning of 2020. These
+schools all have the required software, hardware, networking appliances and student devices for grades
+5-9
+
+
+
+                                                     3
+2.3    Company History
+
+
+Whenever students graduate from schools, they reach a potential of dispute against schools in certain
+areas whether if a teacher was not a proper educator or if they were not so open to chat with the students.
+As youth, they are unable to understand what pressure it is to be a teacher, if a second of rudeness due to
+pressure is put in front of a youth, they will forever hate that class, subject and school. This legacy
+system where education is teacher centric has been all that we have known for generations. The need for
+change in the system… that is where the company came in.
+
+
+
+
+                                                     4
+3.     INTERNSHIP ACTIVITIES
+
+The activities that took place during my Internship in Alef was very dense and learning. It started with a
+weeklong training, which then was invested into action when working over there. The training was just
+the beginning as the practical work summed up to over 50% of the work. This section will brief not only
+the training that took place but also developing, mentoring, and provisioning data that took place.
+
+
+3.1    Training
+The training started at 9 AM – 6 PM with a 1-hour break in between which resulted in a very intensive
+training program for the new joiners. This training was mostly theoretical with practical.
+
+
+3.1.1 Service Desk
+
+3.1.2 Network
+
+3.1.3 IT On-site Coordinator
+
+3.1.4 IT System Admin
+
+
+3.2    Internal Web App Development
+After set of interviews which progressed to an IT System Admin intern, the requirements were a full
+stack developer which has the necessary skills within the scope and the framework that the company is
+using which are: ExpressJS, NodeJS, and MongoDB.
+
+
+3.2.1 Interview
+
+3.2.2 Programming Languages and Tools
+
+
+
+
+                                                    5
+4.        OVERALL INTERNSHIP EXPERIENCE
+
+It was a delight to be able to experience what it feels to be in a professional working environment with
+many peers of high skill caliber and it was a very honorable experience working on a project on my
+own, yet with all the advice and suggestions of my peers, it became a breeze. In this section I will be
+stating what have I been able to extract and gain from such an experience and how will it affect my
+future capabilities as a professional with impact to society.
+
+
+4.1       Technical Skills
+
+Discuss the technical skills you have gained through this project.
+
+
+4.2       Professional Skills
+
+Discuss the technical skills you have gained through this project.
+
+
+4.3       Soft Skills
+
+Discuss the soft skills you have gained through this project.
+
+
+4.4       University Applied Knowledge
+
+Discuss how the subjects you studied during your course helped you complete the project.
+
+
+4.5       Career Influence
+
+Discuss how the project is going to influence your career. Are you going to do something similar in the
+future?
+
+
+
+
+                                                      6
+5.   CONCLUSION
+
+
+
+
+                  7
+                                              References
+
+[1] Kaur M., Kaur S., and Singh G. “VEHICULAR AD HOC NETWORKS”, Journal of Global
+
+   Research in Computer Science, vol.3, no.3, pp. 61-64, March 2012.
+
+[2] U.S.   Department   of   Transportation    “Intelligent   Transportation   Systems   (ITS)   Home”,
+
+   http://www.its.dot.gov/index.htm, February 2012.
+
+
+
+
+                                                    8
+

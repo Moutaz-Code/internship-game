@@ -1,0 +1,259 @@
+                                              Internship
+                                      in Information Technology
+
+                                    Software Developer
+                                 at Arkan – Al Ain Cement
+ Computer Science and                     Factory
+Information Technology
+      Department
+ College of Engineering
+
+
+
+
+                          By:
+                            Ahmad Jasim Jasmy      ID: 1075928
+
+
+                          Supervised By:
+                            Dr. Mohamed Elhaddad
+1                                                                 January 2024
+ Outline
+Introduction
+Company Description
+    • Overview
+    • Organization Layout
+    • Clients
+Internship Activities
+   • Practical Training
+   • Theoretical Training
+   • Hardware Training
+Overall Internship Experience
+Conclusion
+
+                                2
+                                                Introduction
+
+Introduction
+
+
+
+
+ Introduction to Arkan Internship Experience
+ Overview of Internship at Arkan
+ Insights into Professional Growth at Arkan
+ Exploring Opportunities at Arkan
+ Experiencing the IT Department at Arkan
+                                                      3
+                               Company Desciption
+
+Company Description
+
+
+
+
+Emirates Steel Arkan – Al Ain Cement Factory
+                                            4
+                                                                     Company Desciption
+
+    Emirates Steel Arkan – Al Ain Cement Factory
+
+
+
+
+ Overview of Arkan: A Leading Building Materials Company
+ Established Presence: Operating in the United Arab Emirates
+ Core Operations: Cement Manufacturing and Building Materials Production
+ Commitment to Excellence: Emphasizing Quality and Innovation
+ Strategic Vision: Driving Sustainable Growth and Development
+
+
+
+                                                                                  5
+Evolving Emirates Steel Arkan
+
+
+
+
+  2024                          6
+                                      Company Desciption
+
+Emirates Steel Arkan – Al Ain Cement Factory
+
+              Clients of Arkan
+
+
+
+
+        Organizational Structure of Arkan
+
+
+
+
+                                                   7
+                                Company Desciption
+
+Emirates Steel Arkan – Al Ain Cement Factory
+              Famous Projects
+
+
+
+
+                                             8
+                                   Internship Activities
+
+       Internship Activities at Arkan
+
+Practical
+Training
+
+               Hardware
+                Training
+
+                               Theoretical
+                                Training
+
+                                                  9
+                                        Internship Activities
+
+
+                       Practical
+                       Training
+
+
+
+
+    Visual Studio      Windows Forms     Mimecast
+
+
+
+
+Microsoft Sql Server    Kali Linux     PuTTY Software
+                                                   10
+Practical
+            Internship Activities
+Training
+
+
+
+
+                          11
+            Internship Activities
+
+Hardware
+ Training
+
+
+
+
+                          12
+                                                                  Internship Activities
+
+                                 Theoretical
+                                  Training
+
+a. Network Devices            a. OSI                                              Layer
+    o HUB
+                              b. Cybersecurity Attacks
+    o Switch
+                                  o    Stealing session ids
+    o Bridge
+                                  o    Masking MAC addresses
+    o Gateway
+                                  o    Concept of Asynchronous JavaScript and XML (Ajax)
+    o Modem
+    o Router
+                              c. SAP, or Systems Applications and Products
+b. Network Types
+                                  o    Architecture
+    o Personal Area Network
+                                  o    Benefits of SAP
+    o Local Area Network
+                                  o    ERP in businesses
+    o Metropolitan Area Network
+                                  o    Key Features and Modules
+    o Wide Area Network
+                                                                                 13
+                                                   Overall Internship Experience
+
+
+ Overall Internship
+ Experience
+• Immensely rewarding internship experience at
+  Arkan
+• Collaboration with committed experts in the IT
+  department
+• Practical experience gained through a variety of
+  projects and duties
+• Continuous learning opportunities in hardware
+  configuration, software development, and
+  security implementation
+• Enhanced knowledge, skill set, and real-world
+  experience for future endeavors
+
+
+
+
+                                                                         14
+                                           Skills
+
+Technical, Professional and Soft Skills
+
+ Programming and Development
+ Database Management
+ Web Development
+ Front-end design
+ Networking
+ Time Management
+ Ethical Thinking
+ Communication Skills
+ Team Collaboration
+ Problem-Solving
+ Attention to Detail
+ Conflict Resolution
+
+                                          15
+                                                University Applied Knowledge
+
+
+
+University Applied Knowledge
+• Structured Programming (CSC 202)
+• Programming II (CSC 302)
+• Database Management (CSC 302)
+• Web Design (CSC 307)
+• Technical Communications for Workplace (FWS 305)
+• Data Communications and Networks (CSC 305)
+• Software Engineering (SWE 401)
+• Computer Ethics (ITE 390)
+• System and Network Administration (ITE 422)
+• IT Project Management (ITE 401)
+• Information Security (ITE 408)
+• Ethical Hacking (CSE 420)
+• Human-Computer Interaction (ITE 409)
+
+                                                                      16
+                                           Conclusion
+
+
+Conclusion
+• The training course at Arkan has
+  significantly       enhanced       my
+  proficiency in information technology
+  through hands-on activities and
+  theoretical    teachings,    providing
+  invaluable knowledge and skills
+  essential for addressing challenges
+  in everyday tasks.
+• Emphasis         on      cybersecurity
+  awareness has underscored the
+  importance of protecting company
+  assets    and     data,  fostering   a
+  heightened sense of accountability
+  and vigilance in maintaining a secure
+  workplace environment.
+
+                                               17
+Thank you for your time!
+                           18
+

@@ -1,0 +1,1021 @@
+i
+                                  Acknowledgements
+
+My sincere gratitude goes out to people who have helped me along the way and have been
+
+essential in my development. I want to start by expressing my gratitude to Ms. Fatima, my HR
+
+supervisor, for her constant support, direction, and inspiration during my internship at Arkan.
+
+Her advice and ideas have greatly influenced my professional development and advancement.
+
+Furthermore, I would like to express my sincere gratitude to Mr. Khalid, my IT supervisor, for
+
+his knowledge, tolerance, and guidance during my stay at Arkan. My technical abilities have
+
+improved thanks to his advice and support, which have also motivated me to pursue success in
+
+all I do.
+
+
+
+        In addition, I want to sincerely thank Dr. Mohammed ELHADDAD, my university
+
+supervisor, for his advice, knowledge, and unwavering support during my internship. My
+
+professional and educational aspirations have been greatly influenced by his guidance and
+
+support. Finally, I would want to express my appreciation to all of my university's instructors,
+
+whose commitment, knowledge, and enthusiasm have aided in both my professional and
+
+academic growth. Their steadfast encouragement and dedication to quality have been
+
+incredibly motivating and have assisted me in building a solid basis for my future aspirations.
+
+
+
+
+                                               ii
+                                  Summary/Abstract
+
+
+The training program at Arkan covered a wide range of subjects with the goal of improving
+abilities and understanding of security and information technology. Engaging in interactive
+workshops, covered a wide range of topics, including device setup, the creation of software,
+and network safety. Utilizing platforms and technologies such as Cisco switches, Visual Studio,
+and Kali Linux, hands-on tasks were carried out, offering insightful information on issues and
+situations that arise in everyday applications of information technology. Conceptual lectures
+on database administration, web design, and technological principles were also included to
+promote an integrated approach to problem-solving and to enhance knowledge. During the
+training, a strong focus was given on the value of ethical and cybersecurity standards as well
+as preventive measures to protect company property and reduce hazards.
+
+
+       In addition, the training initiative empowered me to keep up with new developments in
+industry and modern technology by fostering a culture of ongoing growth and education. A
+cooperative learning atmosphere was fostered through lively discussions and cooperative
+projects that promoted knowledge exchange and teamwork. Through the provision of
+foundational expertise, hands-on abilities, and a comprehension of the latest developments in
+cybersecurity and IT, Arkan's training program aims to strengthen the company's protection
+against cyber threats, improve its ability to innovate, and enable staff members to make a
+difference to the company's prosperity in a constantly changing technological environment.
+
+
+
+
+                                              iii
+                                        Table of Contents
+
+
+
+Acknowledgements------------------------------------------------------------------------------------- i
+
+Summary/Abstract ----------------------------------------------------------------------------------- iii
+
+Table of Contents ------------------------------------------------------------------------------------ iv
+
+Weekly Timetable ------------------------------------------------------------------------------------- v
+
+1. Introduction --------------------------------------------------------------------------------------- 6
+  1.1     Learning Goals -------------------------------------------------------------------------------- 6
+  1.2     Learning Activities --------------------------------------------------------------------------- 6
+
+2. Company Description --------------------------------------------------------------------------- 7
+  2.1     About the Company -------------------------------------------------------------------------- 7
+  2.2     Organizational Layout------------------------------------------------------------------------ 9
+  2.2.1     Clients of the Company ------------------------------------------------------------------- 10
+  2.3     Company History ---------------------------------------------------------------------------- 12
+
+3. Internship Activities ---------------------------------------------------------------------------- 14
+  3.1     Training --------------------------------------------------------------------------------------- 14
+
+4. Overall Internship Experience ---------------------------------------------------------------- 27
+  4.1     Technical Skills ------------------------------------------- Error! Bookmark not defined.
+  4.2     Professional Skills ---------------------------------------- Error! Bookmark not defined.
+  4.3     Soft Skills -------------------------------------------------- Error! Bookmark not defined.
+  4.4     University Applied Knowledge ------------------------- Error! Bookmark not defined.
+  4.5     Career Influence ------------------------------------------ Error! Bookmark not defined.
+
+5. Conclusion ---------------------------------------------------------------------------------------- 32
+
+References ------------------------------------------------------------- Error! Bookmark not defined.
+
+
+
+
+                                                     iv
+                       Weekly Timetable
+
+
+
+         Week                               Activities
+
+                   Familiarizing the Cement processing
+                   Field Trip to all the departments of Arkan
+Week#1
+                   Introduction to C sharp, Visual Studio and SQL Server
+
+                   Creating an Entry form for electrical department
+                   Implementation of connection between SQL server and
+Week#2              Visual Studio
+                   Configuration of Cisco office phones owned by the
+                    departments
+                   Established an employee entry form for User Security
+                   Established an employee entry form for Service Entry
+Week#3
+                   Established an employee entry form for Shutdown
+                    Maintenance
+                   Implementing various tools for front end designing using
+                    Visual Studio
+                   Implementation of Auto generated primary key in SQL
+Week#4
+                    Database
+                   Configurations of switches and ports in the company
+
+
+                   Securing session cookies in Kali Linux
+Week#5             Involving in System Application and Products (SAP)
+
+
+
+                   Creating user registration and login system.
+                   Development of Access cobtrols
+Week#6
+                   Troubleshooting of company devices
+
+
+
+
+                                  v
+1.       INTRODUCTION
+
+The internship at Arkan - Al Ain Cement Factory proved to be a life-changing event, providing
+a unique chance to fully immerse oneself in the complex workings of the electrical department.
+The work was characterized by a purposeful focus on database management and programming,
+where each project served as an opportunity for real-world experience and skill development.
+The paper aims to provide an in-depth account by exploring every aspect of the intern's crucial
+role, the range of duties performed, and the skills that were acquired throughout the course of
+the internship. The emphasis in the next parts will be on analyzing the contributions made, the
+difficulties faced, and the priceless knowledge gained from this comprehensive dive into the
+IT environment of Arkan – Al Ain Cement Factory.
+
+
+ 1.1      Learning Goals
+
+        Mastering Programming Languages
+        Database Management
+        Time Management
+        Task Management
+        Infrastructure Configuration
+        Web Development
+        Project Management
+        Troubleshooting and Problem Solving
+        Workplace Ethics and Professionalism
+
+
+
+ 1.2      Learning Activities
+
+        Develop and carry out small-scale C# projects pertaining to the department of
+         electrical systems.
+        Enhance the effectiveness of SQL Server queries, indexes, and database schema.
+        With an emphasis on Cisco switches and ports, virtual environments are used to
+         simulate network configurations.
+        Execute small-scale web design projects with a front-end focus.
+
+                                                6
+          Improve soft skills like social and communication skills.
+          Involve in heavy teamwork project and improve collaboration.
+          Increase my connection with the employees at Arkan and learn from their experience.
+          Take part in industry-related issues or problem-solving exercises.
+          Use critical thinking abilities to evaluate problems and suggest workable fixes.
+          Examine any new tools or technologies that are applicable to the IT industrial
+           infrastructure.
+
+
+
+2.         COMPANY DESCRIPTION
+
+  2.1        About the Company
+
+
+One of the mainstays of Emirates Steel Arkan's Building Materials division, Al Ain Cement
+Factory is a significant player in the cement industry. With its origins dating back to the
+founding of Emirates Cement Factory in 1978, the business saw a radical transition and adopted
+cutting-edge technology with the opening of a new facility in 2014. As a vital component of
+Arkan Building Materials, the facility has come to represent the Emirates Steel Arkan's
+unwavering dedication to quality as well as technological breakthroughs in the cement sector
+[1].
+
+
+Located in Al-Ain, Abu Dhabi, this advanced cement manufacturing facility has an astounding
+10,000 metric tons of output capacity per day—a significant improvement over the previous
+facility. The opening of a new cement plant worth AED1.3 billion ($354 million) marked a
+crucial turning point in the company's growth direction. This enormous undertaking increased
+output capacity from 900,000 tonnes year to an incredible 4 million tonnes annually. With this
+development, Arkan is demonstrating its dedication to servicing the growing demand for
+premium cement in the region and making the plant the biggest of its kind in the United Arab
+Emirates. The General Holding Corporation (Senaat) of the Abu Dhabi government owns 51%
+of Arkan, with the remaining share being listed on the Abu Dhabi Securities Market. This
+ownership structure is what makes Arkan unique. This strong ownership structure supports the
+company's strategic growth plans and stability by reflecting a well-balanced combination of
+market involvement and support from the government [1].
+
+
+                                                  7
+Arkan's aim is in line with the worldwide mandate to attain net-zero emissions by 2050, which
+drives the company's unwavering quest of achievement, adherence to regulations, and social
+responsibility. But the company's passionate dedication to Energy Performance Improvement
+(EnPI) sets it apart even more. In addition to demonstrating Arkan's commitment to
+environmental stewardship, its efforts to increase energy efficiency establish the company as a
+progressive leader in the industry, capable of navigating the possibilities and difficulties of a
+sustainable future. In the ever-changing world of cement production, Arkan - Al Ain Cement
+Factory embodies a harmonious fusion of tradition, innovation, and environmental practices
+[2]. Figure 1 and Figure 2 displays Al Ain Cement Factory whereas Figure 3 shows the logo.
+
+
+
+
+                                Figure 2: Arkan - Al Ain Cement Factory (a)
+
+
+
+
+                                Figure 1: Arkan - Al Ain Cement Factory (b)
+
+
+
+
+                                                    8
+                                 Figure 3: Emirates Steel and Arkan Logos
+
+
+
+ 2.2     Organizational Layout
+
+
+
+
+The organizational structure of Arkan is intended to maximize operational effectiveness and
+foster efficient decision-making among various functional departments. The primary person in
+charge of guiding the business toward its long-term objectives and strategies is the general
+manager. A varied set of departmental managers, each responsible for overseeing specific
+duties vital to the company's performance, collaborate with the general manager.
+
+
+The supply chain manager is in charge of managing the entire logistics and purchasing process,
+making sure that resources and materials needed for production are delivered on schedule. The
+IT manager is responsible for overseeing the organization's IT setup and putting creative ideas
+into practice to improve productivity and operational capacity.
+In order to guarantee that standards of financial management are maintained, the financial
+manager is essential in supervising financial activities, such as planning, budgeting, and
+accounting. The job of the quality assurance manager is to protect the business's brand and
+
+
+                                                  9
+satisfy customers by upholding high expectations for cement quality and adherence to
+regulations.
+In addition to supervising HR activities including recruiting, educating, and employee
+relations, the HR and Administration Manager also handles office duties to ensure the company
+runs smoothly on a daily basis. In order to successfully accomplish goals for production while
+upholding quality standards, the production manager oversees all production-related activities
+and optimizes the manufacturing procedures.
+Eventually, the maintenance manager is in charge of limiting unavailability and optimizing
+operational dependability by implementing proactive maintenance plans to guarantee the
+dependability and effectiveness of manufacturing assets and machinery.
+When all factors are considered, this organizational structure shows a unified and cooperative
+strategy for administration, where each manager uses their specialization to help Arkan
+accomplish its overarching aims and objectives.
+
+
+
+
+  2.2.1 Clients of the Company
+
+
+
+
+                              Figure 4: Main Clients of Emirates Steel Arkan
+
+Tremix
+With a sizable fleet of transit mixers, cutting edge automated mixing facilities, and highly
+skilled staff, TREMIX has been helping and encouraging the local and adjacent building
+industry in Qatar. Apart from its production facilities located in Al Ain, Abu Dhabi, Dubai,
+Sharjah, and Ajman, TREMIX is capable of providing superior ready-mix concrete through
+
+
+
+
+                                                  10
+fully autonomous mobile plants that can be assembled on-site at any location for the project
+[3]
+PASCO Paving Stones Co.
+The company makes concrete components for buildings and roads. With just one multilayer
+device at first, PASCO has subsequently grown. PASCO currently operates 4 additional
+manufacturing facilities in addition to 12 primary manufacturing units. Paving stones,
+kerbstones, containers, blocks, modular blocks, and other concrete components are produced
+by PASCO [4].
+Al Jazeera Factory
+Al Jazeera Emirates Group (JEG) was founded in 1990 and has grown to be a well-known
+manufacturing lead group, working with the most modern technology available to manufacture
+an extensive variety items and machinery for various business purposes both nationally and
+worldwide [5].
+Pioneer Ready Mix
+Established in 1996, Pioneer Ready Mix Manufacturing - Sole Proprietorship L.L.C. is a 100%
+locally owned firm operating in the emirates of Abu Dhabi and Dubai. In a brief period of time,
+the business was acknowledged as one of the leading producers and exporters of high-quality
+ready-mix concrete in the United Arab Emirates [6].
+Al Radha Group
+Al Radha Group is one of the fastest-growing construction-related trade companies in the area.
+It was founded in 1994 and is based in the United Arab Emirates (UAE), a major international
+trade center. Their knowledge and abilities in dealing building materials such as wood, steel,
+and cement are extensive. Furthermore, the firm has been selling oil and diesel in the Middle
+East extremely successfully. Beginning as a little commercial business, the business is growing
+stronger, gaining more territory in the area, and becoming the leading construction supplies
+company in the cement trade [7].
+Eastern Tower Contracting
+Eastern Tower Contracting, a commercial construction family business was found in Abu
+Dhabi in 2012. The business has completed general contracting projects including completing
+tasks for properties, villas, and rehabilitation projects.
+Eastern Tower Contracting offers autonomous engineering solutions for PV solar systems.
+Eastern Tower Contracting is at present working on obtaining the necessary authorization for
+offering solar system design, purchasing, building and running, and maintenance services [8].
+
+                                                 11
+As a major player in the UAE's industrial environment, Emirates Steel Arkan has contributed
+significantly to the infrastructural and economic growth of the nation through a number of
+noteworthy projects. These initiatives cover a range of industries, including production, energy,
+and construction, demonstrating the company's broad skills and dedication to advancing
+regional development [9]. The following projects are some of the well-known projects in UAE.
+
+
+    Burj Khalifa
+    Sheikh Zayed Bridge
+    Dubai Metro Khalifa Port
+    Suez Canal
+    Fulham Football Ground
+    Louvre Abu Dhabi
+    Yas Island
+    Emirates Palace
+    Ferrari World
+    AD International Airport
+    Guggenheim Museum
+
+
+
+
+  2.3    Company History
+The current Al Ain Cement facility under Arkan was modeled after the Emirates Cement
+Factory, which was once located in Al Ain. But claiming rising gas and electricity costs, Arkan
+decided to shut down the Emirates Cement facility forever. After being temporarily closed in
+late 2016, the business has officially announced that activities at this older location have ended.
+The more contemporary Al Ain Cement plant, which is currently running at almost full
+capacity, is now the site of manufacturing operations. The corporation expects to save about
+US$12 million in costs a year as a result of this calculated decision to close the older factory.
+With its start of operations in the 1970s, the Emirates Cement factory was historically
+significant as one of the nation's first cement producing facilities [10]. Figure 5 shows the
+previous cement factory in Al Ain.
+
+
+
+
+                                                12
+                        Figure 5: Emirates Cement Factory (Old Cement Factory)
+
+
+
+
+Figure 6 illustrates the timeline of Emirates Steel and Arkan companies before
+and after merging as one entity.
+
+
+
+
+                  Figure 6: Timeline of Partnership between Arkan and Emirates Steel
+
+
+
+
+                                                  13
+3.      INTERNSHIP ACTIVITIES
+
+During my internship at Al Ain Cement Factory, a significant organization under Emirates
+Steel Arkan's Building Materials division, I made a significant contribution to the exciting field
+of cement production. my responsibilities included everything from database management and
+programming to infrastructure configuration. I was able to utilize and improve my abilities in
+practical situations thanks to this priceless experience, which also gave me insights into how
+technology and cement production interact inside this top-tier organization. Th following
+section presents my work experience at Arkan.
+
+
+  3.1     Training
+My internship at Al Ain Cement Factory lasted six weeks, starting on January 2, 2024, and
+ending on February 19, 2024. I put in 240 hours of total work for the internship, working from
+7:00 AM to 3:00 PM, Monday through Friday, with a short half-hour break. The in-person
+training style encouraged direct participation and practical learning. In order to ensure a
+thorough examination of both the physical and virtual components of IT infrastructure, the
+internship was methodically divided into three main segments: hardware training, software
+training and theoretical training. Furthermore, the training featured theoretical elements that
+offered crucial perspectives on the technologies and ideas supporting IT industrial
+infrastructure.
+
+
+Practical Training
+
+     3.1.1 Visual Studio Platform
+
+
+
+
+                                      Figure 7: Visual Studio Logo
+
+Software builders utilize Microsoft's Visual Studio, a feature-rich development tool (IDE), to
+create a wide range of programs for many platforms. It provides a smooth framework for
+coding, troubleshooting, testing, and publishing together with a comprehensive set of tools and
+
+
+                                                  14
+features that streamline the entire stage of development [11]. Few important elements in Visual
+Studio are:
+
+
+       Solution Explorer
+Gives an organizational overview of the files, folders, and relationships that make up the
+project structure.
+       Code Editor:
+This is the primary code editor for C#, with syntax emphasizing code completion.
+       Toolbox:
+Includes an assortment of elements and widgets that, when utilized on an application's
+graphical user interface, can be dragged and dropped into the design interface.
+       Properties Pane:
+Enables designers to change settings and preferences by displaying the properties of the
+specified project, file, or element.
+
+
+Below given Figure 8 and Figure 9 shows the code implemented in Visual studio to save the
+user input into the database and search the data stored in database respectively.
+
+
+
+
+                                Figure 8: Visual studio Code to save user input
+
+
+
+
+                                                     15
+                        Figure 9: Visual Studio Code to search user input data
+
+
+
+  3.1.2 Windows Forms
+
+
+
+
+                                      Figure 10: Microsoft Forms Logo
+
+
+
+
+Microsoft's.NET framework contains Windows Forms, also referred to as WinForms, which is
+a graphical user interface (GUI) framework that is incorporated into Visual Studio for C#
+programming. With WinForms, we can design sophisticated user interfaces for desktop
+applications running on Windows-based platforms. It gives designers a collection of pre-made
+elements and controls that they can simply drag and drop onto a form to quickly construct the
+graphical elements of their apps [12].
+Key Components of Visual Studio's Windows Forms:
+      Forms: A Windows Forms program's primary control box, or application window.
+      Developers can adjust the size, color, and actions of forms and controls using the
+       Properties Window.
+
+
+                                                     16
+      Toolbox: Provides a selection of elements and controls that may be dropped onto a form
+       to construct the user interface.
+      Controls: A variety of user interface components that are positioned on a form to
+       interact with users, such as buttons, textboxes, labels, and more.
+      Using an event handler, developers may link code to particular occurrences, like as
+       button clicks or form loads, to create interactive and reactive apps.
+
+
+Figure 11 and Figure 13 shows the front end designed for the application form using Microsoft
+Forms. Figure 12 shows the initial homepage design for the Electrical Services Department.
+
+
+
+
+                           Figure 11: Front end interface of Service Entry Form
+
+
+
+
+                            Figure 12: Font end interface of initial dashboard.
+
+
+                                                    17
+                        Figure 13: Font end interface of User Security Entry Form
+
+
+  3.1.3 PuTTY Software
+
+
+
+
+                                              Figure 14: PuTTY Logo
+
+PuTTY is an open-source, free program that functions as a network file transfer tool, serial
+console, and terminal simulator. PuTTY, which was first created for Windows but is now
+accessible on many other platforms, is a popular tool for safe remote entry to servers, systems,
+and network equipment. Its main goal is to enable a trustworthy and safe connection via serial
+connection, Telnet, and SSH (Secure Shell) protocols [13].
+
+
+                                                    18
+Figure 15 shows the initial configuration done on PuTTY software before configuring the core
+switch.
+
+
+
+
+                            Figure 15: Initial Configuration of PuTTY Software
+
+
+
+
+An essential tool in configuring the company's switches was PuTTY, a popular terminal
+emulator. Using PuTTY, I was able to get into the switches' command-line interface and run
+the commands required to do things like make user accounts, create passwords, and categorize
+users. The company's network infrastructure's effective supervision of network access and
+security protocols was made possible by this simplified approach to switch operation.
+
+  3.1.4 Kali Linux
+
+
+
+
+                                        Figure 16: Kali Linux Logo
+
+
+
+                                                   19
+Kali Linux is an ethical hacking, security testing, and digital forensics-focused Linux
+distribution built on the Debian platform. Competitive Security, a top supplier of penetration
+tests and information security training, created and maintains it. Kali Linux is well known for
+having a large toolkit designed for amateurs and professionals in cybersecurity, which makes
+it an effective platform for evaluating computer system security [14].
+
+
+
+
+                               Figure 17: MAC Address Manipulation in Kali
+
+
+
+Kali Linux was employed as a platform to investigate the procedure of MAC address hijacking
+and its possible consequences for the organization, as illustrated in the figure. Throughout the
+training, the need of comprehending this approach and putting precautions in place to avoid it
+was emphasized.
+To elaborate, Kali Linux provided a realistic setting for modeling and comprehending the
+procedures involved in MAC address hijacking, an attack frequently utilized for illegal network
+access or stealing one's identity. I was able to understand the seriousness of these security flaws
+and the possible threats they represent to network security and company data by getting some
+first-hand experience with Kali Linux.
+
+
+
+
+                                                   20
+  3.1.5 Microsoft SQL Server
+
+
+
+
+                                  Figure 18: Microsoft SQL Server Logo
+
+
+
+Microsoft's SQL Server is a relational database management system (RDBMS)
+that offers an extensible and all-inclusive platform for handling databases,
+querying, and security. Organizations utilize it extensively for data access,
+preservation, and processing across a range of systems and applications. The
+structured query language (SQL), an international standard to handle and
+querying relational databases, is supported by SQL Server [15].
+
+
+The Electrical Services Department Database was created in SQL Server 2019 and is the central
+location for user data and organizational features. The database was used to register users based
+on their relationship to the employees of the Electrical Department. As necessary user
+information was obtained straight from the database during the use of different features, entry
+and verification processes operated without an issue. The Electrical Services Department was
+able to control user access permissions more effectively and complete duties more quickly due
+to this system, which enhanced data security and general operational effectiveness.
+
+
+Figure 19 demonstrates the code implemented to initialize the connection between SQL
+databases. Figure 20 and Figure 21 show the codes to insert input into the database and retrieve
+the user data respectively.
+
+
+
+
+                                                  21
+  Figure 19: Initializing Database Connection
+
+
+
+
+Figure 20: Inserting user details into the database
+
+
+
+
+ Figure 21: Retrieving user data from database
+
+
+
+
+                           22
+  3.1.6 Mimecast
+
+
+
+
+                                   Figure 22: Mimecast Logo
+
+Mimecast, a top cloud-based solution for internet safety and email privacy, is essential for
+protecting businesses from email-borne attacks and maintaining the authenticity of
+communications. Its extensive feature set, which includes email screening, detection of risks,
+loss of information mitigation, and email consistency services, underscores its significance in
+the security domain. Mimecast enhances an organization's overall security strategy by
+preventing possible safety risks and data breaches through effective screening out fraudulent
+content, phishing efforts, and spam emails. In addition to creating security policies and
+adjusting settings to conform to organizational security standards, the adoption of Mimecast
+entails connecting its features with email servers and user devices during the device
+configuration phase. Below given Figure 23 shows a sample 0f the Mimecast dashboard.
+
+
+
+
+                                Figure 23: Sample Mimecast Dashboard
+
+
+
+
+                                                23
+Theoretical Training
+During my internship, my IT supervisor made the initiative to teach me important theoretical
+concepts. He clarified important computer science topics that were applicable to our job. He
+also introduced me to new developments in the sector and cutting-edge technologies.
+Throughout my time at the company, this teaching methodology not only helped me gain a
+deeper comprehension of basic computer science concepts, but it also kept me up to date on
+the most recent developments, resulting in an extensive educational experience. The following
+section illustrates the main topics that were explained theoretically during the training session.
+
+
+   a. Network Devices
+           o HUB
+           o Switch
+           o Bridge
+           o Gateway
+           o Modem
+           o Router
+   b. Network Types
+           o Personal Area Network
+           o Local Area Network
+           o Metropolitan Area Network
+           o Wide Area Network
+   c. OSI Layer
+   d. Cybersecurity Attacks
+           o Stealing session ids
+           o Masking MAC addresses
+           o Concept of Asynchronous JavaScript and XML (Ajax)
+   e. SAP, or Systems Applications and Products
+           o Architecture
+           o Benefits of SAP
+           o ERP in businesses
+           o Key Features and Modules
+
+
+
+
+                                               24
+Hardware Training
+
+To elaborate on my hardware training experience at the organization, I was given thorough
+instructions on hardware structure, setup, and management. Office phones, network routers,
+servers, and other crucial parts of the company's computer network were among the physical
+equipment covered in the training. I was able to gain experience in doing activities like
+deployment, troubleshooting, and improvement by practicing the effective use of hardware
+equipment through supervised activities and actual simulations. With the practical skills I need
+to efficiently oversee and care for the company's hardware facilities, this physical hardware
+learning enhanced my conceptual understanding of IT principles.
+
+
+Using Cisco phones, I embarked on the task of setting up office phones for each department
+staff. In addition, I was in charge of setting up and establishing the company's core switch,
+guaranteeing seamless communication and access to the network. I got to see the IT server
+room as part of my practical experience, where I learned about the many servers and parts kept
+there. Knowing more about the server network and how it supports company operations was
+made possible by this in-depth training.
+
+
+Figure 24 shows the Industrial IT infrastructure of Arkan. This system analyze all the sensors
+in factory and closely monitors all operations of the factory 24/7.
+
+
+
+
+                       Figure 24: Industrial Monitoring System of Arkan in Control Room
+
+
+                                                     25
+Figures 25 and 26 shows the core switches and devices used in the company.
+
+
+
+
+                              Figure 25: Switches and Routers of Arkan (a)
+
+
+
+
+                               Figure 26: Switches and Routers of Arkan (b)
+
+
+
+
+                                                26
+                                Figure 27: Servers stored in the Server room.
+
+
+
+Figure 27 demonstrates the serves of Arkan. The field visit to server room benefited me with
+abundance of knowledge regarding servers, back up storages, cooling system, monitoring
+system, alarming systems etc.
+
+
+
+
+4.     OVERALL INTERNSHIP EXPERIENCE
+
+Serving as an intern at Arkan has been immensely rewarding and enlightening; it has given me
+practical experience, insightful knowledge, and chances for professional development. I had
+the honor to collaborate with committed experts who helped me with a variety of projects and
+duties inside the IT department during my internship. Both my academic and personal growth
+was aided by the difficulties and learning possibilities I encountered every day, which ranged
+from configuring hardware equipment to creating software solutions and putting safety
+precautions in place. The encouraging atmosphere and the variety of projects I worked on
+
+                                                     27
+helped me broaden my knowledge of business procedures, develop my skill set, and obtain
+real-world experience that would surely help me in my future undertakings.
+
+
+4.1        Technical Skills
+
+         Programming and Development:
+          Proficiency with the computer language C#.
+          Created Windows Forms applications with integrated features including status
+          functions and shutdown maintenance for the electrical department. links between SQL
+          Server and the front end were put in place for efficient data handling.
+
+
+         Database Management:
+          Instructions for the schema and SQL Server functions.
+          Developed a registration form for the Security Service user, inserting, updating, and
+          retrieving data using SQL Server. Used a variety of SQL schema commands to
+          efficiently manage and structure the database.
+
+
+         Web Development:
+          Front-end design
+          Developed and placed into use front-end functionalities for the organization's website.
+          Included SQL Server for the website's constantly changing information administration.
+
+
+         Networking:
+          Configuring Cisco switches and troubleshooting networks.
+          Configured the company's Cisco switches and ports. generated network configurations
+          with virtual environments, problem solving, and resource optimization.
+
+
+4.2        Professional Skills
+
+         Time Management:
+
+          Adequate time management was necessary to balance several tasks and meet
+          task deadlines. I carefully planned my time so that I could meet deadlines and take care
+          of important issues right away. This ability was essential for effectively managing
+
+
+                                                 28
+          workloads. My time management abilities were also enhanced by maintaining my
+          office hours and arriving for work on time.
+         Critical Thinking:
+
+          In my work, critical thinking was extremely important, particularly when determining
+          possible security flaws and evaluating the effects of system modifications. I constantly
+          used situation analysis and essential information evaluation to make well-informed
+          conclusions.
+         Professionalism:
+
+          Maintaining professionalism was essential to what I did. I made a positive and
+          courteous work atmosphere by managing confidential information properly,
+          communicating with coworkers in a professional manner, and showing respect for their
+          time and workplaces.
+         Ethical Thinking
+          Maintained moral principles by treating private information with honesty and secrecy.
+          Made choices with ethics in mind, making sure that all professional encounters were
+          truthful and equitable.
+
+
+4.3        Soft Skills
+
+         Communication Skills:
+
+          I regularly exhibited my ability to communicate effectively by writing brief emails or
+          reports to team members to keep them informed about the status of the project. I took
+          an active part in meetings, sharing my thoughts and working with colleagues and
+          supervisor to debate and improve project plans. In addition, I made sure the staff could
+          easily access and understand the manuals of codes and designs.
+         Team Collaboration:
+
+          I actively participated in teamwork throughout my internship, collaborating effectively
+          on a variety of cross-functional projects with staffs, administrators, and support
+          personnel. By offering support, encouraging open communication of ideas, and creating
+          an atmosphere where information and insights were openly shared, I helped to create a
+          healthy environment.
+         Problem-Solving:
+
+                                                 29
+          I had to debug technical problems and resolve software conflicts as part of my job. I
+          used my problem-solving abilities to find the sources of the issues and put workable
+          fixes in place. This involved resolving issues with system setups and coming up with
+          creative solutions to get over barriers in the implementation process.
+         Attention to Detail:
+
+          I was quite particular about details when it came to matters like code audits and system
+          setups. To add to the overall standard of the work, I carefully checked setups for
+          accuracy, examined the code to guarantee accuracy, and created thorough error-free
+          documentation.
+         Conflict Resolution
+          Resolved disputes within the group by encouraging agreement, managing disputes, and
+          actively listening to worries. Resolved disagreements in a way that promoted a positive
+          team environment.
+
+
+
+
+4.4        University Applied Knowledge
+
+My broad skill set, which I developed during my undergraduate course, came in quite handy
+when working on projects at Arkan
+
+Structured Programming (CSC 202): This course gave me the basic knowledge of
+programming ideas and problem-solving techniques I needed to write effective, well-organized
+code for a variety of tasks inside projects.
+
+Programming II (CSC 302): I was able to address more difficult coding issues that arose
+during the course of project creation by deepening my understanding of sophisticated concepts
+and methods.
+
+Database Management (CSC 302): This course gave me an extensive knowledge of
+database structure, execution, and maintenance. This information was crucial for building and
+managing databases so that project databases could maintain and access data effectively.
+
+Web Design (CSC 307): I was able to construct simple user interfaces for online-based
+elements of projects at Arkan by developing my skills to create visually beautiful and user-
+friendly website forms.
+
+                                                 30
+Technical Communications for Workplace (FWS 305): I developed stronger
+communication abilities that now allow me to share project concepts, status updates, and
+material with teammates as well as others in the company.
+
+Data Communications and Networks (CSC 305): This course helped me integrate
+network-related functions into design concepts and executions by deepening my awareness of
+communication methods and protocols used in networks.
+
+Software Engineering (SWE 401): This course guided me through the whole phases of
+a project by teaching me methodical techniques to build software, encompassing requirements
+evaluation, development, execution, evaluation, and management.
+
+Computer Ethics (ITE 390): Increased my understanding of the moral issues surrounding
+the usage and development of technology, enabling me to make morally right judgments when
+working on projects and managing confidential information.
+
+System and Network Administration (ITE 422): This course gave me invaluable
+knowledge into the upkeep and management of IT networks and systems, which helped me
+carry out system and network management activities in project situations effectively.
+
+IT Project Management (ITE 401): This course gave me the tools to plan, carry out,
+and oversee projects at Arkan efficiently in order to guarantee successful results and timely
+completion.
+
+Information Security (ITE 408): I gained a better awareness of cybersecurity techniques
+and concepts, which helped me put strong security measures in place to guard project assets
+and data against dangers.
+
+Ethical Hacking (CSE 420): I was able to conduct evaluations of security and guarantee
+the reliability and safety of the developed systems and applications. This knowledge helped me
+detect and mitigate security issues.
+
+Human-Computer Interaction (ITE 409): I created appealing and user-friendly
+interfaces by focusing on user-centered design concepts, which improved the general user
+interface in projects developed at Arkan.
+
+       In general, these courses gave me an excellent basis for managing and developing
+projects at Arkan, through a mixture of conceptual understanding and hands-on experience.
+                                              31
+This allowed me to make valuable contributions to several areas of project creation and
+oversight inside the company.
+
+
+
+4.5       Career Influence
+
+My career journey has been greatly influenced by my internship at Arkan - Al Ain Cement
+Factory, which has given me a diverse skill set and a greater comprehension of the complexities
+of the IT industry. In addition to sharpening my technical skills, the practical experience with
+database administration, networking, and programming languages has taught me the value of
+strong interpersonal skills, flexibility, and critical thinking in a fast-paced work setting.
+Working on group projects and interacting with more experienced professionals has improved
+my leadership and teamwork abilities. In addition, overcoming obstacles in the actual world
+has improved my resilience and enhanced my problem-solving skills.
+
+5.       CONCLUSION
+
+To conclude, the training course at Arkan has been a life-changing event for me, offering
+priceless knowledge and useful skills that have substantially improved my proficiency in the
+field of information technology. My comprehension of important ideas and techniques has
+increased as a result of the hands-on activities and theoretical teachings, giving me the courage
+to take on obstacles in everyday life. Furthermore, the concentration on cybersecurity
+awareness has made it clear how crucial it is to protect company property and data, which has
+increased my feeling of accountability and alertness in keeping the workplace safe.
+
+
+         A key component of closing the educational gap between theory and practical
+application in the workplace is the organization's hands-on instruction. Individuals are better
+equipped to comprehend difficult ideas and use them successfully in their jobs when they have
+the opportunity to gain real-world knowledge and abilities. trainees get important knowledge,
+self-assurance, and problem-solving skills through hands-on training and role-playing, which
+ultimately leads to heightened output, creative thinking, and the success of the company as a
+whole.
+
+
+
+
+                                               32
+      REFERNCES
+
+
+[1]   E. S. Arkan, “Emirates Steel | JOBSFORNATIONALS.” Accessed: Feb.
+      02, 2024. [Online]. Available: https://www.emiratessteelarkan.com/
+[2]   C. Energy Ministerial, “ISO 50001 Energy Management System-Case
+      Study Al Ain Cement Factory Cement Division-Building Materials
+      Emirates Steel Arkan Our journey to a Sustainable Future with Net Zero
+      Carbon Emissions ISO 50001 Certified ◆ Sheikh Khalifa Excellence
+      Awardee Case Study Snapshot Industry Building Materials Product/Service
+      Manufacturing of Clinker and Hydraulic Cement”.
+[3]   Tremix, “Tremix.” Accessed: Feb. 10, 2024. [Online]. Available:
+      https://www.tremixuae.com/
+[4]   “Pasco.” Accessed: Feb. 10, 2024. [Online]. Available: https://pasco.ae/
+[5]   “Al Jazeera Factory – For Construction Materials.” Accessed: Feb. 10,
+      2024. [Online]. Available: https://aljazeerafactory.com/
+[6]   “HOME - Pioneer ready mix.” Accessed: Feb. 10, 2024. [Online].
+      Available: https://pioneerrm.ae/
+[7]   “Al Radha Group – Your Trusted Partner Since 1994.” Accessed: Feb. 10,
+      2024. [Online]. Available: https://www.alradhagroup.com/
+[8]   “Eastern Tower Contracting | LinkedIn.” Accessed: Feb. 10, 2024.
+      [Online].     Available:   https://ae.linkedin.com/company/eastern-tower-
+      contracting
+[9]   E. S. Arkan, “INVESTOR Presentation,” no. November, pp. 1–40, 2023.
+[10] Arkan, “Arkan closes Emirates Cement plant - Cement industry news from
+      Global Cement.” Accessed: Feb. 03, 2024. [Online]. Available:
+      https://www.globalcement.com/news/item/5943-arkan-closes-emirates-
+      cement-plant
+[11] © Microsoft 2023, “Visual Studio 2022 Community Edition – Download
+      Latest Free Version.” Accessed: Feb. 03, 2024. [Online]. Available:
+                                         33
+     https://visualstudio.microsoft.com/vs/community/
+[12] adegeo, anderjef, and alexbuckgit, “What is Windows Forms - Windows
+     Forms .NET | Microsoft Learn.” Accessed: Feb. 03, 2024. [Online].
+     Available:                                       https://learn.microsoft.com/en-
+     us/dotnet/desktop/winforms/overview/?view=netdesktop-8.0
+[13] PuTTy, “Download Putty (0.79) for Windows, Linux and Mac - Install SSH
+     in PuTTY,” https://www.puttygen.com/, Accessed: Feb. 03, 2024. [Online].
+     Available: https://www.puttygen.com/download-putty
+[14] dookie, “Kali Linux | Penetration Testing and Ethical Hacking Linux
+     Distribution,” www.kali.org. Accessed: Feb. 03, 2024. [Online]. Available:
+     https://www.kali.org/
+[15] Microsoft, “SQL Server 2019 | Microsoft,” Microsoft. Accessed: Feb. 03,
+     2024.    [Online].       Available:        https://www.microsoft.com/en-us/sql-
+     server/sql-server-2019
+
+
+
+
+                                           34
+
