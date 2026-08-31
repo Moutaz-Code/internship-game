@@ -82,7 +82,7 @@ MonoBehaviour:
   m_DepthAttachmentFormat: 0
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
-  m_IntermediateTextureMode: 1
+  m_IntermediateTextureMode: 0
   m_TileOnlyMode: 0
 --- !u!114 &2606515335583478340
 MonoBehaviour:
